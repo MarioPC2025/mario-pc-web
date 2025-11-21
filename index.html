@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario PC - Soluciones Tecnológicas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            primary: '#22c55e',
+                            secondary: '#166534',
+                            accent: '#4ade80',
+                        }
+                    },
+                    animation: {
+                        'fade-cycle-1': 'cycle1 9s infinite',
+                        'fade-cycle-2': 'cycle2 9s infinite',
+                        'fade-cycle-3': 'cycle3 9s infinite',
+                    },
+                    keyframes: {
+                        cycle1: {
+                            '0%, 25%': { opacity: '1', zIndex: '10' },
+                            '30%, 100%': { opacity: '0', zIndex: '0' },
+                        },
+                        cycle2: {
+                            '0%, 25%': { opacity: '0', zIndex: '0' },
+                            '30%, 55%': { opacity: '1', zIndex: '10' },
+                            '60%, 100%': { opacity: '0', zIndex: '0' },
+                        },
+                        cycle3: {
+                            '0%, 55%': { opacity: '0', zIndex: '0' },
+                            '60%, 90%': { opacity: '1', zIndex: '10' },
+                            '95%, 100%': { opacity: '0', zIndex: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: #0f172a;
+            color: white;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        /* Clases para la animación del carrusel en hover */
+        .carousel-item {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 1.5rem;
+        }
+        /* Por defecto mostramos el primero si no hay hover */
+        .carousel-container .carousel-item:first-child {
+            opacity: 1;
+        }
+        /* Al hacer hover en el contenedor padre, activamos las animaciones */
+        .group:hover .carousel-item:nth-child(1) {
+            animation: cycle1 9s infinite;
+        }
+        .group:hover .carousel-item:nth-child(2) {
+            animation: cycle2 9s infinite;
+        }
+        .group:hover .carousel-item:nth-child(3) {
+            animation: cycle3 9s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="ph-fill ph-desktop text-3xl text-brand-primary"></i>
+                    <span class="font-bold text-xl tracking-wider">Mario<span class="text-brand-primary">PC</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="hover:text-brand-primary transition-colors">Inicio</a>
+                    <a href="#servicios" class="hover:text-brand-primary transition-colors">Servicios</a>
+                    <a href="#contacto" class="hover:text-brand-primary transition-colors">Contacto</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="https://wa.me/5491123999259" target="_blank" class="bg-brand-primary hover:bg-brand-accent text-brand-dark font-bold py-2 px-4 rounded-full transition-all transform hover:scale-105">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-primary opacity-20 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                    Tu tecnología, <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
+                        siempre al 100%
+                    </span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0">
+                    Servicio técnico especializado, armado de PC y mantenimiento. Deja tus equipos en manos de expertos y olvídate de los problemas.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#contacto" class="bg-brand-primary text-brand-dark font-bold py-3 px-8 rounded-lg hover:bg-brand-accent transition-colors text-center">
+                        Contactame
+                    </a>
+                    <a href="#servicios" class="glass hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-lg transition-colors text-center">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+                <div class="relative w-full max-w-md p-4 glass rounded-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 group cursor-pointer">
+                    <div class="bg-brand-dark/50 rounded-xl border border-white/5 h-64 relative overflow-hidden carousel-container">
+                        
+                        <div class="carousel-item">
+                            <i class="ph-duotone ph-cpu text-6xl text-brand-primary mb-4"></i>
+                            <p class="text-gray-400 font-bold text-lg mb-2">Optimización Hardware</p>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5 max-w-[200px]">
+                                <div class="bg-brand-primary h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <i class="ph-duotone ph-hard-drives text-6xl text-brand-accent mb-4"></i>
+                            <p class="text-gray-400 font-bold text-lg mb-2">Instalación de SSD</p>
+                            <p class="text-xs text-gray-500 text-center">Tu PC 10 veces más rápida</p>
+                        </div>
+
+                        <div class="carousel-item">
+                            <i class="ph-duotone ph-shield-check text-6xl text-blue-400 mb-4"></i>
+                            <p class="text-gray-400 font-bold text-lg mb-2">Limpieza de Virus</p>
+                            <p class="text-xs text-gray-500 text-center">Seguridad total</p>
+                        </div>
+
+                    </div>
+                    <div class="absolute bottom-2 left-0 right-0 text-center opacity-50 text-xs text-gray-500 group-hover:opacity-0 transition-opacity">
+                        Pasa el mouse para ver más
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-20 bg-brand-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Mis Servicios</h2>
+                <div class="w-20 h-1 bg-brand-primary mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-4">Soluciones rápidas para problemas complejos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-2xl hover:border-brand-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center mb-6 text-brand-primary group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Reparación de Hardware</h3>
+                    <p class="text-gray-400">Diagnóstico y reparación de componentes físicos, limpieza interna y cambio de pasta térmica.</p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl hover:border-brand-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center mb-6 text-brand-primary group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-windows-logo text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Formateo e Instalación</h3>
+                    <p class="text-gray-400">Instalación de Windows, Office, drivers y optimización del sistema operativo.</p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl hover:border-brand-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center mb-6 text-brand-primary group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-hard-drives text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Actualización a SSD</h3>
+                    <p class="text-gray-400">Reemplazo tu viejo disco rígido (HDD) por un disco sólido (SSD). Tu PC volará como nueva.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass rounded-3xl p-8 md:p-12 border border-brand-primary/20 text-center">
+                <h2 class="text-3xl font-bold mb-6">¿Listo para mejorar tu equipo?</h2>
+                <p class="text-gray-300 mb-8">
+                    Contáctame hoy mismo para un presupuesto sin cargo.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <a href="mailto:mariopcrepara@gmail.com" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white py-3 px-6 rounded-lg transition-colors">
+                        <i class="ph-fill ph-envelope-simple text-xl"></i>
+                        Enviar Email
+                    </a>
+                    
+                    <a href="https://wa.me/5491123999259" target="_blank" class="flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-accent text-brand-dark font-bold py-3 px-6 rounded-lg transition-colors">
+                        <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                        Escribir al WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-12 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-400 text-sm">
+                © 2025 Mario PC. Todos los derechos reservados.
+            </div>
+            <div class="flex gap-4">
+                <a href="https://www.instagram.com/mario.pc.olivos/" target="_blank" class="text-gray-400 hover:text-brand-primary transition-colors">
+                    <i class="ph-fill ph-instagram-logo text-xl"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61580812972408" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors">
+                    <i class="ph-fill ph-facebook-logo text-xl"></i>
+                </a>
+            </div>
+            <div class="text-gray-500 text-sm">
+                Hecho con ❤️ para mis clientes
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
