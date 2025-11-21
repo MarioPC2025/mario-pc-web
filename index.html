@@ -19,9 +19,9 @@
                         }
                     },
                     animation: {
-                        'fade-cycle-1': 'cycle1 9s infinite',
-                        'fade-cycle-2': 'cycle2 9s infinite',
-                        'fade-cycle-3': 'cycle3 9s infinite',
+                        'cycle1': 'cycle1 9s infinite',
+                        'cycle2': 'cycle2 9s infinite',
+                        'cycle3': 'cycle3 9s infinite',
                     },
                     keyframes: {
                         cycle1: {
@@ -54,7 +54,12 @@
             color: white;
             font-family: system-ui, -apple-system, sans-serif;
         }
-        /* Clases para la animación del carrusel en hover */
+
+        /* --- FIX CARRUSEL DESKTOP --- */
+        .carousel-container {
+            position: relative;
+            height: 100%; /* Altura fija para el contenedor h-64 */
+        }
         .carousel-item {
             position: absolute;
             inset: 0;
@@ -62,15 +67,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
+            opacity: 0; /* Por defecto, todos invisibles */
             transition: opacity 0.5s ease;
             padding: 1.5rem;
         }
-        /* Por defecto mostramos el primero si no hay hover */
-        .carousel-container .carousel-item:first-child {
+        
+        /* Item inicial visible en Desktop (sin hover) */
+        .carousel-container:not(.group:hover) .carousel-item:first-child {
             opacity: 1;
         }
-        /* Al hacer hover en el contenedor padre, activamos las animaciones */
+
+        /* Animación al hacer hover en Desktop */
         .group:hover .carousel-item:nth-child(1) {
             animation: cycle1 9s infinite;
         }
@@ -80,20 +87,49 @@
         .group:hover .carousel-item:nth-child(3) {
             animation: cycle3 9s infinite;
         }
+        /* Oculta el texto "Pasa el mouse" cuando está animado */
+        .group:hover .text-hint {
+            opacity: 0 !important;
+        }
+
+        /* --- ARREGLO PARA MOBILE (Portrait) --- */
+        @media (max-width: 640px) {
+            .carousel-container {
+                height: auto !important; /* Desactiva altura fija */
+                padding: 1.5rem 0;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .carousel-item {
+                position: relative !important; /* Mantiene todos los items visibles en flujo */
+                opacity: 1 !important;
+                padding: 1rem !important;
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 1rem;
+                background: rgba(0,0,0,0.2);
+                animation: none !important; /* Desactiva la animación */
+            }
+            /* Oculta el texto "Pasa el mouse" en móvil */
+            .text-hint {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="fixed w-full z-50 glass border-b border-white/10">
+    <nav class="fixed w-full z-50 glass border-b border-white/10" style="overflow: visible;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <i class="ph-fill ph-desktop text-3xl text-brand-primary"></i>
+                <div class="flex-shrink-0 flex items-center gap-2 relative -mt-6">
+                    <img src="logo.png" class="w-20 h-20 relative z-50" alt="Mario PC Logo">
                     <span class="font-bold text-xl tracking-wider">Mario<span class="text-brand-primary">PC</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="hover:text-brand-primary transition-colors">Inicio</a>
                     <a href="#servicios" class="hover:text-brand-primary transition-colors">Servicios</a>
+                    <a href="#ubicacion" class="hover:text-brand-primary transition-colors">Ubicación</a>
                     <a href="#contacto" class="hover:text-brand-primary transition-colors">Contacto</a>
                 </div>
                 <div class="hidden md:block">
@@ -135,7 +171,7 @@
                         <div class="carousel-item">
                             <i class="ph-duotone ph-cpu text-6xl text-brand-primary mb-4"></i>
                             <p class="text-gray-400 font-bold text-lg mb-2">Optimización Hardware</p>
-                            <div class="w-full bg-gray-700 rounded-full h-2.5 max-w-[200px]">
+                            <div class="w-full bg-gray-700 rounded-full h-2.5 max-w-[200px] mx-auto">
                                 <div class="bg-brand-primary h-2.5 rounded-full" style="width: 85%"></div>
                             </div>
                         </div>
@@ -153,7 +189,7 @@
                         </div>
 
                     </div>
-                    <div class="absolute bottom-2 left-0 right-0 text-center opacity-50 text-xs text-gray-500 group-hover:opacity-0 transition-opacity">
+                    <div class="absolute bottom-2 left-0 right-0 text-center opacity-50 text-xs text-gray-500 transition-opacity text-hint">
                         Pasa el mouse para ver más
                     </div>
                 </div>
@@ -197,6 +233,37 @@
         </div>
     </section>
 
+    <section id="ubicacion" class="py-20 bg-brand-dark/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">Mi Área de Servicio</h2>
+                <div class="w-20 h-1 bg-brand-primary mx-auto rounded-full"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    Como no cuento con local a la calle, atiendo a domicilio. Mi zona de cobertura principal se centra en:
+                    <span class="text-brand-accent font-semibold">Olivos y La Lucila (Vicente López).</span>
+                </p>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl h-96 shadow-2xl border border-white/10">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13155.679357494553!2d-58.4870535!3d-34.50291415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc674f762a4b87%3A0x8e8312d83765e94b!2sOlivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1700688000000!5m2!1ses-419!2sar" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-brand-accent/50 animate-ping"></div>
+                    <div class="w-24 h-24 md:w-40 md:h-40 rounded-full border-4 border-brand-accent absolute bg-brand-accent/20 flex items-center justify-center">
+                        <i class="ph-fill ph-house-line text-4xl text-brand-accent"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="py-20 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass rounded-3xl p-8 md:p-12 border border-brand-primary/20 text-center">
@@ -231,6 +298,9 @@
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61580812972408" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors">
                     <i class="ph-fill ph-facebook-logo text-xl"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/R6jFzt3xHsW1iEET9" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <i class="ph-fill ph-map-pin text-xl"></i>
                 </a>
             </div>
             <div class="text-gray-500 text-sm">
