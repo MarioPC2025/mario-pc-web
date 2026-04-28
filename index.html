@@ -3,28 +3,1331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario PC</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Mario PC — Servicio Técnico | Olivos y La Lucila</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #07090a;
+            --bg-alt: #0c0f10;
+            --green: #1ddd65;
+            --green-dim: rgba(29, 221, 101, 0.1);
+            --green-border: rgba(29, 221, 101, 0.22);
+            --white: #e8edea;
+            --muted: #536057;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            background-color: #0f172a;
-            color: white;
-            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-weight: 300;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Dot grid */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(29, 221, 101, 0.09) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Grain overlay */
+        .grain {
+            position: fixed;
+            inset: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='1'/></svg>");
+            opacity: 0.032;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(7, 9, 10, 0.88);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .nav-logo-text {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            letter-spacing: 0.05em;
+            color: var(--white);
+        }
+
+        .nav-logo-text em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+
+        .nav-cta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            text-decoration: none;
+            border: 1px solid var(--green-border);
+            padding: 9px 20px;
+            border-radius: 2px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-cta:hover {
+            background: var(--green-dim);
+            border-color: var(--green);
+        }
+
+        /* Mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0; right: 0;
+            background: rgba(7,9,10,0.97);
+            border-bottom: 1px solid var(--green-border);
+            padding: 1.75rem 2.5rem;
+            z-index: 199;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover { color: var(--green); }
+
+        /* ─── HERO ─── */
+        #inicio {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 2.5rem 80px;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Large decorative corner element */
+        #inicio::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -5%;
+            width: 55%;
+            height: 80%;
+            border: 1px solid rgba(29, 221, 101, 0.06);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-eyebrow-line {
+            width: 36px;
+            height: 1px;
+            background: var(--green);
+        }
+
+        .hero-eyebrow-text {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4.5rem, 9vw, 8.5rem);
+            line-height: 0.9;
+            letter-spacing: 0.01em;
+            margin-bottom: 2rem;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--muted);
+            max-width: 400px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 0.875rem;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: #030804;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 28px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--green-border);
+            color: var(--green);
+            background: var(--green-dim);
+        }
+
+        /* Hero stats strip */
+        .hero-stats {
+            display: flex;
+            gap: 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 2rem;
+        }
+
+        .hero-stat {
+            flex: 1;
+            padding-right: 2rem;
+            border-right: 1px solid rgba(255,255,255,0.07);
+            margin-right: 2rem;
+        }
+
+        .hero-stat:last-child {
+            border-right: none;
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        .hero-stat-num {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--green);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Status panel */
+        .status-panel {
+            position: relative;
+            z-index: 2;
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            overflow: hidden;
+            background: rgba(7, 9, 10, 0.8);
+        }
+
+        .status-panel-header {
+            background: var(--green-dim);
+            border-bottom: 1px solid var(--green-border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-panel-title {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: pulse-dot 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--green); }
+            50% { opacity: 0.4; box-shadow: 0 0 2px var(--green); }
+        }
+
+        .status-panel-version {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .status-item {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background 0.2s;
+        }
+
+        .status-item:last-child { border-bottom: none; }
+        .status-item:hover { background: rgba(29, 221, 101, 0.04); }
+
+        .status-icon {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--green-border);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .status-item-title {
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-bottom: 3px;
+        }
+
+        .status-item-desc {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ─── MARQUEE STRIP ─── */
+        .marquee-strip {
+            position: relative;
+            z-index: 2;
+            background: var(--green);
+            padding: 11px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-track span {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            color: #030804;
+            padding: 0 1.5rem;
+        }
+
+        .marquee-dot {
+            color: rgba(3, 8, 4, 0.4);
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ─── SERVICES ─── */
+        #servicios {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .section-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 100px 2.5rem;
+        }
+
+        .services-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+            margin-bottom: 3.5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--green);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            line-height: 0.95;
+            letter-spacing: 0.02em;
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .services-desc {
+            color: var(--muted);
+            line-height: 1.75;
+            font-size: 0.95rem;
+            max-width: 380px;
+            margin-left: auto;
+            align-self: end;
+        }
+
+        .service-rows {
+            padding-left: 2.5rem;
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 60px;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: default;
+            position: relative;
+            transition: all 0.25s;
+        }
+
+        .service-row::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: var(--green);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .service-row:hover::before { transform: scaleY(1); }
+
+        .service-num {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            transition: color 0.25s;
+        }
+
+        .service-row:hover .service-num { color: var(--green); }
+
+        .service-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.4rem;
+            transition: color 0.25s;
+        }
+
+        .service-row:hover .service-name { color: var(--green); }
+
+        .service-detail {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--green-border);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.3rem;
+            justify-self: end;
+            transition: all 0.25s;
+        }
+
+        .service-row:hover .service-icon {
+            background: var(--green);
+            color: #030804;
+            border-color: var(--green);
+        }
+
+        /* ─── LOCATION ─── */
+        #ubicacion {
+            position: relative;
+            z-index: 1;
+            background: var(--bg);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .location-info {
+            padding-top: 0.5rem;
+        }
+
+        .location-address {
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .location-address-label {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .location-address-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.03em;
+            line-height: 1.1;
+        }
+
+        .location-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 2.5rem;
+        }
+
+        .location-tag {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            border: 1px solid var(--green-border);
+            background: var(--green-dim);
+            padding: 5px 12px;
+            border-radius: 2px;
+        }
+
+        .location-note {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .map-container {
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            overflow: hidden;
+            height: 420px;
+            position: relative;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Invisible shield that blocks all map interaction */
+        .map-shield {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            cursor: default;
+        }
+
+        /* Pulsing location pin */
+        .map-pin {
+            position: absolute;
+            top: 48%;
+            left: 46%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-pin-ring-outer {
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2px solid var(--green);
+            opacity: 0;
+            animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .map-pin-ring-inner {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid rgba(29, 221, 101, 0.5);
+            opacity: 0;
+            animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) 0.4s infinite;
+        }
+
+        .map-pin-core {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(7, 9, 10, 0.85);
+            border: 2px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 0.85rem;
+            box-shadow: 0 0 16px rgba(29, 221, 101, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes ping {
+            0%   { transform: scale(0.5); opacity: 0.8; }
+            80%  { transform: scale(1.8); opacity: 0; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        /* ─── CONTACT ─── */
+        #contacto {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .contact-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 120px 2.5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            line-height: 0.9;
+            letter-spacing: 0.01em;
+            margin-top: 1rem;
+        }
+
+        .contact-title em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 260px;
+        }
+
+        .contact-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 2rem 0;
+        }
+
+        .contact-email-link {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .contact-email-link:hover { color: var(--white); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: var(--bg);
+            padding: 2rem 2.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .footer-social {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-social:hover {
+            border-color: var(--green-border);
+            color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .footer-made {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 960px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .status-panel {
+                max-width: 480px;
+            }
+
+            .services-header {
+                grid-template-columns: 1fr;
+            }
+
+            .services-desc {
+                margin-left: 0;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .contact-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+                min-width: unset;
+            }
+
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 1.5rem; }
+            #inicio { padding: 100px 1.5rem 60px; }
+            .section-inner { padding: 80px 1.5rem; }
+            .contact-inner { padding: 80px 1.5rem; }
+            footer { padding: 2rem 1.5rem; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .hero-stat { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 1.5rem; }
+            .hero-stat:last-child { border-bottom: none; padding-bottom: 0; }
+            .service-rows { padding-left: 1rem; }
+            .service-row { grid-template-columns: 44px 1fr 40px; gap: 1rem; }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen text-center px-4">
+<body>
 
-    <div>
-        <h1 class="text-3xl md:text-5xl font-bold mb-6">
-            Mario<span class="text-green-400">PC</span>
-        </h1>
+<div class="grain"></div>
 
-        <p class="text-lg md:text-xl text-gray-300 max-w-xl">
-            Lamentablemente, el taller estará cerrado por tiempo indeterminado.<br>
-            Gracias por tu comprensión.
-        </p>
+<!-- NAV -->
+<nav>
+    <a href="#inicio" class="nav-logo">
+        <img src="logo.png" alt="Mario PC">
+        <span class="nav-logo-text">Mario<em>PC</em></span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <a href="https://wa.me/5491123999259" target="_blank" class="nav-cta">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+        WhatsApp
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio" onclick="closeMobile()">Inicio</a>
+    <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
+    <a href="#contacto" onclick="closeMobile()">Contacto</a>
+    <a href="https://wa.me/5491123999259" target="_blank" style="color: var(--green);">
+        <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
+    </a>
+</div>
+
+<!-- HERO -->
+<section id="inicio">
+    <div class="hero-inner">
+
+        <!-- Left -->
+        <div>
+            <div class="hero-eyebrow reveal">
+                <div class="hero-eyebrow-line"></div>
+                <span class="hero-eyebrow-text">Servicio Técnico · Olivos & La Lucila</span>
+            </div>
+
+            <h1 class="reveal reveal-delay-1">
+                Tus equipos,<br>
+                <em>siempre</em><br>
+                al 100%
+            </h1>
+
+            <p class="hero-desc reveal reveal-delay-2">
+                Diagnóstico, reparación y armado de PC. Deja tus equipos en manos de alguien que realmente sabe lo que hace.
+            </p>
+
+            <div class="hero-actions reveal reveal-delay-2">
+                <a href="https://wa.me/5491123999259" target="_blank" class="btn-primary">
+                    <i class="ph-fill ph-whatsapp-logo"></i>
+                    Escribime ahora
+                </a>
+                <a href="#servicios" class="btn-secondary">
+                    Ver servicios
+                    <i class="ph ph-arrow-down"></i>
+                </a>
+            </div>
+
+            <div class="hero-stats reveal reveal-delay-3">
+                <div class="hero-stat">
+                    <div class="hero-stat-num">5+</div>
+                    <div class="hero-stat-label">Años de experiencia</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">24h</div>
+                    <div class="hero-stat-label">Tiempo de respuesta</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num">100%</div>
+                    <div class="hero-stat-label">Presupuesto sin cargo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Status Panel -->
+        <div class="status-panel reveal reveal-delay-2">
+            <div class="status-panel-header">
+                <div class="status-panel-title">
+                    <div class="status-dot"></div>
+                    diagnóstico_sistema
+                </div>
+                <span class="status-panel-version">v2.1</span>
+            </div>
+
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="ph-duotone ph-cpu"></i>
+                </div>
+                <div>
+                    <div class="status-item-title">Optimización de Hardware</div>
+                    <div class="status-item-desc">aumento de rendimiento garantizado</div>
+                </div>
+            </div>
+
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="ph-duotone ph-hard-drives"></i>
+                </div>
+                <div>
+                    <div class="status-item-title">Instalación de SSD</div>
+                    <div class="status-item-desc">hasta 10× más rápido que un HDD</div>
+                </div>
+            </div>
+
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="ph-duotone ph-shield-check"></i>
+                </div>
+                <div>
+                    <div class="status-item-title">Limpieza & Seguridad</div>
+                    <div class="status-item-desc">eliminación de virus · protección total</div>
+                </div>
+            </div>
+
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="ph-duotone ph-windows-logo"></i>
+                </div>
+                <div>
+                    <div class="status-item-title">Formateo e Instalación</div>
+                    <div class="status-item-desc">windows · office · drivers · activación</div>
+                </div>
+            </div>
+        </div>
+
     </div>
+</section>
 
+<!-- MARQUEE -->
+<div class="marquee-strip">
+    <div class="marquee-track">
+        <span>Servicio Técnico</span><span class="marquee-dot">·</span>
+        <span>Olivos</span><span class="marquee-dot">·</span>
+        <span>La Lucila</span><span class="marquee-dot">·</span>
+        <span>Armado de PC</span><span class="marquee-dot">·</span>
+        <span>Reparación</span><span class="marquee-dot">·</span>
+        <span>Actualización SSD</span><span class="marquee-dot">·</span>
+        <span>Formateo</span><span class="marquee-dot">·</span>
+        <span>Diagnóstico Gratis</span><span class="marquee-dot">·</span>
+        <span>Vicente López</span><span class="marquee-dot">·</span>
+        <span>Servicio Técnico</span><span class="marquee-dot">·</span>
+        <span>Olivos</span><span class="marquee-dot">·</span>
+        <span>La Lucila</span><span class="marquee-dot">·</span>
+        <span>Armado de PC</span><span class="marquee-dot">·</span>
+        <span>Reparación</span><span class="marquee-dot">·</span>
+        <span>Actualización SSD</span><span class="marquee-dot">·</span>
+        <span>Formateo</span><span class="marquee-dot">·</span>
+        <span>Diagnóstico Gratis</span><span class="marquee-dot">·</span>
+        <span>Vicente López</span><span class="marquee-dot">·</span>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicios">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Qué hago?</div>
+                <h2 class="section-title">Mis <em>servicios</em></h2>
+            </div>
+            <p class="services-desc">
+                Soluciones rápidas para problemas complejos. Trabajo sobre notebooks y desktops con diagnóstico sin cargo.
+            </p>
+        </div>
+
+        <div class="service-rows">
+
+            <div class="service-row reveal">
+                <span class="service-num">01</span>
+                <div>
+                    <div class="service-name">Reparación de Hardware</div>
+                    <div class="service-detail">Diagnóstico y reparación de notebooks y desktop. Limpieza interna y cambio de pasta térmica.</div>
+                </div>
+                <div class="service-icon">
+                    <i class="ph-fill ph-wrench"></i>
+                </div>
+            </div>
+
+            <div class="service-row reveal">
+                <span class="service-num">02</span>
+                <div>
+                    <div class="service-name">Formateo e Instalación</div>
+                    <div class="service-detail">Instalación de Windows, Office, drivers y optimización completa del sistema operativo.</div>
+                </div>
+                <div class="service-icon">
+                    <i class="ph-fill ph-windows-logo"></i>
+                </div>
+            </div>
+
+            <div class="service-row reveal">
+                <span class="service-num">03</span>
+                <div>
+                    <div class="service-name">Actualización a SSD</div>
+                    <div class="service-detail">Reemplazo tu viejo HDD por un disco sólido. Tu PC arranca y responde hasta 10× más rápido.</div>
+                </div>
+                <div class="service-icon">
+                    <i class="ph-fill ph-hard-drives"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section id="ubicacion">
+    <div class="section-inner">
+
+        <div class="location-grid">
+
+            <div class="location-info reveal">
+                <div class="section-eyebrow">Dónde estoy</div>
+                <h2 class="section-title">Mi <em>área</em></h2>
+
+                <div class="location-address">
+                    <div class="location-address-label">Taller propio en</div>
+                    <div class="location-address-value">Alberdi & Maipú</div>
+                </div>
+
+                <div class="location-tags">
+                    <span class="location-tag">Olivos</span>
+                    <span class="location-tag">La Lucila</span>
+                    <span class="location-tag">Vicente López</span>
+                </div>
+
+                <p class="location-note">
+                    Mi zona de cobertura principal es Olivos y La Lucila. Consulitame si necesitás saber si llego a tu ubicación.
+                </p>
+
+                <div style="margin-top: 2.5rem;">
+                    <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" class="btn-secondary" style="display: inline-flex;">
+                        <i class="ph ph-map-pin"></i>
+                        Ver en Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <div class="map-container reveal reveal-delay-1">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13150.782537196805!2d-58.485500909395476!3d-34.51059975336671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1763744097677!5m2!1ses-419!2sar"
+                    width="100%"
+                    height="100%"
+                    style="border:0; filter: invert(90%) hue-rotate(145deg) brightness(0.85) saturate(0.7); pointer-events: none;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+                <!-- Interaction shield -->
+                <div class="map-shield"></div>
+
+                <!-- Pulsing pin -->
+                <div class="map-pin">
+                    <div class="map-pin-ring-outer"></div>
+                    <div class="map-pin-ring-inner"></div>
+                    <div class="map-pin-core">
+                        <i class="ph-fill ph-house-line"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+    <div class="contact-inner">
+        <div class="contact-grid reveal">
+            <div>
+                <div class="section-eyebrow">¿Listo?</div>
+                <h2 class="contact-title">
+                    Hablemos<br>
+                    <em>hoy</em>
+                </h2>
+            </div>
+
+            <div class="contact-actions">
+                <a href="https://wa.me/5491123999259" target="_blank" class="btn-primary" style="justify-content: center;">
+                    <i class="ph-fill ph-whatsapp-logo"></i>
+                    Escribir al WhatsApp
+                </a>
+
+                <a href="mailto:mariopcrepara@gmail.com" class="btn-secondary" style="justify-content: center;">
+                    <i class="ph ph-envelope-simple"></i>
+                    Enviar Email
+                </a>
+
+                <div class="contact-divider"></div>
+
+                <a href="mailto:mariopcrepara@gmail.com" class="contact-email-link">
+                    <i class="ph ph-at"></i>
+                    mariopcrepara@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-copy">© 2025 Mario PC — Todos los derechos reservados</div>
+
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/mario.pc.olivos/" target="_blank" class="footer-social" aria-label="Instagram">
+                <i class="ph-fill ph-instagram-logo"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61580812972408" target="_blank" class="footer-social" aria-label="Facebook">
+                <i class="ph-fill ph-facebook-logo"></i>
+            </a>
+            <a href="https://wa.me/5491123999259" target="_blank" class="footer-social" aria-label="WhatsApp">
+                <i class="ph-fill ph-whatsapp-logo"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" class="footer-social" aria-label="LinkedIn">
+                <i class="ph-fill ph-linkedin-logo"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" class="footer-social" aria-label="Google Maps">
+                <i class="ph-fill ph-map-pin"></i>
+            </a>
+        </div>
+
+        <div class="footer-made">Hecho con ❤️ para mis clientes</div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+        mobileMenu.classList.remove('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav border on scroll
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            navEl.style.borderBottomColor = 'rgba(29, 221, 101, 0.12)';
+        } else {
+            navEl.style.borderBottomColor = 'rgba(255,255,255,0.05)';
+        }
+    });
+</script>
 </body>
 </html>
