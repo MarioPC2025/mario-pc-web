@@ -424,6 +424,7 @@
             background: var(--green);
             box-shadow: 0 0 8px var(--green);
             animation: pulse-dot 2.5s ease-in-out infinite;
+            cursor: pointer;
         }
 
         @keyframes pulse-dot {
@@ -1310,6 +1311,46 @@
             background: var(--green-dim);
         }
 
+        /* ─── EASTER EGG: toast genérico ─── */
+        .egg-toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(12px);
+            z-index: 600;
+            background: rgba(7, 9, 10, 0.95);
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            padding: 12px 20px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.03em;
+            color: var(--green);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .egg-toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .egg-toast {
+                white-space: normal;
+                max-width: 85vw;
+                text-align: center;
+                bottom: 80px;
+            }
+        }
+
+        .nav-logo, .footer-copy {
+            cursor: pointer;
+            user-select: none;
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 960px) {
             .hero-inner {
@@ -1967,11 +2008,14 @@
 <div class="rickroll-overlay" id="rickrollOverlay">
     <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
     <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
-    <p class="rickroll-sub">Encontraste el easter egg · Código Konami activado</p>
+    <p class="rickroll-sub">Encontraste un easter egg 🎉</p>
     <button class="rickroll-close" onclick="closeRickroll()">
         <i class="ph ph-x"></i> Cerrar
     </button>
 </div>
+
+<!-- EASTER EGG: toast genérico -->
+<div class="egg-toast" id="eggToast"></div>
 
 <script>
     // Mobile menu
@@ -2052,7 +2096,85 @@
 
         console.log('%c¿Viniste a inspeccionar el código? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
         console.log('%cSi sabés de esto, quizás seas justo la persona que necesito. Escribime: mariopcrepara@gmail.com', 'color:#e8edea; font-size:12px;');
-        console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A) en cualquier página 😉', 'color:#536057; font-size:11px;');
+        console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o tocá el logo varias veces seguidas 😉', 'color:#536057; font-size:11px;');
+    })();
+
+    // ─── EASTER EGG: toast genérico ───
+    function showEggToast(msg, duration) {
+        const toast = document.getElementById('eggToast');
+        toast.textContent = msg;
+        toast.classList.add('visible');
+        clearTimeout(showEggToast._t);
+        showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
+    }
+
+    // ─── EASTER EGG: tocar el logo 7 veces → rickroll ───
+    (function () {
+        const logo = document.querySelector('.nav-logo');
+        if (!logo) return;
+        let taps = 0;
+        let resetTimer;
+
+        logo.addEventListener('click', (e) => {
+            taps++;
+            clearTimeout(resetTimer);
+            resetTimer = setTimeout(() => { taps = 0; }, 2000);
+
+            if (taps === 4) {
+                e.preventDefault();
+                showEggToast('👀 Seguí así...');
+            } else if (taps === 6) {
+                e.preventDefault();
+                showEggToast('🛠️ Te convertiste en desarrollador');
+            } else if (taps >= 7) {
+                e.preventDefault();
+                taps = 0;
+                openRickroll();
+            } else if (taps > 1) {
+                e.preventDefault();
+            }
+        });
+    })();
+
+    // ─── EASTER EGG: footer con frases random ───
+    (function () {
+        const footerEl = document.querySelector('.footer-copy');
+        if (!footerEl) return;
+        const original = footerEl.textContent;
+        const phrases = [
+            original,
+            '© 2026 Mario PC — Hecho con mucho café ☕',
+            '© 2026 Mario PC — 100% libre de virus (el sitio, no siempre tu PC)',
+            '© 2026 Mario PC — Si llegaste hasta acá, sos mi cliente ideal',
+            '© 2026 Mario PC — Gracias por curiosear 🕵️'
+        ];
+        let idx = 0;
+        footerEl.addEventListener('click', () => {
+            idx = (idx + 1) % phrases.length;
+            footerEl.style.opacity = '0';
+            setTimeout(() => {
+                footerEl.textContent = phrases[idx];
+                footerEl.style.opacity = '1';
+            }, 150);
+        });
+        footerEl.style.transition = 'opacity 0.15s ease';
+    })();
+
+    // ─── EASTER EGG: status-dot con mensaje random ───
+    (function () {
+        const dot = document.querySelector('.status-dot');
+        if (!dot) return;
+        const messages = [
+            '✅ Certificado 100% libre de bugs (el sitio, eh)',
+            '🔋 Cargando buena onda...',
+            '🖱️ Click detectado. Buen ojo.',
+            '⚡ Todo funcionando de diez',
+            '🔍 Ningún virus por acá'
+        ];
+        dot.addEventListener('click', () => {
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            showEggToast(msg);
+        });
     })();
 </script>
 </body>
