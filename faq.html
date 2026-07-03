@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBVPJ6H5H5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VBVPJ6H5H5');
+    </script>
+
     <meta name="description" content="Preguntas frecuentes sobre el servicio técnico de Mario PC en Olivos. Respondemos tus dudas sobre upgrade a SSD, reparación de hardware, limpieza de PC y soporte técnico remoto.">
     <link rel="canonical" href="https://mariopc.com.ar/faq.html">
     <title>Preguntas Frecuentes — Mario PC | Olivos, Buenos Aires</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#07090a">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mariopc.com.ar/faq.html">
+    <meta property="og:site_name" content="Mario PC">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:title" content="Preguntas Frecuentes — Mario PC | Olivos, Buenos Aires">
+    <meta property="og:description" content="Preguntas frecuentes sobre el servicio técnico de Mario PC en Olivos. Upgrade a SSD, reparación de hardware, limpieza de PC y soporte técnico remoto.">
+    <meta property="og:image" content="https://mariopc.com.ar/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Preguntas Frecuentes — Mario PC | Olivos, Buenos Aires">
+    <meta name="twitter:description" content="Preguntas frecuentes sobre el servicio técnico de Mario PC en Olivos. Upgrade a SSD, reparación de hardware, limpieza de PC y soporte técnico remoto.">
+    <meta name="twitter:image" content="https://mariopc.com.ar/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -650,6 +685,50 @@
             }
         }
 
+        /* ─── VOLVER ARRIBA ─── */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 500;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(7, 9, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--green-border);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.2s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--green-dim);
+            border-color: var(--green);
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top {
+                width: 42px;
+                height: 42px;
+                bottom: 18px;
+                left: 18px;
+            }
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 960px) {
             .nav-links, .nav-cta { display: none; }
@@ -694,6 +773,7 @@
     <ul class="nav-links">
         <li><a href="./#inicio">Inicio</a></li>
         <li><a href="./#servicios">Servicios</a></li>
+        <li><a href="./#precios">Precios</a></li>
         <li><a href="./#ubicacion">Ubicación</a></li>
         <li><a href="./#contacto">Contacto</a></li>
         <li><a href="faq.html" class="active">FAQ</a></li>
@@ -715,6 +795,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="./#inicio" onclick="closeMobile()">Inicio</a>
     <a href="./#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="./#precios" onclick="closeMobile()">Precios</a>
     <a href="./#ubicacion" onclick="closeMobile()">Ubicación</a>
     <a href="./#contacto" onclick="closeMobile()">Contacto</a>
     <a href="faq.html" class="active" onclick="closeMobile()">FAQ</a>
@@ -957,6 +1038,25 @@
    aria-label="Escribir por WhatsApp">
     <i class="ph-fill ph-whatsapp-logo"></i>
 </a>
+
+<!-- VOLVER ARRIBA -->
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <i class="ph ph-arrow-up"></i>
+</button>
+
+<script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
 
 </body>
 </html>

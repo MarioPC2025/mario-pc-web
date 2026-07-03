@@ -3,6 +3,8 @@
 # Todos los bots: acceso total
 User-agent: *
 Allow: /
+Disallow: /404.html
+Disallow: /gracias.html
 
 # Buscadores tradicionales
 User-agent: Googlebot

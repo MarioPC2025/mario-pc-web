@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBVPJ6H5H5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VBVPJ6H5H5');
+    </script>
+
     <meta name="description" content="Mario PC — Servicio técnico de computadoras en Olivos, Buenos Aires. Upgrade HDD a SSD, reparación de hardware, formateo e instalación de Windows. Diagnóstico sin cargo. Zona: Olivos, La Lucila, Vicente López.">
     <link rel="canonical" href="https://mariopc.com.ar/">
     <title>Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#07090a">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mariopc.com.ar/">
+    <meta property="og:site_name" content="Mario PC">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:title" content="Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López">
+    <meta property="og:description" content="Servicio técnico de computadoras en Olivos, Buenos Aires. Upgrade HDD a SSD, reparación de hardware, formateo e instalación de Windows. Diagnóstico sin cargo.">
+    <meta property="og:image" content="https://mariopc.com.ar/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López">
+    <meta name="twitter:description" content="Servicio técnico de computadoras en Olivos, Buenos Aires. Upgrade HDD a SSD, reparación de hardware, formateo e instalación de Windows. Diagnóstico sin cargo.">
+    <meta name="twitter:image" content="https://mariopc.com.ar/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -614,6 +650,126 @@
             border-color: var(--green);
         }
 
+        /* ─── PRECIOS ─── */
+        #precios {
+            position: relative;
+            z-index: 1;
+            background: var(--bg);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .price-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--green-dim);
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 3rem;
+            max-width: 620px;
+        }
+
+        .price-note i {
+            color: var(--green);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .price-note p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .price-note strong {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .price-card {
+            background: var(--bg-alt);
+            padding: 2rem 1.75rem;
+            transition: background 0.25s;
+        }
+
+        .price-card:hover {
+            background: rgba(29, 221, 101, 0.035);
+        }
+
+        .price-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--green-border);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .price-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            min-height: 38px;
+        }
+
+        .price-value-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .price-from {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .price-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 0.02em;
+            color: var(--green);
+        }
+
+        @media (max-width: 960px) {
+            .price-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+            .price-card { padding: 1.75rem 1.5rem; }
+        }
+
         /* ─── LOCATION ─── */
         #ubicacion {
             position: relative;
@@ -820,6 +976,104 @@
 
         .contact-email-link:hover { color: var(--white); }
 
+        /* ─── FORMULARIO DE CONTACTO ─── */
+        .contact-form-wrap {
+            margin-top: 4.5rem;
+            padding-top: 3.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            max-width: 560px;
+        }
+
+        .contact-form-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-title em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .contact-form-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 1.75rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        .form-field label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            padding: 13px 14px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .form-field textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: rgba(232, 237, 234, 0.25);
+        }
+
+        .form-honey {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .form-submit-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .form-submit-row button {
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-mono);
+        }
+
+        .form-note {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
         /* ─── FOOTER ─── */
         footer {
             position: relative;
@@ -932,6 +1186,50 @@
                 font-size: 1.5rem;
                 bottom: 18px;
                 right: 18px;
+            }
+        }
+
+        /* ─── VOLVER ARRIBA ─── */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 500;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(7, 9, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--green-border);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.2s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--green-dim);
+            border-color: var(--green);
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top {
+                width: 42px;
+                height: 42px;
+                bottom: 18px;
+                left: 18px;
             }
         }
 
@@ -1094,6 +1392,7 @@
     <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#precios">Precios</a></li>
         <li><a href="#ubicacion">Ubicación</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -1115,6 +1414,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="#inicio" onclick="closeMobile()">Inicio</a>
     <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#precios" onclick="closeMobile()">Precios</a>
     <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
     <a href="#contacto" onclick="closeMobile()">Contacto</a>
     <a href="faq.html" onclick="closeMobile()">FAQ</a>
@@ -1303,6 +1603,111 @@
     </div>
 </section>
 
+<!-- PRECIOS -->
+<section id="precios">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Cuánto sale?</div>
+                <h2 class="section-title">Precios <em>orientativos</em></h2>
+            </div>
+            <p class="services-desc">
+                Valores de referencia para que tengas una idea antes de escribirme. El presupuesto final es siempre sin cargo.
+            </p>
+        </div>
+
+        <div class="price-note reveal">
+            <i class="ph-fill ph-info"></i>
+            <p><strong>El precio final depende del tipo, marca y modelo del equipo</strong>, y del estado en el que llega. Estos valores son un punto de partida — te paso el presupuesto exacto por WhatsApp sin cargo y sin compromiso.</p>
+        </div>
+
+        <div class="price-grid reveal">
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-windows-logo"></i></div>
+                <div class="price-name">Formateo e Instalación</div>
+                <div class="price-desc">Windows, Office, drivers y optimización del sistema.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$58.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-hard-drives"></i></div>
+                <div class="price-name">Upgrade a SSD</div>
+                <div class="price-desc">Migración completa de datos, limpieza y mantenimiento incluidos.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$66.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-broom"></i></div>
+                <div class="price-name">Limpieza y Mantenimiento</div>
+                <div class="price-desc">Limpieza interna y cambio de pasta térmica del procesador.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$27.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-shield-check"></i></div>
+                <div class="price-name">Eliminación de Malware</div>
+                <div class="price-desc">Detección y eliminación de virus, spyware y malware.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$25.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-wrench"></i></div>
+                <div class="price-name">Reparación de Hardware</div>
+                <div class="price-desc">Cambio de pantalla, teclado, flex y otros componentes en notebooks.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$47.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-desktop-tower"></i></div>
+                <div class="price-name">Armado de PC a Medida</div>
+                <div class="price-desc">Armado completo desde cero, a tu medida y presupuesto.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$83.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-device-mobile"></i></div>
+                <div class="price-name">Celulares y Tablets</div>
+                <div class="price-desc">Hard reset, configuración inicial y puesta a punto.</div>
+                <div class="price-value-row">
+                    <span class="price-from">Desde</span>
+                    <span class="price-value">$27.000</span>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-icon"><i class="ph-fill ph-magnifying-glass"></i></div>
+                <div class="price-name">Diagnóstico</div>
+                <div class="price-desc">Revisión completa del equipo para saber qué necesita.</div>
+                <div class="price-value-row">
+                    <span class="price-value" style="color: var(--white);">Sin cargo</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
 <!-- LOCATION -->
 <section id="ubicacion">
     <div class="section-inner">
@@ -1396,6 +1801,48 @@
                 </a>
             </div>
         </div>
+
+        <div class="contact-form-wrap reveal">
+            <div class="contact-form-title">O escribime <em>por acá</em></div>
+            <p class="contact-form-desc">Dejame tu consulta y te respondo a la brevedad por email.</p>
+
+            <form
+                class="contact-form"
+                action="https://formsubmit.co/mariopcrepara@gmail.com"
+                method="POST"
+            >
+                <!-- Configuración de FormSubmit -->
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde mariopc.com.ar">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://mariopc.com.ar/gracias.html">
+                <!-- Honeypot anti-spam -->
+                <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off">
+
+                <div class="form-field">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" placeholder="Contame qué le pasa a tu equipo..." required></textarea>
+                </div>
+
+                <div class="form-submit-row">
+                    <button type="submit" class="btn-primary">
+                        <i class="ph ph-paper-plane-tilt"></i>
+                        Enviar mensaje
+                    </button>
+                    <span class="form-note">Te respondo por email en menos de 24hs</span>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 
@@ -1434,6 +1881,11 @@
     <i class="ph-fill ph-whatsapp-logo"></i>
 </a>
 
+<!-- VOLVER ARRIBA -->
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <i class="ph ph-arrow-up"></i>
+</button>
+
 <script>
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
@@ -1468,6 +1920,19 @@
         } else {
             navEl.style.borderBottomColor = 'rgba(255,255,255,0.05)';
         }
+    });
+
+    // Volver arriba
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 </script>
 </body>

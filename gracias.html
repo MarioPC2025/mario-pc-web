@@ -14,7 +14,7 @@
     </script>
 
     <meta name="robots" content="noindex, follow">
-    <title>Página no encontrada — Mario PC</title>
+    <title>¡Gracias por tu mensaje! — Mario PC</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,7 +31,6 @@
 
         :root {
             --bg: #07090a;
-            --bg-alt: #0c0f10;
             --green: #1ddd65;
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
@@ -73,7 +72,7 @@
             z-index: 9999;
         }
 
-        .error-wrap {
+        .thanks-wrap {
             position: relative;
             z-index: 1;
             min-height: 100vh;
@@ -85,28 +84,34 @@
             padding: 2rem;
         }
 
-        .error-logo {
-            width: 56px;
-            height: 56px;
-            object-fit: contain;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
+        .thanks-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 1px solid var(--green-border);
+            background: var(--green-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
         }
 
-        .error-eyebrow {
+        .thanks-eyebrow {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
-        .error-eyebrow-line {
+        .thanks-eyebrow-line {
             width: 36px;
             height: 1px;
             background: var(--green);
         }
 
-        .error-eyebrow-text {
+        .thanks-eyebrow-text {
             font-family: var(--font-mono);
             font-size: 0.65rem;
             letter-spacing: 0.22em;
@@ -114,28 +119,20 @@
             color: var(--green);
         }
 
-        .error-code {
+        .thanks-title {
             font-family: var(--font-display);
-            font-size: clamp(6rem, 20vw, 12rem);
-            line-height: 0.85;
-            letter-spacing: 0.02em;
-            color: var(--white);
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.25rem;
         }
 
-        .error-code em {
+        .thanks-title em {
             font-style: normal;
             color: var(--green);
         }
 
-        .error-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            letter-spacing: 0.02em;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .error-desc {
+        .thanks-desc {
             font-size: 0.95rem;
             color: var(--muted);
             line-height: 1.75;
@@ -143,7 +140,7 @@
             margin-bottom: 2.5rem;
         }
 
-        .error-actions {
+        .thanks-actions {
             display: flex;
             gap: 0.875rem;
             flex-wrap: wrap;
@@ -194,7 +191,7 @@
             background: var(--green-dim);
         }
 
-        .error-footer {
+        .thanks-footer {
             position: absolute;
             bottom: 2rem;
             font-family: var(--font-mono);
@@ -208,22 +205,23 @@
 
 <div class="grain"></div>
 
-<div class="error-wrap">
-    <img src="logo.png" alt="Mario PC" class="error-logo">
-
-    <div class="error-eyebrow">
-        <div class="error-eyebrow-line"></div>
-        <span class="error-eyebrow-text">Error 404</span>
-        <div class="error-eyebrow-line"></div>
+<div class="thanks-wrap">
+    <div class="thanks-icon">
+        <i class="ph-fill ph-check"></i>
     </div>
 
-    <div class="error-code">4<em>0</em>4</div>
-    <h1 class="error-title">Esta página no existe</h1>
-    <p class="error-desc">
-        Parece que el link está roto o la página fue movida. Volvé al inicio o escribime directamente por WhatsApp si necesitás ayuda.
+    <div class="thanks-eyebrow">
+        <div class="thanks-eyebrow-line"></div>
+        <span class="thanks-eyebrow-text">Mensaje enviado</span>
+        <div class="thanks-eyebrow-line"></div>
+    </div>
+
+    <h1 class="thanks-title">¡Gracias<br><em>por escribir!</em></h1>
+    <p class="thanks-desc">
+        Recibí tu mensaje y te voy a responder por email dentro de las próximas 24 horas. Si es urgente, escribime directo por WhatsApp.
     </p>
 
-    <div class="error-actions">
+    <div class="thanks-actions">
         <a href="/" class="btn-primary">
             <i class="ph ph-house"></i>
             Volver al inicio
@@ -234,7 +232,7 @@
         </a>
     </div>
 
-    <div class="error-footer">© 2026 Mario PC — Todos los derechos reservados</div>
+    <div class="thanks-footer">© 2026 Mario PC — Todos los derechos reservados</div>
 </div>
 
 </body>
