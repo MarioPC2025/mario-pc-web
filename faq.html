@@ -729,6 +729,83 @@
             }
         }
 
+        /* ─── EASTER EGG: RICKROLL ─── */
+        .rickroll-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(3, 8, 4, 0.96);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .rickroll-overlay.active {
+            display: flex;
+            animation: rickroll-fade 0.3s ease;
+        }
+
+        @keyframes rickroll-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .rickroll-caption {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            letter-spacing: 0.02em;
+            color: var(--white);
+        }
+
+        .rickroll-caption em {
+            font-style: normal;
+            color: var(--green);
+        }
+
+        .rickroll-overlay iframe {
+            width: min(90vw, 720px);
+            height: min(50.6vw, 405px);
+            border: 2px solid var(--green-border);
+            border-radius: 4px;
+        }
+
+        .rickroll-sub {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .rickroll-close {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 2px;
+            background: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rickroll-close:hover {
+            border-color: var(--green-border);
+            color: var(--green);
+            background: var(--green-dim);
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 960px) {
             .nav-links, .nav-cta { display: none; }
@@ -1044,6 +1121,16 @@
     <i class="ph ph-arrow-up"></i>
 </button>
 
+<!-- EASTER EGG: RICKROLL -->
+<div class="rickroll-overlay" id="rickrollOverlay">
+    <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
+    <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
+    <p class="rickroll-sub">Encontraste el easter egg · Código Konami activado</p>
+    <button class="rickroll-close" onclick="closeRickroll()">
+        <i class="ph ph-x"></i> Cerrar
+    </button>
+</div>
+
 <script>
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
@@ -1056,6 +1143,39 @@
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // ─── EASTER EGG: Código Konami → Rickroll ───
+    (function () {
+        const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+        let progress = 0;
+
+        window.addEventListener('keydown', (e) => {
+            const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+            if (key === konami[progress]) {
+                progress++;
+                if (progress === konami.length) {
+                    openRickroll();
+                    progress = 0;
+                }
+            } else {
+                progress = (key === konami[0]) ? 1 : 0;
+            }
+        });
+
+        window.openRickroll = function () {
+            document.getElementById('rickrollFrame').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+            document.getElementById('rickrollOverlay').classList.add('active');
+        };
+
+        window.closeRickroll = function () {
+            document.getElementById('rickrollOverlay').classList.remove('active');
+            document.getElementById('rickrollFrame').src = '';
+        };
+
+        console.log('%c¿Viniste a inspeccionar el código? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
+        console.log('%cSi sabés de esto, quizás seas justo la persona que necesito. Escribime: mariopcrepara@gmail.com', 'color:#e8edea; font-size:12px;');
+        console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A) en cualquier página 😉', 'color:#536057; font-size:11px;');
+    })();
 </script>
 
 </body>
