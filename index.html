@@ -139,7 +139,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.75rem;
             list-style: none;
         }
 
@@ -771,6 +771,340 @@
             .price-card { padding: 1.75rem 1.5rem; }
         }
 
+        /* ─── GARANTÍA + MÉTODOS DE PAGO ─── */
+        .trust-strip {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .trust-card {
+            background: var(--bg-alt);
+            padding: 1.75rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .trust-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--green-border);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .trust-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 3px;
+        }
+
+        .trust-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .payment-logos {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-top: 6px;
+        }
+
+        .payment-logos img {
+            height: 20px;
+            width: auto;
+        }
+
+        .payment-cash {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            color: var(--white);
+        }
+
+        @media (max-width: 600px) {
+            .trust-strip { grid-template-columns: 1fr; }
+            .trust-card { padding: 1.5rem; }
+        }
+
+        /* ─── HORARIO DINÁMICO ─── */
+        .hours-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            padding: 7px 14px;
+            border-radius: 2px;
+            border: 1px solid var(--green-border);
+            background: var(--green-dim);
+            color: var(--green);
+        }
+
+        .hours-badge .hours-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 6px var(--green);
+        }
+
+        .hours-badge.closed {
+            border-color: rgba(255, 100, 100, 0.25);
+            background: rgba(255, 80, 80, 0.08);
+            color: #ff9a9a;
+        }
+
+        .hours-badge.closed .hours-dot {
+            background: #ff6b6b;
+            box-shadow: 0 0 6px #ff6b6b;
+            animation: none;
+        }
+
+        .hours-table {
+            margin-top: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--muted);
+            max-width: 280px;
+        }
+
+        .hours-row span:last-child {
+            color: var(--white);
+        }
+
+        .hours-row.today {
+            color: var(--green);
+        }
+
+        .hours-row.today span:last-child {
+            color: var(--green);
+        }
+
+        /* ─── GALERÍA ANTES/DESPUÉS ─── */
+        #galeria {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-card {
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 3px;
+            overflow: hidden;
+            background: var(--bg);
+        }
+
+        .gallery-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        .gallery-images > div {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #0c0f10;
+        }
+
+        .gallery-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: rgba(3, 8, 4, 0.7);
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+
+        .gallery-caption {
+            padding: 1rem 1.25rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .gallery-placeholder {
+            grid-column: 1 / -1;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 3px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .gallery-placeholder i {
+            font-size: 1.8rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 960px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── RESEÑAS Y TESTIMONIOS ─── */
+        #opiniones {
+            position: relative;
+            z-index: 1;
+            background: var(--bg);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .reviews-invite {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border: 1px solid var(--green-border);
+            background: var(--green-dim);
+            border-radius: 3px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .reviews-invite-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--green-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .reviews-invite-text {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .reviews-invite-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+        }
+
+        .reviews-invite-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 3px;
+            padding: 1.75rem;
+            background: var(--bg-alt);
+        }
+
+        .testimonial-quote-icon {
+            color: var(--green);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 0.88rem;
+            color: var(--white);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            color: var(--green);
+        }
+
+        .testimonial-placeholder {
+            grid-column: 1 / -1;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 3px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-placeholder i {
+            font-size: 1.8rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 960px) {
+            .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .testimonial-grid { grid-template-columns: 1fr; }
+        }
+
         /* ─── LOCATION ─── */
         #ubicacion {
             position: relative;
@@ -1019,7 +1353,8 @@
         }
 
         .form-field input,
-        .form-field textarea {
+        .form-field textarea,
+        .form-field select {
             width: 100%;
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.1);
@@ -1031,28 +1366,35 @@
             transition: border-color 0.2s, background 0.2s;
         }
 
+        .form-field select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23536057' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            cursor: pointer;
+        }
+
+        .form-field select option {
+            background: var(--bg-alt);
+            color: var(--white);
+        }
+
         .form-field textarea {
             min-height: 120px;
             resize: vertical;
         }
 
         .form-field input:focus,
-        .form-field textarea:focus {
+        .form-field textarea:focus,
+        .form-field select:focus {
             outline: none;
             border-color: var(--green);
-            background: var(--green-dim);
+            background-color: var(--green-dim);
         }
 
         .form-field input::placeholder,
         .form-field textarea::placeholder {
             color: rgba(232, 237, 234, 0.25);
-        }
-
-        .form-honey {
-            position: absolute;
-            left: -9999px;
-            opacity: 0;
-            pointer-events: none;
         }
 
         .form-submit-row {
@@ -1510,7 +1852,9 @@
     <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
         <li><a href="#precios">Precios</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#ubicacion">Ubicación</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -1532,7 +1876,9 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="#inicio" onclick="closeMobile()">Inicio</a>
     <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#galeria" onclick="closeMobile()">Galería</a>
     <a href="#precios" onclick="closeMobile()">Precios</a>
+    <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
     <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
     <a href="#contacto" onclick="closeMobile()">Contacto</a>
     <a href="faq.html" onclick="closeMobile()">FAQ</a>
@@ -1550,6 +1896,13 @@
             <div class="hero-eyebrow reveal">
                 <div class="hero-eyebrow-line"></div>
                 <span class="hero-eyebrow-text">Servicio Técnico · Olivos, La Lucila, Vicente López</span>
+            </div>
+
+            <div class="reveal" style="margin-bottom: 1.5rem;">
+                <span class="hours-badge" id="hoursBadge">
+                    <span class="hours-dot"></span>
+                    <span id="hoursBadgeText">Verificando horario...</span>
+                </span>
             </div>
 
             <h1 class="reveal reveal-delay-1">
@@ -1721,6 +2074,48 @@
     </div>
 </section>
 
+<!-- GALERÍA ANTES/DESPUÉS -->
+<section id="galeria">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Cómo trabajo?</div>
+                <h2 class="section-title">Antes y <em>después</em></h2>
+            </div>
+            <p class="services-desc">
+                Ejemplos reales de equipos que pasaron por el taller.
+            </p>
+        </div>
+
+        <!--
+            ══════════════════════════════════════════════════════════════
+            INSTRUCCIONES PARA MARIO — cómo agregar un caso nuevo:
+
+            1. Subí las dos fotos (antes y después) a la carpeta /gallery
+               de tu repositorio en GitHub. Podés arrastrarlas directo
+               desde la página de GitHub (Add file → Upload files).
+               Nombralas simple, sin espacios, ej: "notebook1-antes.jpg"
+               y "notebook1-despues.jpg".
+
+            2. Agregá UNA línea acá abajo, dentro de galleryItems,
+               copiando el formato de las demás:
+
+               { before: "gallery/notebook1-antes.jpg", after: "gallery/notebook1-despues.jpg", caption: "Notebook con pantalla rota" },
+
+            3. Guardá el archivo y subilo (commit). Listo, la tarjeta
+               se arma sola. El texto "caption" es lo que se ve debajo
+               de las fotos — contá brevemente qué se hizo.
+
+            Mientras el array esté vacío (como ahora), se muestra un
+            cartel de "Próximamente" en su lugar.
+            ══════════════════════════════════════════════════════════════
+        -->
+        <div class="gallery-grid reveal" id="galleryGrid"></div>
+
+    </div>
+</section>
+
 <!-- PRECIOS -->
 <section id="precios">
     <div class="section-inner">
@@ -1823,6 +2218,84 @@
 
         </div>
 
+        <div class="trust-strip reveal">
+            <div class="trust-card">
+                <div class="trust-icon"><i class="ph-fill ph-shield-check"></i></div>
+                <div>
+                    <div class="trust-title">Garantía de 7 días</div>
+                    <div class="trust-desc">En mano de obra y repuestos, en todos los trabajos.</div>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="ph-fill ph-wallet"></i></div>
+                <div>
+                    <div class="trust-title">Métodos de pago</div>
+                    <div class="payment-logos">
+                        <span class="payment-cash"><i class="ph-fill ph-money"></i> Efectivo</span>
+                        <img src="mercadopago-logo.svg" alt="Mercado Pago" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- RESEÑAS Y TESTIMONIOS -->
+<section id="opiniones">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Confían en mí?</div>
+                <h2 class="section-title">Reseñas y <em>testimonios</em></h2>
+            </div>
+            <p class="services-desc">
+                Lo que dicen las personas que ya confiaron sus equipos acá.
+            </p>
+        </div>
+
+        <!--
+            INSTRUCCIONES — reseñas de Google:
+            Por ahora esto es una invitación a dejar la primera reseña
+            (todavía no tenés ninguna cargada). El link de abajo apunta
+            a tu perfil de Google Maps. Cuando entres a tu Google Business
+            Profile, buscá la opción "Obtener más reseñas" — te da un
+            link corto dedicado a abrir directo el cuadro de escribir
+            reseña (mejor que el link genérico de Maps). Pasámelo y
+            actualizamos el href de acá abajo.
+        -->
+        <div class="reviews-invite reveal">
+            <div class="reviews-invite-icon"><i class="ph-fill ph-star"></i></div>
+            <div class="reviews-invite-text">
+                <div class="reviews-invite-title">Todavía sumando las primeras reseñas</div>
+                <div class="reviews-invite-desc">Si ya fuiste cliente, me ayudarías muchísimo dejando tu opinión en Google.</div>
+            </div>
+            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <i class="ph-fill ph-google-logo"></i>
+                Dejar una reseña
+            </a>
+        </div>
+
+        <!--
+            ══════════════════════════════════════════════════════════════
+            INSTRUCCIONES PARA MARIO — cómo agregar un testimonio:
+
+            Cuando alguien te escriba algo lindo por WhatsApp (o te lo
+            diga en persona), agregá UNA línea acá abajo, dentro de
+            testimonials, copiando el formato de las demás:
+
+            { text: "El texto tal cual te lo escribieron o un resumen fiel.", author: "Nombre — Barrio" },
+
+            Podés usar el nombre completo, solo el nombre, o "Nombre + inicial"
+            si preferís más privacidad (ej: "Marcela G. — La Lucila").
+
+            Mientras el array esté vacío (como ahora), se muestra un
+            cartel de "Próximamente" en su lugar.
+            ══════════════════════════════════════════════════════════════
+        -->
+        <div class="testimonial-grid reveal" id="testimonialGrid"></div>
+
     </div>
 </section>
 
@@ -1850,6 +2323,28 @@
                 <p class="location-note">
                     Mi zona de cobertura principal es Olivos y La Lucila. Consultame si necesitás saber si llego a tu ubicación.
                 </p>
+
+                <div style="margin-top: 1.75rem;">
+                    <span class="hours-badge" id="hoursBadgeLocation">
+                        <span class="hours-dot"></span>
+                        <span id="hoursBadgeLocationText">Verificando horario...</span>
+                    </span>
+                </div>
+
+                <div class="hours-table">
+                    <div class="hours-row" data-days="1,2,3,4">
+                        <span>Lunes a jueves</span>
+                        <span>10:00 – 17:00</span>
+                    </div>
+                    <div class="hours-row" data-days="5">
+                        <span>Viernes</span>
+                        <span>10:00 – 15:00</span>
+                    </div>
+                    <div class="hours-row" data-days="6,0">
+                        <span>Sábado y domingo</span>
+                        <span>Cerrado</span>
+                    </div>
+                </div>
 
                 <div style="margin-top: 2.5rem;">
                     <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display: inline-flex;">
@@ -1905,59 +2400,42 @@
                     <i class="ph-fill ph-whatsapp-logo"></i>
                     Escribir al WhatsApp
                 </a>
-
-                <a href="mailto:mariopcrepara@gmail.com" class="btn-secondary" style="justify-content: center;">
-                    <i class="ph ph-envelope-simple"></i>
-                    Enviar Email
-                </a>
-
-                <div class="contact-divider"></div>
-
-                <a href="mailto:mariopcrepara@gmail.com" class="contact-email-link">
-                    <i class="ph ph-at"></i>
-                    mariopcrepara@gmail.com
-                </a>
             </div>
         </div>
 
         <div class="contact-form-wrap reveal">
-            <div class="contact-form-title">O escribime <em>por acá</em></div>
-            <p class="contact-form-desc">Dejame tu consulta y te respondo a la brevedad por email.</p>
+            <div class="contact-form-title">O contame <em>qué pasa</em></div>
+            <p class="contact-form-desc">Completá esto y se abre WhatsApp con tu mensaje ya escrito, listo para enviar.</p>
 
-            <form
-                class="contact-form"
-                action="https://formsubmit.co/mariopcrepara@gmail.com"
-                method="POST"
-            >
-                <!-- Configuración de FormSubmit -->
-                <input type="hidden" name="_subject" value="Nuevo mensaje desde mariopc.com.ar">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://mariopc.com.ar/gracias.html">
-                <!-- Honeypot anti-spam -->
-                <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off">
-
+            <form class="contact-form" id="whatsappForm">
                 <div class="form-field">
-                    <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                    <label for="wa-name">Nombre</label>
+                    <input type="text" id="wa-name" placeholder="Tu nombre" required>
                 </div>
 
                 <div class="form-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    <label for="wa-device">Tipo de equipo</label>
+                    <select id="wa-device" required>
+                        <option value="" disabled selected>Elegí una opción</option>
+                        <option value="Notebook">Notebook</option>
+                        <option value="PC de escritorio">PC de escritorio</option>
+                        <option value="Celular">Celular</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Otro">Otro</option>
+                    </select>
                 </div>
 
                 <div class="form-field">
-                    <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" placeholder="Contame qué le pasa a tu equipo..." required></textarea>
+                    <label for="wa-message">Contame qué pasa</label>
+                    <textarea id="wa-message" placeholder="Describí el problema o consulta..." required></textarea>
                 </div>
 
                 <div class="form-submit-row">
                     <button type="submit" class="btn-primary">
-                        <i class="ph ph-paper-plane-tilt"></i>
-                        Enviar mensaje
+                        <i class="ph-fill ph-whatsapp-logo"></i>
+                        Enviar por WhatsApp
                     </button>
-                    <span class="form-note">Te respondo por email en menos de 24hs</span>
+                    <span class="form-note">Se abre WhatsApp con tu mensaje ya escrito</span>
                 </div>
             </form>
         </div>
@@ -2175,6 +2653,165 @@
         dot.addEventListener('click', () => {
             const msg = messages[Math.floor(Math.random() * messages.length)];
             showEggToast(msg);
+        });
+    })();
+
+    // ─── HORARIO DINÁMICO ───
+    // Horario: Lunes a jueves 10-17, Viernes 10-15, Sábado y domingo cerrado.
+    // Se calcula siempre en hora de Argentina, sin importar dónde esté el visitante.
+    (function () {
+        const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+        function getArgentinaTime() {
+            const parts = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'America/Argentina/Buenos_Aires',
+                weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false
+            }).formatToParts(new Date());
+            const map = {};
+            parts.forEach(p => map[p.type] = p.value);
+            const weekdayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+            let hour = parseInt(map.hour, 10);
+            if (hour === 24) hour = 0;
+            return { day: weekdayMap[map.weekday], hour, minute: parseInt(map.minute, 10) };
+        }
+
+        function scheduleFor(day) {
+            if (day >= 1 && day <= 4) return { open: 10 * 60, close: 17 * 60 };
+            if (day === 5) return { open: 10 * 60, close: 15 * 60 };
+            return null; // sábado/domingo cerrado
+        }
+
+        function computeStatus() {
+            const { day, hour, minute } = getArgentinaTime();
+            const minutesNow = hour * 60 + minute;
+            const today = scheduleFor(day);
+
+            if (today) {
+                if (minutesNow < today.open) {
+                    const h = Math.floor(today.open / 60);
+                    return { open: false, label: `Cerrado · Abre hoy a las ${h}:00`, today: day };
+                }
+                if (minutesNow < today.close) {
+                    const h = Math.floor(today.close / 60);
+                    return { open: true, label: `Abierto ahora · Cierra a las ${h}:00`, today: day };
+                }
+            }
+
+            // Buscar el próximo día de apertura
+            for (let i = 1; i <= 7; i++) {
+                const nextDay = (day + i) % 7;
+                const sched = scheduleFor(nextDay);
+                if (sched) {
+                    const h = Math.floor(sched.open / 60);
+                    const when = i === 1 ? 'mañana' : `el ${dayNames[nextDay]}`;
+                    return { open: false, label: `Cerrado · Abrimos ${when} a las ${h}:00`, today: day };
+                }
+            }
+            return { open: false, label: 'Cerrado', today: day };
+        }
+
+        function render() {
+            const status = computeStatus();
+            const badges = [
+                { badge: document.getElementById('hoursBadge'), text: document.getElementById('hoursBadgeText') },
+                { badge: document.getElementById('hoursBadgeLocation'), text: document.getElementById('hoursBadgeLocationText') }
+            ];
+            badges.forEach(({ badge, text }) => {
+                if (!badge || !text) return;
+                text.textContent = status.label;
+                badge.classList.toggle('closed', !status.open);
+            });
+
+            document.querySelectorAll('.hours-row').forEach(row => {
+                const days = (row.dataset.days || '').split(',').map(Number);
+                row.classList.toggle('today', days.includes(status.today));
+            });
+        }
+
+        render();
+        setInterval(render, 60000); // recalcular cada minuto
+    })();
+
+    // ─── GALERÍA ANTES/DESPUÉS ───
+    // Agregá acá un objeto por cada caso (ver instrucciones en el HTML de esta sección).
+    const galleryItems = [
+        // { before: "gallery/notebook1-antes.jpg", after: "gallery/notebook1-despues.jpg", caption: "Notebook con pantalla rota" },
+    ];
+
+    (function () {
+        const grid = document.getElementById('galleryGrid');
+        if (!grid) return;
+
+        if (galleryItems.length === 0) {
+            grid.innerHTML = `
+                <div class="gallery-placeholder">
+                    <i class="ph-fill ph-camera"></i>
+                    Todavía no hay fotos cargadas — muy pronto vas a ver acá ejemplos reales de reparaciones.
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = galleryItems.map(item => `
+            <div class="gallery-card">
+                <div class="gallery-images">
+                    <div>
+                        <span class="gallery-tag">Antes</span>
+                        <img src="${item.before}" alt="Antes — ${item.caption}" loading="lazy">
+                    </div>
+                    <div>
+                        <span class="gallery-tag">Después</span>
+                        <img src="${item.after}" alt="Después — ${item.caption}" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-caption">${item.caption}</div>
+            </div>
+        `).join('');
+    })();
+
+    // ─── TESTIMONIOS ───
+    // Agregá acá un objeto por cada testimonio (ver instrucciones en el HTML de esta sección).
+    const testimonials = [
+        // { text: "El texto tal cual te lo escribieron o un resumen fiel.", author: "Nombre — Barrio" },
+    ];
+
+    (function () {
+        const grid = document.getElementById('testimonialGrid');
+        if (!grid) return;
+
+        if (testimonials.length === 0) {
+            grid.innerHTML = `
+                <div class="testimonial-placeholder">
+                    <i class="ph-fill ph-chat-circle-text"></i>
+                    Todavía no hay testimonios cargados — pronto vas a ver acá lo que dicen mis clientes reales.
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = testimonials.map(t => `
+            <div class="testimonial-card">
+                <i class="ph-fill ph-quotes testimonial-quote-icon"></i>
+                <p class="testimonial-text">${t.text}</p>
+                <div class="testimonial-author">${t.author}</div>
+            </div>
+        `).join('');
+    })();
+
+    // ─── FORMULARIO → WHATSAPP ───
+    (function () {
+        const form = document.getElementById('whatsappForm');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('wa-name').value.trim();
+            const device = document.getElementById('wa-device').value;
+            const message = document.getElementById('wa-message').value.trim();
+
+            const text = `Hola Mario! Soy ${name}.\nEquipo: ${device}\nConsulta: ${message}`;
+            const url = `https://wa.me/5491123999259?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
         });
     })();
 </script>
