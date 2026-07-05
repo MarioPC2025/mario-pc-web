@@ -480,9 +480,10 @@
         /* ─── MARQUEE ONDULADA (cinta con texto fluyendo por un path) ─── */
         .marquee-ribbon {
             position: relative;
-            z-index: 2;
+            z-index: 1;
             overflow: hidden;
             line-height: 0;
+            margin-bottom: -2px;
         }
 
         .marquee-ribbon svg {
@@ -513,7 +514,7 @@
         }
 
         @media (max-width: 600px) {
-            .marquee-ribbon svg { height: 108px; }
+            .marquee-ribbon svg { height: 126px; }
         }
 
         /* ─── SERVICES ─── */
@@ -521,7 +522,6 @@
             position: relative;
             z-index: 1;
             background: var(--bg-alt);
-            border-top: 1px solid rgba(255,255,255,0.04);
         }
 
         .section-inner {
@@ -2161,9 +2161,20 @@
 
 <!-- MARQUEE ONDULADA -->
 <div class="marquee-ribbon">
-    <svg viewBox="0 0 1600 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path class="marquee-ribbon-glow" d="M-50 120 C 150 45, 350 45, 550 120 C 750 195, 950 195, 1150 120 C 1300 70, 1450 70, 1650 120" />
-        <path class="marquee-ribbon-path" id="ribbonPath" d="M-50 120 C 150 45, 350 45, 550 120 C 750 195, 950 195, 1150 120 C 1300 70, 1450 70, 1650 120" />
+    <svg viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+            <clipPath id="marqueeBelowWave">
+                <path d="M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,280 L-50,280 Z" />
+            </clipPath>
+        </defs>
+
+        <!-- Solo el fondo sólido de "abajo de la curva". Arriba queda transparente
+             y se ve el punteado real del sitio (el mismo de body::before), sin
+             recrearlo — así no hay ningún desfasaje de tamaño o densidad. -->
+        <rect x="0" y="0" width="1600" height="280" fill="#0c0f10" clip-path="url(#marqueeBelowWave)" />
+
+        <path class="marquee-ribbon-glow" d="M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140" />
+        <path class="marquee-ribbon-path" id="ribbonPath" d="M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140" />
         <text class="marquee-ribbon-text" dominant-baseline="central">
             <textPath href="#ribbonPath" startOffset="0%">
                 <animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>
