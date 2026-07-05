@@ -477,36 +477,43 @@
             letter-spacing: 0.05em;
         }
 
-        /* ─── MARQUEE STRIP ─── */
-        .marquee-strip {
+        /* ─── MARQUEE ONDULADA (cinta con texto fluyendo por un path) ─── */
+        .marquee-ribbon {
             position: relative;
             z-index: 2;
-            background: var(--green);
-            padding: 11px 0;
             overflow: hidden;
-            white-space: nowrap;
+            line-height: 0;
         }
 
-        .marquee-track {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
+        .marquee-ribbon svg {
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
-        .marquee-track span {
+        .marquee-ribbon-glow {
+            fill: none;
+            stroke: var(--green);
+            stroke-width: 90;
+            opacity: 0.45;
+            filter: blur(14px);
+        }
+
+        .marquee-ribbon-path {
+            fill: none;
+            stroke: var(--green);
+            stroke-width: 60;
+        }
+
+        .marquee-ribbon-text {
             font-family: var(--font-display);
-            font-size: 0.95rem;
-            letter-spacing: 0.08em;
-            color: #030804;
-            padding: 0 1.5rem;
+            font-size: 32px;
+            letter-spacing: 0.04em;
+            fill: #030804;
         }
 
-        .marquee-dot {
-            color: rgba(3, 8, 4, 0.4);
-        }
-
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        @media (max-width: 600px) {
+            .marquee-ribbon svg { height: 108px; }
         }
 
         /* ─── SERVICES ─── */
@@ -692,21 +699,23 @@
         .price-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 3px;
-            overflow: hidden;
+            gap: 1.1rem;
         }
 
         .price-card {
             background: var(--bg-alt);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 5px;
             padding: 2rem 1.75rem;
-            transition: background 0.25s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
 
         .price-card:hover {
             background: rgba(29, 221, 101, 0.035);
+            border-color: var(--green-border);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.28);
         }
 
         .price-icon {
@@ -771,6 +780,160 @@
             .price-card { padding: 1.75rem 1.5rem; }
         }
 
+        /* ─── EFECTO HOVER: shine + tiles + líneas (basado en un diseño de Aaron Iker) ─── */
+        .price-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-icon,
+        .price-name,
+        .price-desc,
+        .price-value-row {
+            position: relative;
+            z-index: 2;
+        }
+
+        .pc-shine {
+            border-radius: inherit;
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .pc-shine::before {
+            content: '';
+            width: 150%;
+            padding-bottom: 150%;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            bottom: 55%;
+            filter: blur(35px);
+            opacity: 0.16;
+            transform: translateX(-50%);
+            background-image: conic-gradient(from 205deg at 50% 50%, rgba(29, 221, 101, 0) 0deg, #1ddd65 25deg, rgba(90, 235, 150, 0.2) 295deg, rgba(29, 221, 101, 0) 360deg);
+        }
+
+        .pc-background {
+            border-radius: inherit;
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            -webkit-mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+            mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
+        }
+
+        .pc-tiles {
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .pc-tile {
+            position: absolute;
+            background-color: rgba(29, 221, 101, 0.09);
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+            opacity: 0;
+        }
+
+        .pc-tile-4, .pc-tile-6, .pc-tile-10 { animation-delay: -2s; }
+        .pc-tile-3, .pc-tile-5, .pc-tile-8 { animation-delay: -4s; }
+        .pc-tile-2, .pc-tile-9 { animation-delay: -6s; }
+
+        .pc-tile-1  { top: 0;     left: 0;     height: 10%;   width: 22.5%; }
+        .pc-tile-2  { top: 0;     left: 22.5%; height: 10%;   width: 27.5%; }
+        .pc-tile-3  { top: 0;     left: 50%;   height: 10%;   width: 27.5%; }
+        .pc-tile-4  { top: 0;     left: 77.5%; height: 10%;   width: 22.5%; }
+        .pc-tile-5  { top: 10%;   left: 0;     height: 22.5%; width: 22.5%; }
+        .pc-tile-6  { top: 10%;   left: 22.5%; height: 22.5%; width: 27.5%; }
+        .pc-tile-7  { top: 10%;   left: 50%;   height: 22.5%; width: 27.5%; }
+        .pc-tile-8  { top: 10%;   left: 77.5%; height: 22.5%; width: 22.5%; }
+        .pc-tile-9  { top: 32.5%; left: 50%;   height: 22.5%; width: 27.5%; }
+        .pc-tile-10 { top: 32.5%; left: 77.5%; height: 22.5%; width: 22.5%; }
+
+        @keyframes pc-tile-flicker {
+            0%, 12.5%, 100% { opacity: 1; }
+            25%, 82.5% { opacity: 0; }
+        }
+
+        .pc-line {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .pc-line::before,
+        .pc-line::after {
+            content: '';
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.09);
+            transition: transform 0.35s;
+        }
+
+        .pc-line::before {
+            left: 0; right: 0;
+            height: 1px;
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+        }
+
+        .pc-line::after {
+            top: 0; bottom: 0;
+            width: 1px;
+            transform-origin: 50% 0;
+            transform: scaleY(0);
+        }
+
+        .pc-line-1::before { top: 10%; }
+        .pc-line-1::after { left: 22.5%; }
+        .pc-line-1::before, .pc-line-1::after { transition-delay: 0.3s; }
+
+        .pc-line-2::before { top: 32.5%; }
+        .pc-line-2::after { left: 50%; }
+        .pc-line-2::before, .pc-line-2::after { transition-delay: 0.15s; }
+
+        .pc-line-3::before { top: 55%; }
+        .pc-line-3::after { right: 22.5%; }
+
+        .price-card:hover .pc-shine {
+            opacity: 1;
+            transition-duration: 0.5s;
+            transition-delay: 0s;
+        }
+
+        .price-card:hover .pc-tiles {
+            opacity: 1;
+            transition-delay: 0.25s;
+        }
+
+        .price-card:hover .pc-tile {
+            animation-name: pc-tile-flicker;
+        }
+
+        .price-card:hover .pc-line {
+            opacity: 1;
+            transition-duration: 0.15s;
+        }
+
+        .price-card:hover .pc-line::before { transform: scaleX(1); }
+        .price-card:hover .pc-line::after { transform: scaleY(1); }
+
+        .price-card:hover .pc-line-1::before,
+        .price-card:hover .pc-line-1::after { transition-delay: 0s; }
+
+        .price-card:hover .pc-line-2::before,
+        .price-card:hover .pc-line-2::after { transition-delay: 0.15s; }
+
+        .price-card:hover .pc-line-3::before,
+        .price-card:hover .pc-line-3::after { transition-delay: 0.3s; }
+
         /* ─── GARANTÍA + MÉTODOS DE PAGO ─── */
         .trust-strip {
             margin-top: 3rem;
@@ -825,7 +988,7 @@
         }
 
         .payment-logos img {
-            height: 20px;
+            height: 48px;
             width: auto;
         }
 
@@ -1996,28 +2159,18 @@
     </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-strip">
-    <div class="marquee-track">
-        <span>Servicio Técnico</span><span class="marquee-dot">·</span>
-        <span>Olivos</span><span class="marquee-dot">·</span>
-        <span>La Lucila</span><span class="marquee-dot">·</span>
-        <span>Armado de PC</span><span class="marquee-dot">·</span>
-        <span>Reparación</span><span class="marquee-dot">·</span>
-        <span>Actualización SSD</span><span class="marquee-dot">·</span>
-        <span>Formateo</span><span class="marquee-dot">·</span>
-        <span>Diagnóstico Gratis</span><span class="marquee-dot">·</span>
-        <span>Vicente López</span><span class="marquee-dot">·</span>
-        <span>Servicio Técnico</span><span class="marquee-dot">·</span>
-        <span>Olivos</span><span class="marquee-dot">·</span>
-        <span>La Lucila</span><span class="marquee-dot">·</span>
-        <span>Armado de PC</span><span class="marquee-dot">·</span>
-        <span>Reparación</span><span class="marquee-dot">·</span>
-        <span>Actualización SSD</span><span class="marquee-dot">·</span>
-        <span>Formateo</span><span class="marquee-dot">·</span>
-        <span>Diagnóstico Gratis</span><span class="marquee-dot">·</span>
-        <span>Vicente López</span><span class="marquee-dot">·</span>
-    </div>
+<!-- MARQUEE ONDULADA -->
+<div class="marquee-ribbon">
+    <svg viewBox="0 0 1600 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="marquee-ribbon-glow" d="M-50 120 C 150 45, 350 45, 550 120 C 750 195, 950 195, 1150 120 C 1300 70, 1450 70, 1650 120" />
+        <path class="marquee-ribbon-path" id="ribbonPath" d="M-50 120 C 150 45, 350 45, 550 120 C 750 195, 950 195, 1150 120 C 1300 70, 1450 70, 1650 120" />
+        <text class="marquee-ribbon-text" dominant-baseline="central">
+            <textPath href="#ribbonPath" startOffset="0%">
+                <animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>
+                Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López · Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López · Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López ·
+            </textPath>
+        </text>
+    </svg>
 </div>
 
 <!-- SERVICES -->
@@ -2145,6 +2298,24 @@
                     <span class="price-from">Desde</span>
                     <span class="price-value">$58.000</span>
                 </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
+                </div>
             </div>
 
             <div class="price-card">
@@ -2154,6 +2325,24 @@
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
                     <span class="price-value">$66.000</span>
+                </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
                 </div>
             </div>
 
@@ -2165,6 +2354,24 @@
                     <span class="price-from">Desde</span>
                     <span class="price-value">$27.000</span>
                 </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
+                </div>
             </div>
 
             <div class="price-card">
@@ -2174,6 +2381,24 @@
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
                     <span class="price-value">$25.000</span>
+                </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
                 </div>
             </div>
 
@@ -2185,6 +2410,24 @@
                     <span class="price-from">Desde</span>
                     <span class="price-value">$47.000</span>
                 </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
+                </div>
             </div>
 
             <div class="price-card">
@@ -2194,6 +2437,24 @@
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
                     <span class="price-value">$83.000</span>
+                </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
                 </div>
             </div>
 
@@ -2205,6 +2466,24 @@
                     <span class="price-from">Desde</span>
                     <span class="price-value">$27.000</span>
                 </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
+                </div>
             </div>
 
             <div class="price-card">
@@ -2213,6 +2492,24 @@
                 <div class="price-desc">Revisión completa del equipo para saber qué necesita.</div>
                 <div class="price-value-row">
                     <span class="price-value" style="color: var(--white);">Sin cargo</span>
+                </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
                 </div>
             </div>
 
@@ -2574,7 +2871,6 @@
         };
 
         console.log('%c¿Viniste a inspeccionar el código? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
-        console.log('%cSi sabés de esto, quizás seas justo la persona que necesito. Escribime: mariopcrepara@gmail.com', 'color:#e8edea; font-size:12px;');
         console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o tocá el logo varias veces seguidas 😉', 'color:#536057; font-size:11px;');
     })();
 
