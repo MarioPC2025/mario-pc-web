@@ -483,7 +483,7 @@
             z-index: 1;
             overflow: hidden;
             line-height: 0;
-            margin-bottom: -2px;
+            margin: -3px 0;
         }
 
         .marquee-ribbon svg {
@@ -2109,8 +2109,8 @@
         "longitude": -58.4855
       },
       "sameAs": [
-        "https://www.instagram.com/mario.pc.olivos/",
-        "https://www.facebook.com/profile.php?id=61580812972408",
+        "https://www.instagram.com/mariopc.com.ar/",
+        "https://www.facebook.com/mariopc.com.ar/",
         "https://www.linkedin.com/company/mario-pc/",
         "https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6"
       ],
@@ -2323,30 +2323,12 @@
     </div>
 </section>
 
-<!-- MARQUEE ONDULADA -->
-<div class="marquee-ribbon">
-    <svg viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-            <clipPath id="marqueeBelowWave">
-                <path d="M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,280 L-50,280 Z" />
-            </clipPath>
-        </defs>
-
-        <!-- Solo el fondo sólido de "abajo de la curva". Arriba queda transparente
-             y se ve el punteado real del sitio (el mismo de body::before), sin
-             recrearlo — así no hay ningún desfasaje de tamaño o densidad. -->
-        <rect x="0" y="0" width="1600" height="280" fill="#0c0f10" clip-path="url(#marqueeBelowWave)" />
-
-        <path class="marquee-ribbon-glow" d="M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140" />
-        <path class="marquee-ribbon-path" id="ribbonPath" d="M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140" />
-        <text class="marquee-ribbon-text" dominant-baseline="central">
-            <textPath href="#ribbonPath" startOffset="0%">
-                <animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>
-                Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López · Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López · Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López ·
-            </textPath>
-        </text>
-    </svg>
-</div>
+<!-- MARQUEE ONDULADA: Hero → Servicios -->
+<div class="marquee-ribbon"
+     data-marquee-id="1"
+     data-marquee-text="Servicio Técnico · Olivos · La Lucila · Armado de PC · Reparación · Actualización SSD · Formateo · Diagnóstico Gratis · Vicente López ·"
+     data-marquee-above="transparent"
+     data-marquee-below="#0c0f10"></div>
 
 <!-- SERVICES -->
 <section id="servicios">
@@ -2519,14 +2501,21 @@
         <div class="instagram-grid reveal" id="instagramGrid"></div>
 
         <div class="reveal" style="margin-top: 2rem; text-align: center;">
-            <a href="https://www.instagram.com/mario.pc.olivos/" target="_blank" rel="noopener noreferrer" class="btn-secondary instagram-follow">
+            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="btn-secondary instagram-follow">
                 <i class="ph-fill ph-instagram-logo"></i>
-                Seguir @mario.pc.olivos
+                Seguir @mariopc.com.ar
             </a>
         </div>
 
     </div>
 </section>
+
+<!-- MARQUEE ONDULADA: Instagram → Precios -->
+<div class="marquee-ribbon"
+     data-marquee-id="2"
+     data-marquee-text="Presupuesto Sin Cargo · Precios Claros · Sin Sorpresas · Pagás Lo Justo · Consultá Ahora ·"
+     data-marquee-above="#0c0f10"
+     data-marquee-below="#07090a"></div>
 
 <!-- PRECIOS -->
 <section id="precios">
@@ -2939,6 +2928,13 @@
     </div>
 </section>
 
+<!-- MARQUEE ONDULADA: Ubicación → Contacto -->
+<div class="marquee-ribbon"
+     data-marquee-id="3"
+     data-marquee-text="Olivos · La Lucila · Vicente López · Escribime Ahora · Te Respondo Rápido ·"
+     data-marquee-above="#07090a"
+     data-marquee-below="#0c0f10"></div>
+
 <!-- CONTACT -->
 <section id="contacto">
     <div class="contact-inner">
@@ -3004,10 +3000,10 @@
         <div class="footer-copy">© 2026 Mario PC — Todos los derechos reservados</div>
 
         <div class="footer-socials">
-            <a href="https://www.instagram.com/mario.pc.olivos/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
                 <i class="ph-fill ph-instagram-logo"></i>
             </a>
-            <a href="https://www.facebook.com/profile.php?id=61580812972408" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
+            <a href="https://www.facebook.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
                 <i class="ph-fill ph-facebook-logo"></i>
             </a>
             <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
@@ -3053,6 +3049,51 @@
 <div class="egg-toast" id="eggToast"></div>
 
 <script>
+    // ─── MARQUEE ONDULADA (reutilizable) ───
+    // Arma el SVG de cada cinta a partir de sus data-attributes, así no hay
+    // que repetir el marcado completo a mano por cada una.
+    (function () {
+        const ribbonPathD = "M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140";
+        const belowClipD = "M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,280 L-50,280 Z";
+        const aboveClipD = "M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,0 L-50,0 Z";
+
+        document.querySelectorAll('.marquee-ribbon[data-marquee-id]').forEach(el => {
+            const id = el.dataset.marqueeId;
+            const text = el.dataset.marqueeText || '';
+            const above = el.dataset.marqueeAbove || 'transparent';
+            const below = el.dataset.marqueeBelow || '#0c0f10';
+            // Repetimos el texto las veces necesarias para cubrir de sobra el
+            // largo del camino — si no, en textos cortos queda un tramo de
+            // cinta vacía antes de que el loop reinicie.
+            const MIN_CHARS = 700;
+            const repeats = Math.max(3, Math.ceil(MIN_CHARS / text.length));
+            const repeatedText = new Array(repeats).fill(text).join(' ');
+
+            const aboveRect = above === 'transparent'
+                ? ''
+                : `<rect x="0" y="0" width="1600" height="280" fill="${above}" clip-path="url(#marqueeAboveWave-${id})" />`;
+
+            el.innerHTML = `
+                <svg viewBox="0 0 1600 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <clipPath id="marqueeAboveWave-${id}"><path d="${aboveClipD}" /></clipPath>
+                        <clipPath id="marqueeBelowWave-${id}"><path d="${belowClipD}" /></clipPath>
+                    </defs>
+                    ${aboveRect}
+                    <rect x="0" y="0" width="1600" height="280" fill="${below}" clip-path="url(#marqueeBelowWave-${id})" />
+                    <path class="marquee-ribbon-glow" d="${ribbonPathD}" />
+                    <path class="marquee-ribbon-path" id="ribbonPath-${id}" d="${ribbonPathD}" />
+                    <text class="marquee-ribbon-text" dominant-baseline="central">
+                        <textPath href="#ribbonPath-${id}" startOffset="0%">
+                            <animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>
+                            ${repeatedText}
+                        </textPath>
+                    </text>
+                </svg>
+            `;
+        });
+    })();
+
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
