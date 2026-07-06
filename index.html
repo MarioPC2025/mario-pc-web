@@ -658,6 +658,81 @@
             border-color: var(--green);
         }
 
+        /* ─── CÓMO TRABAJO (proceso en 4 pasos) ─── */
+        #proceso {
+            position: relative;
+            z-index: 1;
+            background: var(--bg);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .process-step {
+            position: relative;
+            padding: 0 1.75rem 0 0;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 26px;
+            right: -1px;
+            width: calc(100% - 60px);
+            height: 1px;
+            background: repeating-linear-gradient(
+                to right,
+                var(--green-border) 0, var(--green-border) 6px,
+                transparent 6px, transparent 12px
+            );
+        }
+
+        .process-num {
+            width: 52px;
+            height: 52px;
+            border: 1px solid var(--green-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--green);
+            background: var(--green-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        .process-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .process-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 260px;
+        }
+
+        @media (max-width: 960px) {
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem 1.5rem;
+            }
+            .process-step:not(:last-child)::after { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .process-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+        }
+
         /* ─── PRECIOS ─── */
         #precios {
             position: relative;
@@ -1155,6 +1230,93 @@
 
         @media (max-width: 600px) {
             .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── INSTAGRAM ─── */
+        #instagram {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .instagram-follow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .instagram-card {
+            position: relative;
+            border-radius: 3px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: #0c0f10;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .instagram-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .instagram-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .instagram-card-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(3,8,4,0.85), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .instagram-card:hover .instagram-card-overlay {
+            opacity: 1;
+        }
+
+        .instagram-card-overlay i {
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+
+        .instagram-placeholder {
+            grid-column: 1 / -1;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 3px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .instagram-placeholder i {
+            font-size: 1.8rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 960px) {
+            .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .instagram-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         /* ─── RESEÑAS Y TESTIMONIOS ─── */
@@ -2015,6 +2177,7 @@
     <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#precios">Precios</a></li>
         <li><a href="#opiniones">Opiniones</a></li>
@@ -2039,6 +2202,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <a href="#inicio" onclick="closeMobile()">Inicio</a>
     <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#proceso" onclick="closeMobile()">Proceso</a>
     <a href="#galeria" onclick="closeMobile()">Galería</a>
     <a href="#precios" onclick="closeMobile()">Precios</a>
     <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
@@ -2120,7 +2284,7 @@
                     <i class="ph-duotone ph-cpu"></i>
                 </div>
                 <div>
-                    <div class="status-item-title">Optimización de Hardware</div>
+                    <h3 class="status-item-title">Optimización de Hardware</h3>
                     <div class="status-item-desc">aumento de rendimiento garantizado</div>
                 </div>
             </div>
@@ -2130,7 +2294,7 @@
                     <i class="ph-duotone ph-hard-drives"></i>
                 </div>
                 <div>
-                    <div class="status-item-title">Instalación de SSD</div>
+                    <h3 class="status-item-title">Instalación de SSD</h3>
                     <div class="status-item-desc">hasta 10× más rápido que un HDD</div>
                 </div>
             </div>
@@ -2140,7 +2304,7 @@
                     <i class="ph-duotone ph-shield-check"></i>
                 </div>
                 <div>
-                    <div class="status-item-title">Limpieza & Seguridad</div>
+                    <h3 class="status-item-title">Limpieza & Seguridad</h3>
                     <div class="status-item-desc">eliminación de virus · protección total</div>
                 </div>
             </div>
@@ -2150,7 +2314,7 @@
                     <i class="ph-duotone ph-windows-logo"></i>
                 </div>
                 <div>
-                    <div class="status-item-title">Formateo e Instalación</div>
+                    <h3 class="status-item-title">Formateo e Instalación</h3>
                     <div class="status-item-desc">windows · office · drivers · activación</div>
                 </div>
             </div>
@@ -2203,7 +2367,7 @@
             <div class="service-row reveal">
                 <span class="service-num">01</span>
                 <div>
-                    <div class="service-name">Reparación de Hardware</div>
+                    <h3 class="service-name">Reparación de Hardware</h3>
                     <div class="service-detail">Diagnóstico y reparación de notebooks y desktop. Limpieza interna y cambio de pasta térmica.</div>
                 </div>
                 <div class="service-icon">
@@ -2214,7 +2378,7 @@
             <div class="service-row reveal">
                 <span class="service-num">02</span>
                 <div>
-                    <div class="service-name">Formateo e Instalación</div>
+                    <h3 class="service-name">Formateo e Instalación</h3>
                     <div class="service-detail">Instalación de Windows, Office, drivers y optimización completa del sistema operativo.</div>
                 </div>
                 <div class="service-icon">
@@ -2225,7 +2389,7 @@
             <div class="service-row reveal">
                 <span class="service-num">03</span>
                 <div>
-                    <div class="service-name">Actualización a SSD</div>
+                    <h3 class="service-name">Actualización a SSD</h3>
                     <div class="service-detail">Reemplazo tu viejo HDD por un disco sólido. Tu PC arranca y responde hasta 10× más rápido.</div>
                 </div>
                 <div class="service-icon">
@@ -2233,6 +2397,46 @@
                 </div>
             </div>
 
+        </div>
+
+    </div>
+</section>
+
+<!-- CÓMO TRABAJO -->
+<section id="proceso">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Primera vez?</div>
+                <h2 class="section-title">Cómo <em>trabajo</em></h2>
+            </div>
+            <p class="services-desc">
+                Así de simple es todo el proceso, de punta a punta.
+            </p>
+        </div>
+
+        <div class="process-grid reveal">
+            <div class="process-step">
+                <div class="process-num">01</div>
+                <h3 class="process-title">Me escribís</h3>
+                <p class="process-desc">Por WhatsApp o el formulario, contame qué le pasa a tu equipo.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">02</div>
+                <h3 class="process-title">Diagnóstico</h3>
+                <p class="process-desc">Revisamos el equipo (en el taller o coordinando el retiro) sin cargo.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">03</div>
+                <h3 class="process-title">Presupuesto</h3>
+                <p class="process-desc">Te paso el costo exacto por WhatsApp, antes de tocar nada.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">04</div>
+                <h3 class="process-title">Retirás, listo</h3>
+                <p class="process-desc">Tu equipo anda de diez, con garantía de 7 días incluida.</p>
+            </div>
         </div>
 
     </div>
@@ -2280,6 +2484,50 @@
     </div>
 </section>
 
+<!-- INSTAGRAM -->
+<section id="instagram">
+    <div class="section-inner">
+
+        <div class="services-header reveal">
+            <div>
+                <div class="section-eyebrow">¿Me seguís?</div>
+                <h2 class="section-title">Últimas <em>publicaciones</em></h2>
+            </div>
+            <p class="services-desc">
+                Trabajos, tips y el día a día del taller, en Instagram.
+            </p>
+        </div>
+
+        <!--
+            ══════════════════════════════════════════════════════════════
+            INSTRUCCIONES PARA MARIO — cómo agregar una publicación:
+
+            1. Subí la foto a la carpeta /instagram de tu repositorio en
+               GitHub (igual que hacés con /gallery).
+
+            2. Agregá UNA línea acá abajo, dentro de instagramPosts:
+
+               { image: "instagram/post1.jpg", url: "https://www.instagram.com/p/XXXXXXXXX/" },
+
+               El "url" es el link a la publicación real en Instagram
+               (lo copiás desde la app: Compartir → Copiar enlace).
+
+            Mientras el array esté vacío (como ahora), se muestra un
+            cartel de "Próximamente" en su lugar.
+            ══════════════════════════════════════════════════════════════
+        -->
+        <div class="instagram-grid reveal" id="instagramGrid"></div>
+
+        <div class="reveal" style="margin-top: 2rem; text-align: center;">
+            <a href="https://www.instagram.com/mario.pc.olivos/" target="_blank" rel="noopener noreferrer" class="btn-secondary instagram-follow">
+                <i class="ph-fill ph-instagram-logo"></i>
+                Seguir @mario.pc.olivos
+            </a>
+        </div>
+
+    </div>
+</section>
+
 <!-- PRECIOS -->
 <section id="precios">
     <div class="section-inner">
@@ -2303,7 +2551,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-windows-logo"></i></div>
-                <div class="price-name">Formateo e Instalación</div>
+                <h3 class="price-name">Formateo e Instalación</h3>
                 <div class="price-desc">Windows, Office, drivers y optimización del sistema.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2331,7 +2579,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-hard-drives"></i></div>
-                <div class="price-name">Upgrade a SSD</div>
+                <h3 class="price-name">Upgrade a SSD</h3>
                 <div class="price-desc">Migración completa de datos, limpieza y mantenimiento incluidos.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2359,7 +2607,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-broom"></i></div>
-                <div class="price-name">Limpieza y Mantenimiento</div>
+                <h3 class="price-name">Limpieza y Mantenimiento</h3>
                 <div class="price-desc">Limpieza interna y cambio de pasta térmica del procesador.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2387,7 +2635,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-shield-check"></i></div>
-                <div class="price-name">Eliminación de Malware</div>
+                <h3 class="price-name">Eliminación de Malware</h3>
                 <div class="price-desc">Detección y eliminación de virus, spyware y malware.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2415,7 +2663,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-wrench"></i></div>
-                <div class="price-name">Reparación de Hardware</div>
+                <h3 class="price-name">Reparación de Hardware</h3>
                 <div class="price-desc">Cambio de pantalla, teclado, flex y otros componentes en notebooks.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2443,7 +2691,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-desktop-tower"></i></div>
-                <div class="price-name">Armado de PC a Medida</div>
+                <h3 class="price-name">Armado de PC a Medida</h3>
                 <div class="price-desc">Armado completo desde cero, a tu medida y presupuesto.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2471,7 +2719,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-device-mobile"></i></div>
-                <div class="price-name">Celulares y Tablets</div>
+                <h3 class="price-name">Celulares y Tablets</h3>
                 <div class="price-desc">Hard reset, configuración inicial y puesta a punto.</div>
                 <div class="price-value-row">
                     <span class="price-from">Desde</span>
@@ -2499,7 +2747,7 @@
 
             <div class="price-card">
                 <div class="price-icon"><i class="ph-fill ph-magnifying-glass"></i></div>
-                <div class="price-name">Diagnóstico</div>
+                <h3 class="price-name">Diagnóstico</h3>
                 <div class="price-desc">Revisión completa del equipo para saber qué necesita.</div>
                 <div class="price-value-row">
                     <span class="price-value" style="color: var(--white);">Sin cargo</span>
@@ -2530,14 +2778,14 @@
             <div class="trust-card">
                 <div class="trust-icon"><i class="ph-fill ph-shield-check"></i></div>
                 <div>
-                    <div class="trust-title">Garantía de 7 días</div>
+                    <h3 class="trust-title">Garantía de 7 días</h3>
                     <div class="trust-desc">En mano de obra y repuestos, en todos los trabajos.</div>
                 </div>
             </div>
             <div class="trust-card">
                 <div class="trust-icon"><i class="ph-fill ph-wallet"></i></div>
                 <div>
-                    <div class="trust-title">Métodos de pago</div>
+                    <h3 class="trust-title">Métodos de pago</h3>
                     <div class="payment-logos">
                         <span class="payment-cash"><i class="ph-fill ph-money"></i> Efectivo</span>
                         <img src="mercadopago-logo.svg" alt="Mercado Pago" loading="lazy">
@@ -2576,7 +2824,7 @@
         <div class="reviews-invite reveal">
             <div class="reviews-invite-icon"><i class="ph-fill ph-star"></i></div>
             <div class="reviews-invite-text">
-                <div class="reviews-invite-title">Todavía sumando las primeras reseñas</div>
+                <h3 class="reviews-invite-title">Todavía sumando las primeras reseñas</h3>
                 <div class="reviews-invite-desc">Si ya fuiste cliente, me ayudarías muchísimo dejando tu opinión en Google.</div>
             </div>
             <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="btn-secondary">
@@ -3073,6 +3321,36 @@
                 </div>
                 <div class="gallery-caption">${item.caption}</div>
             </div>
+        `).join('');
+    })();
+
+    // ─── INSTAGRAM ───
+    // Agregá acá un objeto por cada publicación (ver instrucciones en el HTML de esta sección).
+    const instagramPosts = [
+        // { image: "instagram/post1.jpg", url: "https://www.instagram.com/p/XXXXXXXXX/" },
+    ];
+
+    (function () {
+        const grid = document.getElementById('instagramGrid');
+        if (!grid) return;
+
+        if (instagramPosts.length === 0) {
+            grid.innerHTML = `
+                <div class="instagram-placeholder">
+                    <i class="ph-fill ph-instagram-logo"></i>
+                    Todavía no hay publicaciones cargadas — muy pronto vas a ver acá el contenido de Instagram.
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = instagramPosts.map(post => `
+            <a class="instagram-card" href="${post.url}" target="_blank" rel="noopener noreferrer">
+                <img src="${post.image}" alt="Publicación de Instagram de Mario PC" loading="lazy">
+                <div class="instagram-card-overlay">
+                    <i class="ph-fill ph-instagram-logo"></i>
+                </div>
+            </a>
         `).join('');
     })();
 
