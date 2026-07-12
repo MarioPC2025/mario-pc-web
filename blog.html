@@ -329,6 +329,52 @@
             margin-bottom: 2rem;
         }
 
+        .blog-post-card {
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            background: var(--bg-alt);
+            padding: 2.25rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            aspect-ratio: 16/7;
+            object-fit: cover;
+            border-radius: 3px;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-date {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.6rem;
+        }
+
+        .blog-post-title {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .blog-post-content {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        @media (max-width: 600px) {
+            .blog-post-card { padding: 1.5rem; }
+            .blog-post-title { font-size: 1.5rem; }
+        }
+
         .faq-item {
             border-bottom: 1px solid rgba(255,255,255,0.05);
             position: relative;
@@ -889,7 +935,7 @@
 <section class="faq-section">
     <div class="faq-section-inner">
 
-        <div class="blog-placeholder reveal">
+        <div class="blog-placeholder reveal" id="blogPlaceholder">
             <i class="ph-fill ph-notepad"></i>
             <h2 class="blog-placeholder-title">Muy pronto</h2>
             <p>Estoy preparando las primeras notas — tips de mantenimiento, señales de que tu PC necesita un service, y respuestas a las dudas técnicas más comunes. Mientras tanto, cualquier consulta puntual escribime directo por WhatsApp.</p>
@@ -901,14 +947,26 @@
 
         <!--
             ══════════════════════════════════════════════════════════════
-            INSTRUCCIONES PARA MARIO — cuando quieras publicar la primera nota:
+            INSTRUCCIONES PARA MARIO — cómo publicar una nota:
 
-            Avisame y armamos juntos la plantilla de artículo (título,
-            fecha, imagen de portada, cuerpo del texto) y el listado de
-            posts en esta página, con el mismo sistema simple que usamos
-            en Galería e Instagram.
+            1. Si la nota tiene foto de portada, subila a la carpeta /blog
+               en GitHub (mismo método que usás en /gallery e /instagram).
+
+            2. Agregá UN objeto acá abajo, dentro de blogPosts (buscalo
+               más abajo en este mismo archivo, cerca del final):
+
+               {
+                   title: "Título de la nota",
+                   date: "10 de julio, 2026",
+                   image: "blog/nombre-foto.jpg", // opcional, podés sacar esta línea si no hay foto
+                   content: "El texto completo de la nota. Dejá una línea en blanco entre párrafos para que se separen bien."
+               },
+
+            3. Commit changes. Apenas haya un post cargado, el cartel de
+               "Muy pronto" desaparece solo y se muestra la nota.
             ══════════════════════════════════════════════════════════════
         -->
+        <div id="blogPostsGrid"></div>
 
     </div>
 </section>
@@ -990,17 +1048,37 @@
             : 'rgba(255,255,255,0.05)';
     });
 
-    // FAQ Accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('open');
-            // Cerrar todos
-            document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-            // Abrir el clickeado si estaba cerrado
-            if (!isOpen) item.classList.add('open');
-        });
-    });
+    // ─── POSTS DEL BLOG ───
+    // Agregá acá un objeto por cada nota (ver instrucciones en el HTML de esta sección).
+    const blogPosts = [
+        // {
+        //     title: "Título de la nota",
+        //     date: "10 de julio, 2026",
+        //     image: "blog/nombre-foto.jpg",
+        //     content: "El texto completo de la nota. Dejá una línea en blanco entre párrafos."
+        // },
+    ];
+
+    (function () {
+        const placeholder = document.getElementById('blogPlaceholder');
+        const grid = document.getElementById('blogPostsGrid');
+        if (!grid) return;
+
+        if (blogPosts.length === 0) {
+            return; // se queda el cartel de "Muy pronto"
+        }
+
+        if (placeholder) placeholder.style.display = 'none';
+
+        grid.innerHTML = blogPosts.map(post => `
+            <article class="blog-post-card">
+                ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-post-image" loading="lazy">` : ''}
+                <div class="blog-post-date">${post.date}</div>
+                <h2 class="blog-post-title">${post.title}</h2>
+                <p class="blog-post-content">${post.content}</p>
+            </article>
+        `).join('');
+    })();
 </script>
 
 <!-- WHATSAPP FLOTANTE -->
