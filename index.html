@@ -59,13 +59,32 @@
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
             --white: #e8edea;
-            --muted: #536057;
+            --muted: #788480;
             --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --font-body: 'DM Sans', sans-serif;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; font-size: 106.25%; }
+
+        /* Respeta la preferencia de "reducir movimiento" del sistema operativo.
+           Solo afecta a quienes tienen esa opción de accesibilidad activada —
+           el resto ve el sitio igual, con todas las animaciones normales. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                transform: none !important;
+            }
+        }
+
 
         body {
             background-color: var(--bg);
@@ -2340,7 +2359,6 @@
 
         <div class="services-header reveal">
             <div>
-                <div class="section-eyebrow">¿Qué hago?</div>
                 <h2 class="section-title">Mis <em>servicios</em></h2>
             </div>
             <p class="services-desc">
@@ -2394,7 +2412,6 @@
 
         <div class="services-header reveal">
             <div>
-                <div class="section-eyebrow">¿Primera vez?</div>
                 <h2 class="section-title">Cómo <em>trabajo</em></h2>
             </div>
             <p class="services-desc">
@@ -2434,7 +2451,6 @@
 
         <div class="services-header reveal">
             <div>
-                <div class="section-eyebrow">¿Cómo trabajo?</div>
                 <h2 class="section-title">Antes y <em>después</em></h2>
             </div>
             <p class="services-desc">
@@ -2476,7 +2492,6 @@
 
         <div class="services-header reveal">
             <div>
-                <div class="section-eyebrow">¿Me seguís?</div>
                 <h2 class="section-title">Últimas <em>publicaciones</em></h2>
             </div>
             <p class="services-desc">
@@ -2537,7 +2552,7 @@
 
         <div class="price-note reveal">
             <i class="ph-fill ph-info"></i>
-            <p><strong>El precio final depende del tipo, marca y modelo del equipo</strong>, y del estado en el que llega. Estos valores son un punto de partida — te paso el presupuesto exacto por WhatsApp sin cargo y sin compromiso.</p>
+            <p><strong>El precio final depende del tipo, marca y modelo del equipo</strong>, y del estado en el que llega. Estos valores son un punto de partida y corresponden solo a <strong>mano de obra</strong> — no incluyen repuestos. Te paso el presupuesto exacto por WhatsApp sin cargo y sin compromiso.</p>
         </div>
 
         <div class="price-grid reveal">
@@ -2796,7 +2811,6 @@
 
         <div class="services-header reveal">
             <div>
-                <div class="section-eyebrow">¿Confían en mí?</div>
                 <h2 class="section-title">Reseñas y <em>testimonios</em></h2>
             </div>
             <p class="services-desc">
@@ -2855,7 +2869,6 @@
         <div class="location-grid">
 
             <div class="location-info reveal">
-                <div class="section-eyebrow">Dónde estoy</div>
                 <h2 class="section-title">Mi <em>área</em></h2>
 
                 <div class="location-address">
@@ -3057,6 +3070,7 @@
     // Arma el SVG de cada cinta a partir de sus data-attributes, así no hay
     // que repetir el marcado completo a mano por cada una.
     (function () {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const ribbonPathD = "M-50 140 C 150 45, 350 45, 550 140 C 750 235, 950 235, 1150 140 C 1300 85, 1450 85, 1650 140";
         const belowClipD = "M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,280 L-50,280 Z";
         const aboveClipD = "M-50,140 C150,45 350,45 550,140 C750,235 950,235 1150,140 C1300,85 1450,85 1650,140 L1650,0 L-50,0 Z";
@@ -3072,6 +3086,12 @@
             const MIN_CHARS = 700;
             const repeats = Math.max(3, Math.ceil(MIN_CHARS / text.length));
             const repeatedText = new Array(repeats).fill(text).join(' ');
+
+            // Con "reducir movimiento" activado, el texto queda quieto en
+            // vez de desplazarse sin parar.
+            const animateTag = prefersReducedMotion
+                ? ''
+                : '<animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>';
 
             const aboveRect = above === 'transparent'
                 ? ''
@@ -3089,7 +3109,7 @@
                     <path class="marquee-ribbon-path" id="ribbonPath-${id}" d="${ribbonPathD}" />
                     <text class="marquee-ribbon-text" dominant-baseline="central">
                         <textPath href="#ribbonPath-${id}" startOffset="0%">
-                            <animate attributeName="startOffset" from="0%" to="-100%" begin="0s" dur="32s" repeatCount="indefinite"></animate>
+                            ${animateTag}
                             ${repeatedText}
                         </textPath>
                     </text>
@@ -3143,7 +3163,8 @@
         }
     });
     backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
 
     // ─── EASTER EGG: Código Konami → Rickroll ───

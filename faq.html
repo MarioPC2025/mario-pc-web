@@ -149,13 +149,32 @@
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
             --white: #e8edea;
-            --muted: #536057;
+            --muted: #788480;
             --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --font-body: 'DM Sans', sans-serif;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; font-size: 106.25%; }
+
+        /* Respeta la preferencia de "reducir movimiento" del sistema operativo.
+           Solo afecta a quienes tienen esa opción de accesibilidad activada —
+           el resto ve el sitio igual, con todas las animaciones normales. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                transform: none !important;
+            }
+        }
+
 
         body {
             background-color: var(--bg);
@@ -1191,7 +1210,8 @@
         }
     });
     backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
 
     // ─── EASTER EGG: Código Konami → Rickroll ───

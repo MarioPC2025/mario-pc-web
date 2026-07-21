@@ -37,11 +37,32 @@
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
             --white: #e8edea;
-            --muted: #536057;
+            --muted: #788480;
             --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --font-body: 'DM Sans', sans-serif;
         }
+
+        html { font-size: 106.25%; }
+
+        /* Respeta la preferencia de "reducir movimiento" del sistema operativo.
+           Solo afecta a quienes tienen esa opción de accesibilidad activada —
+           el resto ve el sitio igual, con todas las animaciones normales. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                transform: none !important;
+            }
+        }
+
 
         body {
             background-color: var(--bg);
