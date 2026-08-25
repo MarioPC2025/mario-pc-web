@@ -38,32 +38,11 @@
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
             --white: #e8edea;
-            --muted: #788480;
+            --muted: #536057;
             --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --font-body: 'DM Sans', sans-serif;
         }
-
-        html { font-size: 106.25%; }
-
-        /* Respeta la preferencia de "reducir movimiento" del sistema operativo.
-           Solo afecta a quienes tienen esa opción de accesibilidad activada —
-           el resto ve el sitio igual, con todas las animaciones normales. */
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-
-            .reveal {
-                transform: none !important;
-            }
-        }
-
 
         body {
             background-color: var(--bg);
@@ -379,8 +358,9 @@
 
 <div class="grain"></div>
 
+<main>
 <div class="error-wrap">
-    <img src="logo.png" alt="Mario PC" class="error-logo">
+    <img src="logo.png" alt="Mario PC" class="error-logo" width="56" height="56">
 
     <div class="error-eyebrow">
         <div class="error-eyebrow-line"></div>
@@ -407,6 +387,7 @@
 
     <div class="error-footer">© 2026 Mario PC — Todos los derechos reservados</div>
 </div>
+</main>
 
 <!-- EASTER EGG: RICKROLL -->
 <div class="rickroll-overlay" id="rickrollOverlay">

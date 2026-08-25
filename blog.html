@@ -60,32 +60,13 @@
             --green-dim: rgba(29, 221, 101, 0.1);
             --green-border: rgba(29, 221, 101, 0.22);
             --white: #e8edea;
-            --muted: #788480;
+            --muted: #536057;
             --font-display: 'Bebas Neue', sans-serif;
             --font-mono: 'Space Mono', monospace;
             --font-body: 'DM Sans', sans-serif;
         }
 
-        html { scroll-behavior: smooth; font-size: 106.25%; }
-
-        /* Respeta la preferencia de "reducir movimiento" del sistema operativo.
-           Solo afecta a quienes tienen esa opción de accesibilidad activada —
-           el resto ve el sitio igual, con todas las animaciones normales. */
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-
-            .reveal {
-                transform: none !important;
-            }
-        }
-
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg);
@@ -891,7 +872,7 @@
 <!-- NAV -->
 <nav>
     <a href="./" class="nav-logo">
-        <img src="logo.png" alt="Mario PC">
+        <img src="logo.png" alt="Mario PC" width="38" height="38">
         <span class="nav-logo-text">Mario<em>PC</em></span>
     </a>
 
@@ -936,6 +917,8 @@
         <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
     </a>
 </div>
+
+<main>
 
 <!-- HERO -->
 <section class="faq-hero">
@@ -1009,6 +992,8 @@
         </div>
     </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1137,8 +1122,7 @@
         }
     });
     backToTop.addEventListener('click', () => {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // ─── EASTER EGG: Código Konami → Rickroll ───
