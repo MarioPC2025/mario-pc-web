@@ -2075,6 +2075,69 @@
             .service-rows { padding-left: 1rem; }
             .service-row { grid-template-columns: 44px 1fr 40px; gap: 1rem; }
         }
+
+        /* ─── MODO VACACIONES (TEMPORAL) ─── */
+        .vacation-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(7, 9, 10, 0.82);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .vacation-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .vacation-card {
+            position: relative;
+            max-width: 420px;
+            width: 100%;
+            background: var(--bg-alt);
+            border: 1px solid var(--green-border);
+            border-radius: 18px;
+            padding: 2.2rem 1.8rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .vacation-card i.ph-fill {
+            font-size: 2.4rem;
+            color: var(--green);
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        .vacation-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 0.03em;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+        .vacation-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 1.4rem;
+        }
+        .vacation-card p strong { color: var(--white); }
+        .vacation-close {
+            display: inline-block;
+            background: var(--green);
+            color: #07090a;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 999px;
+            padding: 0.7rem 1.8rem;
+            cursor: pointer;
+        }
     </style>
 
     <!-- ═══ LocalBusiness Schema — visibilidad en motores de IA ═══ -->
@@ -2166,6 +2229,16 @@
     </script>
 </head>
 <body>
+
+<!-- ═══ MODO VACACIONES (TEMPORAL — quitar este bloque para revertir) ═══ -->
+<div class="vacation-overlay" id="vacationOverlay">
+    <div class="vacation-card">
+        <i class="ph-fill ph-suitcase-rolling"></i>
+        <h3>¡Estamos de vacaciones!</h3>
+        <p>Mario PC va a estar cerrado momentáneamente. <strong>Volvemos a atender el 8 de septiembre.</strong> Cualquier consulta, escribinos y te respondemos apenas estemos de vuelta.</p>
+        <button class="vacation-close" id="vacationClose">Entendido</button>
+    </div>
+</div>
 
 <div class="grain"></div>
 
@@ -3261,6 +3334,10 @@
         });
     })();
 
+    // ─── MODO VACACIONES (TEMPORAL — poner en false para revertir) ───
+    const VACATION_MODE = true;
+    const VACATION_LABEL = 'De vacaciones · Volvemos el 8/9';
+
     // ─── HORARIO DINÁMICO ───
     // Horario: Lunes a jueves 10-17, Viernes 10-15, Sábado y domingo cerrado.
     // Se calcula siempre en hora de Argentina, sin importar dónde esté el visitante.
@@ -3287,6 +3364,9 @@
         }
 
         function computeStatus() {
+            if (VACATION_MODE) {
+                return { open: false, label: VACATION_LABEL, today: getArgentinaTime().day };
+            }
             const { day, hour, minute } = getArgentinaTime();
             const minutesNow = hour * 60 + minute;
             const today = scheduleFor(day);
@@ -3335,6 +3415,20 @@
 
         render();
         setInterval(render, 60000); // recalcular cada minuto
+    })();
+
+    // ─── POPUP MODO VACACIONES (TEMPORAL — quitar junto con el bloque HTML para revertir) ───
+    (function () {
+        if (!VACATION_MODE) return;
+        const overlay = document.getElementById('vacationOverlay');
+        const closeBtn = document.getElementById('vacationClose');
+        if (!overlay || !closeBtn) return;
+
+        requestAnimationFrame(() => overlay.classList.add('visible'));
+        closeBtn.addEventListener('click', () => overlay.classList.remove('visible'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('visible');
+        });
     })();
 
     // ─── GALERÍA ANTES/DESPUÉS ───
