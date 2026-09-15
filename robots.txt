@@ -50,5 +50,4 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-# Sitemap — reemplazá mariopc.com.ar por tu dominio real
 Sitemap: https://mariopc.com.ar/sitemap.xml

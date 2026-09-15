@@ -202,7 +202,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* ─── EASTER EGG: RICKROLL ─── */
         .rickroll-overlay {
             position: fixed;
             inset: 0;
@@ -279,7 +278,6 @@
             background: var(--green-dim);
         }
 
-        /* ─── EASTER EGG: toast genérico ─── */
         .egg-toast {
             position: fixed;
             bottom: 40px;
@@ -356,7 +354,6 @@
 </div>
 </main>
 
-<!-- EASTER EGG: RICKROLL -->
 <div class="rickroll-overlay" id="rickrollOverlay">
     <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
     <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
@@ -366,7 +363,6 @@
     </button>
 </div>
 
-<!-- EASTER EGG: toast genérico -->
 <div class="egg-toast" id="eggToast"></div>
 
 <script>
@@ -398,7 +394,6 @@
         };
     })();
 
-    // ─── EASTER EGG: toast genérico ───
     function showEggToast(msg, duration) {
         const toast = document.getElementById('eggToast');
         toast.textContent = msg;
@@ -407,7 +402,6 @@
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
 
-    // ─── EASTER EGG: tocar el ícono 7 veces → rickroll ───
     (function () {
         const icon = document.querySelector('.thanks-icon');
         if (!icon) return;
@@ -430,7 +424,6 @@
         });
     })();
 
-    // ─── EASTER EGG: footer con frases random ───
     (function () {
         const footerEl = document.querySelector('.thanks-footer');
         if (!footerEl) return;

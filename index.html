@@ -1903,7 +1903,6 @@
             }
         }
 
-        /* ─── EASTER EGG: RICKROLL ─── */
         .rickroll-overlay {
             position: fixed;
             inset: 0;
@@ -1980,7 +1979,6 @@
             background: var(--green-dim);
         }
 
-        /* ─── EASTER EGG: toast genérico ─── */
         .egg-toast {
             position: fixed;
             bottom: 90px;
@@ -2077,7 +2075,7 @@
         }
     </style>
 
-    <!-- ═══ LocalBusiness Schema — visibilidad en motores de IA ═══ -->
+    <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -2444,29 +2442,7 @@
             </p>
         </div>
 
-        <!--
-            ══════════════════════════════════════════════════════════════
-            INSTRUCCIONES PARA MARIO — cómo agregar un caso nuevo:
-
-            1. Subí las dos fotos (antes y después) a la carpeta /gallery
-               de tu repositorio en GitHub. Podés arrastrarlas directo
-               desde la página de GitHub (Add file → Upload files).
-               Nombralas simple, sin espacios, ej: "notebook1-antes.jpg"
-               y "notebook1-despues.jpg".
-
-            2. Agregá UNA línea acá abajo, dentro de galleryItems,
-               copiando el formato de las demás:
-
-               { before: "gallery/notebook1-antes.jpg", after: "gallery/notebook1-despues.jpg", caption: "Notebook con pantalla rota" },
-
-            3. Guardá el archivo y subilo (commit). Listo, la tarjeta
-               se arma sola. El texto "caption" es lo que se ve debajo
-               de las fotos — contá brevemente qué se hizo.
-
-            Mientras el array esté vacío (como ahora), se muestra un
-            cartel de "Próximamente" en su lugar.
-            ══════════════════════════════════════════════════════════════
-        -->
+        
         <div class="gallery-grid reveal" id="galleryGrid"></div>
 
     </div>
@@ -2486,24 +2462,7 @@
             </p>
         </div>
 
-        <!--
-            ══════════════════════════════════════════════════════════════
-            INSTRUCCIONES PARA MARIO — cómo agregar una publicación:
-
-            1. Subí la foto a la carpeta /instagram de tu repositorio en
-               GitHub (igual que hacés con /gallery).
-
-            2. Agregá UNA línea acá abajo, dentro de instagramPosts:
-
-               { image: "instagram/post1.jpg", url: "https://www.instagram.com/p/XXXXXXXXX/" },
-
-               El "url" es el link a la publicación real en Instagram
-               (lo copiás desde la app: Compartir → Copiar enlace).
-
-            Mientras el array esté vacío (como ahora), se muestra un
-            cartel de "Próximamente" en su lugar.
-            ══════════════════════════════════════════════════════════════
-        -->
+        
         <div class="instagram-grid reveal" id="instagramGrid"></div>
 
         <div class="reveal" style="margin-top: 2rem; text-align: center;">
@@ -2806,16 +2765,7 @@
             </p>
         </div>
 
-        <!--
-            INSTRUCCIONES — reseñas de Google:
-            Por ahora esto es una invitación a dejar la primera reseña
-            (todavía no tenés ninguna cargada). El link de abajo apunta
-            a tu perfil de Google Maps. Cuando entres a tu Google Business
-            Profile, buscá la opción "Obtener más reseñas" — te da un
-            link corto dedicado a abrir directo el cuadro de escribir
-            reseña (mejor que el link genérico de Maps). Pasámelo y
-            actualizamos el href de acá abajo.
-        -->
+        
         <div class="reviews-invite reveal">
             <div class="reviews-invite-icon"><i class="ph-fill ph-star"></i></div>
             <div class="reviews-invite-text">
@@ -2828,23 +2778,7 @@
             </a>
         </div>
 
-        <!--
-            ══════════════════════════════════════════════════════════════
-            INSTRUCCIONES PARA MARIO — cómo agregar un testimonio:
-
-            Cuando alguien te escriba algo lindo por WhatsApp (o te lo
-            diga en persona), agregá UNA línea acá abajo, dentro de
-            testimonials, copiando el formato de las demás:
-
-            { text: "El texto tal cual te lo escribieron o un resumen fiel.", author: "Nombre — Barrio" },
-
-            Podés usar el nombre completo, solo el nombre, o "Nombre + inicial"
-            si preferís más privacidad (ej: "Marcela G. — La Lucila").
-
-            Mientras el array esté vacío (como ahora), se muestra un
-            cartel de "Próximamente" en su lugar.
-            ══════════════════════════════════════════════════════════════
-        -->
+        
         <div class="testimonial-grid reveal" id="testimonialGrid"></div>
 
     </div>
@@ -3044,7 +2978,6 @@
     <i class="ph ph-arrow-up"></i>
 </button>
 
-<!-- EASTER EGG: RICKROLL -->
 <div class="rickroll-overlay" id="rickrollOverlay">
     <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
     <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
@@ -3054,7 +2987,6 @@
     </button>
 </div>
 
-<!-- EASTER EGG: toast genérico -->
 <div class="egg-toast" id="eggToast"></div>
 
 <script>
@@ -3151,7 +3083,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ─── EASTER EGG: Código Konami → Rickroll ───
     (function () {
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let progress = 0;
@@ -3179,11 +3110,8 @@
             document.getElementById('rickrollFrame').src = '';
         };
 
-        console.log('%c¿Viniste a inspeccionar el código? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
-        console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o tocá el logo varias veces seguidas 😉', 'color:#536057; font-size:11px;');
     })();
 
-    // ─── EASTER EGG: toast genérico ───
     function showEggToast(msg, duration) {
         const toast = document.getElementById('eggToast');
         toast.textContent = msg;
@@ -3192,7 +3120,6 @@
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
 
-    // ─── EASTER EGG: tocar el logo 7 veces → rickroll ───
     (function () {
         const logo = document.querySelector('.nav-logo');
         if (!logo) return;
@@ -3220,7 +3147,6 @@
         });
     })();
 
-    // ─── EASTER EGG: footer con frases random ───
     (function () {
         const footerEl = document.querySelector('.footer-copy');
         if (!footerEl) return;
@@ -3244,7 +3170,6 @@
         footerEl.style.transition = 'opacity 0.15s ease';
     })();
 
-    // ─── EASTER EGG: status-dot con mensaje random ───
     (function () {
         const dot = document.querySelector('.status-dot');
         if (!dot) return;

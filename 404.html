@@ -205,7 +205,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* ─── EASTER EGG: click en el 404 ─── */
         .error-code {
             cursor: pointer;
             user-select: none;
@@ -236,7 +235,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ─── EASTER EGG: RICKROLL ─── */
         .rickroll-overlay {
             position: fixed;
             inset: 0;
@@ -313,7 +311,6 @@
             background: var(--green-dim);
         }
 
-        /* ─── EASTER EGG: toast genérico ─── */
         .egg-toast {
             position: fixed;
             bottom: 40px;
@@ -389,7 +386,6 @@
 </div>
 </main>
 
-<!-- EASTER EGG: RICKROLL -->
 <div class="rickroll-overlay" id="rickrollOverlay">
     <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
     <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
@@ -399,11 +395,9 @@
     </button>
 </div>
 
-<!-- EASTER EGG: toast genérico -->
 <div class="egg-toast" id="eggToast"></div>
 
 <script>
-    // ─── EASTER EGG 1: clickear el 404 varias veces lo "arregla" ───
     (function () {
         const codeEl = document.getElementById('errorCode');
         const titleEl = document.getElementById('errorTitle');
@@ -428,7 +422,6 @@
         });
     })();
 
-    // ─── EASTER EGG 2: Código Konami → Rickroll ───
     (function () {
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let progress = 0;
@@ -456,12 +449,8 @@
             document.getElementById('rickrollFrame').src = '';
         };
 
-        console.log('%c¿Te perdiste por acá? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
-        console.log('%cProbá clickear el 404 un par de veces seguidas...', 'color:#e8edea; font-size:12px;');
-        console.log('%cO probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o tocá el logo varias veces 😉', 'color:#536057; font-size:11px;');
     })();
 
-    // ─── EASTER EGG: toast genérico ───
     function showEggToast(msg, duration) {
         const toast = document.getElementById('eggToast');
         toast.textContent = msg;
@@ -470,7 +459,6 @@
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
 
-    // ─── EASTER EGG: tocar el logo 7 veces → rickroll ───
     (function () {
         const logo = document.querySelector('.error-logo');
         if (!logo) return;
@@ -493,7 +481,6 @@
         });
     })();
 
-    // ─── EASTER EGG: footer con frases random ───
     (function () {
         const footerEl = document.querySelector('.error-footer');
         if (!footerEl) return;

@@ -49,7 +49,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" integrity="sha384-pPVoXE8ft+zxKtxIDDI7SfTK6y95NHm4qa+hKEg/hs8VkjW5IP+9/dGOPCbDpUPl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css" integrity="sha384-UVFvhZP7fWAENUPOoq61rJg5ef6QZW0k5vpAn71041/QS4STvUcJQCGNhStZLGx9" crossorigin="anonymous">
 
-
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -718,7 +717,6 @@
             }
         }
 
-        /* ─── EASTER EGG: RICKROLL ─── */
         .rickroll-overlay {
             position: fixed;
             inset: 0;
@@ -795,7 +793,6 @@
             background: var(--green-dim);
         }
 
-        /* ─── EASTER EGG: toast genérico ─── */
         .egg-toast {
             position: fixed;
             bottom: 90px;
@@ -947,27 +944,7 @@
             </a>
         </div>
 
-        <!--
-            ══════════════════════════════════════════════════════════════
-            INSTRUCCIONES PARA MARIO — cómo publicar una nota:
-
-            1. Si la nota tiene foto de portada, subila a la carpeta /blog
-               en GitHub (mismo método que usás en /gallery e /instagram).
-
-            2. Agregá UN objeto acá abajo, dentro de blogPosts (buscalo
-               más abajo en este mismo archivo, cerca del final):
-
-               {
-                   title: "Título de la nota",
-                   date: "10 de julio, 2026",
-                   image: "blog/nombre-foto.jpg", // opcional, podés sacar esta línea si no hay foto
-                   content: "El texto completo de la nota. Dejá una línea en blanco entre párrafos para que se separen bien."
-               },
-
-            3. Commit changes. Apenas haya un post cargado, el cartel de
-               "Muy pronto" desaparece solo y se muestra la nota.
-            ══════════════════════════════════════════════════════════════
-        -->
+        
         <div id="blogPostsGrid"></div>
 
     </div>
@@ -1099,7 +1076,6 @@
     <i class="ph ph-arrow-up"></i>
 </button>
 
-<!-- EASTER EGG: RICKROLL -->
 <div class="rickroll-overlay" id="rickrollOverlay">
     <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
     <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
@@ -1109,7 +1085,6 @@
     </button>
 </div>
 
-<!-- EASTER EGG: toast genérico -->
 <div class="egg-toast" id="eggToast"></div>
 
 <script>
@@ -1125,7 +1100,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ─── EASTER EGG: Código Konami → Rickroll ───
     (function () {
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let progress = 0;
@@ -1153,11 +1127,8 @@
             document.getElementById('rickrollFrame').src = '';
         };
 
-        console.log('%c¿Viniste a inspeccionar el código? 👀', 'color:#1ddd65; font-size:16px; font-weight:bold;');
-        console.log('%cPD: probá el código Konami (↑ ↑ ↓ ↓ ← → ← → B A), o tocá el logo varias veces seguidas 😉', 'color:#536057; font-size:11px;');
     })();
 
-    // ─── EASTER EGG: toast genérico ───
     function showEggToast(msg, duration) {
         const toast = document.getElementById('eggToast');
         toast.textContent = msg;
@@ -1166,7 +1137,6 @@
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
 
-    // ─── EASTER EGG: tocar el logo 7 veces → rickroll ───
     (function () {
         const logo = document.querySelector('.nav-logo');
         if (!logo) return;
@@ -1194,7 +1164,6 @@
         });
     })();
 
-    // ─── EASTER EGG: footer con frases random ───
     (function () {
         const footerEl = document.querySelector('.footer-copy');
         if (!footerEl) return;
