@@ -2010,6 +2010,385 @@
             user-select: none;
         }
 
+        /* ─── EXTRAS DEL HOME: tarjeta rota, bug y escáner ─── */
+        .price-card-broken {
+            border-style: dashed;
+            border-color: rgba(255, 110, 110, 0.35);
+        }
+
+        .price-card-broken .price-icon {
+            color: #ff8a8a;
+            border-color: rgba(255, 110, 110, 0.35);
+        }
+
+        .price-card-broken .price-name {
+            animation: egg-glitch 5s steps(1, end) infinite;
+        }
+
+        @keyframes egg-glitch {
+            0%, 93%, 100% { transform: none; text-shadow: none; }
+            94% { transform: translateX(-2px); text-shadow: 2px 0 rgba(255,100,100,0.7), -2px 0 rgba(29,221,101,0.7); }
+            96% { transform: translateX(2px); text-shadow: -2px 0 rgba(255,100,100,0.7), 2px 0 rgba(29,221,101,0.7); }
+            98% { transform: translateX(-1px); text-shadow: none; }
+        }
+
+        /* El botón se estira sobre toda la tarjeta para que sea clickeable completa */
+        .price-card-broken .price-value-row { position: static; }
+
+        .broken-btn {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ff8a8a;
+            background: rgba(255, 100, 100, 0.08);
+            border: 1px solid rgba(255, 110, 110, 0.35);
+            border-radius: 2px;
+            padding: 9px 14px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .broken-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+        }
+
+        .broken-btn:focus-visible { outline: none; }
+        .broken-btn:focus-visible::after {
+            outline: 2px solid var(--green);
+            outline-offset: -3px;
+            border-radius: 5px;
+        }
+
+        .price-card-broken:hover .broken-btn { background: rgba(255, 100, 100, 0.16); }
+
+        .price-card-broken.is-fixed { border-style: solid; border-color: var(--green-border); }
+        .price-card-broken.is-fixed .price-icon { color: var(--green); border-color: var(--green-border); }
+        .price-card-broken.is-fixed .price-name { animation: none; }
+        .price-card-broken.is-fixed .broken-btn {
+            color: var(--green);
+            background: var(--green-dim);
+            border-color: var(--green-border);
+        }
+
+        @media (min-width: 601px) and (max-width: 960px) {
+            .price-card-broken { grid-column: 1 / -1; }
+        }
+
+        /* Pantalla azul de mentira */
+        .egg-bsod {
+            position: fixed;
+            inset: 0;
+            z-index: 9997;
+            background: #0078d7;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: clamp(1.5rem, 7vw, 6rem);
+            font-family: var(--font-body);
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            outline: none;
+            transition: background 0.4s ease;
+        }
+
+        .egg-bsod.is-ok { background: var(--bg); }
+
+        .egg-bsod-face {
+            font-size: clamp(5rem, 18vw, 10rem);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        .egg-bsod.is-ok .egg-bsod-face { color: var(--green); }
+
+        .egg-bsod-msg {
+            font-size: clamp(1.15rem, 2.8vw, 1.9rem);
+            font-weight: 300;
+            line-height: 1.35;
+            max-width: 30em;
+            margin-bottom: 1.5rem;
+        }
+
+        .egg-bsod-small {
+            font-size: clamp(0.8rem, 1.6vw, 1rem);
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 36em;
+            margin-bottom: 0.6rem;
+        }
+
+        .egg-bsod.is-ok .egg-bsod-small { display: none; }
+
+        .egg-bsod-hint {
+            position: absolute;
+            left: clamp(1.5rem, 7vw, 6rem);
+            right: clamp(1.5rem, 7vw, 6rem);
+            bottom: max(1.25rem, env(safe-area-inset-bottom));
+            font-size: 0.8rem;
+            opacity: 0.85;
+        }
+
+        /* Bug que se asoma */
+        .egg-bug {
+            position: fixed;
+            z-index: 550;
+            width: 96px;
+            height: 64px;
+            padding: 0;
+            border: 0;
+            background: none;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.15s ease;
+        }
+
+        .egg-bug.from-left { left: 0; --bug-x: -38%; transform: translateX(-100%); }
+        .egg-bug.from-right { right: 0; --bug-x: 38%; transform: translateX(100%); }
+        .egg-bug.from-right svg { transform: scaleX(-1); }
+
+        .egg-bug.is-in { opacity: 1; pointer-events: auto; transform: translateX(var(--bug-x)); }
+
+        .egg-bug.is-caught {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(var(--bug-x)) scale(0.15) rotate(35deg);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .egg-bug svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            filter: drop-shadow(0 0 8px rgba(29, 221, 101, 0.45));
+        }
+
+        .egg-bug:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 8px; }
+
+        .bug-body { fill: var(--green); }
+        .bug-head { fill: #17b852; }
+        .bug-line { fill: none; stroke: var(--green); stroke-width: 3; stroke-linecap: round; }
+        .bug-stripe { fill: none; stroke: rgba(0, 0, 0, 0.35); stroke-width: 2.5; stroke-linecap: round; }
+        .bug-shine { fill: rgba(255, 255, 255, 0.28); }
+        .bug-eye { fill: #fff; }
+        .bug-pupil { fill: #030804; }
+        .bug-ant-a { transform-origin: 84px 26px; animation: bug-ant 0.5s ease-in-out infinite; }
+        .bug-ant-b { transform-origin: 84px 42px; animation: bug-ant 0.5s ease-in-out infinite reverse; }
+        .bug-legs-a { animation: bug-step 0.2s steps(1, end) infinite; }
+        .bug-legs-b { animation: bug-step 0.2s steps(1, end) infinite reverse; }
+
+        @keyframes bug-ant { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+        @keyframes bug-step { 0% { transform: translateX(-1.6px); } 50% { transform: translateX(1.6px); } }
+
+        /* Ventanas (premio del bug y escáner) */
+        .egg-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9996;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(3, 8, 4, 0.88);
+            backdrop-filter: blur(4px);
+            overscroll-behavior: contain;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .egg-modal.is-open { opacity: 1; }
+
+        .egg-card {
+            width: min(440px, 100%);
+            max-height: 100%;
+            overflow-y: auto;
+            background: var(--bg-alt);
+            border: 1px solid var(--green-border);
+            border-radius: 5px;
+            padding: 2rem 1.75rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .egg-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 0.9rem; }
+        .egg-card-head i { color: var(--green); font-size: 1.8rem; }
+        .egg-card-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.02em; font-weight: 400; }
+        .egg-card p { font-size: 0.9rem; line-height: 1.65; color: var(--white); }
+        .egg-card p.egg-card-small { font-size: 0.78rem; color: var(--muted); margin-top: 0.9rem; }
+
+        .egg-voucher {
+            margin: 1.25rem 0 0;
+            padding: 1.1rem 1.25rem;
+            border: 1px dashed var(--green-border);
+            border-radius: 3px;
+            background: var(--green-dim);
+            font-family: var(--font-mono);
+        }
+
+        .egg-voucher-brand { font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.6rem; }
+        .egg-voucher-off { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em; color: var(--white); }
+        .egg-voucher-code { font-size: 1.45rem; font-weight: 700; letter-spacing: 0.08em; color: var(--green); margin: 0.25rem 0 0.7rem; word-break: break-all; }
+        .egg-voucher-meta { font-size: 0.68rem; letter-spacing: 0.04em; color: var(--muted); line-height: 1.7; }
+
+        .egg-card-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.4rem; }
+        .egg-card-actions .btn-primary, .egg-card-actions .btn-secondary { padding: 13px 20px; cursor: pointer; background-clip: padding-box; }
+        .egg-card-actions button.btn-secondary { background: transparent; }
+
+        /* Escáner de PC */
+        .egg-scan-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            background: none;
+            border: 1px dashed rgba(255, 255, 255, 0.14);
+            border-radius: 2px;
+            padding: 10px 14px;
+            min-height: 40px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .egg-scan-btn:hover { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
+        .footer-scan { flex: 0 0 100%; display: flex; justify-content: center; }
+
+        .egg-term {
+            width: min(560px, 100%);
+            height: min(640px, 100%);
+            display: flex;
+            flex-direction: column;
+            background: #050807;
+            border: 1px solid var(--green-border);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .egg-term-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 6px 8px 6px 16px;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--green-border);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+        }
+
+        .egg-term-bar i { color: var(--green); }
+
+        .egg-term-close {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 0;
+            border-radius: 3px;
+            color: var(--white);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .egg-term-close:hover { background: rgba(255, 255, 255, 0.07); color: var(--green); }
+
+        .egg-term-log {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            line-height: 1.55;
+            color: var(--white);
+        }
+
+        .egg-line { max-width: 92%; animation: egg-line-in 0.25s ease both; word-break: break-word; }
+        .egg-line.cmd { color: var(--green); }
+        .egg-line.note { color: var(--muted); font-size: 0.72rem; }
+        .egg-line.good::before { content: '✔ '; color: var(--green); }
+        .egg-line.find::before { content: '✖ '; color: #ff8a8a; }
+        .egg-line.me {
+            align-self: flex-end;
+            color: var(--green);
+            background: var(--green-dim);
+            border: 1px solid var(--green-border);
+            border-radius: 14px 14px 2px 14px;
+            padding: 6px 14px;
+        }
+
+        @keyframes egg-line-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+        .egg-bar { width: 100%; max-width: none; height: 8px; border: 1px solid var(--green-border); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+        .egg-bar span { display: block; height: 100%; width: 0; background: var(--green); }
+
+        .egg-opts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-content: flex-start;
+            min-height: 92px;
+            padding: 0.85rem 1rem 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .egg-opt {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--green);
+            background: var(--green-dim);
+            border: 1px solid var(--green-border);
+            border-radius: 999px;
+            padding: 10px 16px;
+            min-height: 44px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+        }
+
+        .egg-opt:hover { background: rgba(29, 221, 101, 0.18); border-color: var(--green); }
+        .egg-opt:disabled { opacity: 0.35; cursor: default; }
+        .egg-opt:disabled:hover { background: var(--green-dim); border-color: var(--green-border); }
+        .egg-opt.is-cta { background: var(--green); border-color: var(--green); color: #030804; font-weight: 700; }
+        .egg-opt.is-cta:hover { filter: brightness(1.1); }
+        .egg-term-close:focus-visible, .egg-opt:focus-visible, .egg-scan-btn:focus-visible, .egg-card-actions a:focus-visible, .egg-card-actions button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+        @media (max-width: 600px) {
+            .egg-modal.has-term { padding: 0; }
+            .egg-term { height: 100%; border-radius: 0; border-left: 0; border-right: 0; }
+            .egg-card { padding: 1.75rem 1.4rem; }
+            .egg-card-actions { flex-direction: column; }
+            .egg-card-actions .btn-primary, .egg-card-actions .btn-secondary { justify-content: center; }
+            .egg-opts { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .price-card-broken .price-name,
+            .egg-bug *,
+            .egg-line { animation: none !important; }
+            .egg-bug, .egg-bug.is-caught { transition: opacity 0.2s linear !important; }
+            .egg-modal, .egg-bsod { transition: none !important; }
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 960px) {
             .hero-inner {
@@ -2721,6 +3100,33 @@
                 </div>
             </div>
 
+            <div class="price-card price-card-broken" id="brokenCard" data-nosnippet>
+                <div class="price-icon"><i class="ph-fill ph-warning-octagon" id="brokenIcon" aria-hidden="true"></i></div>
+                <h3 class="price-name" id="brokenName">Error 0x80070057</h3>
+                <div class="price-desc" id="brokenDesc">No se pudo cargar este precio. Mejor no tocar nada.</div>
+                <div class="price-value-row">
+                    <button type="button" class="broken-btn" id="brokenBtn" aria-describedby="brokenDesc">No tocar</button>
+                </div>
+                <div class="pc-shine"></div>
+                <div class="pc-background">
+                    <div class="pc-tiles">
+                        <div class="pc-tile pc-tile-1"></div>
+                        <div class="pc-tile pc-tile-2"></div>
+                        <div class="pc-tile pc-tile-3"></div>
+                        <div class="pc-tile pc-tile-4"></div>
+                        <div class="pc-tile pc-tile-5"></div>
+                        <div class="pc-tile pc-tile-6"></div>
+                        <div class="pc-tile pc-tile-7"></div>
+                        <div class="pc-tile pc-tile-8"></div>
+                        <div class="pc-tile pc-tile-9"></div>
+                        <div class="pc-tile pc-tile-10"></div>
+                    </div>
+                    <div class="pc-line pc-line-1"></div>
+                    <div class="pc-line pc-line-2"></div>
+                    <div class="pc-line pc-line-3"></div>
+                </div>
+            </div>
+
         </div>
 
         <div class="trust-strip reveal">
@@ -2956,6 +3362,10 @@
         </div>
 
         <div class="footer-made">Hecho con ❤️ para mis clientes</div>
+
+        <div class="footer-scan">
+            <button type="button" class="egg-scan-btn" id="scanOpen"><i class="ph ph-scan" aria-hidden="true"></i> Escáner de PC (de mentirita)</button>
+        </div>
     </div>
 </footer>
 
@@ -3297,6 +3707,507 @@
             window.open(url, '_blank', 'noopener,noreferrer');
             window.location.href = 'gracias.html';
         });
+    })();
+
+    // ─── EXTRAS DEL HOME ───
+    (function () {
+        'use strict';
+
+        // Premio del bug: se puede ajustar acá (activo: false apaga el bug)
+        const PREMIO = { activo: true, porcentaje: 5, dias: 7 };
+
+        const WA = 'https://wa.me/5491123999259';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const coarsePointer = window.matchMedia('(pointer: coarse)');
+
+        function track(name, params) {
+            try {
+                if (window.gtag) gtag('event', name, Object.assign({ page_path: location.pathname }, params || {}));
+            } catch (e) {}
+        }
+
+        // sessionStorage con respaldo en memoria (modo privado / bloqueado)
+        const mem = {};
+        function ssGet(k) {
+            try {
+                const v = sessionStorage.getItem(k);
+                if (v !== null) return v;
+            } catch (e) {}
+            return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null;
+        }
+        function ssSet(k, v) {
+            mem[k] = String(v);
+            try { sessionStorage.setItem(k, String(v)); } catch (e) {}
+        }
+
+        function rand(min, max) { return min + Math.random() * (max - min); }
+        function waLink(text) { return WA + '?text=' + encodeURIComponent(text); }
+        function make(tag, cls, html) {
+            const n = document.createElement(tag);
+            if (cls) n.className = cls;
+            if (html !== undefined) n.innerHTML = html;
+            return n;
+        }
+
+        // Fecha y hora de Argentina, sin importar el reloj o la zona del visitante
+        function baParts(offsetDays) {
+            const d = new Date(Date.now() + (offsetDays || 0) * 86400000);
+            const parts = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'America/Argentina/Buenos_Aires',
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+            }).formatToParts(d);
+            const m = {};
+            parts.forEach(p => { m[p.type] = p.value; });
+            return m;
+        }
+
+        function makeCode(day, month) {
+            const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // sin 0/O/1/I para que no se confundan
+            let suffix = '';
+            try {
+                const buf = new Uint8Array(3);
+                crypto.getRandomValues(buf);
+                buf.forEach(b => { suffix += alphabet[b % alphabet.length]; });
+            } catch (e) {
+                for (let i = 0; i < 3; i++) suffix += alphabet[Math.floor(Math.random() * alphabet.length)];
+            }
+            return 'BUG' + PREMIO.porcentaje + '-' + day + month + '-' + suffix;
+        }
+
+        // ── Ventanas modales (premio del bug y escáner) ──
+        let activeModal = null;
+
+        function trapTab(e, root) {
+            if (e.key !== 'Tab') return;
+            const f = root.querySelectorAll('button:not([disabled]), a[href]');
+            if (!f.length) return;
+            const first = f[0];
+            const last = f[f.length - 1];
+            if (!root.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+            else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+
+        function openModal(content, opts) {
+            opts = opts || {};
+            if (activeModal) activeModal.close();
+            const prevFocus = document.activeElement;
+            const wrap = make('div', 'egg-modal' + (opts.cls ? ' ' + opts.cls : ''));
+            wrap.appendChild(content);
+            document.body.appendChild(wrap);
+            requestAnimationFrame(() => wrap.classList.add('is-open'));
+
+            const modal = {
+                close() {
+                    if (activeModal !== modal) return;
+                    activeModal = null;
+                    wrap.classList.remove('is-open');
+                    setTimeout(() => wrap.remove(), reduceMotion.matches ? 0 : 200);
+                    if (opts.onClose) opts.onClose();
+                    if (prevFocus && prevFocus.focus && document.contains(prevFocus)) {
+                        try { prevFocus.focus({ preventScroll: true }); } catch (e) {}
+                    }
+                }
+            };
+            wrap.addEventListener('click', (e) => { if (e.target === wrap) modal.close(); });
+            wrap.addEventListener('keydown', (e) => trapTab(e, wrap));
+            activeModal = modal;
+            return modal;
+        }
+
+        // ── Tarjeta rota → pantalla azul de mentira ──
+        const bsod = {
+            active: false,
+            el: null,
+            from: null,
+            timers: [],
+            later(fn, ms) { this.timers.push(setTimeout(fn, ms)); },
+
+            open(from) {
+                if (this.active || activeModal) return;
+                this.active = true;
+                this.from = from;
+                track('bsod_click');
+
+                const el = make('div', 'egg-bsod',
+                    '<div class="egg-bsod-body">' +
+                        '<div class="egg-bsod-face" aria-hidden="true">:(</div>' +
+                        '<p class="egg-bsod-msg">Tu visita encontró un problema y necesita reiniciarse.</p>' +
+                        '<p class="egg-bsod-small" aria-hidden="true">0% completado</p>' +
+                        '<p class="egg-bsod-small">Si necesitás un técnico, pasale este código: ESCRIBIR_A_MARIO</p>' +
+                    '</div>' +
+                    '<p class="egg-bsod-hint">Tranqui, es parte de la web 😄 Tocá la pantalla o apretá Esc para volver.</p>');
+                el.tabIndex = -1;
+                el.setAttribute('role', 'dialog');
+                el.setAttribute('aria-modal', 'true');
+                el.setAttribute('aria-label', 'Pantalla azul de mentira. Tocá la pantalla o apretá Esc para volver.');
+                el.addEventListener('click', () => this.close());
+                document.body.appendChild(el);
+                this.el = el;
+                try { el.focus({ preventScroll: true }); } catch (e) {}
+
+                const face = el.querySelector('.egg-bsod-face');
+                const msg = el.querySelector('.egg-bsod-msg');
+                const pct = el.querySelector('.egg-bsod-small');
+                const hint = el.querySelector('.egg-bsod-hint');
+                const steps = [0, 6, 14, 14, 31, 47, 47, 63, 79, 92, 100];
+                steps.forEach((p, i) => this.later(() => { pct.textContent = p + '% completado'; }, i * 280));
+
+                const recoverAt = steps.length * 280 + 350;
+                this.later(() => {
+                    el.classList.add('is-ok');
+                    face.textContent = ':)';
+                    msg.textContent = 'Tranqui, era broma. Las de verdad las arreglo yo.';
+                    hint.textContent = 'Tocá la pantalla o apretá Esc para volver.';
+                }, recoverAt);
+                this.later(() => this.close(), recoverAt + 1900);
+            },
+
+            close() {
+                if (!this.active) return;
+                this.active = false;
+                this.timers.forEach(clearTimeout);
+                this.timers = [];
+                if (this.el) { this.el.remove(); this.el = null; }
+                markFixed();
+                if (this.from) {
+                    try { this.from.focus({ preventScroll: true }); } catch (e) {}
+                }
+            }
+        };
+
+        function markFixed() {
+            const card = document.getElementById('brokenCard');
+            if (!card || card.classList.contains('is-fixed')) return;
+            card.classList.add('is-fixed');
+            const icon = document.getElementById('brokenIcon');
+            if (icon) icon.className = 'ph-fill ph-check-circle';
+            document.getElementById('brokenName').textContent = 'Reparado';
+            document.getElementById('brokenDesc').textContent = 'Esta me la arreglé solo. Si es tu equipo, el diagnóstico es sin cargo.';
+            document.getElementById('brokenBtn').textContent = 'Tocar igual';
+        }
+
+        const brokenBtn = document.getElementById('brokenBtn');
+        if (brokenBtn) brokenBtn.addEventListener('click', () => bsod.open(brokenBtn));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            if (bsod.active) bsod.close();
+            else if (activeModal) activeModal.close();
+        });
+
+        // ── Bug que se asoma ──
+        const BUG_KEY = 'mpc_bug'; // número de apariciones en la sesión, o 'caught'
+        const BUG_SVG =
+            '<svg viewBox="0 0 96 64" aria-hidden="true" focusable="false">' +
+                '<g class="bug-legs-a">' +
+                    '<path class="bug-line" d="M30 21 L22 7"/><path class="bug-line" d="M44 51 L44 63"/><path class="bug-line" d="M58 21 L66 7"/>' +
+                '</g>' +
+                '<g class="bug-legs-b">' +
+                    '<path class="bug-line" d="M30 47 L22 61"/><path class="bug-line" d="M44 17 L44 3"/><path class="bug-line" d="M58 47 L66 61"/>' +
+                '</g>' +
+                '<g class="bug-ant-a"><path class="bug-line" d="M84 26 Q90 16 95 13"/></g>' +
+                '<g class="bug-ant-b"><path class="bug-line" d="M84 42 Q90 52 95 55"/></g>' +
+                '<ellipse class="bug-body" cx="44" cy="34" rx="26" ry="17"/>' +
+                '<path class="bug-stripe" d="M36 18.5 Q38 34 36 49.5"/><path class="bug-stripe" d="M49 17.6 Q51 34 49 50.4"/>' +
+                '<ellipse class="bug-shine" cx="38" cy="26" rx="10" ry="3"/>' +
+                '<circle class="bug-head" cx="76" cy="34" r="11"/>' +
+                '<circle class="bug-eye" cx="80" cy="29" r="3.4"/><circle class="bug-eye" cx="80" cy="39" r="3.4"/>' +
+                '<circle class="bug-pupil" cx="81.3" cy="29" r="1.6"/><circle class="bug-pupil" cx="81.3" cy="39" r="1.6"/>' +
+            '</svg>';
+
+        let formVisible = false;
+        const formWrap = document.querySelector('.contact-form-wrap');
+        if (formWrap && 'IntersectionObserver' in window) {
+            new IntersectionObserver((entries) => {
+                entries.forEach(en => { formVisible = en.isIntersecting; });
+            }).observe(formWrap);
+        }
+
+        function somethingOpen() {
+            const menu = document.getElementById('mobileMenu');
+            const rick = document.getElementById('rickrollOverlay');
+            const form = document.getElementById('whatsappForm');
+            return !!(activeModal || bsod.active ||
+                (menu && menu.classList.contains('open')) ||
+                (rick && rick.classList.contains('active')) ||
+                formVisible ||
+                (form && form.contains(document.activeElement)));
+        }
+
+        // Cuenta solo el tiempo con la pestaña a la vista; si hay algo abierto, espera
+        function scheduleBug(seconds) {
+            let elapsed = 0;
+            const target = seconds * 1000;
+            const tick = setInterval(() => {
+                if (document.hidden) return;
+                elapsed += 500;
+                if (elapsed < target || somethingOpen()) return;
+                clearInterval(tick);
+                showBug();
+            }, 500);
+        }
+
+        function showBug() {
+            const n = (parseInt(ssGet(BUG_KEY), 10) || 0) + 1;
+            ssSet(BUG_KEY, n);
+            track('bug_visto', { aparicion: n });
+
+            const btn = make('button', 'egg-bug ' + (n === 1 ? 'from-left' : 'from-right'), BUG_SVG);
+            btn.type = 'button';
+            btn.setAttribute('aria-label', 'Un bichito se asoma. Tocalo para cazarlo');
+            btn.style.top = Math.round(window.innerHeight * rand(0.3, 0.6)) + 'px';
+            document.body.appendChild(btn);
+
+            let caught = false;
+            const hold = coarsePointer.matches ? 1900 : 1500;
+            let outTimer;
+
+            btn.addEventListener('click', () => {
+                if (caught) return;
+                caught = true;
+                clearTimeout(outTimer);
+                ssSet(BUG_KEY, 'caught');
+                track('bug_cazado', { aparicion: n });
+                btn.classList.add('is-caught');
+                setTimeout(() => { btn.remove(); showReward(); }, reduceMotion.matches ? 0 : 260);
+            });
+
+            void btn.offsetWidth; // fuerza el estado inicial antes de animar
+            requestAnimationFrame(() => btn.classList.add('is-in'));
+
+            outTimer = setTimeout(() => {
+                if (caught) return;
+                btn.classList.remove('is-in');
+                setTimeout(() => btn.remove(), 400);
+                if (n < 2) scheduleBug(rand(25, 60));
+            }, hold);
+        }
+
+        function showReward() {
+            const now = baParts(0);
+            const until = baParts(PREMIO.dias);
+            const code = makeCode(now.day, now.month);
+            const stamp = now.day + '/' + now.month + '/' + now.year + ' ' + now.hour + ':' + now.minute;
+            const validUntil = until.day + '/' + until.month + '/' + until.year;
+            const href = waLink('Hola Mario! Cacé el bug 🐛 Te paso la captura para el ' + PREMIO.porcentaje + '% de descuento.');
+
+            const card = make('div', 'egg-card',
+                '<div class="egg-card-head"><i class="ph-fill ph-bug" aria-hidden="true"></i>' +
+                    '<h3 class="egg-card-title" id="eggRewardTitle">¡Cazaste el bug!</h3></div>' +
+                '<p>Sacale captura a esta pantalla y, si me la mandás cuando me escribís por WhatsApp, tenés ' + PREMIO.porcentaje + '% de descuento en todo el trabajo.</p>' +
+                '<div class="egg-voucher">' +
+                    '<div class="egg-voucher-brand">Mario PC - mariopc.com.ar</div>' +
+                    '<div class="egg-voucher-off">' + PREMIO.porcentaje + '% de descuento</div>' +
+                    '<div class="egg-voucher-code">' + code + '</div>' +
+                    '<div class="egg-voucher-meta">Generado: ' + stamp + '</div>' +
+                    '<div class="egg-voucher-meta">Válido hasta: ' + validUntil + '</div>' +
+                '</div>' +
+                '<p class="egg-card-small">Válido por ' + PREMIO.dias + ' días, una vez por cliente. No cierres esta pantalla antes de sacar la captura.</p>' +
+                '<div class="egg-card-actions">' +
+                    '<a class="btn-primary" href="' + href + '" target="_blank" rel="noopener noreferrer"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> Escribir por WhatsApp</a>' +
+                    '<button type="button" class="btn-secondary" data-close>Cerrar</button>' +
+                '</div>');
+            card.setAttribute('role', 'dialog');
+            card.setAttribute('aria-modal', 'true');
+            card.setAttribute('aria-labelledby', 'eggRewardTitle');
+
+            const modal = openModal(card);
+            card.querySelector('[data-close]').addEventListener('click', () => modal.close());
+            card.querySelector('a.btn-primary').addEventListener('click', () => track('bug_premio_whatsapp'));
+            card.querySelector('[data-close]').focus({ preventScroll: true });
+        }
+
+        // Arranca solo en el home. Primera aparición: 15–40 s a la vista; segunda (si no lo cazaron): 25–60 s después.
+        if (PREMIO.activo && document.getElementById('inicio')) {
+            const state = ssGet(BUG_KEY);
+            const shown = parseInt(state, 10) || 0;
+            if (state !== 'caught' && shown < 2) scheduleBug(shown === 0 ? rand(15, 40) : rand(25, 60));
+        }
+
+        // ── Escáner de PC (de mentirita) ──
+        const scanBtn = document.getElementById('scanOpen');
+        if (scanBtn) scanBtn.addEventListener('click', openScanner);
+
+        function openScanner() {
+            track('escaner_abierto');
+            const win = make('div', 'egg-term',
+                '<div class="egg-term-bar">' +
+                    '<span id="eggTermTitle"><i class="ph ph-scan" aria-hidden="true"></i> escaner_pc.exe (de mentirita)</span>' +
+                    '<button type="button" class="egg-term-close" aria-label="Cerrar escáner"><i class="ph ph-x" aria-hidden="true"></i></button>' +
+                '</div>' +
+                '<div class="egg-term-log" role="log" aria-live="polite"></div>' +
+                '<div class="egg-opts"></div>');
+            win.setAttribute('role', 'dialog');
+            win.setAttribute('aria-modal', 'true');
+            win.setAttribute('aria-labelledby', 'eggTermTitle');
+
+            let runId = 0;
+            const modal = openModal(win, { cls: 'has-term', onClose: () => { runId++; } });
+            const log = win.querySelector('.egg-term-log');
+            const opts = win.querySelector('.egg-opts');
+            win.querySelector('.egg-term-close').addEventListener('click', () => modal.close());
+
+            function sleep(ms) {
+                return new Promise(r => setTimeout(r, reduceMotion.matches ? Math.min(ms, 120) : ms));
+            }
+            function line(text, cls) {
+                const d = make('div', 'egg-line ' + (cls || ''));
+                d.textContent = text;
+                log.appendChild(d);
+                log.scrollTop = log.scrollHeight;
+                return d;
+            }
+            async function say(items, id, gap) {
+                for (const it of items) {
+                    if (id !== runId) return false;
+                    if (typeof it === 'string') line(it); else line(it.text, it.cls);
+                    await sleep(gap || 550);
+                }
+                return id === runId;
+            }
+
+            function setOptions(list, disabled) {
+                opts.innerHTML = '';
+                list.forEach(o => {
+                    let node;
+                    if (o.href && !disabled) {
+                        node = make('a', 'egg-opt is-cta');
+                        node.href = o.href;
+                        node.target = '_blank';
+                        node.rel = 'noopener noreferrer';
+                        node.addEventListener('click', () => track('escaner_whatsapp', { origen: o.origen }));
+                    } else {
+                        node = make('button', 'egg-opt');
+                        node.type = 'button';
+                        if (disabled) node.disabled = true;
+                        else node.addEventListener('click', o.onClick);
+                    }
+                    node.textContent = o.label;
+                    opts.appendChild(node);
+                });
+                if (!disabled) {
+                    const first = opts.querySelector('.egg-opt');
+                    if (first) { try { first.focus({ preventScroll: true }); } catch (e) {} }
+                }
+            }
+
+            const menu = [
+                { key: 'scan', label: 'Escanear mi PC', onClick: () => run('scan') },
+                { key: 'lenta', label: '¿Por qué anda lenta mi PC?', onClick: () => run('lenta') },
+                { key: 'ping', label: 'Ping a Mario', onClick: () => run('ping') },
+                { key: 'sudo', label: 'sudo reparar', onClick: () => run('sudo') }
+            ];
+
+            function backOption() {
+                return { label: 'Volver al menú', onClick: () => { line('¿Qué más querés hacer?'); setOptions(menu); } };
+            }
+
+            const flows = {
+                async scan(id) {
+                    if (!await say([{ text: 'Iniciando escaneo...', cls: 'cmd' }], id, 400)) return null;
+                    const bar = make('div', 'egg-line egg-bar', '<span></span>');
+                    bar.setAttribute('aria-hidden', 'true');
+                    log.appendChild(bar);
+                    const fill = bar.firstChild;
+                    const steps = reduceMotion.matches ? [100] : [8, 19, 33, 33, 52, 68, 81, 94, 100];
+                    for (const p of steps) {
+                        if (id !== runId) return null;
+                        fill.style.width = p + '%';
+                        log.scrollTop = log.scrollHeight;
+                        await sleep(330);
+                    }
+                    const ok = await say([
+                        { text: 'Pestañas abiertas: 3.482', cls: 'find' },
+                        { text: 'Antivirus: vencido desde 2019', cls: 'find' },
+                        { text: 'Fotos duplicadas de gatos: 47', cls: 'find' },
+                        { text: 'Archivos llamados "final_v2_AHORA_SÍ": 12', cls: 'find' },
+                        { text: 'Programas que arrancan con Windows: 84 (usás 3)', cls: 'find' },
+                        { text: 'Polvo en el ventilador: nivel alfombra', cls: 'find' },
+                        { text: 'Sentido del humor: intacto', cls: 'good' },
+                        'Diagnóstico: necesitás a Mario.',
+                        { text: 'Ojo: este escáner es de mentirita. El diagnóstico de verdad lo hago en el taller y es sin cargo.', cls: 'note' }
+                    ], id, 650);
+                    if (!ok) return null;
+                    return [
+                        { label: 'Pedir diagnóstico sin cargo', origen: 'scan', href: waLink('Hola Mario! Probé el escáner de la web y dice que te necesito 😅 ¿Me hacés un diagnóstico?') },
+                        backOption()
+                    ];
+                },
+
+                async lenta(id) {
+                    const ok = await say([
+                        'Las causas más comunes de una PC lenta:',
+                        '1. Disco rígido viejo (HDD). Pasarlo a SSD suele ser el cambio que más se nota.',
+                        '2. Demasiados programas que arrancan con Windows.',
+                        '3. Poca memoria RAM para lo que usás.',
+                        '4. Polvo y pasta térmica vieja: el equipo se recalienta y se frena.',
+                        '5. Virus o malware escondidos.',
+                        { text: 'Con una revisión se sabe cuál es. El diagnóstico es sin cargo.', cls: 'note' }
+                    ], id, 700);
+                    if (!ok) return null;
+                    return [
+                        { label: 'Que Mario la revise', origen: 'lenta', href: waLink('Hola Mario! Mi PC anda lenta, ¿podés revisarla?') },
+                        backOption()
+                    ];
+                },
+
+                async ping(id) {
+                    const ok = await say([
+                        { text: '$ ping mariopc.com.ar', cls: 'cmd' },
+                        'Respuesta de Mario: tiempo=12 ms',
+                        'Respuesta de Mario: tiempo=11 ms',
+                        'Respuesta de Mario: tiempo=12 ms',
+                        'Paquetes: enviados = 3, recibidos = 3, perdidos = 0 (0% perdidos)'
+                    ], id, 520);
+                    if (!ok) return null;
+                    const badge = document.getElementById('hoursBadgeText');
+                    const txt = badge ? badge.textContent.trim() : '';
+                    const estado = txt && !/verificando/i.test(txt)
+                        ? 'Estado actual: ' + txt
+                        : 'Escribime por WhatsApp y te respondo apenas pueda.';
+                    if (!await say([{ text: estado, cls: 'note' }], id, 300)) return null;
+                    return [
+                        { label: 'Escribirle a Mario', origen: 'ping', href: waLink('Hola Mario! Hice ping desde la web y respondiste en 12 ms 😄 Quería consultarte algo.') },
+                        backOption()
+                    ];
+                },
+
+                async sudo(id) {
+                    const ok = await say([
+                        { text: '$ sudo reparar', cls: 'cmd' },
+                        'Contraseña: ********',
+                        { text: 'Error: permiso denegado.', cls: 'find' },
+                        'Tu usuario no tiene permisos para reparar esto. Mario sí 😎'
+                    ], id, 650);
+                    if (!ok) return null;
+                    return [
+                        { label: 'Escribirle a Mario', origen: 'sudo', href: waLink('Hola Mario! El escáner dice que solo vos podés repararme la PC 😅') },
+                        backOption()
+                    ];
+                }
+            };
+
+            async function run(key) {
+                const id = ++runId;
+                track('escaner_opcion', { opcion: key });
+                line(menu.find(m => m.key === key).label, 'me');
+                setOptions(menu, true);
+                const after = await flows[key](id);
+                if (after && id === runId) setOptions(after);
+            }
+
+            (async function intro() {
+                setOptions(menu, true);
+                const id = runId;
+                const ok = await say([
+                    'Hola, soy el escáner de Mario PC.',
+                    'Es de mentirita, pero divertido. ¿Qué querés hacer?'
+                ], id, 450);
+                if (ok) setOptions(menu);
+            })();
+        }
     })();
 </script>
 <script>document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me"]');if(a&&window.gtag)gtag("event","whatsapp_click",{page_path:location.pathname,link_text:(a.textContent||"").trim().slice(0,40)});});</script>
