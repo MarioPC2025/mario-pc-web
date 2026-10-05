@@ -38,8 +38,8 @@ const blogPosts = [
         slug: "por-que-mi-compu-anda-lenta",
         title: "Mi compu anda lenta: qué le pasa (aunque antes andaba re bien)",
         date: "2026-10-05",
-        // image: "blog/pc-lenta.jpg",   // ← sacá las // cuando subas la foto a /blog
-        imageAlt: "Notebook con la pantalla de carga girando, esperando que abra un programa",
+        image: "blog/pc-lenta.jpg",
+        imageAlt: "Ilustración de una notebook con una barra de carga casi vacía y un velocímetro con la aguja en la zona baja",
         excerpt: "Si tu compu volaba cuando la compraste y hoy se arrastra, casi nunca es “que se hizo vieja” sin más. Estas son las 6 causas más comunes y cómo reconocerlas.",
         content: `Te pasa seguido: comprás la compu, anda de maravilla, y unos años después tarda una eternidad en prender, se cuelga al abrir el navegador y hasta el mouse parece ir con retraso. Es una de las consultas que más recibo, y la buena noticia es que **en la mayoría de los casos tiene arreglo**, sin necesidad de cambiar la compu entera.
 
@@ -91,8 +91,8 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el reti
         slug: "como-saber-si-mi-compu-necesita-mantenimiento",
         title: "¿Cómo sé si mi compu necesita mantenimiento? 7 señales que no conviene ignorar",
         date: "2026-10-05",
-        // image: "blog/mantenimiento-pc.jpg",   // ← sacá las // cuando subas la foto a /blog
-        imageAlt: "Interior de una computadora abierta con polvo acumulado en el ventilador",
+        image: "blog/mantenimiento-pc.jpg",
+        imageAlt: "Ilustración de un ventilador de computadora con polvo, junto a una llave y un destornillador cruzados, un engranaje y una tilde verde",
         excerpt: "Tu compu avisa antes de fallar, y no hace falta ser técnico para darte cuenta. Estas son las señales de que llegó la hora de un service, y cada cuánto conviene hacerlo.",
         content: `Tu compu casi nunca se rompe de un día para el otro. Antes de fallar, **avisa**: se vuelve más lenta, hace ruidos, se calienta... El problema es que esas señales aparecen de a poco, y uno se acostumbra sin darse cuenta.
 
@@ -144,8 +144,8 @@ Estoy en Olivos y atiendo la zona norte, en el taller o coordinando el retiro. S
         slug: "mi-compu-se-calienta-mucho",
         title: "Mi compu se calienta mucho: por qué pasa y qué hacer antes de que se dañe",
         date: "2026-10-05",
-        // image: "blog/pc-caliente.jpg",   // ← sacá las // cuando subas la foto a /blog
-        imageAlt: "Ventilador de notebook tapado por una capa de polvo",
+        image: "blog/pc-caliente.jpg",
+        imageAlt: "Ilustración de una notebook con ondas de calor que suben y un termómetro con la temperatura alta",
         excerpt: "Si tu notebook quema, el ventilador suena como un avión o se apaga sola, no es normal. Las causas más comunes, qué podés hacer ahora y cuándo conviene revisarla.",
         content: `Que una compu entre en calor es normal. Que **queme**, que el ventilador suene como una turbina o que se apague sola, no. Y con el verano a la vuelta de la esquina, el problema se nota todavía más.
 
@@ -203,8 +203,8 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el reti
         title: "Windows 10 ya no tiene soporte: qué significa para tu compu y qué conviene hacer",
         date: "2026-10-05",
         updated: "2026-10-05",
-        // image: "blog/windows-10.jpg",   // ← sacá las // cuando subas la foto a /blog
-        imageAlt: "Notebook con el escritorio de Windows 10 en la pantalla",
+        image: "blog/windows-10.jpg",
+        imageAlt: "Ilustración de dos ventanas unidas por una flecha: una con el número 10 y una alerta de seguridad, y otra con el 11 y un escudo con tilde",
         excerpt: "Windows 10 ya no recibe actualizaciones gratuitas de seguridad. No se apaga solo, pero conviene decidir qué hacer. Cómo saber qué tenés y cuáles son tus opciones.",
         content: `Si tu compu tiene Windows 10, seguramente viste avisos que dicen que llegó al final de su soporte. Y si no los viste, esta nota te interesa igual. Te cuento **qué significa en la práctica, si tenés que preocuparte y qué opciones tenés**, sin vueltas técnicas.
 
@@ -260,5 +260,83 @@ Si no sabés qué versión tenés, si tu compu puede pasar a Windows 11 o qué t
 Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro.
 
 [Escribime por WhatsApp y vemos qué le conviene a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20tengo%20Windows%2010%20y%20quiero%20saber%20que%20conviene%20hacer%20con%20mi%20compu)`
+    },
+
+    // ─── NOTA 5 ───
+    {
+        slug: "como-hacer-copia-de-seguridad-de-tus-archivos",
+        title: "Cómo hacer una copia de seguridad de tus archivos (sin ser técnico) antes de que sea tarde",
+        date: "2026-10-05",
+        image: "blog/copia-seguridad.jpg",
+        imageAlt: "Ilustración de una notebook que envía sus archivos a una nube y a un disco externo, con un escudo con tilde",
+        excerpt: "Fotos, documentos, chats de WhatsApp: si tu compu falla, ¿qué perdés? La regla 3-2-1 explicada en simple y cómo hacer tu primera copia hoy mismo.",
+        content: `Pensá en todo lo que tenés guardado en tu compu: fotos de la familia, documentos, trámites escaneados, archivos del trabajo o del estudio. Ahora una pregunta incómoda: **si mañana no prende, ¿tenés una copia de todo eso en otro lado?**
+
+Lo más común es acordarse de hacer la copia recién cuando ya es tarde. La buena noticia es que no hace falta ser técnico: con una tarde y un par de cosas simples, lo importante queda a salvo.
+
+## ¿De qué te protege una copia de seguridad?
+
+- **De un disco que falla.** Los discos se gastan y no siempre avisan antes de dejar de andar.
+- **De virus que "secuestran" tus archivos**, los bloquean y te piden plata para devolverlos.
+- **De un robo, una pérdida o un golpe** a la notebook.
+- **De errores y accidentes:** un archivo borrado sin querer, un café derramado sobre el teclado.
+- **De una reinstalación de Windows**, que a veces implica borrar todo el disco.
+
+## La regla 3-2-1, en simple
+
+Es la regla que usan los técnicos, y es más fácil de lo que suena:
+
+- **3 copias** de lo importante: el original en tu compu, más dos copias.
+- **2 lugares distintos**: por ejemplo, tu compu y un disco externo.
+- **1 copia fuera de tu casa**: en la nube, por si hay un robo o un incendio.
+
+No hace falta que sea perfecto desde el primer día: tener **dos copias ya es muchísimo mejor que tener una sola**.
+
+## Qué conviene copiar
+
+- **Fotos y videos.** Revisá también las del celular.
+- **Documentos.** Mirá las carpetas Documentos, Escritorio y Descargas: mucha gente guarda cosas importantes ahí sin darse cuenta.
+- **Archivos de trabajo o estudio, planillas, facturas y trámites escaneados.**
+- **Tus contraseñas.** Si las guardás en el navegador, activá la sincronización con tu cuenta para no perderlas.
+- **Los chats de WhatsApp.** En la app, entrá en Ajustes → Chats → Copia de seguridad y activala.
+
+## Tres formas de hacerla, de la más simple a la más completa
+
+### Opción 1: un disco externo
+
+Conseguí un disco externo con más espacio del que ocupan tus archivos. Conectalo, abrí "Este equipo" y copiá tus carpetas arrastrándolas. Cuando termine, **abrí un par de archivos de la copia para comprobar que se vean bien**. Después desconectalo y guardalo en un cajón.
+
+Un pendrive sirve para pocos archivos, pero no es buena idea que sea tu única copia: se pierden y se rompen con facilidad.
+
+### Opción 2: la nube
+
+Servicios como OneDrive, Google Drive o iCloud guardan tus archivos en internet. Se actualizan solos y te protegen si le pasa algo a tu casa o a tu compu. Los planes gratuitos tienen poco espacio (unos pocos GB, según el servicio) y, si necesitás más, se paga. En Windows, OneDrive puede copiar automáticamente tus carpetas Escritorio, Documentos e Imágenes.
+
+### Opción 3: las dos juntas (la mejor)
+
+Disco externo y nube a la vez: con eso ya cumplís la regla 3-2-1.
+
+## Los errores más comunes
+
+- **Guardar la "copia" en la misma compu**, en otra carpeta o en la unidad D:. Casi siempre es el mismo disco, y si falla se pierden las dos.
+- **Dejar el disco externo siempre enchufado.** Un virus también podría afectarlo. Conectalo para copiar y desconectalo después.
+- **Hacer la copia una sola vez** y nunca más. Poné un recordatorio, por ejemplo una vez al mes.
+- **No comprobar que la copia funciona.** Una copia que nunca abriste es una copia de la que no podés estar seguro.
+
+## Cuándo hacerla ya mismo
+
+- Si la compu hace ruidos raros, se cuelga seguido o [anda lenta](blog.html?nota=por-que-mi-compu-anda-lenta). Mirá [las señales de que necesita mantenimiento](blog.html?nota=como-saber-si-mi-compu-necesita-mantenimiento).
+- Antes de [pasar de Windows 10 a Windows 11](blog.html?nota=windows-10-fin-de-soporte-que-hacer).
+- Antes de llevarla a reparar o de formatearla.
+
+Y si el disco ya hace clics o ruidos raros, o tus archivos no abren: **apagala y no insistas**. Cada vez que se enciende puede empeorar. Escribime antes de hacer nada más; no te puedo asegurar que se pueda recuperar todo, pero cuanto antes se revise, más chances hay.
+
+## ¿Y si no sabés por dónde empezar?
+
+Contame qué compu tenés y cómo la usás (cuántas fotos y archivos aproximadamente, si ya usás alguna nube) y te armo un plan de copias simple, a tu medida. Si tu equipo ya da señales de falla, **lo reviso sin cargo y te paso el costo exacto antes de tocar nada**, con 7 días de garantía sobre el trabajo.
+
+Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro.
+
+[Escribime por WhatsApp y armamos tu plan de copias](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20armar%20una%20copia%20de%20seguridad%20de%20mis%20archivos%20y%20no%20se%20por%20donde%20empezar)`
     },
 ];
