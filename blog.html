@@ -13,7 +13,7 @@
         gtag('config', 'G-VBVPJ6H5H5');
     </script>
 
-    <meta name="description" content="Blog de Mario PC — tips y notas sobre mantenimiento de PC, notebooks y celulares. Muy pronto, contenido nuevo cada semana.">
+    <meta name="description" content="Blog de Mario PC — tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos, Buenos Aires.">
     <link rel="canonical" href="https://www.mariopc.com.ar/blog.html">
     <title>Blog — Mario PC | Olivos, Buenos Aires</title>
 
@@ -31,7 +31,7 @@
     <meta property="og:site_name" content="Mario PC">
     <meta property="og:locale" content="es_AR">
     <meta property="og:title" content="Blog — Mario PC | Olivos, Buenos Aires">
-    <meta property="og:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares. Muy pronto, contenido nuevo.">
+    <meta property="og:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.">
     <meta property="og:image" content="https://www.mariopc.com.ar/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -39,7 +39,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Blog — Mario PC | Olivos, Buenos Aires">
-    <meta name="twitter:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares. Muy pronto, contenido nuevo.">
+    <meta name="twitter:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.">
     <meta name="twitter:image" content="https://www.mariopc.com.ar/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -320,51 +320,335 @@
             margin-bottom: 2rem;
         }
 
-        .blog-post-card {
+        /* ─── NOTAS: tarjetas (mismo bloque que la home) ─── */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .note-card {
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 4px;
-            background: var(--bg-alt);
-            padding: 2.25rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .blog-post-image {
-            width: 100%;
-            aspect-ratio: 16/7;
-            object-fit: cover;
             border-radius: 3px;
-            display: block;
-            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background: var(--bg);
+            transition: border-color 0.2s, transform 0.2s;
         }
 
-        .blog-post-date {
+        .note-card:hover,
+        .note-card:focus-within {
+            border-color: var(--green-border);
+            transform: translateY(-2px);
+        }
+
+        .note-card-link {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .note-card-link:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: -2px;
+        }
+
+        .note-card-media {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--bg-alt);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .note-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .note-card:hover .note-card-media img { transform: scale(1.03); }
+
+        .note-card-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 20%, var(--green-dim), transparent 70%);
+        }
+
+        .note-card-fallback i {
+            font-size: 2rem;
+            color: var(--green);
+            opacity: 0.8;
+        }
+
+        .note-card-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 1.4rem 1.5rem 1.5rem;
+        }
+
+        .note-card-meta {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--green);
             margin-bottom: 0.6rem;
         }
 
-        .blog-post-title {
+        .note-card-title {
             font-family: var(--font-display);
-            font-size: 1.9rem;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 1.05;
             letter-spacing: 0.02em;
-            margin-bottom: 1rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .note-card-excerpt {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .note-card-more {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--white);
+            transition: color 0.2s;
+        }
+
+        .note-card:hover .note-card-more { color: var(--green); }
+
+        .note-missing {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ─── NOTA COMPLETA ─── */
+        .note-section {
+            position: relative;
+            z-index: 1;
+            padding: 120px 2.5rem 90px;
+        }
+
+        .note-article {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .note-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .note-back:hover { color: var(--green); }
+
+        .note-back-bottom {
+            margin: 2.5rem 0 0;
+        }
+
+        .note-meta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.9rem;
+        }
+
+        .note-title {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2.6rem, 6vw, 4.5rem);
+            line-height: 0.95;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.5rem;
+        }
+
+        .note-byline {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .note-avatar {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--green-border);
+            background: var(--bg-alt);
+        }
+
+        .note-avatar-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--green);
+        }
+
+        .note-author {
+            font-size: 0.95rem;
+            font-weight: 500;
             color: var(--white);
         }
 
-        .blog-post-content {
-            font-size: 0.9rem;
+        .note-author-role {
+            font-size: 0.8rem;
             color: var(--muted);
-            line-height: 1.8;
-            white-space: pre-line;
+        }
+
+        .note-cover {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2.5rem;
+        }
+
+        .note-body {
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: rgba(232, 237, 234, 0.86);
+        }
+
+        .note-body p { margin-bottom: 1.4rem; }
+
+        .note-body h2 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 2.1rem;
+            line-height: 1.05;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            margin: 2.75rem 0 1rem;
+        }
+
+        .note-body h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 1.55rem;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            margin: 2rem 0 0.75rem;
+        }
+
+        .note-body ul {
+            list-style: none;
+            margin: 0 0 1.4rem;
+        }
+
+        .note-body li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .note-body li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.78em;
+            width: 6px;
+            height: 6px;
+            border-radius: 1px;
+            background: var(--green);
+        }
+
+        .note-body a {
+            color: var(--green);
+            text-underline-offset: 3px;
+        }
+
+        .note-body strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .note-cta {
+            margin-top: 3rem;
+            padding: 1.75rem;
+            border: 1px solid var(--green-border);
+            border-radius: 3px;
+            background: var(--green-dim);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .note-cta-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            max-width: 420px;
+        }
+
+        .note-cta-text strong {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .note-cta-text span {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 960px) {
+            .notes-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 600px) {
-            .blog-post-card { padding: 1.5rem; }
-            .blog-post-title { font-size: 1.5rem; }
+            .notes-grid { grid-template-columns: 1fr; }
+            .note-section { padding: 100px 1.5rem 70px; }
+            .note-cta { flex-direction: column; align-items: flex-start; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .note-card, .note-card-media img { transition: none; }
+            .note-card:hover, .note-card:hover .note-card-media img { transform: none; }
+        }
+
+        [hidden] { display: none !important; }
 
         .faq-item {
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -871,7 +1155,6 @@
         <li><a href="./#inicio">Inicio</a></li>
         <li><a href="./#servicios">Servicios</a></li>
         <li><a href="./#proceso">Proceso</a></li>
-        <li><a href="./#galeria">Galería</a></li>
         <li><a href="./#precios">Precios</a></li>
         <li><a href="./#opiniones">Opiniones</a></li>
         <li><a href="./#ubicacion">Ubicación</a></li>
@@ -898,7 +1181,6 @@
     <a href="./#inicio" onclick="closeMobile()">Inicio</a>
     <a href="./#servicios" onclick="closeMobile()">Servicios</a>
     <a href="./#proceso" onclick="closeMobile()">Proceso</a>
-    <a href="./#galeria" onclick="closeMobile()">Galería</a>
     <a href="./#precios" onclick="closeMobile()">Precios</a>
     <a href="./#opiniones" onclick="closeMobile()">Opiniones</a>
     <a href="./#ubicacion" onclick="closeMobile()">Ubicación</a>
@@ -914,20 +1196,20 @@
 <main>
 
 <!-- HERO -->
-<section class="faq-hero">
+<section class="faq-hero" id="blogHero">
     <div class="faq-hero-inner">
         <div class="section-eyebrow reveal">Notas del taller</div>
         <h1 class="reveal reveal-delay-1">
             Blog
         </h1>
         <p class="faq-hero-desc reveal reveal-delay-2">
-            Tips y notas sobre mantenimiento de PC, notebooks y celulares. Muy pronto, contenido nuevo.
+            Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.
         </p>
     </div>
 </section>
 
-<!-- FAQ LIST -->
-<section class="faq-section">
+<!-- LISTADO DE NOTAS -->
+<section class="faq-section" id="blogList">
     <div class="faq-section-inner">
 
         <div class="blog-placeholder reveal" id="blogPlaceholder">
@@ -940,14 +1222,17 @@
             </a>
         </div>
 
-        
-        <div id="blogPostsGrid"></div>
+
+        <div class="notes-grid" id="blogPostsGrid"></div>
 
     </div>
 </section>
 
+<!-- NOTA COMPLETA (se arma con blog.html?nota=identificador) -->
+<section class="note-section" id="noteView" hidden></section>
+
 <!-- CTA -->
-<section class="faq-cta">
+<section class="faq-cta" id="blogCta">
     <div class="faq-cta-inner reveal">
         <div>
             <div class="section-eyebrow">¿Listo?</div>
@@ -995,6 +1280,8 @@
     </div>
 </footer>
 
+<script src="blog-posts.js"></script>
+<script src="blog-lib.js"></script>
 <script>
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
@@ -1025,36 +1312,57 @@
             : 'rgba(255,255,255,0.05)';
     });
 
-    // ─── POSTS DEL BLOG ───
-    // Agregá acá un objeto por cada nota (ver instrucciones en el HTML de esta sección).
-    const blogPosts = [
-        // {
-        //     title: "Título de la nota",
-        //     date: "10 de julio, 2026",
-        //     image: "blog/nombre-foto.jpg",
-        //     content: "El texto completo de la nota. Dejá una línea en blanco entre párrafos."
-        // },
-    ];
-
+    // ─── BLOG: listado y nota completa ───
+    // Las notas se cargan en blog-posts.js. Una nota se abre con blog.html?nota=identificador
     (function () {
+        if (typeof MarioBlog === 'undefined') return;
+
+        const hero = document.getElementById('blogHero');
+        const listSection = document.getElementById('blogList');
         const placeholder = document.getElementById('blogPlaceholder');
         const grid = document.getElementById('blogPostsGrid');
-        if (!grid) return;
+        const noteView = document.getElementById('noteView');
+        const cta = document.getElementById('blogCta');
+        if (!grid || !noteView) return;
 
-        if (blogPosts.length === 0) {
-            return; // se queda el cartel de "Muy pronto"
+        const list = MarioBlog.posts();
+        const slug = new URLSearchParams(location.search).get('nota');
+        const note = slug ? MarioBlog.find(slug) : null;
+
+        // Nota completa
+        if (note) {
+            hero.hidden = true;
+            listSection.hidden = true;
+            if (cta) cta.hidden = true;
+
+            noteView.innerHTML = MarioBlog.articleHTML(note);
+            noteView.hidden = false;
+            MarioBlog.wireAvatars(noteView);
+
+            MarioBlog.setHead({
+                title: note.title + ' — Mario PC | Olivos, Buenos Aires',
+                description: MarioBlog.excerptOf(note),
+                url: MarioBlog.absUrl(note),
+                type: 'article',
+                image: note.image ? MarioBlog.absAsset(note.image) : ''
+            });
+            MarioBlog.injectJsonLd('ld-post', Object.assign({ '@context': 'https://schema.org' }, MarioBlog.postSchema(note)));
+            return;
         }
 
-        if (placeholder) placeholder.style.display = 'none';
+        // Link a una nota que no existe: no se indexa
+        if (slug) MarioBlog.noindex();
 
-        grid.innerHTML = blogPosts.map(post => `
-            <article class="blog-post-card">
-                ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-post-image" loading="lazy">` : ''}
-                <div class="blog-post-date">${post.date}</div>
-                <h2 class="blog-post-title">${post.title}</h2>
-                <p class="blog-post-content">${post.content}</p>
-            </article>
-        `).join('');
+        // Sin notas: queda el cartel "Muy pronto"
+        if (!list.length) return;
+
+        if (placeholder) placeholder.style.display = 'none';
+        if (slug) {
+            grid.insertAdjacentHTML('beforebegin',
+                '<p class="note-missing">No encontré esa nota. Quizás el link cambió — acá están todas:</p>');
+        }
+        grid.innerHTML = list.map(post => MarioBlog.cardHTML(post, 2)).join('');
+        MarioBlog.injectJsonLd('ld-blog', MarioBlog.blogSchema(list));
     })();
 </script>
 
