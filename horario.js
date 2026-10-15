@@ -176,16 +176,16 @@
             .wa-closed-note { display: none; position: absolute; right: calc(100% + 14px); top: 50%;
                 width: max-content; max-width: min(230px, calc(100vw - 190px));
                 padding: 9px 13px; border-radius: 2px; text-align: left; white-space: normal;
-                background: rgba(7, 9, 10, 0.94); backdrop-filter: blur(8px);
+                background: rgba(var(--bg-rgb, 7, 9, 10), 0.94); backdrop-filter: blur(8px);
                 border: 1px solid rgba(255, 100, 100, 0.25);
                 box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); pointer-events: none; }
             .wa-closed-note::after { content: ''; position: absolute; right: -5px; top: 50%;
-                width: 8px; height: 8px; background: rgba(7, 9, 10, 0.98);
+                width: 8px; height: 8px; background: rgba(var(--bg-rgb, 7, 9, 10), 0.98);
                 border-top: 1px solid rgba(255, 100, 100, 0.25); border-right: 1px solid rgba(255, 100, 100, 0.25);
                 transform: translateY(-50%) rotate(45deg); }
             .wa-closed-note strong { display: block; margin-bottom: 3px; font-weight: 400;
                 font-family: var(--font-mono, monospace); font-size: 0.6rem; letter-spacing: 0.1em;
-                text-transform: uppercase; color: #ff9a9a; }
+                text-transform: uppercase; color: var(--red, #ff9a9a); }
             .wa-closed-note span { display: block; font-family: var(--font-body, system-ui, sans-serif);
                 font-size: 0.8rem; line-height: 1.35; color: var(--white, #e8edea); }
             .whatsapp-float.is-closed .wa-closed-note { display: block; animation: wa-note-in 0.35s ease both; }

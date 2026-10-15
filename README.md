@@ -126,3 +126,14 @@ El cartel de abierto/cerrado de la home y el aviso "Cerrado ahora" junto al bot�
 **Si algo se rompe:** si `status.json` tiene un error de sintaxis (una coma de más, una comilla que falta) o no carga, el sitio ignora todo y usa el horario normal. Nunca queda trabado en "cerrado".
 
 **Cambiar los horarios de atención:** en `horario.js`, función `scheduleFor` (los horarios están en minutos: `10 * 60` = 10:00, `17 * 60` = 17:00). Además hay que actualizar a mano la tabla de horarios de la sección ubicación en `index.html`.
+
+## Modo claro (`theme.css` + `theme.js` + `flashbang.mp3`)
+
+El sitio arranca siempre en oscuro. El botón de sol/luna (en la barra de arriba, o flotando arriba a la derecha en `gracias.html` y `404.html`) cambia de tema y la elección queda guardada en el navegador del visitante.
+
+- **Colores del modo claro:** están todos juntos al principio de `theme.css`. Los del modo oscuro siguen en el `:root` de cada página.
+- **Sonido:** `flashbang.mp3` suena la primera vez que alguien pasa a claro en cada visita; el de alivio (al volver a oscuro) se genera por código. El volumen está en `VOLUME` dentro de `theme.js` (0.3 = 30%).
+- **Avisos:** los textos "Ojo con el brillo" y "Ahh, mucho mejor." están en `theme.js`.
+- Si alguien tiene activado "reducir movimiento" en su sistema, el tema cambia sin destello ni sonido.
+- Si cambiás `theme.css` o `theme.js`, subí el `?v=1` de las páginas a `?v=2` para que los navegadores bajen la versión nueva.
+- Colores nuevos en una página: usá las variables (`var(--white)`, `var(--muted)`, `rgba(var(--ink-rgb), 0.05)`, etc.) en lugar de colores fijos, así funcionan en los dos modos.
