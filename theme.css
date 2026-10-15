@@ -118,3 +118,22 @@ html[data-theme="light"] img[src*="mercadopago-logo"] {
     filter: brightness(0);
     opacity: 0.85;
 }
+
+/* Ventanas que siempre van en oscuro (consola y video): recuperan la paleta oscura */
+html[data-theme="light"] .egg-term,
+html[data-theme="light"] .rickroll-overlay {
+    --bg: #07090a;
+    --bg-alt: #0c0f10;
+    --white: #e8edea;
+    --muted: #788480;
+    --green: #1ddd65;
+    --green-dim: rgba(29, 221, 101, 0.1);
+    --green-border: rgba(29, 221, 101, 0.22);
+    --bg-rgb: 7, 9, 10;
+    --ink-rgb: 255, 255, 255;
+    --green-rgb: 29, 221, 101;
+    --white-rgb: 232, 237, 234;
+    --red: #ff9a9a;
+    color-scheme: dark;
+    color: var(--white);
+}
