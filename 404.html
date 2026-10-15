@@ -84,7 +84,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 2rem 5rem;
         }
 
         .error-logo {
@@ -344,7 +344,39 @@
             }
         }
 
-        .error-logo, .error-footer {
+        .error-safe {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.25rem;
+            min-height: 44px;
+            padding: 10px 16px;
+            background: none;
+            border: 1px dashed rgba(255,255,255,0.14);
+            border-radius: 2px;
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .error-safe i { font-size: 1rem; color: var(--green); }
+
+        .error-safe:hover {
+            border-color: var(--green-border);
+            color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .error-safe:focus-visible, .rickroll-close:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 3px;
+        }
+
+        .error-footer {
             cursor: pointer;
             user-select: none;
             transition: opacity 0.15s ease;
@@ -382,15 +414,20 @@
         </a>
     </div>
 
+    <button type="button" class="error-safe" id="safeBtn">
+        <i class="ph ph-lifebuoy" aria-hidden="true"></i>
+        Llevame a un lugar seguro
+    </button>
+
     <div class="error-footer">© 2026 Mario PC — Todos los derechos reservados</div>
 </div>
 </main>
 
-<div class="rickroll-overlay" id="rickrollOverlay">
-    <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
-    <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
-    <p class="rickroll-sub">Encontraste un easter egg 🎉</p>
-    <button class="rickroll-close" onclick="closeRickroll()">
+<div class="rickroll-overlay" id="rickrollOverlay" role="dialog" aria-modal="true" aria-labelledby="rickrollCaption">
+    <div class="rickroll-caption" id="rickrollCaption">Nunca te voy a <em>dejar tirado</em></div>
+    <iframe id="rickrollFrame" src="" title="Video sorpresa" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p class="rickroll-sub">El lugar más seguro de internet 🎵</p>
+    <button type="button" class="rickroll-close" id="rickrollClose">
         <i class="ph ph-x"></i> Cerrar
     </button>
 </div>
@@ -423,32 +460,31 @@
     })();
 
     (function () {
-        const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-        let progress = 0;
+        const overlay = document.getElementById('rickrollOverlay');
+        const frame = document.getElementById('rickrollFrame');
+        const closeBtn = document.getElementById('rickrollClose');
+        const safeBtn = document.getElementById('safeBtn');
+        if (!overlay || !safeBtn) return;
 
-        window.addEventListener('keydown', (e) => {
-            const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-            if (key === konami[progress]) {
-                progress++;
-                if (progress === konami.length) {
-                    openRickroll();
-                    progress = 0;
-                }
-            } else {
-                progress = (key === konami[0]) ? 1 : 0;
-            }
-        });
+        function open() {
+            if (overlay.classList.contains('active')) return;
+            frame.src = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
+            overlay.classList.add('active');
+            try { closeBtn.focus({ preventScroll: true }); } catch (e) {}
+            if (window.gtag) gtag('event', 'rickroll_visto', { origen: '404' });
+        }
 
-        window.openRickroll = function () {
-            document.getElementById('rickrollFrame').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
-            document.getElementById('rickrollOverlay').classList.add('active');
-        };
+        function close() {
+            if (!overlay.classList.contains('active')) return;
+            overlay.classList.remove('active');
+            frame.src = '';
+            try { safeBtn.focus({ preventScroll: true }); } catch (e) {}
+            showEggToast('Te dije que era seguro 😉');
+        }
 
-        window.closeRickroll = function () {
-            document.getElementById('rickrollOverlay').classList.remove('active');
-            document.getElementById('rickrollFrame').src = '';
-        };
-
+        safeBtn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     })();
 
     function showEggToast(msg, duration) {
@@ -458,28 +494,6 @@
         clearTimeout(showEggToast._t);
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
-
-    (function () {
-        const logo = document.querySelector('.error-logo');
-        if (!logo) return;
-        let taps = 0;
-        let resetTimer;
-
-        logo.addEventListener('click', () => {
-            taps++;
-            clearTimeout(resetTimer);
-            resetTimer = setTimeout(() => { taps = 0; }, 2000);
-
-            if (taps === 4) {
-                showEggToast('👀 Seguí así...');
-            } else if (taps === 6) {
-                showEggToast('🛠️ Te convertiste en desarrollador');
-            } else if (taps >= 7) {
-                taps = 0;
-                openRickroll();
-            }
-        });
-    })();
 
     (function () {
         const footerEl = document.querySelector('.error-footer');

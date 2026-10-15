@@ -2059,7 +2059,7 @@
             }
         }
 
-        .nav-logo, .footer-copy {
+        .footer-copy {
             cursor: pointer;
             user-select: none;
         }
@@ -3440,11 +3440,11 @@
     <i class="ph ph-arrow-up"></i>
 </button>
 
-<div class="rickroll-overlay" id="rickrollOverlay">
-    <div class="rickroll-caption">Nunca te voy a <em>dejar tirado</em></div>
-    <iframe id="rickrollFrame" src="" title="Easter egg" allow="autoplay" allowfullscreen></iframe>
-    <p class="rickroll-sub">Encontraste un easter egg 🎉</p>
-    <button class="rickroll-close" onclick="closeRickroll()">
+<div class="rickroll-overlay" id="rickrollOverlay" role="dialog" aria-modal="true" aria-labelledby="rickrollCaption">
+    <div class="rickroll-caption" id="rickrollCaption">Nunca te voy a <em>dejar tirado</em></div>
+    <iframe id="rickrollFrame" src="" title="Video sorpresa" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p class="rickroll-sub" id="rickrollSub">Encontraste un easter egg 🎉</p>
+    <button type="button" class="rickroll-close" id="rickrollClose" onclick="closeRickroll()">
         <i class="ph ph-x"></i> Cerrar
     </button>
 </div>
@@ -3548,32 +3548,37 @@
     });
 
     (function () {
-        const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-        let progress = 0;
+        const overlay = document.getElementById('rickrollOverlay');
+        const frame = document.getElementById('rickrollFrame');
+        const sub = document.getElementById('rickrollSub');
+        const closeBtn = document.getElementById('rickrollClose');
+        if (!overlay) return;
+        const defaultSub = sub.textContent;
+        let onClose = null;
+        let prevFocus = null;
 
-        window.addEventListener('keydown', (e) => {
-            const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-            if (key === konami[progress]) {
-                progress++;
-                if (progress === konami.length) {
-                    openRickroll();
-                    progress = 0;
-                }
-            } else {
-                progress = (key === konami[0]) ? 1 : 0;
-            }
-        });
-
-        window.openRickroll = function () {
-            document.getElementById('rickrollFrame').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
-            document.getElementById('rickrollOverlay').classList.add('active');
+        window.openRickroll = function (opts) {
+            opts = opts || {};
+            if (overlay.classList.contains('active')) return;
+            sub.textContent = opts.sub || defaultSub;
+            onClose = opts.onClose || null;
+            prevFocus = document.activeElement;
+            frame.src = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
+            overlay.classList.add('active');
+            try { closeBtn.focus({ preventScroll: true }); } catch (e) {}
         };
 
         window.closeRickroll = function () {
-            document.getElementById('rickrollOverlay').classList.remove('active');
-            document.getElementById('rickrollFrame').src = '';
+            if (!overlay.classList.contains('active')) return;
+            overlay.classList.remove('active');
+            frame.src = '';
+            const cb = onClose;
+            onClose = null;
+            if (prevFocus && prevFocus.focus && document.contains(prevFocus)) {
+                try { prevFocus.focus({ preventScroll: true }); } catch (e) {}
+            }
+            if (cb) cb();
         };
-
     })();
 
     function showEggToast(msg, duration) {
@@ -3583,33 +3588,6 @@
         clearTimeout(showEggToast._t);
         showEggToast._t = setTimeout(() => toast.classList.remove('visible'), duration || 2600);
     }
-
-    (function () {
-        const logo = document.querySelector('.nav-logo');
-        if (!logo) return;
-        let taps = 0;
-        let resetTimer;
-
-        logo.addEventListener('click', (e) => {
-            taps++;
-            clearTimeout(resetTimer);
-            resetTimer = setTimeout(() => { taps = 0; }, 2000);
-
-            if (taps === 4) {
-                e.preventDefault();
-                showEggToast('👀 Seguí así...');
-            } else if (taps === 6) {
-                e.preventDefault();
-                showEggToast('🛠️ Te convertiste en desarrollador');
-            } else if (taps >= 7) {
-                e.preventDefault();
-                taps = 0;
-                openRickroll();
-            } else if (taps > 1) {
-                e.preventDefault();
-            }
-        });
-    })();
 
     (function () {
         const footerEl = document.querySelector('.footer-copy');
@@ -3935,7 +3913,9 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key !== 'Escape') return;
-            if (bsod.active) bsod.close();
+            const rick = document.getElementById('rickrollOverlay');
+            if (rick && rick.classList.contains('active')) window.closeRickroll();
+            else if (bsod.active) bsod.close();
             else if (activeModal) activeModal.close();
         });
 
@@ -4069,6 +4049,61 @@
         }
 
         // ── Escáner de PC (de mentirita) ──
+        // Remates de "Descargar más RAM gratis": uno distinto por cada vez que caen
+        // en la misma visita; del último en adelante se repite el último.
+        const RAM_KEY = 'mpc_ram';
+        const RAM_NOTE = { text: 'Si tu PC anda lenta, con el diagnóstico sin cargo te digo si le falta memoria o es otra cosa.', cls: 'note' };
+        const RAM_JOKES = [
+            {
+                file: '$ descargar ram_gratis_16GB.exe',
+                connect: 'Conectando con el servidor de RAM gratis...',
+                install: 'Instalando 16 GB de RAM...',
+                sub: () => 'La RAM no se descarga 😉',
+                after: () => [
+                    'Te la creíste 😄',
+                    'La RAM no se descarga: es una pieza que va adentro de la compu.',
+                    RAM_NOTE
+                ],
+                wa: () => 'Hola Mario! Caí con lo de la RAM gratis 😅 Mi compu anda lenta, ¿la podés revisar?'
+            },
+            {
+                file: '$ descargar ram_gratis_32GB_AHORA_SI.exe',
+                connect: 'Buscando un servidor más confiable (?)...',
+                install: 'Instalando 32 GB de RAM. Esta vez sí, posta...',
+                sub: () => '¿Otra vez? 😂',
+                after: () => [
+                    'Dos de dos 😂',
+                    'Tranqui, a todos nos pasa con las ofertas demasiado buenas.',
+                    RAM_NOTE
+                ],
+                wa: () => 'Hola Mario! Caí dos veces con lo de la RAM gratis 😂 ¿Me revisás la compu de verdad?'
+            },
+            {
+                file: '$ descargar ram_gratis_64GB_final_v3.exe',
+                connect: 'Desactivando el sentido común...',
+                install: 'Instalando 64 GB de RAM y un poquito de fe...',
+                sub: () => 'Tres de tres. Ya somos amigos 🤝',
+                after: () => [
+                    'A esta altura Rick ya te saluda por tu nombre.',
+                    'Consejo de técnico: si algo gratis en internet suena demasiado bueno, en la vida real suele ser un virus.',
+                    { text: 'Si sospechás que a tu compu se le metió algo, la reviso y te digo qué tiene.', cls: 'note' }
+                ],
+                wa: () => 'Hola Mario! Caí tres veces con lo de la RAM gratis 🙈 ¿Me revisás la compu por si tiene algún virus?'
+            },
+            {
+                file: '$ descargar ram_gratis_128GB.exe',
+                connect: 'El escáner detectó un patrón sospechoso...',
+                install: 'Igual lo voy a hacer. Me caés bien.',
+                sub: n => 'Intento número ' + n + '. Esto ya es amor 💚',
+                after: n => [
+                    n + ' veces. Sos fan de Rick y lo respeto.',
+                    'Lo que sí te puedo asegurar es que yo tampoco te voy a dejar tirado con tu compu.',
+                    RAM_NOTE
+                ],
+                wa: n => 'Hola Mario! Caí ' + n + ' veces con lo de la RAM gratis 🎵 Ya que estamos, ¿me revisás la compu?'
+            }
+        ];
+
         const scanBtn = document.getElementById('scanOpen');
         if (scanBtn) scanBtn.addEventListener('click', openScanner);
 
@@ -4139,7 +4174,8 @@
                 { key: 'scan', label: 'Escanear mi PC', onClick: () => run('scan') },
                 { key: 'lenta', label: '¿Por qué anda lenta mi PC?', onClick: () => run('lenta') },
                 { key: 'ping', label: 'Ping a Mario', onClick: () => run('ping') },
-                { key: 'sudo', label: 'sudo reparar', onClick: () => run('sudo') }
+                { key: 'sudo', label: 'sudo reparar', onClick: () => run('sudo') },
+                { key: 'ram', label: 'Descargar más RAM gratis', onClick: () => run('ram') }
             ];
 
             function backOption() {
@@ -4226,6 +4262,35 @@
                     if (!ok) return null;
                     return [
                         { label: 'Escribirle a Mario', origen: 'sudo', href: waLink('Hola Mario! El escáner dice que solo vos podés repararme la PC 😅') },
+                        backOption()
+                    ];
+                },
+
+                async ram(id) {
+                    const tries = (parseInt(ssGet(RAM_KEY), 10) || 0) + 1;
+                    ssSet(RAM_KEY, tries);
+                    const v = RAM_JOKES[Math.min(tries, RAM_JOKES.length) - 1];
+
+                    if (!await say([{ text: v.file, cls: 'cmd' }, v.connect], id, 500)) return null;
+                    const bar = make('div', 'egg-line egg-bar', '<span></span>');
+                    bar.setAttribute('aria-hidden', 'true');
+                    log.appendChild(bar);
+                    const fill = bar.firstChild;
+                    const steps = reduceMotion.matches ? [100] : [14, 31, 47, 66, 82, 97, 99, 99, 100];
+                    for (const p of steps) {
+                        if (id !== runId) return null;
+                        fill.style.width = p + '%';
+                        log.scrollTop = log.scrollHeight;
+                        await sleep(260);
+                    }
+                    if (!await say([{ text: v.install, cls: 'cmd' }], id, 700)) return null;
+                    if (typeof window.openRickroll !== 'function') return null;
+                    track('rickroll_visto', { intento: tries });
+                    await new Promise(resolve => window.openRickroll({ sub: v.sub(tries), onClose: resolve }));
+                    if (id !== runId) return null;
+                    if (!await say(v.after(tries), id, 600)) return null;
+                    return [
+                        { label: 'Que Mario la revise', origen: 'ram', href: waLink(v.wa(tries)) },
                         backOption()
                     ];
                 }
