@@ -6,12 +6,14 @@ Estas instrucciones vivían antes como comentarios dentro de los archivos HTML. 
 
 ## Agregar una publicación de Instagram (`index.html`)
 
-1. Subí la foto a la carpeta `/instagram` del repo.
-2. Buscá `const instagramPosts = [` y agregá:
+1. Subí la foto a la carpeta `/instagram` del repo. Formato vertical 4:5 (como sale de Instagram, ej. 1080×1350).
+2. Buscá `const instagramPosts = [` y agregá la publicación **arriba de todo** (la primera de la lista es la que se ve primero):
    ```js
    { image: "instagram/post1.jpg", url: "https://www.instagram.com/p/XXXXXXXXX/" },
    ```
    El `url` se copia desde la app (Compartir → Copiar enlace).
+
+En la home se muestran todas en un carrusel de una sola fila (con flechas en la compu y deslizando con el dedo en el celular), así que la página no se alarga al sumar publicaciones.
 
 ## Actualizar el link de reseñas de Google (`index.html`)
 
@@ -21,13 +23,16 @@ La sección de opiniones apunta al perfil de Google Maps. En el Google Business 
 
 Cuando un cliente escriba algo lindo por WhatsApp, buscá `const testimonials = [` y agregá:
 ```js
-{ text: "El texto tal cual te lo escribieron o un resumen fiel.", author: "Nombre — Barrio" },
+{ text: "El texto tal cual te lo escribieron o un resumen fiel.", author: "Nombre · Barrio", stars: 5 },
 ```
-Se puede usar nombre completo, solo el nombre, o "Nombre + inicial" para más privacidad. Mientras el array esté vacío se muestra el cartel de "Próximamente".
+- `stars` es la cantidad de estrellas, de 1 a 5. Si no lo ponés, muestra 5.
+- Se puede usar nombre completo, solo el nombre, o "Nombre + inicial" para más privacidad.
+- Las reseñas se muestran en un carrusel de una fila. Las flechas aparecen solas cuando hay más reseñas de las que entran en pantalla (en la compu entran 3).
+- Mientras la lista esté vacía, solo se ve el botón para dejar una reseña en Google.
 
 ## Publicar una nota de blog (`blog-posts.js`)
 
-Las notas se cargan **solo** en `blog-posts.js`. De ahí salen las tarjetas de la home (las 3 más nuevas), el listado de `blog.html` y cada nota completa. No hay que tocar ningún otro archivo.
+Las notas se cargan **solo** en `blog-posts.js`. De ahí salen las tarjetas de la home (todas, en un carrusel de una fila, la más nueva primero), el listado de `blog.html` y cada nota completa. No hay que tocar ningún otro archivo.
 
 1. Si la nota tiene foto de portada, subila a la carpeta `/blog` del repo (Add file → Upload files). Nombre simple y sin espacios, ej: `ssd-post.jpg`. Mejor en horizontal (16:9) y liviana (idealmente menos de 300 KB).
 2. Abrí `blog-posts.js` → lápiz (Edit), buscá `const blogPosts = [` y agregá un bloque entre las llaves cuadradas, **separado del anterior por una coma**:
@@ -93,7 +98,7 @@ Las notas se cargan **solo** en `blog-posts.js`. De ahí salen las tarjetas de l
 
 ## Cartel de horario y cierres manuales (`horario.js` + `status.json`)
 
-El cartel de abierto/cerrado de la home y el aviso "Cerrado ahora" junto al botón flotante de WhatsApp (en home, empresas, faq y blog) siguen solos el horario normal. La lógica está en `horario.js`. Para pisarla (feriado, imprevisto, vacaciones) se edita el archivo `status.json` de la raíz del repo, sin tocar ninguna página.
+El cartel de abierto/cerrado de la home y los avisos del botón flotante de WhatsApp (en home, empresas, faq y blog) siguen solos el horario normal. Cuando está cerrado, el botón muestra unas "Z" animadas (está "durmiendo"); en la compu el aviso aparece unos segundos al entrar y después al pasar el mouse, y en el celular aparece al tocar el botón, con un botón "Escribir igual" que abre WhatsApp. La lógica está en `horario.js`. Para pisarla (feriado, imprevisto, vacaciones) se edita el archivo `status.json` de la raíz del repo, sin tocar ninguna página.
 
 **Cómo cerrar:**
 
@@ -116,7 +121,7 @@ El cartel de abierto/cerrado de la home y el aviso "Cerrado ahora" junto al bot�
      - por días: "Cerrado temporalmente · Abro mañana a las 10:00"
      - por horas: "Cerrado temporalmente · Vuelvo hoy a las 14:00" (o "Abro mañana a las 10:00" si la hora cae después del cierre)
 
-     Si escribís algo, se muestra tal cual (máx. 120 caracteres). El aviso del botón de WhatsApp no cambia: siempre dice "Cerrado ahora · Escribime y te respondo apenas abra".
+     Si escribís algo, se muestra tal cual (máx. 120 caracteres). El aviso del botón de WhatsApp no usa este mensaje: dice cuándo vuelvo (ej. "Abro mañana a las 10:00") y "Escribime y te respondo apenas abra".
 3. Commit. A los 1–2 minutos recargá el sitio y verificá que el cartel cambió.
 
 **Cómo reabrir antes de tiempo:** poné `"cerrado": false` y commit.
@@ -125,7 +130,7 @@ El cartel de abierto/cerrado de la home y el aviso "Cerrado ahora" junto al bot�
 
 **Si algo se rompe:** si `status.json` tiene un error de sintaxis (una coma de más, una comilla que falta) o no carga, el sitio ignora todo y usa el horario normal. Nunca queda trabado en "cerrado".
 
-**Cambiar los horarios de atención:** en `horario.js`, función `scheduleFor` (los horarios están en minutos: `10 * 60` = 10:00, `17 * 60` = 17:00). Además hay que actualizar a mano la tabla de horarios de la sección ubicación en `index.html`.
+**Cambiar los horarios de atención:** en `horario.js`, función `scheduleFor` (los horarios están en minutos: `10 * 60` = 10:00, `17 * 60` = 17:00). Además hay que actualizar a mano la tabla de horarios de la sección de contacto en `index.html`.
 
 ## Modo claro (`theme.css` + `theme.js` + `flashbang.mp3`)
 

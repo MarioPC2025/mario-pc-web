@@ -1,7 +1,8 @@
 /* ─── HORARIO DINÁMICO (mariopc.com.ar) ───
    Lo usan index, empresas, faq y blog.
    - index: cartel abierto/cerrado (hero y sección ubicación) y resaltado de "hoy" en la tabla.
-   - Todas: aviso "Cerrado ahora" junto al botón flotante de WhatsApp cuando el local está cerrado.
+   - Todas: cuando el local está cerrado, el botón flotante de WhatsApp muestra unas "Z" (durmiendo),
+     un aviso al pasar el mouse (compu) y un aviso con "Escribir igual" al tocarlo (celular).
    Horario de atención y reglas: ver scheduleFor() más abajo.
    Cierres manuales y feriados: se leen de status.json (ver README). */
 // Horario: Lunes a jueves 10-17, Viernes 10-15, Sábado y domingo cerrado.
@@ -138,20 +139,20 @@
             const h = ov.hasta;
             const next = h.hasTime ? reopeningAt(date, h) : nextOpening(date, h.date);
             const label = ov.mensaje || ('Cerrado temporalmente' + (next ? ` · ${next}` : ''));
-            return { open: false, label, today: null };
+            return { open: false, label, today: null, when: next };
         }
 
         // 2) Feriado (solo si cae en un día en que normalmente atiendo)
         if (isHoliday(date) && scheduleFor(day)) {
             const next = nextOpening(date, date);
-            return { open: false, label: 'Cerrado por feriado' + (next ? ` · ${next}` : ''), today: null };
+            return { open: false, label: 'Cerrado por feriado' + (next ? ` · ${next}` : ''), today: null, when: next };
         }
 
         // 3) Horario normal
         const today = scheduleForDate(date);
         if (today) {
             if (minutesNow < today.open) {
-                return { open: false, label: `Cerrado · Abro hoy a las ${fmtTime(today.open)}`, today: day };
+                return { open: false, label: `Cerrado · Abro hoy a las ${fmtTime(today.open)}`, today: day, when: `Abro hoy a las ${fmtTime(today.open)}` };
             }
             if (minutesNow < today.close) {
                 return { open: true, label: `Abierto ahora · Cierro a las ${fmtTime(today.close)}`, today: day };
@@ -159,12 +160,26 @@
         }
 
         const next = nextOpening(date, date);
-        return { open: false, label: next ? `Cerrado · ${next}` : 'Cerrado', today: day };
+        return { open: false, label: next ? `Cerrado · ${next}` : 'Cerrado', today: day, when: next };
     }
 
-    // ── Aviso en el botón flotante de WhatsApp (cuando el local está cerrado) ──
+    // ── Botón flotante de WhatsApp cuando el local está cerrado ──
+    // - Unas "Z" animadas sobre el botón (está "durmiendo").
+    // - En compu: el aviso aparece unos segundos al entrar y después al pasar el mouse.
+    // - En celular: al tocar el botón aparece el aviso con "Escribir igual" (no se pierde el contacto).
+    const ICONS = {
+        moon: '<svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M240 96a8 8 0 0 1-8 8h-16v16a8 8 0 0 1-16 0v-16h-16a8 8 0 0 1 0-16h16V72a8 8 0 0 1 16 0v16h16a8 8 0 0 1 8 8m-96-40h8v8a8 8 0 0 0 16 0v-8h8a8 8 0 0 0 0-16h-8v-8a8 8 0 0 0-16 0v8h-8a8 8 0 0 0 0 16m72.77 97a8 8 0 0 1 1.43 8A96 96 0 1 1 95.07 37.8a8 8 0 0 1 10.6 9.06a88.07 88.07 0 0 0 103.47 103.47a8 8 0 0 1 7.63 2.67m-19.39 14.88c-1.79.09-3.59.14-5.38.14A104.11 104.11 0 0 1 88 64c0-1.79 0-3.59.14-5.38a80 80 0 1 0 109.24 109.24Z"/></svg>',
+        x: '<svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg>',
+        wa: '<svg viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="m152.58 145.23l23 11.48A24 24 0 0 1 152 176a72.08 72.08 0 0 1-72-72a24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51a56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155ZM232 128a104 104 0 0 1-152.88 91.82l-34.05 11.35a16 16 0 0 1-20.24-20.24l11.35-34.05A104 104 0 1 1 232 128m-40 24a8 8 0 0 0-4.42-7.16l-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40a88.1 88.1 0 0 0 88 88a40 40 0 0 0 40-40"/></svg>'
+    };
+
     let floatBtn = null;
     let floatLabel = '';
+    let noteText = null;
+    let sheet = null;
+    let sheetText = null;
+    let peeked = false;
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
 
     function setupFloat() {
         floatBtn = document.querySelector('.whatsapp-float');
@@ -173,43 +188,135 @@
 
         const style = document.createElement('style');
         style.textContent = `
-            .wa-closed-note { display: none; position: absolute; right: calc(100% + 14px); top: 50%;
-                width: max-content; max-width: min(230px, calc(100vw - 190px));
-                padding: 9px 13px; border-radius: 2px; text-align: left; white-space: normal;
-                background: rgba(var(--bg-rgb, 7, 9, 10), 0.94); backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 100, 100, 0.25);
-                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35); pointer-events: none; }
-            .wa-closed-note::after { content: ''; position: absolute; right: -5px; top: 50%;
-                width: 8px; height: 8px; background: rgba(var(--bg-rgb, 7, 9, 10), 0.98);
-                border-top: 1px solid rgba(255, 100, 100, 0.25); border-right: 1px solid rgba(255, 100, 100, 0.25);
-                transform: translateY(-50%) rotate(45deg); }
-            .wa-closed-note strong { display: block; margin-bottom: 3px; font-weight: 400;
-                font-family: var(--font-mono, monospace); font-size: 0.6rem; letter-spacing: 0.1em;
-                text-transform: uppercase; color: var(--red, #ff9a9a); }
-            .wa-closed-note span { display: block; font-family: var(--font-body, system-ui, sans-serif);
-                font-size: 0.8rem; line-height: 1.35; color: var(--white, #e8edea); }
-            .whatsapp-float.is-closed .wa-closed-note { display: block; animation: wa-note-in 0.35s ease both; }
-            @keyframes wa-note-in { from { opacity: 0; transform: translate(8px, -50%); } to { opacity: 1; transform: translate(0, -50%); } }
-            @media (prefers-reduced-motion: reduce) { .whatsapp-float.is-closed .wa-closed-note { animation: none; transform: translate(0, -50%); } }
+            .wa-zzz { position: absolute; left: 34px; top: 4px; width: 0; height: 0; pointer-events: none; display: none; }
+            .whatsapp-float.is-closed .wa-zzz { display: block; }
+            .wa-zzz span { position: absolute; left: 0; bottom: 0; font-family: var(--font-display, Impact, sans-serif);
+                font-size: 19px; line-height: 1; color: var(--white, #e8edea); opacity: 0;
+                text-shadow: 0 0 6px rgba(var(--bg-rgb, 7, 9, 10), 0.95), 0 0 2px rgba(var(--bg-rgb, 7, 9, 10), 0.95);
+                animation: wa-zz 2.7s linear infinite; }
+            .wa-zzz span:nth-child(2) { animation-delay: 0.9s; }
+            .wa-zzz span:nth-child(3) { animation-delay: 1.8s; }
+            @keyframes wa-zz {
+                0% { opacity: 0; transform: translate(0, 0) scale(0.5) rotate(-12deg); }
+                30% { opacity: 1; }
+                65% { opacity: 0.9; }
+                100% { opacity: 0; transform: translate(14px, -44px) scale(1.2) rotate(10deg); }
+            }
+
+            .wa-closed-note { position: absolute; right: calc(100% + 12px); top: 50%; translate: 6px -50%;
+                width: max-content; max-width: min(240px, calc(100vw - 110px)); padding: 10px 13px; border-radius: 4px;
+                text-align: left; white-space: normal; pointer-events: none;
+                background: rgba(var(--bg-rgb, 7, 9, 10), 0.97);
+                box-shadow: 0 0 0 1px rgba(255, 110, 110, 0.28), 0 8px 24px rgba(0, 0, 0, 0.35);
+                font-family: var(--font-body, system-ui, sans-serif); font-size: 0.82rem; line-height: 1.4; font-weight: 300;
+                color: var(--white, #e8edea); opacity: 0; visibility: hidden;
+                transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), translate 200ms cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 200ms; }
+            .wa-closed-note strong { display: block; margin-bottom: 2px; font-weight: 400; font-family: var(--font-mono, monospace);
+                font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red, #ff9a9a); }
+            .whatsapp-float.is-closed.wa-peek .wa-closed-note { opacity: 1; visibility: visible; translate: 0 -50%; transition-delay: 0s; }
+            @media (hover: hover) and (pointer: fine) {
+                .whatsapp-float.is-closed:hover .wa-closed-note,
+                .whatsapp-float.is-closed:focus-visible .wa-closed-note { opacity: 1; visibility: visible; translate: 0 -50%; transition-delay: 0s; }
+            }
+            @media (hover: none), (pointer: coarse) { .wa-closed-note { display: none; } }
+
+            .wa-sheet { position: fixed; z-index: 501; right: calc(20px + env(safe-area-inset-right, 0px));
+                bottom: calc(92px + env(safe-area-inset-bottom, 0px)); width: min(320px, calc(100vw - 40px));
+                display: grid; gap: 10px; padding: 20px 20px 18px; border-radius: 6px; text-align: left;
+                background: var(--bg-alt, #0c0f10); color: var(--white, #e8edea);
+                box-shadow: 0 0 0 1px rgba(255, 110, 110, 0.28), 0 20px 50px -10px rgba(0, 0, 0, 0.6);
+                font-family: var(--font-body, system-ui, sans-serif); }
+            .wa-sheet[hidden] { display: none; }
+            .wa-sheet-moon { width: 28px; height: 28px; color: var(--red, #ff9a9a); }
+            .wa-sheet-moon svg, .wa-sheet-x svg, .wa-sheet-go svg { width: 100%; height: 100%; display: block; }
+            .wa-sheet strong { font-family: var(--font-display, Impact, sans-serif); font-weight: 400; font-size: 1.7rem;
+                line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
+            .wa-sheet p { margin: 0; color: var(--muted, #788480); font-size: 0.95rem; line-height: 1.45; font-weight: 300; }
+            .wa-sheet-x { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; padding: 12px; border: 0;
+                border-radius: 3px; background: transparent; color: var(--muted, #788480); cursor: pointer; }
+            .wa-sheet-go { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 4px;
+                border-radius: 3px; background: var(--green-fill, #1ddd65); color: #030804; text-decoration: none;
+                font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+            .wa-sheet-go span { width: 20px; height: 20px; }
+            .wa-sheet-x:focus-visible, .wa-sheet-go:focus-visible { outline: 2px solid var(--green, #1ddd65); outline-offset: 2px; }
+            @media (prefers-reduced-motion: reduce) {
+                .wa-zzz span { animation: none; }
+                .wa-zzz span:nth-child(1) { opacity: 0.45; transform: translate(0, 0) scale(0.65); }
+                .wa-zzz span:nth-child(2) { opacity: 0.7; transform: translate(7px, -16px) scale(0.85); }
+                .wa-zzz span:nth-child(3) { opacity: 1; transform: translate(14px, -34px) scale(1); }
+                .wa-closed-note { transition: none; }
+            }
         `;
         document.head.appendChild(style);
+
+        const zzz = document.createElement('span');
+        zzz.className = 'wa-zzz';
+        zzz.setAttribute('aria-hidden', 'true');
+        zzz.innerHTML = '<span>Z</span><span>Z</span><span>Z</span>';
+        floatBtn.appendChild(zzz);
 
         const note = document.createElement('span');
         note.className = 'wa-closed-note';
         note.setAttribute('aria-hidden', 'true');
         const title = document.createElement('strong');
         title.textContent = 'Cerrado ahora';
-        const text = document.createElement('span');
-        text.textContent = 'Escribime y te respondo apenas abra';
+        noteText = document.createElement('span');
+        noteText.textContent = 'Escribime y te respondo apenas abra.';
         note.appendChild(title);
-        note.appendChild(text);
+        note.appendChild(noteText);
         floatBtn.appendChild(note);
+
+        sheet = document.createElement('div');
+        sheet.className = 'wa-sheet';
+        sheet.hidden = true;
+        sheet.setAttribute('role', 'dialog');
+        sheet.setAttribute('aria-labelledby', 'waSheetTitle');
+        sheet.setAttribute('aria-describedby', 'waSheetText');
+        sheet.innerHTML =
+            '<button type="button" class="wa-sheet-x" aria-label="Cerrar aviso">' + ICONS.x + '</button>' +
+            '<span class="wa-sheet-moon">' + ICONS.moon + '</span>' +
+            '<strong id="waSheetTitle">Ahora estoy cerrado</strong>' +
+            '<p id="waSheetText">Escribime igual y te respondo apenas abra.</p>' +
+            '<a class="wa-sheet-go" target="_blank" rel="noopener noreferrer"><span>' + ICONS.wa + '</span>Escribir igual</a>';
+        sheet.querySelector('.wa-sheet-go').href = floatBtn.href;
+        sheetText = sheet.querySelector('#waSheetText');
+        document.body.appendChild(sheet);
+
+        function closeSheet() { sheet.hidden = true; }
+        floatBtn.addEventListener('click', (e) => {
+            if (!floatBtn.classList.contains('is-closed') || canHover.matches) return;
+            e.preventDefault();
+            sheet.hidden = !sheet.hidden;
+            if (!sheet.hidden) {
+                try { sheet.querySelector('.wa-sheet-go').focus({ preventScroll: true }); } catch (err) {}
+            }
+        });
+        sheet.querySelector('.wa-sheet-x').addEventListener('click', closeSheet);
+        sheet.querySelector('.wa-sheet-go').addEventListener('click', () => setTimeout(closeSheet, 300));
+        document.addEventListener('click', (e) => {
+            if (!sheet.hidden && !sheet.contains(e.target) && !floatBtn.contains(e.target)) closeSheet();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !sheet.hidden) { closeSheet(); floatBtn.focus(); }
+        });
     }
 
-    function renderFloat(isOpen) {
+    function renderFloat(status) {
         if (!floatBtn) return;
+        const isOpen = status.open;
         floatBtn.classList.toggle('is-closed', !isOpen);
         floatBtn.setAttribute('aria-label', isOpen ? floatLabel : floatLabel + '. Estoy cerrado ahora, respondo apenas abra');
+        const when = status.when ? status.when + '. ' : '';
+        if (noteText) noteText.textContent = when + 'Escribime y te respondo apenas abra.';
+        if (sheetText) sheetText.textContent = when + 'Escribime igual y te respondo apenas abra.';
+        if (isOpen && sheet) sheet.hidden = true;
+
+        // En compu, la primera vez que se ve cerrado el aviso se asoma unos segundos
+        if (!isOpen && !peeked && canHover.matches) {
+            peeked = true;
+            setTimeout(() => floatBtn.classList.add('wa-peek'), 1200);
+            setTimeout(() => floatBtn.classList.remove('wa-peek'), 7200);
+        }
     }
 
     function render() {
@@ -224,7 +331,7 @@
             badge.classList.toggle('closed', !status.open);
         });
 
-        renderFloat(status.open);
+        renderFloat(status);
 
         document.querySelectorAll('.hours-row').forEach(row => {
             const days = (row.dataset.days || '').split(',').map(Number);
