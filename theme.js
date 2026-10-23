@@ -35,6 +35,8 @@
             btn.setAttribute('title', light ? 'Modo oscuro' : 'Modo claro');
             var icon = btn.querySelector('i');
             if (icon) icon.className = 'ph ' + (light ? 'ph-moon' : 'ph-sun');
+            var use = btn.querySelector('use');
+            if (use) use.setAttribute('href', light ? '#i-moon' : '#i-sun');
         });
     }
 
