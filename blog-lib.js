@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   blog-lib.js — Lógica del blog: tarjetas, nota completa y schema.
+   blog-lib.js: lógica del blog: tarjetas, nota completa y schema.
    No hace falta tocar este archivo. Las notas se cargan en blog-posts.js.
    Si blog-posts.js tuviera un error, el resto del sitio sigue funcionando
    y simplemente no se muestran notas.
@@ -56,7 +56,7 @@ const MarioBlog = (function () {
         return posts().filter(function (p) { return p.slug === s; })[0] || null;
     }
 
-    /* ── Texto ── */
+    /* Texto */
     function plain(content) {
         return String(content).split('\n')
             .map(function (l) { return l.trim(); })
@@ -127,14 +127,14 @@ const MarioBlog = (function () {
         return out.join('');
     }
 
-    /* ── URLs ── */
+    /* URLs */
     function url(p) { return 'blog.html?nota=' + encodeURIComponent(p.slug); }
     function absUrl(p) { return SITE + url(p); }
     function absAsset(path) {
         return /^https?:\/\//i.test(path) ? path : SITE + String(path).replace(/^\.?\//, '');
     }
 
-    /* ── HTML ── */
+    /* HTML */
     function cardHTML(p, level) {
         const h = 'h' + (level || 3);
         const media = p.image
@@ -201,7 +201,7 @@ const MarioBlog = (function () {
         });
     }
 
-    /* ── Schema (JSON-LD) y metadatos ── */
+    /* Schema (json-ld) y metadatos */
     function postSchema(p) {
         const o = {
             '@type': 'BlogPosting',
@@ -228,7 +228,7 @@ const MarioBlog = (function () {
         return {
             '@context': 'https://schema.org',
             '@type': 'Blog',
-            name: 'Blog — Mario PC',
+            name: 'Notas del taller · Mario PC',
             url: SITE + 'blog.html',
             inLanguage: 'es-AR',
             blogPost: list.map(postSchema)

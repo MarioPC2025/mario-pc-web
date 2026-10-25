@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   blog-posts.js — Acá se cargan las notas del blog.
+   blog-posts.js: acá se cargan las notas del blog.
    Lo usan la home (últimas 3 notas) y blog.html (listado y nota completa).
    Instrucciones paso a paso: README.md → "Publicar una nota de blog".
    ═══════════════════════════════════════════════════════════════ */
@@ -33,7 +33,7 @@ const blogPosts = [
     // Podés usar **negrita** y [un link](https://www.mariopc.com.ar).`
     // },
 
-    // ─── NOTA 1 ───
+    // Nota 1
     {
         slug: "por-que-mi-compu-anda-lenta",
         title: "Mi compu anda lenta: qué le pasa (aunque antes andaba re bien)",
@@ -86,7 +86,7 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el reti
 [Escribime por WhatsApp y le damos velocidad a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20anda%20muy%20lenta%20y%20quiero%20que%20la%20revises)`
     },
 
-    // ─── NOTA 2 ───
+    // Nota 2
     {
         slug: "como-saber-si-mi-compu-necesita-mantenimiento",
         title: "¿Cómo sé si mi compu necesita mantenimiento? 7 señales que no conviene ignorar",
@@ -139,7 +139,7 @@ Estoy en Olivos y atiendo la zona norte, en el taller o coordinando el retiro. S
 [Escribime por WhatsApp y vemos si le toca un service](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20saber%20si%20mi%20compu%20necesita%20mantenimiento)`
     },
 
-    // ─── NOTA 3 ───
+    // Nota 3
     {
         slug: "mi-compu-se-calienta-mucho",
         title: "Mi compu se calienta mucho: por qué pasa y qué hacer antes de que se dañe",
@@ -197,7 +197,7 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el reti
 [Escribime por WhatsApp y la revisamos antes de que se dañe](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20se%20calienta%20mucho%20y%20quiero%20que%20la%20revises)`
     },
 
-    // ─── NOTA 4 ───
+    // Nota 4
     {
         slug: "windows-10-fin-de-soporte-que-hacer",
         title: "Windows 10 ya no tiene soporte: qué significa para tu compu y qué conviene hacer",
@@ -262,7 +262,7 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el reti
 [Escribime por WhatsApp y vemos qué le conviene a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20tengo%20Windows%2010%20y%20quiero%20saber%20que%20conviene%20hacer%20con%20mi%20compu)`
     },
 
-    // ─── NOTA 5 ───
+    // Nota 5
     {
         slug: "como-hacer-copia-de-seguridad-de-tus-archivos",
         title: "Cómo hacer una copia de seguridad de tus archivos (sin ser técnico) antes de que sea tarde",
