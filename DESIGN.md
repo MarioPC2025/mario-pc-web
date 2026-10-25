@@ -48,6 +48,6 @@ Lo usan la web (este repo) y la app del taller (`mario-pc-app`). Este archivo de
 ## Voz
 
 - Primera persona, español rioplatense: "Arreglo tu compu", "Te paso el precio", "Escribime".
-- Las preguntas se escriben como las haría un cliente: "¿Me retirás el equipo?", y no "¿Hacen retiro?".
+- Las preguntas se escriben como las haría un cliente: "¿Pierdo mis archivos si cambio el disco?", y no "¿Se pierden los datos?".
 - Sin guiones largos (—). En su lugar van punto, coma, dos puntos o "·" en los títulos.
 - Solo datos reales: los precios, las reseñas y los números de la home los confirma Mario.
