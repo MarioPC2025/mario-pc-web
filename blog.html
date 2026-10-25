@@ -13,9 +13,9 @@
         gtag('config', 'G-VBVPJ6H5H5');
     </script>
 
-    <meta name="description" content="Blog de Mario PC — tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos, Buenos Aires.">
+    <meta name="description" content="Notas de Mario PC sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos, Buenos Aires.">
     <link rel="canonical" href="https://www.mariopc.com.ar/blog.html">
-    <title>Blog — Mario PC | Olivos, Buenos Aires</title>
+    <title>Notas del taller · Mario PC, Olivos</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico?v=2" sizes="any">
@@ -26,22 +26,23 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
+    <link rel="stylesheet" href="/site.css?v=1">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.mariopc.com.ar/blog.html">
     <meta property="og:site_name" content="Mario PC">
     <meta property="og:locale" content="es_AR">
-    <meta property="og:title" content="Blog — Mario PC | Olivos, Buenos Aires">
-    <meta property="og:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.">
+    <meta property="og:title" content="Notas del taller · Mario PC, Olivos">
+    <meta property="og:description" content="Notas de Mario PC sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos, Buenos Aires.">
     <meta property="og:image" content="https://www.mariopc.com.ar/og-image.png?v=3">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog — Mario PC | Olivos, Buenos Aires">
-    <meta name="twitter:description" content="Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.">
+    <meta name="twitter:title" content="Notas del taller · Mario PC, Olivos">
+    <meta name="twitter:description" content="Notas de Mario PC sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos, Buenos Aires.">
     <meta name="twitter:image" content="https://www.mariopc.com.ar/og-image.png?v=3">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,256 +50,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" integrity="sha384-pPVoXE8ft+zxKtxIDDI7SfTK6y95NHm4qa+hKEg/hs8VkjW5IP+9/dGOPCbDpUPl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css" integrity="sha384-UVFvhZP7fWAENUPOoq61rJg5ef6QZW0k5vpAn71041/QS4STvUcJQCGNhStZLGx9" crossorigin="anonymous">
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --bg: #07090a;
-            --bg-alt: #0c0f10;
-            --green: #1ddd65;
-            --green-dim: rgba(var(--green-rgb), 0.1);
-            --green-border: rgba(var(--green-rgb), 0.22);
-            --white: #e8edea;
-            --muted: #788480;
-            --bg-rgb: 7, 9, 10;
-            --ink-rgb: 255, 255, 255;
-            --green-rgb: 29, 221, 101;
-            --white-rgb: 232, 237, 234;
-            --green-fill: #1ddd65;
-            --red: #ff9a9a;
-            --cert-head: #262b28;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-            --font-body: 'DM Sans', sans-serif;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-weight: 300;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Dot grid */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(var(--green-rgb), 0.09) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Grain overlay */
-        .grain {
-            position: fixed;
-            inset: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='1'/></svg>");
-            opacity: 0.032;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* ─── NAV ─── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 200;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2.5rem;
-            border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
-            background: rgba(var(--bg-rgb), 0.88);
-            backdrop-filter: blur(20px);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            width: 38px;
-            height: 38px;
-            object-fit: contain;
-        }
-
-        .nav-logo-text {
-            font-family: var(--font-display);
-            font-size: 1.45rem;
-            letter-spacing: 0.05em;
-            color: var(--white);
-        }
-
-        .nav-logo-text em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--green); }
-
-        .nav-cta {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--green);
-            text-decoration: none;
-            border: 1px solid var(--green-border);
-            padding: 9px 20px;
-            border-radius: 2px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-cta:hover {
-            background: var(--green-dim);
-            border-color: var(--green);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 1.5px;
-            background: var(--white);
-            transition: all 0.3s;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 68px;
-            left: 0; right: 0;
-            background: rgba(var(--bg-rgb), 0.97);
-            border-bottom: 1px solid var(--green-border);
-            padding: 1.75rem 2.5rem;
-            z-index: 199;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .mobile-menu.open { display: flex; }
-
-        .mobile-menu a {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .mobile-menu a:hover,
-        .mobile-menu a.active { color: var(--green); }
-
-        /* ─── HERO ─── */
-        .faq-hero {
-            position: relative;
-            z-index: 1;
-            padding: 140px 2.5rem 80px;
-            border-bottom: 1px solid rgba(var(--ink-rgb), 0.04);
-        }
-
-        .faq-hero-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section-eyebrow {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .faq-hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 9vw, 8rem);
-            line-height: 0.9;
-            letter-spacing: 0.01em;
-            margin-bottom: 1.5rem;
-        }
-
-        .faq-hero h1 em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .faq-hero-desc {
-            font-size: 1rem;
-            color: var(--muted);
-            line-height: 1.75;
-            max-width: 480px;
-        }
-
-        /* ─── FAQ SECTION ─── */
-        .faq-section {
-            position: relative;
-            z-index: 1;
-            background: var(--bg-alt);
-            border-top: 1px solid rgba(var(--ink-rgb), 0.04);
-        }
-
-        .faq-section-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 80px 2.5rem;
-        }
-
-        .faq-list {
-            padding-left: 2.5rem;
-            border-left: 1px solid rgba(var(--ink-rgb), 0.05);
-        }
-
+        .page-cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
         .blog-placeholder {
             border: 1px dashed rgba(var(--ink-rgb), 0.15);
             border-radius: 3px;
@@ -329,7 +83,7 @@
             margin-bottom: 2rem;
         }
 
-        /* ─── NOTAS: tarjetas (mismo bloque que la home) ─── */
+        /* Tarjetas de notas */
         .notes-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -386,7 +140,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at 30% 20%, var(--green-dim), transparent 70%);
+            background: var(--green-dim);
         }
 
         .note-card-fallback i {
@@ -404,9 +158,7 @@
 
         .note-card-meta {
             font-family: var(--font-mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             color: var(--green);
             margin-bottom: 0.6rem;
         }
@@ -434,9 +186,7 @@
             align-items: center;
             gap: 0.5rem;
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             color: var(--white);
             transition: color 0.2s;
         }
@@ -451,11 +201,11 @@
             margin-bottom: 2.5rem;
         }
 
-        /* ─── NOTA COMPLETA ─── */
+        /* Nota completa */
         .note-section {
             position: relative;
             z-index: 1;
-            padding: 120px 2.5rem 90px;
+            padding: 56px 20px 90px;
         }
 
         .note-article {
@@ -468,9 +218,7 @@
             align-items: center;
             gap: 0.5rem;
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             color: var(--muted);
             text-decoration: none;
             margin-bottom: 2rem;
@@ -485,9 +233,7 @@
 
         .note-meta {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             color: var(--green);
             margin-bottom: 0.9rem;
         }
@@ -648,7 +394,7 @@
 
         @media (max-width: 600px) {
             .notes-grid { grid-template-columns: 1fr; }
-            .note-section { padding: 100px 1.5rem 70px; }
+            .note-section { padding: 40px 20px 70px; }
             .note-cta { flex-direction: column; align-items: flex-start; }
         }
 
@@ -657,385 +403,6 @@
             .note-card:hover, .note-card:hover .note-card-media img { transform: none; }
         }
 
-        [hidden] { display: none !important; }
-
-        .faq-item {
-            border-bottom: 1px solid rgba(var(--ink-rgb), 0.05);
-            position: relative;
-        }
-
-        /* Green left indicator — mismo patrón que service-row */
-        .faq-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0; bottom: 0;
-            width: 2px;
-            background: var(--green-fill);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .faq-item.open::before { transform: scaleY(1); }
-
-        .faq-question {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 52px 1fr 32px;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.75rem 0;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-        }
-
-        .faq-question:hover { background: rgba(var(--green-rgb), 0.02); }
-
-        .faq-num {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-            text-align: left;
-            transition: color 0.25s;
-        }
-
-        .faq-item.open .faq-num { color: var(--green); }
-        .faq-question:hover .faq-num { color: var(--green); }
-
-        .faq-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-            letter-spacing: 0.02em;
-            color: var(--white);
-            transition: color 0.25s;
-        }
-
-        .faq-item.open .faq-text { color: var(--green); }
-        .faq-question:hover .faq-text { color: var(--green); }
-
-        .faq-icon {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--green-border);
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--green);
-            font-size: 1.1rem;
-            transition: all 0.25s;
-            flex-shrink: 0;
-        }
-
-        .faq-item.open .faq-icon {
-            background: var(--green-fill);
-            color: #030804;
-            border-color: var(--green);
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), padding 0.3s;
-            padding-left: calc(52px + 1.5rem);
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 600px;
-            padding-bottom: 1.75rem;
-            padding-left: calc(52px + 1.5rem);
-        }
-
-        .faq-answer p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.8;
-            max-width: 680px;
-        }
-
-        .faq-answer strong {
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        /* ─── CTA ─── */
-        .faq-cta {
-            position: relative;
-            z-index: 1;
-            background: var(--bg);
-            border-top: 1px solid rgba(var(--ink-rgb), 0.04);
-        }
-
-        .faq-cta-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 100px 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .faq-cta-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
-            line-height: 0.95;
-            letter-spacing: 0.01em;
-        }
-
-        .faq-cta-title em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .faq-cta-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-width: 240px;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--green-fill);
-            color: #030804;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 2px;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-primary:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border: 1px solid rgba(var(--ink-rgb), 0.12);
-            border-radius: 2px;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid rgba(var(--ink-rgb), 0.06);
-            background: var(--bg);
-            padding: 2rem 2.5rem;
-        }
-
-        .footer-inner {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-copy {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
-
-        .footer-socials { display: flex; gap: 0.75rem; }
-
-        .footer-social {
-            width: 30px;
-            height: 30px;
-            border: 1px solid rgba(var(--ink-rgb), 0.07);
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .footer-social:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .footer-made {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            color: var(--muted);
-            letter-spacing: 0.08em;
-        }
-
-        /* ─── REVEAL ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-
-        /* ─── WHATSAPP FLOTANTE ─── */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 500;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: var(--green-fill);
-            color: #030804;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.65rem;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(var(--green-rgb), 0.35);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            animation: whatsapp-pulse 2.6s ease-in-out infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.08);
-            box-shadow: 0 6px 28px rgba(var(--green-rgb), 0.55);
-        }
-
-        @keyframes whatsapp-pulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(var(--green-rgb), 0.35); }
-            50% { box-shadow: 0 4px 30px rgba(var(--green-rgb), 0.6); }
-        }
-
-        @media (max-width: 600px) {
-            .whatsapp-float {
-                width: 52px;
-                height: 52px;
-                font-size: 1.5rem;
-                bottom: 18px;
-                right: 18px;
-            }
-        }
-
-        /* ─── VOLVER ARRIBA ─── */
-        .back-to-top {
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
-            z-index: 500;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: rgba(var(--bg-rgb), 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--green-border);
-            color: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background 0.2s;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: var(--green-dim);
-            border-color: var(--green);
-        }
-
-        @media (max-width: 600px) {
-            .back-to-top {
-                width: 42px;
-                height: 42px;
-                bottom: 18px;
-                left: 18px;
-            }
-        }
-
-        .footer-copy {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 960px) {
-            .nav-links, .nav-cta { display: none; }
-            .hamburger { display: flex; }
-
-            .faq-cta-inner {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .faq-cta-actions {
-                flex-direction: row;
-                flex-wrap: wrap;
-                min-width: unset;
-            }
-        }
-
-        @media (max-width: 600px) {
-            nav { padding: 0 1.5rem; }
-            .faq-hero { padding: 110px 1.5rem 60px; }
-            .faq-section-inner { padding: 60px 1.5rem; }
-            .faq-cta-inner { padding: 70px 1.5rem; }
-            footer { padding: 2rem 1.5rem; }
-            .faq-list { padding-left: 1rem; }
-            .faq-question { grid-template-columns: 40px 1fr 28px; gap: 1rem; }
-            .faq-answer,
-            .faq-item.open .faq-answer { padding-left: calc(40px + 1rem); }
-        }
-    .nav-links{gap:1.5rem}@media(max-width:1280px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}}
     </style>
 <script src="horario.js?v=3" defer></script>
 </head>
@@ -1043,171 +410,109 @@
 
 <div class="grain"></div>
 
-<!-- NAV -->
-<nav>
-    <a href="./" class="nav-logo">
-        <img src="logo.png?v=2" alt="Mario PC" width="38" height="38">
-        <span class="nav-logo-text">Mario<em>PC</em></span>
-    </a>
-
-    <ul class="nav-links">
-        <li><a href="./#precios">Servicios y precios</a></li>
-        <li><a href="./#proceso">Cómo trabajo</a></li>
-        <li><a href="./#opiniones">Opiniones</a></li>
-        <li><a href="blog.html" class="active">Notas</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="./#contacto">Contacto</a></li>
-        <li><a href="empresas.html">Empresas</a></li>
-    </ul>
-
-    <div class="nav-actions">
-        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><i class="ph ph-sun" aria-hidden="true"></i></button>
-        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="nav-cta">
-            <i class="ph-fill ph-whatsapp-logo"></i>
-            WhatsApp
-        </a>
-        <button class="hamburger" id="hamburger" aria-label="Menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-    <a href="./#precios" onclick="closeMobile()">Servicios y precios</a>
-    <a href="./#proceso" onclick="closeMobile()">Cómo trabajo</a>
-    <a href="./#opiniones" onclick="closeMobile()">Opiniones</a>
-    <a href="blog.html" class="active" onclick="closeMobile()">Notas</a>
-    <a href="faq.html" onclick="closeMobile()">Preguntas frecuentes</a>
-    <a href="./#contacto" onclick="closeMobile()">Contacto</a>
-    <a href="empresas.html" onclick="closeMobile()">Empresas</a>
-    <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" style="color: var(--green);">
-        <i class="ph-fill ph-whatsapp-logo"></i> WhatsApp
-    </a>
-</div>
-
-<main>
-
-<!-- HERO -->
-<section class="faq-hero" id="blogHero">
-    <div class="faq-hero-inner">
-        <div class="section-eyebrow reveal">Notas del taller</div>
-        <h1 class="reveal reveal-delay-1">
-            Blog
-        </h1>
-        <p class="faq-hero-desc reveal reveal-delay-2">
-            Tips y notas sobre mantenimiento de PC, notebooks y celulares, escritas desde el taller en Olivos.
-        </p>
-    </div>
-</section>
-
-<!-- LISTADO DE NOTAS -->
-<section class="faq-section" id="blogList">
-    <div class="faq-section-inner">
-
-        <div class="blog-placeholder reveal" id="blogPlaceholder">
-            <i class="ph-fill ph-notepad"></i>
-            <h2 class="blog-placeholder-title">Muy pronto</h2>
-            <p>Estoy preparando las primeras notas — tips de mantenimiento, señales de que tu PC necesita un service, y respuestas a las dudas técnicas más comunes. Mientras tanto, cualquier consulta puntual escribime directo por WhatsApp.</p>
-            <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                <i class="ph-fill ph-whatsapp-logo"></i>
-                Escribir al WhatsApp
+<nav class="top" aria-label="Principal">
+    <div class="wrap">
+        <div class="nav-inner">
+            <a href="./" class="nav-logo">
+                <img src="logo.png?v=2" alt="Mario PC" width="38" height="38">
+                <span class="nav-logo-text">Mario<em>PC</em></span>
             </a>
-        </div>
 
+            <ul class="nav-links">
+                <li><a href="./#precios">Servicios y precios</a></li>
+                <li><a href="./#proceso">Cómo trabajo</a></li>
+                <li><a href="./#opiniones">Opiniones</a></li>
+                <li><a href="blog.html" aria-current="page">Notas</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="./#contacto">Contacto</a></li>
+                <li><a href="empresas.html">Empresas</a></li>
+            </ul>
 
-        <div class="notes-grid" id="blogPostsGrid"></div>
-
-    </div>
-</section>
-
-<!-- NOTA COMPLETA (se arma con blog.html?nota=identificador) -->
-<section class="note-section" id="noteView" hidden></section>
-
-<!-- CTA -->
-<section class="faq-cta" id="blogCta">
-    <div class="faq-cta-inner reveal">
-        <div>
-            <div class="section-eyebrow">¿Listo?</div>
-            <div class="faq-cta-title">
-                Hablemos<br>
-                <em>hoy</em>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><i class="ph ph-sun" aria-hidden="true"></i></button>
+                <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
+                    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>WhatsApp
+                </a>
+                <button type="button" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+                    <i class="ph ph-list" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
 
-        <div class="faq-cta-actions">
-            <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                <i class="ph-fill ph-whatsapp-logo"></i>
-                Escribir al WhatsApp
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="./#precios">Servicios y precios</a>
+            <a href="./#proceso">Cómo trabajo</a>
+            <a href="./#opiniones">Opiniones</a>
+            <a href="blog.html" aria-current="page">Notas</a>
+            <a href="faq.html">Preguntas frecuentes</a>
+            <a href="./#contacto">Contacto</a>
+            <a href="empresas.html">Empresas</a>
+            <a class="wa" href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer">
+                <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>WhatsApp
             </a>
         </div>
+    </div>
+</nav>
+
+<main>
+
+<section class="page-hero" id="blogHero">
+    <div class="wrap">
+        <h1 class="display">Notas<br><span class="green">del taller</span></h1>
+        <p class="lead">Tips sobre mantenimiento de PC, notebooks y celulares, escritos desde el taller en Olivos.</p>
+    </div>
+</section>
+
+<section class="band" id="blogList" style="padding-top: 0">
+    <div class="wrap">
+        <div class="blog-placeholder" id="blogPlaceholder">
+            <i class="ph-fill ph-notepad" aria-hidden="true"></i>
+            <h2 class="blog-placeholder-title">Muy pronto</h2>
+            <p>Estoy preparando las primeras notas: tips de mantenimiento, señales de que tu PC necesita un service y respuestas a las dudas más comunes. Mientras tanto, si tenés una consulta, escribime por WhatsApp.</p>
+            <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Escribir al WhatsApp</a>
+        </div>
+        <div class="notes-grid" id="blogPostsGrid"></div>
+    </div>
+</section>
+
+<section class="note-section" id="noteView" hidden></section>
+
+<section class="band alt page-cta" id="blogCta">
+    <div class="wrap page-cta-inner">
+        <h2 class="display h2">¿Tu compu tiene algo de esto?</h2>
+        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Escribime por WhatsApp</a>
     </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
-    <div class="footer-inner">
-        <div class="footer-copy">© 2026 Mario PC — Todos los derechos reservados</div>
-
-        <div class="footer-socials">
-            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
-                <i class="ph-fill ph-instagram-logo"></i>
-            </a>
-            <a href="https://www.facebook.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook">
-                <i class="ph-fill ph-facebook-logo"></i>
-            </a>
-            <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
-                <i class="ph-fill ph-whatsapp-logo"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
-                <i class="ph-fill ph-linkedin-logo"></i>
-            </a>
-            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Maps">
-                <i class="ph-fill ph-map-pin"></i>
-            </a>
+    <div class="wrap foot">
+        <div class="foot-text">
+            <span class="footer-made">Hecha por Mario, en Olivos.</span>
+            <span class="footer-copy">© 2026 Mario PC · Olivos, Buenos Aires</span>
         </div>
-
-        <div class="footer-made">¡Vibecodeado con amor por Mario, para vos! 👨‍💻</div>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></a>
+            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i></a>
+        </div>
     </div>
 </footer>
+
+<a href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Escribir por WhatsApp">
+    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+</a>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <i class="ph ph-arrow-up" aria-hidden="true"></i>
+</button>
 
 <script src="blog-posts.js"></script>
 <script src="blog-lib.js"></script>
 <script>
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    hamburger.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
-
-    function closeMobile() {
-        mobileMenu.classList.remove('open');
-    }
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-
-    // Nav border on scroll
-    const navEl = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        navEl.style.borderBottomColor = window.scrollY > 20
-            ? 'rgba(var(--green-rgb), 0.12)'
-            : 'rgba(var(--ink-rgb), 0.05)';
-    });
-
-    // ─── BLOG: listado y nota completa ───
+    // Blog: listado y nota completa
     // Las notas se cargan en blog-posts.js. Una nota se abre con blog.html?nota=identificador
     (function () {
         if (typeof MarioBlog === 'undefined') return;
@@ -1235,7 +540,7 @@
             MarioBlog.wireAvatars(noteView);
 
             MarioBlog.setHead({
-                title: note.title + ' — Mario PC | Olivos, Buenos Aires',
+                title: note.title + ' · Mario PC, Olivos',
                 description: MarioBlog.excerptOf(note),
                 url: MarioBlog.absUrl(note),
                 type: 'article',
@@ -1254,65 +559,14 @@
         if (placeholder) placeholder.style.display = 'none';
         if (slug) {
             grid.insertAdjacentHTML('beforebegin',
-                '<p class="note-missing">No encontré esa nota. Quizás el link cambió — acá están todas:</p>');
+                '<p class="note-missing">No encontré esa nota. Quizás el link cambió. Acá están todas:</p>');
         }
         grid.innerHTML = list.map(post => MarioBlog.cardHTML(post, 2)).join('');
         MarioBlog.injectJsonLd('ld-blog', MarioBlog.blogSchema(list));
     })();
 </script>
 
-<!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20hacer%20una%20consulta"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="whatsapp-float"
-   aria-label="Escribir por WhatsApp">
-    <i class="ph-fill ph-whatsapp-logo"></i>
-</a>
-
-<!-- VOLVER ARRIBA -->
-<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
-    <i class="ph ph-arrow-up"></i>
-</button>
-
-<script>
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    (function () {
-        const footerEl = document.querySelector('.footer-copy');
-        if (!footerEl) return;
-        const original = footerEl.textContent;
-        const phrases = [
-            original,
-            '© 2026 Mario PC — Hecho con mucho café ☕',
-            '© 2026 Mario PC — 100% libre de virus (el sitio, no siempre tu PC)',
-            '© 2026 Mario PC — Si llegaste hasta acá, sos mi cliente ideal',
-            '© 2026 Mario PC — Gracias por curiosear 🕵️'
-        ];
-        let idx = 0;
-        footerEl.addEventListener('click', () => {
-            idx = (idx + 1) % phrases.length;
-            footerEl.style.opacity = '0';
-            setTimeout(() => {
-                footerEl.textContent = phrases[idx];
-                footerEl.style.opacity = '1';
-            }, 150);
-        });
-        footerEl.style.transition = 'opacity 0.15s ease';
-    })();
-</script>
-
-<script>document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me"]');if(a&&window.gtag)gtag("event","whatsapp_click",{page_path:location.pathname,link_text:(a.textContent||"").trim().slice(0,40)});});</script>
-<script src="/theme.js?v=1" defer></script>
+<script src="/site.js?v=1"></script>
+<script src="/theme.js?v=2" defer></script>
 </body>
 </html>

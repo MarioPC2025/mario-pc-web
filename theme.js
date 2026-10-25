@@ -1,4 +1,4 @@
-// Mario PC — switch de modo claro/oscuro (compartido por todas las páginas)
+// Mario PC: switch de modo claro/oscuro (compartido por todas las páginas)
 (function () {
     var root = document.documentElement;
     var KEY = 'mpc-theme';
@@ -40,7 +40,7 @@
         });
     }
 
-    // ─── Audio ───
+    // Audio
     var ctx = null;
     var soundData = null;
     var soundBuffer = null;
@@ -120,7 +120,7 @@
         });
     }
 
-    // ─── Efectos visuales ───
+    // Efectos visuales
     var toastEl = null;
     var toastTimer = null;
 
@@ -160,7 +160,7 @@
         requestAnimationFrame(function () { root.classList.remove('theme-instant'); });
     }
 
-    // ─── Cambio de tema ───
+    // Cambio de tema
     function toggle() {
         var next = current() === 'light' ? 'dark' : 'light';
         write('localStorage', KEY, next);

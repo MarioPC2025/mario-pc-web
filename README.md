@@ -1,8 +1,20 @@
 # mario-pc-web
 
-Sitio de Mario PC (mariopc.com.ar) — HTML/CSS/JS estático, sin build tools, hosteado en GitHub Pages. Todo se edita directo desde la web de GitHub.
+Sitio de Mario PC (mariopc.com.ar): HTML/CSS/JS estático, sin build tools, hosteado en GitHub Pages. Todo se edita directo desde la web de GitHub.
 
 Estas instrucciones vivían antes como comentarios dentro de los archivos HTML. Se movieron acá para que no queden visibles en el código público del sitio.
+
+## Cómo está armado
+
+- `site.css` y `site.js`: lo que comparten todas las páginas (colores, letras, botones, menú, pie, WhatsApp flotante y volver arriba). Si cambiás el menú o el pie, cambialo en las 4 páginas que lo tienen: `index.html`, `faq.html`, `empresas.html` y `blog.html`.
+- `theme.css` y `theme.js`: el modo claro y su botón.
+- `horario.js`: el cartel de abierto/cerrado y los feriados (que se leen de `status.json`).
+- Lo propio de cada página está en su `<style>`.
+- `DESIGN.md`: el sistema visual y la voz, para que los cambios nuevos sigan el mismo estilo.
+
+## Cambiar un precio (`index.html`)
+
+Buscá el nombre del servicio (por ejemplo `Formateo e instalación`) y cambiá el número que está en `<b>$65.000</b>`. Diagnóstico y SSD son los dos destacados de arriba; el resto está en la lista de abajo.
 
 ## Agregar una publicación de Instagram (`index.html`)
 

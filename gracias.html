@@ -14,7 +14,7 @@
     </script>
 
     <meta name="robots" content="noindex, follow">
-    <title>¡Gracias por tu mensaje! — Mario PC</title>
+    <title>¡Gracias por tu mensaje! · Mario PC</title>
 
     <link rel="icon" href="/favicon.ico?v=2" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
@@ -22,200 +22,23 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
+    <link rel="stylesheet" href="/site.css?v=1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" integrity="sha384-pPVoXE8ft+zxKtxIDDI7SfTK6y95NHm4qa+hKEg/hs8VkjW5IP+9/dGOPCbDpUPl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css" integrity="sha384-UVFvhZP7fWAENUPOoq61rJg5ef6QZW0k5vpAn71041/QS4STvUcJQCGNhStZLGx9" crossorigin="anonymous">
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --bg: #07090a;
-            --green: #1ddd65;
-            --green-dim: rgba(var(--green-rgb), 0.1);
-            --green-border: rgba(var(--green-rgb), 0.22);
-            --white: #e8edea;
-            --muted: #788480;
-            --bg-rgb: 7, 9, 10;
-            --ink-rgb: 255, 255, 255;
-            --green-rgb: 29, 221, 101;
-            --white-rgb: 232, 237, 234;
-            --green-fill: #1ddd65;
-            --red: #ff9a9a;
-            --cert-head: #262b28;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-            --font-body: 'DM Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-weight: 300;
-            overflow-x: hidden;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(var(--green-rgb), 0.09) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .grain {
-            position: fixed;
-            inset: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='1'/></svg>");
-            opacity: 0.032;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .thanks-wrap {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .thanks-icon {
-            width: 84px;
-            height: 84px;
-            border-radius: 50%;
-            border: 1px solid var(--green-border);
-            background: var(--green-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--green);
-            font-size: 2.4rem;
-            margin-bottom: 2rem;
-        }
-
-        .thanks-eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .thanks-eyebrow-line {
-            width: 36px;
-            height: 1px;
-            background: var(--green-fill);
-        }
-
-        .thanks-eyebrow-text {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--green);
-        }
-
-        .thanks-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 7vw, 5rem);
-            line-height: 0.95;
-            letter-spacing: 0.01em;
-            margin-bottom: 1.25rem;
-        }
-
-        .thanks-title em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .thanks-desc {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.75;
-            max-width: 420px;
-            margin-bottom: 2.5rem;
-        }
-
-        .thanks-actions {
-            display: flex;
-            gap: 0.875rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--green-fill);
-            color: #030804;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 2px;
-            transition: all 0.2s;
-        }
-
-        .btn-primary:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border: 1px solid rgba(var(--ink-rgb), 0.12);
-            border-radius: 2px;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .thanks-footer {
-            position: absolute;
-            bottom: 2rem;
-            font-family: var(--font-mono);
-            font-size: 0.58rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
-
-        .thanks-footer {
-            cursor: pointer;
-            user-select: none;
-            transition: opacity 0.15s ease;
-        }
+        .solo { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; padding: 48px 20px 96px; }
+        .solo h1 em { font-style: normal; color: var(--green); }
+        .solo .lead { max-width: 440px; }
+        .solo .lead strong { color: var(--white); font-weight: 500; }
+        .solo-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+        .solo-foot { position: absolute; bottom: 28px; left: 20px; right: 20px; font-size: 0.85rem; color: var(--muted); cursor: pointer; user-select: none; transition: opacity 0.15s ease; }
+        .solo-icon { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--green-dim); box-shadow: 0 0 0 1px var(--green-border); font-size: 2.4rem; }
+        .solo h1 { font-size: clamp(2.8rem, 7vw, 5rem); }
     </style>
 </head>
 <body>
@@ -225,48 +48,40 @@
 <button type="button" class="theme-toggle theme-toggle--float" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><i class="ph ph-sun" aria-hidden="true"></i></button>
 
 <main>
-<div class="thanks-wrap">
-    <div class="thanks-icon">
-        <i class="ph-fill ph-check"></i>
-    </div>
+<div class="solo">
+    <div class="solo-icon"><i class="ph-fill ph-check" aria-hidden="true"></i></div>
 
-    <div class="thanks-eyebrow">
-        <div class="thanks-eyebrow-line"></div>
-        <span class="thanks-eyebrow-text">Mensaje enviado</span>
-        <div class="thanks-eyebrow-line"></div>
-    </div>
-
-    <h1 class="thanks-title">¡Ya casi<br><em>terminamos!</em></h1>
-    <p class="thanks-desc">
-        Se abrió WhatsApp en una pestaña nueva con tu mensaje ya redactado — solo falta que le des <strong>enviar</strong> ahí. Si no se abrió sola, escribime directo por WhatsApp.
+    <h1 class="display">¡Ya casi<br><em>terminamos!</em></h1>
+    <p class="lead">
+        Se abrió WhatsApp en una pestaña nueva con tu mensaje listo. Solo falta que le des <strong>enviar</strong> ahí. Si no se abrió, escribime directo por WhatsApp.
     </p>
 
-    <div class="thanks-actions">
-        <a href="/" class="btn-primary">
-            <i class="ph ph-house"></i>
+    <div class="solo-actions">
+        <a href="/" class="btn btn-primary">
+            <i class="ph ph-house" aria-hidden="true"></i>
             Volver al inicio
         </a>
-        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-            <i class="ph-fill ph-whatsapp-logo"></i>
+        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
             Escribir por WhatsApp
         </a>
     </div>
 
-    <div class="thanks-footer">© 2026 Mario PC — Todos los derechos reservados</div>
+    <div class="solo-foot">© 2026 Mario PC · Olivos, Buenos Aires</div>
 </div>
 </main>
 
 <script>
     (function () {
-        const footerEl = document.querySelector('.thanks-footer');
+        const footerEl = document.querySelector('.solo-foot');
         if (!footerEl) return;
         const original = footerEl.textContent;
         const phrases = [
             original,
-            '© 2026 Mario PC — Hecho con mucho café ☕',
-            '© 2026 Mario PC — Gracias de nuevo, en serio',
-            '© 2026 Mario PC — Sos mi cliente favorito (no le digas a los demás)',
-            '© 2026 Mario PC — Gracias por curiosear 🕵️'
+            '© 2026 Mario PC · Hecho con mucho café ☕',
+            '© 2026 Mario PC · Gracias de nuevo, en serio',
+            '© 2026 Mario PC · Sos mi cliente favorito (no le digas a los demás)',
+            '© 2026 Mario PC · Gracias por curiosear 🕵️'
         ];
         let idx = 0;
         footerEl.addEventListener('click', () => {
@@ -280,6 +95,6 @@
     })();
 </script>
 
-<script src="/theme.js?v=1" defer></script>
+<script src="/theme.js?v=2" defer></script>
 </body>
 </html>

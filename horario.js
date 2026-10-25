@@ -1,4 +1,4 @@
-/* ─── HORARIO DINÁMICO (mariopc.com.ar) ───
+/* Horario dinámico (mariopc.com.ar)
    Lo usan index, empresas, faq y blog.
    - index: cartel abierto/cerrado (hero y sección ubicación) y resaltado de "hoy" en la tabla.
    - Todas: cuando el local está cerrado, el botón flotante de WhatsApp muestra unas "Z" (durmiendo),
@@ -36,7 +36,7 @@
         };
     }
 
-    // ── Helpers de fechas (formato AAAA-MM-DD) ──
+    // Helpers de fechas (formato aaaa-mm-dd)
     function dayOfWeek(dateStr) {
         return new Date(dateStr + 'T12:00:00Z').getUTCDay();
     }
@@ -163,7 +163,7 @@
         return { open: false, label: next ? `Cerrado · ${next}` : 'Cerrado', today: day, when: next };
     }
 
-    // ── Botón flotante de WhatsApp cuando el local está cerrado ──
+    // Botón flotante de WhatsApp cuando el local está cerrado
     // - Unas "Z" animadas sobre el botón (está "durmiendo").
     // - En compu: el aviso aparece unos segundos al entrar y después al pasar el mouse.
     // - En celular: al tocar el botón aparece el aviso con "Escribir igual" (no se pierde el contacto).
@@ -212,7 +212,7 @@
                 color: var(--white, #e8edea); opacity: 0; visibility: hidden;
                 transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), translate 200ms cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 200ms; }
             .wa-closed-note strong { display: block; margin-bottom: 2px; font-weight: 400; font-family: var(--font-mono, monospace);
-                font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red, #ff9a9a); }
+                font-size: 0.75rem; color: var(--red, #ff9a9a); }
             .whatsapp-float.is-closed.wa-peek .wa-closed-note { opacity: 1; visibility: visible; translate: 0 -50%; transition-delay: 0s; }
             @media (hover: hover) and (pointer: fine) {
                 .whatsapp-float.is-closed:hover .wa-closed-note,
@@ -236,7 +236,7 @@
                 border-radius: 3px; background: transparent; color: var(--muted, #788480); cursor: pointer; }
             .wa-sheet-go { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 4px;
                 border-radius: 3px; background: var(--green-fill, #1ddd65); color: #030804; text-decoration: none;
-                font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+                font-family: var(--font-body, system-ui, sans-serif); font-size: 0.98rem; font-weight: 600; }
             .wa-sheet-go span { width: 20px; height: 20px; }
             .wa-sheet-x:focus-visible, .wa-sheet-go:focus-visible { outline: 2px solid var(--green, #1ddd65); outline-offset: 2px; }
             @media (prefers-reduced-motion: reduce) {
@@ -311,11 +311,20 @@
         if (sheetText) sheetText.textContent = when + 'Escribime igual y te respondo apenas abra.';
         if (isOpen && sheet) sheet.hidden = true;
 
-        // En compu, la primera vez que se ve cerrado el aviso se asoma unos segundos
+        // En compu, la primera vez que se ve cerrado el aviso se asoma unos segundos,
+        // recién después de bajar del inicio para no tapar los botones de arriba
         if (!isOpen && !peeked && canHover.matches) {
             peeked = true;
-            setTimeout(() => floatBtn.classList.add('wa-peek'), 1200);
-            setTimeout(() => floatBtn.classList.remove('wa-peek'), 7200);
+            const peek = () => {
+                setTimeout(() => floatBtn.classList.add('wa-peek'), 400);
+                setTimeout(() => floatBtn.classList.remove('wa-peek'), 6400);
+            };
+            if (window.scrollY > 700) peek();
+            else window.addEventListener('scroll', function onFirstScroll() {
+                if (window.scrollY <= 700) return;
+                window.removeEventListener('scroll', onFirstScroll);
+                peek();
+            }, { passive: true });
         }
     }
 

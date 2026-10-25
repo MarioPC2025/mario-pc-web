@@ -13,9 +13,9 @@
         gtag('config', 'G-VBVPJ6H5H5');
     </script>
 
-    <meta name="description" content="Mario PC — Reparación, mantenimiento y armado de PCs y notebooks en Olivos, Buenos Aires. Formateo, instalación de Windows y upgrade a SSD. Diagnóstico sin cargo. Zona: Olivos, La Lucila, Vicente López.">
+    <meta name="description" content="Mario PC: reparación, mantenimiento y armado de PCs y notebooks en Olivos, Buenos Aires. Formateo, instalación de Windows y upgrade a SSD. Diagnóstico sin cargo. Zona: Olivos, La Lucila, Vicente López.">
     <link rel="canonical" href="https://www.mariopc.com.ar/">
-    <title>Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López</title>
+    <title>Mario PC · Servicio técnico en Olivos, La Lucila y Vicente López</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico?v=2" sizes="any">
@@ -26,13 +26,14 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
+    <link rel="stylesheet" href="/site.css?v=1">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.mariopc.com.ar/">
     <meta property="og:site_name" content="Mario PC">
     <meta property="og:locale" content="es_AR">
-    <meta property="og:title" content="Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López">
+    <meta property="og:title" content="Mario PC · Servicio técnico en Olivos, La Lucila y Vicente López">
     <meta property="og:description" content="Reparación, mantenimiento y armado de PCs y notebooks en Olivos, Buenos Aires. Formateo, instalación de Windows y upgrade a SSD. Diagnóstico sin cargo.">
     <meta property="og:image" content="https://www.mariopc.com.ar/og-image.png?v=3">
     <meta property="og:image:width" content="1200">
@@ -40,7 +41,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mario PC — Servicio Técnico | Olivos, La Lucila, Vicente López">
+    <meta name="twitter:title" content="Mario PC · Servicio técnico en Olivos, La Lucila y Vicente López">
     <meta name="twitter:description" content="Reparación, mantenimiento y armado de PCs y notebooks en Olivos, Buenos Aires. Formateo, instalación de Windows y upgrade a SSD. Diagnóstico sin cargo.">
     <meta name="twitter:image" content="https://www.mariopc.com.ar/og-image.png?v=3">
 
@@ -49,180 +50,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --bg: #07090a;
-            --bg-alt: #0c0f10;
-            --surface: #101415;
-            --green: #1ddd65;
-            --green-dim: rgba(var(--green-rgb), 0.1);
-            --green-border: rgba(var(--green-rgb), 0.22);
-            --white: #e8edea;
-            --muted: #788480;
-            --bg-rgb: 7, 9, 10;
-            --ink-rgb: 255, 255, 255;
-            --green-rgb: 29, 221, 101;
-            --white-rgb: 232, 237, 234;
-            --green-fill: #1ddd65;
-            --ink-on-green: #030804;
-            --red: #ff9a9a;
-            --cert-head: #262b28;
-            --line: rgba(var(--ink-rgb), 0.07);
-            --ring: 0 0 0 1px rgba(var(--ink-rgb), 0.08);
-            --ring-hover: 0 0 0 1px rgba(var(--ink-rgb), 0.15);
-            --ease: cubic-bezier(0.2, 0, 0, 1);
-            --font-display: 'Bebas Neue', 'Oswald', Impact, sans-serif;
-            --font-mono: 'Space Mono', ui-monospace, Menlo, monospace;
-            --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-        }
-
-        html[data-theme="light"] { --surface: #ffffff; }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-weight: 300;
-            font-size: 16px;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 { text-wrap: balance; font-weight: 400; }
-        p, li, blockquote, figcaption { text-wrap: pretty; }
-        a { color: inherit; }
-        img { max-width: 100%; display: block; }
-        svg.i { width: 1.25em; height: 1.25em; flex: none; }
-        :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-        [hidden] { display: none !important; }
-        section[id], [id="servicios"], [id="ubicacion"] { scroll-margin-top: 76px; }
-
-        /* Dot grid */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(var(--green-rgb), 0.09) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Grain overlay */
-        .grain {
-            position: fixed;
-            inset: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='1'/></svg>");
-            opacity: 0.032;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .wrap {
-            position: relative;
-            z-index: 1;
-            max-width: 1180px;
-            margin: 0 auto;
-            padding-left: max(20px, env(safe-area-inset-left, 0px));
-            padding-right: max(20px, env(safe-area-inset-right, 0px));
-        }
-
-        section { position: relative; z-index: 1; }
-        .band { padding-block: 96px; }
-        .band.alt { background: var(--bg-alt); }
-
-        /* ─── TIPOGRAFÍA ─── */
-        .display { font-family: var(--font-display); line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; }
-        .h2 { font-size: clamp(2.6rem, 5vw, 3.8rem); }
-        .green { color: var(--green); }
-        .label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--green);
-        }
-        .lead { color: var(--muted); font-size: 1.05rem; max-width: 52ch; }
-        .section-head { display: grid; gap: 14px; margin-bottom: 44px; max-width: 640px; }
-
-        /* ─── BOTONES ─── */
-        .btn, .btn-primary, .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            min-height: 48px;
-            padding: 0 22px 0 20px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 3px;
-            border: 0;
-            cursor: pointer;
-            transition-property: background-color, color, box-shadow, scale, filter;
-            transition-duration: 150ms;
-            transition-timing-function: ease-out;
-        }
-        .btn:active, .btn-primary:active, .btn-secondary:active { scale: 0.96; }
-        .btn-primary { background: var(--green-fill); color: var(--ink-on-green); }
-        .btn-primary:hover { filter: brightness(1.08); }
-        .btn-secondary { background: transparent; color: var(--white); box-shadow: var(--ring); }
-        .btn-secondary:hover { box-shadow: 0 0 0 1px var(--green-border); color: var(--green); background: var(--green-dim); }
-
-        /* ─── NAV ─── */
-        nav.top {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            background: rgba(var(--bg-rgb), 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--line);
-            transition: border-color 150ms ease-out;
-        }
-        nav.top.scrolled { border-bottom-color: rgba(var(--green-rgb), 0.14); }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px; }
-        .nav-logo img { width: 36px; height: 36px; object-fit: contain; }
-        .nav-logo-text { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.04em; color: var(--white); }
-        .nav-logo-text em { font-style: normal; color: var(--green); }
-        .nav-links { display: flex; gap: 2px; list-style: none; }
-        .nav-links a {
-            display: inline-flex; align-items: center; min-height: 44px; padding: 0 11px;
-            font-size: 0.9rem; font-weight: 400; color: var(--muted); text-decoration: none;
-            transition: color 150ms ease-out;
-        }
-        .nav-links a:hover { color: var(--white); }
-        .nav-actions { display: flex; align-items: center; gap: 10px; }
-        .theme-toggle { width: 44px; height: 44px; border-radius: 3px; transition-property: background-color, border-color; transition-duration: 150ms; }
-        .theme-toggle svg { width: 20px; height: 20px; }
-        .nav-cta { min-height: 44px; padding: 0 16px; font-size: 0.75rem; }
-        .hamburger {
-            display: none; width: 44px; height: 44px; align-items: center; justify-content: center;
-            background: none; border: 0; color: var(--white); cursor: pointer; border-radius: 3px;
-        }
-        .hamburger svg { width: 26px; height: 26px; }
-        .mobile-menu { display: none; border-top: 1px solid var(--line); padding-block: 8px 16px; }
-        .mobile-menu a {
-            display: flex; align-items: center; gap: 10px; min-height: 48px; font-size: 1.05rem;
-            text-decoration: none; border-bottom: 1px solid var(--line); color: var(--white);
-        }
-        .mobile-menu a.wa { color: var(--green); border-bottom: 0; }
-        .mobile-menu.open { display: block; }
-
-        /* ─── HERO ─── */
+        /* Hero */
         .hero { padding-block: 72px 88px; }
         .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 56px; align-items: center; }
         .hero-copy { display: grid; gap: 26px; min-width: 0; }
@@ -258,7 +86,7 @@
             font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
         }
         .quick-head .label { display: flex; align-items: center; gap: 8px; }
-        .status-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green-fill); box-shadow: 0 0 6px rgba(var(--green-rgb), 0.6); cursor: pointer; flex: none; }
+        .status-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green-fill); cursor: pointer; flex: none; }
         .status-dot::after { content: ''; position: absolute; inset: -14px; }
         .quick-body { padding: 22px 18px 20px; display: grid; gap: 18px; }
         .quick-body h2 { font-family: var(--font-display); font-size: 2rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
@@ -296,12 +124,11 @@
         .preview {
             font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; color: rgba(var(--white-rgb), 0.8);
             background: var(--bg); border-radius: 3px; padding: 12px 14px; min-height: 64px;
-            border-left: 2px solid var(--green);
         }
-        .preview small { display: block; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+        .preview small { display: block; color: var(--muted); font-size: 0.75rem; margin-bottom: 4px; }
         .quick .btn { width: 100%; }
 
-        /* ─── CINTA ONDULADA (texto que fluye por un path) ─── */
+        /* Cinta ondulada (texto que fluye por un path) */
         .marquee-ribbon {
             position: relative;
             z-index: 1;
@@ -310,102 +137,49 @@
             margin: -3px 0;
         }
         .marquee-ribbon svg { display: block; width: 100%; height: auto; }
-        .marquee-ribbon-glow { fill: none; stroke: var(--green-fill); stroke-width: 90; opacity: 0.45; filter: blur(14px); }
-        .marquee-ribbon-path { fill: none; stroke: var(--green-fill); stroke-width: 60; }
+                .marquee-ribbon-path { fill: none; stroke: var(--green-fill); stroke-width: 60; }
         .marquee-ribbon-text { font-family: var(--font-display); font-size: 32px; letter-spacing: 0.04em; fill: #030804; }
 
-        /* ─── SERVICIOS Y PRECIOS ─── */
-        .price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-        .card {
+        /* Servicios y precios: dos destacados arriba y el resto en lista */
+        .offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .offer {
             position: relative;
-            overflow: hidden;
-            display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px;
-            padding: 24px; border-radius: 6px; background: var(--surface); box-shadow: var(--ring);
-            transition: box-shadow 150ms ease-out;
+            display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: start; gap: 6px 18px;
+            padding: 28px; border-radius: 6px; background: var(--surface); box-shadow: var(--ring);
         }
-        .card:hover { box-shadow: var(--ring-hover); }
-        .card .ico {
+        .offer.featured { box-shadow: 0 0 0 1px var(--green-border); }
+        .offer > div { display: grid; gap: 8px; min-width: 0; }
+        .offer h3 { font-family: var(--font-display); font-size: 2.1rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; padding-right: 108px; }
+        .offer p { color: var(--muted); font-size: 0.98rem; line-height: 1.5; max-width: 46ch; }
+        .ico {
             width: 44px; height: 44px; border-radius: 3px; display: grid; place-items: center;
-            color: var(--green); background: var(--green-dim);
+            color: var(--green); background: var(--green-dim); flex: none;
         }
-        .card .ico svg { width: 22px; height: 22px; }
-        .card h3 { font-family: var(--font-display); font-size: 1.65rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
-        .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
-        .price { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
-        .price small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+        .ico svg { width: 22px; height: 22px; }
+        .price { display: flex; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .price small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
         .price b { font-family: var(--font-display); font-weight: 400; font-size: 2rem; line-height: 1; color: var(--green); }
+        .offer .price { margin-top: 6px; }
+        .offer .price b { font-size: 2.6rem; }
         .tag {
-            position: absolute; top: 24px; right: 24px; z-index: 3;
-            font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+            position: absolute; top: 28px; right: 28px;
+            font-family: var(--font-mono); font-size: 0.75rem;
             color: var(--ink-on-green); background: var(--green-fill); padding: 4px 8px; border-radius: 3px;
         }
-        .card.featured { box-shadow: 0 0 0 1px var(--green-border); }
-        .terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+        .price-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; margin-top: 28px; }
+        .price-row { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+        .price-row h3 { font-size: 1.05rem; font-weight: 500; line-height: 1.3; }
+        .price-row p { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+        .terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
         .term { display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px; border-radius: 6px; box-shadow: var(--ring); min-width: 0; }
         .term > svg { color: var(--green); width: 24px; height: 24px; margin-top: 2px; flex: none; }
         .term b { display: block; font-weight: 500; }
         .term span { color: var(--muted); font-size: 0.92rem; }
         .term img { height: 34px; width: auto; margin-top: 6px; opacity: 0.9; }
 
-        /* Efecto hover de las tarjetas: brillo + mosaico + líneas (basado en un diseño de Aaron Iker) */
-        .price-grid .card > :not(.pc-shine):not(.pc-background):not(.tag) { position: relative; z-index: 2; }
-        .pc-shine {
-            border-radius: inherit; position: absolute; inset: 0; z-index: 1; overflow: hidden;
-            opacity: 0; transition: opacity 0.5s; pointer-events: none;
-        }
-        .pc-shine::before {
-            content: ''; width: 150%; padding-bottom: 150%; border-radius: 50%;
-            position: absolute; left: 50%; bottom: 55%; filter: blur(35px); opacity: 0.16; transform: translateX(-50%);
-            background-image: conic-gradient(from 205deg at 50% 50%, rgba(var(--green-rgb), 0) 0deg, #1ddd65 25deg, rgba(90, 235, 150, 0.2) 295deg, rgba(var(--green-rgb), 0) 360deg);
-        }
-        .pc-background {
-            border-radius: inherit; position: absolute; inset: 0; overflow: hidden; pointer-events: none;
-            -webkit-mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
-            mask-image: radial-gradient(circle at 60% 5%, black 0%, black 15%, transparent 60%);
-        }
-        .pc-tiles { opacity: 0; transition: opacity 0.25s; }
-        .pc-tile { position: absolute; background-color: rgba(var(--green-rgb), 0.09); animation-duration: 8s; animation-iteration-count: infinite; opacity: 0; }
-        .pc-tile-4, .pc-tile-6, .pc-tile-10 { animation-delay: -2s; }
-        .pc-tile-3, .pc-tile-5, .pc-tile-8 { animation-delay: -4s; }
-        .pc-tile-2, .pc-tile-9 { animation-delay: -6s; }
-        .pc-tile-1  { top: 0;     left: 0;     height: 10%;   width: 22.5%; }
-        .pc-tile-2  { top: 0;     left: 22.5%; height: 10%;   width: 27.5%; }
-        .pc-tile-3  { top: 0;     left: 50%;   height: 10%;   width: 27.5%; }
-        .pc-tile-4  { top: 0;     left: 77.5%; height: 10%;   width: 22.5%; }
-        .pc-tile-5  { top: 10%;   left: 0;     height: 22.5%; width: 22.5%; }
-        .pc-tile-6  { top: 10%;   left: 22.5%; height: 22.5%; width: 27.5%; }
-        .pc-tile-7  { top: 10%;   left: 50%;   height: 22.5%; width: 27.5%; }
-        .pc-tile-8  { top: 10%;   left: 77.5%; height: 22.5%; width: 22.5%; }
-        .pc-tile-9  { top: 32.5%; left: 50%;   height: 22.5%; width: 27.5%; }
-        .pc-tile-10 { top: 32.5%; left: 77.5%; height: 22.5%; width: 22.5%; }
-        @keyframes pc-tile-flicker { 0%, 12.5%, 100% { opacity: 1; } 25%, 82.5% { opacity: 0; } }
-        .pc-line { position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s; }
-        .pc-line::before, .pc-line::after { content: ''; position: absolute; background-color: rgba(var(--ink-rgb), 0.09); transition: transform 0.35s; }
-        .pc-line::before { left: 0; right: 0; height: 1px; transform-origin: 0 50%; transform: scaleX(0); }
-        .pc-line::after { top: 0; bottom: 0; width: 1px; transform-origin: 50% 0; transform: scaleY(0); }
-        .pc-line-1::before { top: 10%; }
-        .pc-line-1::after { left: 22.5%; }
-        .pc-line-1::before, .pc-line-1::after { transition-delay: 0.3s; }
-        .pc-line-2::before { top: 32.5%; }
-        .pc-line-2::after { left: 50%; }
-        .pc-line-2::before, .pc-line-2::after { transition-delay: 0.15s; }
-        .pc-line-3::before { top: 55%; }
-        .pc-line-3::after { right: 22.5%; }
-        .price-grid .card:hover .pc-shine { opacity: 1; transition-duration: 0.5s; transition-delay: 0s; }
-        .price-grid .card:hover .pc-tiles { opacity: 1; transition-delay: 0.25s; }
-        .price-grid .card:hover .pc-tile { animation-name: pc-tile-flicker; }
-        .price-grid .card:hover .pc-line { opacity: 1; transition-duration: 0.15s; }
-        .price-grid .card:hover .pc-line::before { transform: scaleX(1); }
-        .price-grid .card:hover .pc-line::after { transform: scaleY(1); }
-        .price-grid .card:hover .pc-line-1::before, .price-grid .card:hover .pc-line-1::after { transition-delay: 0s; }
-        .price-grid .card:hover .pc-line-2::before, .price-grid .card:hover .pc-line-2::after { transition-delay: 0.15s; }
-        .price-grid .card:hover .pc-line-3::before, .price-grid .card:hover .pc-line-3::after { transition-delay: 0.3s; }
-
-        /* Tarjeta rota */
-        .card.broken { box-shadow: none; outline: 1px dashed rgba(255, 110, 110, 0.4); outline-offset: -1px; }
-        .card.broken .ico { color: var(--red); background: rgba(255, 90, 90, 0.08); }
-        .card.broken h3 { font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 0; text-transform: none; padding-top: 4px; animation: egg-glitch 5s steps(1, end) infinite; }
-        .card.broken .price { position: static; }
+        /* Fila rota (easter egg: abre la pantalla azul) */
+        .price-row.broken .ico { color: var(--red); background: rgba(255, 90, 90, 0.08); }
+        .price-row.broken h3 { font-family: var(--font-mono); font-size: 0.98rem; animation: egg-glitch 5s steps(1, end) infinite; }
         @keyframes egg-glitch {
             0%, 93%, 100% { transform: none; text-shadow: none; }
             94% { transform: translateX(-2px); text-shadow: 2px 0 rgba(255,100,100,0.7), -2px 0 rgba(var(--green-rgb), 0.7); }
@@ -413,21 +187,17 @@
             98% { transform: translateX(-1px); text-shadow: none; }
         }
         .broken-btn {
-            font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            font-family: var(--font-body); font-size: 0.92rem; font-weight: 600;
             color: var(--red); background: rgba(255, 90, 90, 0.08); border: 1px solid rgba(255, 110, 110, 0.35); border-radius: 3px;
-            min-height: 40px; padding: 0 14px; cursor: pointer;
+            min-height: 44px; padding: 0 14px; cursor: pointer; white-space: nowrap;
             transition-property: background-color, border-color, color; transition-duration: 150ms; transition-timing-function: ease-out;
         }
-        .broken-btn::after { content: ''; position: absolute; inset: 0; z-index: 3; }
-        .broken-btn:focus-visible { outline: none; }
-        .broken-btn:focus-visible::after { outline: 2px solid var(--green); outline-offset: -3px; border-radius: 6px; }
-        .card.broken:hover .broken-btn { background: rgba(255, 90, 90, 0.16); }
-        .card.broken.is-fixed { outline: 1px solid var(--green-border); }
-        .card.broken.is-fixed .ico { color: var(--green); background: var(--green-dim); }
-        .card.broken.is-fixed h3 { animation: none; }
-        .card.broken.is-fixed .broken-btn { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
+        .broken-btn:hover { background: rgba(255, 90, 90, 0.16); }
+        .price-row.broken.is-fixed .ico { color: var(--green); background: var(--green-dim); }
+        .price-row.broken.is-fixed h3 { animation: none; }
+        .price-row.broken.is-fixed .broken-btn { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
 
-        /* ─── CÓMO TRABAJO ─── */
+        /* Cómo trabajo */
         .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); counter-reset: s; list-style: none; }
         .steps li { position: relative; padding: 0 28px 0 0; display: grid; gap: 10px; align-content: start; }
         .steps li::before {
@@ -441,7 +211,7 @@
         .steps h3 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 8px; }
         .steps p { color: var(--muted); font-size: 0.95rem; }
 
-        /* ─── CARRUSELES ─── */
+        /* Carruseles */
         .rail-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
         .rail-head .section-head { margin: 0; }
         .rail-tools { display: flex; align-items: center; gap: 8px; }
@@ -498,13 +268,13 @@
         .ig-block h3 { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; }
         .ig-block .rail-head { margin-bottom: 20px; align-items: center; }
         .ig-title { display: grid; gap: 6px; }
-        .ig-title a { color: var(--muted); font-size: 0.92rem; text-underline-offset: 3px; }
+        .ig-title a { display: inline-flex; align-items: center; min-height: 44px; justify-self: start; color: var(--muted); font-size: 0.92rem; text-underline-offset: 3px; }
         .ig-title a:hover { color: var(--green); }
         .rail.ig a { display: block; border-radius: 4px; overflow: hidden; }
         .rail.ig img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; outline: 1px solid rgba(var(--ink-rgb), 0.1); outline-offset: -1px; transition: opacity 150ms ease-out; }
         .rail.ig a:hover img { opacity: 0.82; }
 
-        /* ─── CONTACTO ─── */
+        /* Contacto */
         .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
         .contact-left { display: grid; gap: 26px; }
         .contact h2 { font-size: clamp(3.2rem, 7vw, 5.4rem); }
@@ -520,16 +290,6 @@
         .contact-form-wrap h3 { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; }
         .contact-form-wrap > p { color: var(--muted); font-size: 0.92rem; margin-top: -8px; }
         .contact-form { display: grid; gap: 18px; }
-        .form-field { display: grid; gap: 8px; }
-        .form-field label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-        .form-field input, .form-field select, .form-field textarea {
-            width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 3px;
-            background: var(--bg); color: var(--white); border: 1px solid rgba(var(--ink-rgb), 0.14);
-            font-family: var(--font-body); font-size: 1rem;
-            transition: border-color 150ms ease-out;
-        }
-        .form-field textarea { min-height: 110px; resize: vertical; }
-        .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--green); }
 
         /* mapa */
         .map-container {
@@ -545,15 +305,16 @@
         html[data-theme="light"] .map-container iframe { filter: saturate(0.6); }
         .map-shield { position: absolute; inset: 0; z-index: 3; cursor: default; }
         .map-pin { position: absolute; top: 48%; left: 46%; transform: translate(-50%, -50%); z-index: 4; display: flex; align-items: center; justify-content: center; }
-        .map-pin-ring-outer { position: absolute; width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--green); opacity: 0; animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
-        .map-pin-ring-inner { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(var(--green-rgb), 0.5); opacity: 0; animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) 0.4s infinite; }
+        .map-pin-ring-outer { position: absolute; width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--green); opacity: 0; animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) 3 both; animation-play-state: paused; }
+        .map-pin-ring-inner { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(var(--green-rgb), 0.5); opacity: 0; animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) 0.4s 3 both; animation-play-state: paused; }
         .map-pin-core {
             width: 30px; height: 30px; border-radius: 50%;
             background: rgba(var(--bg-rgb), 0.85); border: 2px solid var(--green);
             display: grid; place-items: center; color: var(--green);
-            box-shadow: 0 0 16px rgba(var(--green-rgb), 0.4); position: relative; z-index: 1;
+            position: relative; z-index: 1;
         }
         .map-pin-core svg { width: 15px; height: 15px; }
+        .map-pin.is-live .map-pin-ring-outer, .map-pin.is-live .map-pin-ring-inner { animation-play-state: running; }
         @keyframes ping { 0% { transform: scale(0.5); opacity: 0.8; } 80% { transform: scale(1.8); opacity: 0; } 100% { transform: scale(1.8); opacity: 0; } }
         .map-card {
             position: absolute; left: 20px; bottom: 20px; right: 20px; max-width: 440px; z-index: 5;
@@ -564,168 +325,6 @@
         .map-card b { display: block; font-weight: 500; }
         .map-card span { color: var(--muted); font-size: 0.85rem; }
         .map-card .btn { min-height: 44px; font-size: 0.72rem; padding: 0 16px; }
-
-        /* ─── FOOTER ─── */
-        footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padding-block: 28px 36px; }
-        .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; font-size: 0.85rem; color: var(--muted); }
-        .foot-text { display: grid; gap: 2px; }
-        .footer-made { color: var(--white); }
-        .footer-copy { cursor: pointer; user-select: none; transition: opacity 0.15s ease; }
-        .footer-socials { display: flex; gap: 4px; }
-        .footer-social { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 3px; color: var(--muted); transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: ease-out; }
-        .footer-social:hover { color: var(--green); background: var(--green-dim); }
-        .footer-social svg { width: 22px; height: 22px; }
-
-        /* ─── WHATSAPP FLOTANTE (los avisos de "cerrado" los agrega horario.js) ─── */
-        .whatsapp-float {
-            position: fixed;
-            right: calc(20px + env(safe-area-inset-right, 0px));
-            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-            z-index: 500;
-            width: 58px; height: 58px; border-radius: 50%;
-            display: grid; place-items: center;
-            background: var(--green-fill); color: var(--ink-on-green);
-            box-shadow: 0 10px 30px -6px rgba(29, 221, 101, 0.5);
-            transition: scale 150ms ease-out;
-        }
-        .whatsapp-float:active { scale: 0.96; }
-        .whatsapp-float > svg { width: 30px; height: 30px; }
-
-        /* ─── VOLVER ARRIBA ─── */
-        .back-to-top {
-            position: fixed;
-            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-            left: calc(20px + env(safe-area-inset-left, 0px));
-            z-index: 500;
-            width: 46px; height: 46px; border-radius: 50%;
-            background: rgba(var(--bg-rgb), 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--green-border);
-            color: var(--green);
-            display: grid; place-items: center;
-            cursor: pointer;
-            opacity: 0; visibility: hidden; transform: translateY(10px);
-            transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background-color 0.2s;
-        }
-        .back-to-top svg { width: 20px; height: 20px; }
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background: var(--green-dim); border-color: var(--green); }
-
-        .rickroll-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            background: rgba(3, 8, 4, 0.96);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .rickroll-overlay.active {
-            display: flex;
-            animation: rickroll-fade 0.3s ease;
-        }
-
-        @keyframes rickroll-fade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .rickroll-caption {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 4vw, 2.6rem);
-            letter-spacing: 0.02em;
-            color: var(--white);
-        }
-
-        .rickroll-caption em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .rickroll-overlay iframe {
-            width: min(90vw, 720px);
-            height: min(50.6vw, 405px);
-            border: 2px solid var(--green-border);
-            border-radius: 4px;
-        }
-
-        .rickroll-sub {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .rickroll-close {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 12px 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 2px;
-            background: none;
-            cursor: pointer;
-            transition: color 0.2s, border-color 0.2s, background-color 0.2s;
-        }
-
-        .rickroll-close:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .egg-toast {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%) translateY(12px);
-            z-index: 600;
-            background: rgba(var(--bg-rgb), 0.95);
-            border: 1px solid var(--green-border);
-            border-radius: 3px;
-            padding: 12px 20px;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.03em;
-            color: var(--green);
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .egg-toast.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        @media (max-width: 600px) {
-            .egg-toast {
-                white-space: normal;
-                max-width: 85vw;
-                text-align: center;
-                bottom: 80px;
-            }
-        }
-
-        .footer-copy {
-            cursor: pointer;
-            user-select: none;
-        }
-
 
         /* Pantalla azul de mentira */
         .egg-bsod {
@@ -1038,15 +637,10 @@
             .egg-modal, .egg-bsod { transition: none !important; }
         }
 
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 1120px) {
-            .nav-links, .nav-cta { display: none; }
-            .hamburger { display: inline-flex; }
-        }
-
+        /* Responsive */
         @media (max-width: 920px) {
             .hero-grid, .contact { grid-template-columns: 1fr; gap: 44px; }
-            .price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .price-list { grid-template-columns: 1fr; }
             .terms { grid-template-columns: 1fr; }
             .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
             .steps li:nth-child(2)::after { display: none; }
@@ -1057,7 +651,13 @@
         @media (max-width: 620px) {
             .band { padding-block: 72px; }
             .hero { padding-block: 40px 64px; }
-            .price-grid { grid-template-columns: 1fr; }
+            .offers { grid-template-columns: 1fr; }
+            .offer { padding: 22px; grid-template-columns: 1fr; }
+            .offer h3 { padding-right: 0; }
+            .offer.featured h3 { padding-right: 112px; }
+            .tag { top: 22px; right: 22px; }
+            .price-row { grid-template-columns: 44px minmax(0, 1fr); }
+            .price-row > .price, .price-row > .broken-btn { grid-column: 2; justify-self: start; }
             .facts { grid-template-columns: 1fr; gap: 14px; }
             .fact + .fact { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--line); }
             .fact { grid-template-columns: 5.2rem 1fr; align-items: center; }
@@ -1073,8 +673,6 @@
             .rail.ig > * { flex-basis: 64%; }
             .map-container { height: 380px; }
             .map-pin { top: 32%; }
-            .back-to-top { width: 44px; height: 44px; }
-            .whatsapp-float { width: 54px; height: 54px; }
         }
 
         @media (hover: none) {
@@ -1082,10 +680,9 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
             .btn, .btn-primary, .btn-secondary, .chip, .rail-btn, .whatsapp-float { transition-duration: 0.01ms; }
-            .map-pin-ring-outer, .map-pin-ring-inner, .pc-tile { animation: none; }
-            .card.broken h3 { animation: none; }
+            .map-pin-ring-outer, .map-pin-ring-inner { animation: none; }
+            .price-row.broken h3 { animation: none; }
         }
     </style>
 
@@ -1137,7 +734,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Actualización HDD a SSD",
-              "description": "Reemplazo del disco rígido por un SSD con migración completa de datos, limpieza interna y mantenimiento. La PC arranca hasta 10× más rápido."
+              "description": "Reemplazo del disco rígido por un SSD con migración completa de datos, limpieza interna y mantenimiento. Con un SSD la PC arranca y abre los programas mucho más rápido que con un disco rígido."
             }
           },
           {
@@ -1162,14 +759,6 @@
               "@type": "Service",
               "name": "Limpieza y Mantenimiento de PC",
               "description": "Limpieza profunda de componentes, cambio de pasta térmica del procesador y verificación general del hardware."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Soporte Técnico Remoto",
-              "description": "Asistencia técnica a distancia para resolución de problemas de software, eliminación de virus, configuración y optimización."
             }
           }
         ]
@@ -1275,13 +864,12 @@
 <section class="hero" id="inicio">
     <div class="wrap hero-grid">
         <div class="hero-copy">
-            <div class="label">Servicio técnico en Olivos · La Lucila · Vicente López</div>
             <span class="hours-badge" id="hoursBadge">
                 <span class="hours-dot"></span>
                 <span id="hoursBadgeText">Verificando horario...</span>
             </span>
             <h1 class="display">Arreglo tu compu<br><span class="green">en Olivos</span></h1>
-            <p class="lead">Notebooks y PCs de escritorio. Reviso el equipo sin cargo y te paso el precio por WhatsApp.</p>
+            <p class="lead">Notebooks y PCs de escritorio en Olivos, La Lucila y Vicente López. Reviso el equipo sin cargo y te paso el precio por WhatsApp.</p>
             <div class="hero-actions">
                 <a class="btn btn-primary" href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer">
                     <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>Escribime por WhatsApp
@@ -1296,7 +884,7 @@
         </div>
 
         <aside class="quick" aria-labelledby="quickTitle">
-            <div class="quick-head"><span class="label"><span class="status-dot" aria-hidden="true"></span>consulta_rapida</span><span>sin cargo</span></div>
+            <div class="quick-head"><span class="label"><span class="status-dot" aria-hidden="true"></span>Consulta rápida</span><span>sin cargo</span></div>
             <div class="quick-body">
                 <h2 id="quickTitle">¿Qué le pasa a tu compu?</h2>
                 <p>Tocá lo que más se parezca y te armo el mensaje.</p>
@@ -1336,63 +924,62 @@
             <h2 class="display h2">Servicios y precios</h2>
             <p class="lead">Precios desde, en pesos. El precio final depende del equipo y de cómo llega, y te lo paso por WhatsApp antes de arrancar.</p>
         </div>
-        <div class="price-grid">
-            <article class="card">
+        <div class="offers">
+            <article class="offer">
                 <div class="ico"><svg aria-hidden="true"><use href="#i-magnifying-glass"/></svg></div>
-                <h3>Diagnóstico</h3>
-                <p>Reviso el equipo y te digo qué tiene y cuánto sale arreglarlo.</p>
-                <div class="price"><b>Sin cargo</b></div>
+                <div>
+                    <h3>Diagnóstico</h3>
+                    <p>Reviso el equipo y te digo qué tiene y cuánto sale arreglarlo.</p>
+                    <div class="price"><b>Sin cargo</b></div>
+                </div>
             </article>
-            <article class="card featured">
+            <article class="offer featured">
                 <span class="tag">Recomendado</span>
                 <div class="ico"><svg aria-hidden="true"><use href="#i-lightning"/></svg></div>
-                <h3>Tu compu más rápida</h3>
-                <p>Cambio el disco rígido por un SSD y paso todo: Windows, programas y archivos. Incluye limpieza.</p>
-                <div class="price"><small>Desde</small><b>$74.000</b></div>
+                <div>
+                    <h3>Tu compu más rápida</h3>
+                    <p>Cambio el disco rígido por un SSD y paso todo: Windows, programas y archivos. Incluye limpieza.</p>
+                    <div class="price"><small>Desde</small><b>$74.000</b></div>
+                </div>
             </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-windows-logo"/></svg></div>
-                <h3>Formateo e instalación</h3>
-                <p>Windows, Office y drivers instalados de cero, con tus archivos respaldados antes.</p>
-                <div class="price"><small>Desde</small><b>$65.000</b></div>
-            </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-broom"/></svg></div>
-                <h3>Limpieza y mantenimiento</h3>
-                <p>Saco el polvo de adentro y cambio la pasta térmica del procesador.</p>
-                <div class="price"><small>Desde</small><b>$30.000</b></div>
-            </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-shield-check"/></svg></div>
-                <h3>Eliminación de virus</h3>
-                <p>Saco virus, spyware y la publicidad que aparece sola en el navegador.</p>
-                <div class="price"><small>Desde</small><b>$28.000</b></div>
-            </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-wrench"/></svg></div>
-                <h3>Reparación de hardware</h3>
-                <p>Pantalla, teclado, flex y otros componentes de notebooks.</p>
-                <div class="price"><small>Desde</small><b>$33.000</b></div>
-            </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-cpu"/></svg></div>
-                <h3>Armado de PC a medida</h3>
-                <p>Te ayudo a elegir las piezas según tu presupuesto y la armo completa.</p>
-                <div class="price"><small>Desde</small><b>$93.000</b></div>
-            </article>
-            <article class="card">
-                <div class="ico"><svg aria-hidden="true"><use href="#i-device-mobile"/></svg></div>
-                <h3>Celulares y tablets</h3>
-                <p>Reseteo de fábrica, configuración inicial y puesta a punto.</p>
-                <div class="price"><small>Desde</small><b>$30.000</b></div>
-            </article>
-            <div class="card broken" id="brokenCard" data-nosnippet>
-                <div class="ico"><svg id="brokenIcon" aria-hidden="true"><use href="#i-warning-octagon"/></svg></div>
-                <h3 id="brokenName">Error 0x80070057</h3>
-                <p id="brokenDesc">No se pudo cargar este precio. Mejor no tocar nada.</p>
-                <div class="price"><button type="button" class="broken-btn" id="brokenBtn" aria-describedby="brokenDesc">No tocar</button></div>
-            </div>
         </div>
+        <ul class="price-list">
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-windows-logo"/></svg></div>
+                <div><h3>Formateo e instalación</h3><p>Windows, Office y drivers instalados de cero, con tus archivos respaldados antes.</p></div>
+                <div class="price"><small>Desde</small><b>$65.000</b></div>
+            </li>
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-broom"/></svg></div>
+                <div><h3>Limpieza y mantenimiento</h3><p>Saco el polvo de adentro y cambio la pasta térmica del procesador.</p></div>
+                <div class="price"><small>Desde</small><b>$30.000</b></div>
+            </li>
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-shield-check"/></svg></div>
+                <div><h3>Eliminación de virus</h3><p>Saco virus, spyware y la publicidad que aparece sola en el navegador.</p></div>
+                <div class="price"><small>Desde</small><b>$28.000</b></div>
+            </li>
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-wrench"/></svg></div>
+                <div><h3>Reparación de hardware</h3><p>Pantalla, teclado, flex y otros componentes de notebooks.</p></div>
+                <div class="price"><small>Desde</small><b>$33.000</b></div>
+            </li>
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-cpu"/></svg></div>
+                <div><h3>Armado de PC a medida</h3><p>Te ayudo a elegir las piezas según tu presupuesto y la armo completa.</p></div>
+                <div class="price"><small>Desde</small><b>$93.000</b></div>
+            </li>
+            <li class="price-row">
+                <div class="ico"><svg aria-hidden="true"><use href="#i-device-mobile"/></svg></div>
+                <div><h3>Celulares y tablets</h3><p>Reseteo de fábrica, configuración inicial y puesta a punto.</p></div>
+                <div class="price"><small>Desde</small><b>$30.000</b></div>
+            </li>
+            <li class="price-row broken" id="brokenCard" data-nosnippet>
+                <div class="ico"><svg id="brokenIcon" aria-hidden="true"><use href="#i-warning-octagon"/></svg></div>
+                <div><h3 id="brokenName">Error 0x80070057</h3><p id="brokenDesc">No se pudo cargar este precio. Mejor no tocar nada.</p></div>
+                <button type="button" class="broken-btn" id="brokenBtn" aria-describedby="brokenDesc">No tocar</button>
+            </li>
+        </ul>
         <div class="terms">
             <div class="term"><svg aria-hidden="true"><use href="#i-shield-check"/></svg><div><b>Garantía de 7 días</b><span>En mano de obra y repuestos.</span></div></div>
             <div class="term"><svg aria-hidden="true"><use href="#i-wallet"/></svg><div><b>Efectivo o Mercado Pago</b><img src="mercadopago-logo.svg" alt="Mercado Pago" width="84" height="34" loading="lazy"></div></div>
@@ -1416,7 +1003,7 @@
         </div>
         <ol class="steps">
             <li><h3>Me escribís</h3><p>Por WhatsApp o con el formulario. Contame qué le pasa al equipo.</p></li>
-            <li><h3>Lo reviso</h3><p>En el taller o coordinamos el retiro. El diagnóstico no se cobra.</p></li>
+            <li><h3>Lo reviso</h3><p>Me lo traés al taller. El diagnóstico no se cobra.</p></li>
             <li><h3>Te paso el precio</h3><p>Por WhatsApp, antes de arreglar nada. Si no te cierra, te devuelvo la compu y no pagás nada.</p></li>
             <li><h3>Lo retirás andando</h3><p>Con informe de lo que hice y 7 días de garantía.</p></li>
         </ol>
@@ -1562,7 +1149,7 @@
 <footer>
     <div class="wrap foot">
         <div class="foot-text">
-            <span class="footer-made">¡Vibecodeado con amor por Mario, para vos! 👨‍💻</span>
+            <span class="footer-made">Hecha por Mario, en Olivos.</span>
             <span class="footer-copy">© 2026 Mario PC · Olivos, Buenos Aires</span>
         </div>
         <div class="footer-socials">
@@ -1610,7 +1197,7 @@
         return '<svg class="' + (cls || 'i') + '" aria-hidden="true"><use href="#i-' + id + '"/></svg>';
     }
 
-    // ─── CINTA ONDULADA (reutilizable) ───
+    // Cinta ondulada (reutilizable)
     // Arma el SVG de cada cinta a partir de sus data-attributes, así no hay
     // que repetir el marcado completo a mano por cada una.
     (function () {
@@ -1624,7 +1211,7 @@
             const above = el.dataset.marqueeAbove || 'transparent';
             const below = el.dataset.marqueeBelow || 'var(--bg-alt)';
             // Repetimos el texto las veces necesarias para cubrir de sobra el
-            // largo del camino — si no, en textos cortos queda un tramo de
+            // largo del camino; si no, en textos cortos queda un tramo de
             // cinta vacía antes de que el loop reinicie.
             const MIN_CHARS = 700;
             const repeats = Math.max(3, Math.ceil(MIN_CHARS / text.length));
@@ -1645,8 +1232,7 @@
                     </defs>
                     ${aboveRect}
                     <rect x="0" y="0" width="1600" height="280" style="fill:${below}" clip-path="url(#marqueeBelowWave-${id})" />
-                    <path class="marquee-ribbon-glow" d="${ribbonPathD}" />
-                    <path class="marquee-ribbon-path" id="ribbonPath-${id}" d="${ribbonPathD}" />
+                                        <path class="marquee-ribbon-path" id="ribbonPath-${id}" d="${ribbonPathD}" />
                     <text class="marquee-ribbon-text" dominant-baseline="central">
                         <textPath href="#ribbonPath-${id}" startOffset="0%">
                             ${anim}
@@ -1657,33 +1243,6 @@
             `;
         });
     })();
-
-    // Menú en celular
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    function setMobile(open) {
-        mobileMenu.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', String(open));
-        hamburger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-        hamburger.querySelector('use').setAttribute('href', open ? '#i-x' : '#i-list');
-    }
-    function closeMobile() { setMobile(false); }
-    hamburger.addEventListener('click', () => setMobile(!mobileMenu.classList.contains('open')));
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
-
-    // Borde del menú al scrollear y botón de volver arriba
-    const navEl = document.querySelector('nav.top');
-    const backToTop = document.getElementById('backToTop');
-    function onScroll() {
-        navEl.classList.toggle('scrolled', window.scrollY > 20);
-        backToTop.classList.toggle('visible', window.scrollY > 500);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
-    });
 
     (function () {
         const overlay = document.getElementById('rickrollOverlay');
@@ -1728,28 +1287,6 @@
     }
 
     (function () {
-        const footerEl = document.querySelector('.footer-copy');
-        if (!footerEl) return;
-        const original = footerEl.textContent;
-        const phrases = [
-            original,
-            '© 2026 Mario PC · Hecho con mucho café ☕',
-            '© 2026 Mario PC · 100% libre de virus (el sitio, no siempre tu PC)',
-            '© 2026 Mario PC · Si llegaste hasta acá, sos mi cliente ideal',
-            '© 2026 Mario PC · Gracias por curiosear 🕵️'
-        ];
-        let idx = 0;
-        footerEl.addEventListener('click', () => {
-            idx = (idx + 1) % phrases.length;
-            footerEl.style.opacity = '0';
-            setTimeout(() => {
-                footerEl.textContent = phrases[idx];
-                footerEl.style.opacity = '1';
-            }, 150);
-        });
-    })();
-
-    (function () {
         const dot = document.querySelector('.status-dot');
         if (!dot) return;
         const messages = [
@@ -1765,15 +1302,19 @@
         });
     })();
 
-    // Efecto hover de las tarjetas de precios (brillo + mosaico + líneas)
+    // El pin del mapa late 3 veces cuando aparece en pantalla y después se queda quieto
     (function () {
-        const fx = '<div class="pc-shine"></div><div class="pc-background"><div class="pc-tiles">' +
-            Array.from({ length: 10 }, (_, i) => '<div class="pc-tile pc-tile-' + (i + 1) + '"></div>').join('') +
-            '</div><div class="pc-line pc-line-1"></div><div class="pc-line pc-line-2"></div><div class="pc-line pc-line-3"></div></div>';
-        document.querySelectorAll('.price-grid .card').forEach(card => card.insertAdjacentHTML('beforeend', fx));
+        const pin = document.querySelector('.map-pin');
+        if (!pin || REDUCE_MOTION || !('IntersectionObserver' in window)) return;
+        const io = new IntersectionObserver((entries) => {
+            if (!entries[0].isIntersecting) return;
+            pin.classList.add('is-live');
+            io.disconnect();
+        }, { threshold: 0.5 });
+        io.observe(pin);
     })();
 
-    // ─── CONSULTA RÁPIDA ───
+    // Consulta rápida
     // Arma el mensaje de WhatsApp con el equipo y los síntomas que toca el visitante.
     (function () {
         const WA = 'https://wa.me/5491123999259?text=';
@@ -1814,7 +1355,7 @@
         build();
     })();
 
-    // ─── CARRUSELES (reseñas, notas e Instagram) ───
+    // Carruseles (reseñas, notas e Instagram)
     // Se desliza con el dedo en el celular; en la compu, con las flechas.
     function setupRails() {
         document.querySelectorAll('.rail-nav').forEach(nav => {
@@ -1846,7 +1387,7 @@
         });
     }
 
-    // ─── NOTAS DEL BLOG ───
+    // Notas del blog
     // Las notas se cargan en blog-posts.js; acá se muestran todas en el carrusel.
     // Mientras no haya ninguna, el bloque queda oculto.
     (function () {
@@ -1873,7 +1414,7 @@
         block.hidden = false;
     })();
 
-    // ─── INSTAGRAM ───
+    // Instagram
     // Agregá acá un objeto por cada publicación, la más nueva primero (ver README).
     const instagramPosts = [
         { image: "instagram/post08.jpg", url: "https://www.instagram.com/p/DevFV0spy66/" },
@@ -1898,7 +1439,7 @@
         ).join('');
     })();
 
-    // ─── TESTIMONIOS ───
+    // Testimonios
     // Agregá acá un objeto por cada testimonio (ver README). "stars" va de 1 a 5; si no lo ponés, muestra 5.
     const testimonials = [
         { text: "De mucha confianza y sinceramente trabajo rapido y eficiente, super recomendable y amigable, ya voy a volver.", author: "David E. · Olivos", stars: 5 },
@@ -1926,7 +1467,7 @@
 
     setupRails();
 
-    // ─── FORMULARIO → WHATSAPP ───
+    // Formulario → whatsapp
     (function () {
         const form = document.getElementById('whatsappForm');
         if (!form) return;
@@ -1944,7 +1485,7 @@
         });
     })();
 
-    // ─── EXTRAS DEL HOME ───
+    // Extras del home
     (function () {
         'use strict';
 
@@ -2010,7 +1551,7 @@
             return 'BUG' + PREMIO.porcentaje + '-' + day + month + '-' + suffix;
         }
 
-        // ── Ventanas modales (premio del bug y escáner) ──
+        // Ventanas modales (premio del bug y escáner)
         let activeModal = null;
 
         function trapTab(e, root) {
@@ -2051,7 +1592,7 @@
             return modal;
         }
 
-        // ── Tarjeta rota → pantalla azul de mentira ──
+        // Tarjeta rota → pantalla azul de mentira
         const bsod = {
             active: false,
             el: null,
@@ -2134,7 +1675,7 @@
             else if (activeModal) activeModal.close();
         });
 
-        // ── Bug que se asoma ──
+        // Bug que se asoma
         const BUG_KEY = 'mpc_bug'; // número de apariciones en la sesión, o 'caught'
         const BUG_SVG =
             '<svg viewBox="0 0 96 64" aria-hidden="true" focusable="false">' +
@@ -2263,7 +1804,7 @@
             if (state !== 'caught' && shown < 2) scheduleBug(shown === 0 ? rand(15, 40) : rand(25, 60));
         }
 
-        // ── Escáner de PC (de mentirita) ──
+        // Escáner de PC (de mentirita)
         // Remates de "Descargar más RAM gratis": uno distinto por cada vez que caen
         // en la misma visita; del último en adelante se repite el último.
         const RAM_KEY = 'mpc_ram';
@@ -2532,7 +2073,7 @@
         }
     })();
 </script>
-<script>document.addEventListener("click",function(e){var a=e.target.closest('a[href*="wa.me"]');if(a&&window.gtag)gtag("event","whatsapp_click",{page_path:location.pathname,link_text:(a.textContent||"").trim().slice(0,40)});});</script>
+<script src="/site.js?v=1"></script>
 <script src="/theme.js?v=2" defer></script>
 </body>
 </html>

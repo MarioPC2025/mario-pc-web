@@ -14,7 +14,7 @@
     </script>
 
     <meta name="robots" content="noindex, follow">
-    <title>Página no encontrada — Mario PC</title>
+    <title>Página no encontrada · Mario PC</title>
 
     <link rel="icon" href="/favicon.ico?v=2" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
@@ -22,374 +22,36 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
+    <link rel="stylesheet" href="/site.css?v=1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" integrity="sha384-pPVoXE8ft+zxKtxIDDI7SfTK6y95NHm4qa+hKEg/hs8VkjW5IP+9/dGOPCbDpUPl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css" integrity="sha384-UVFvhZP7fWAENUPOoq61rJg5ef6QZW0k5vpAn71041/QS4STvUcJQCGNhStZLGx9" crossorigin="anonymous">
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --bg: #07090a;
-            --bg-alt: #0c0f10;
-            --green: #1ddd65;
-            --green-dim: rgba(var(--green-rgb), 0.1);
-            --green-border: rgba(var(--green-rgb), 0.22);
-            --white: #e8edea;
-            --muted: #788480;
-            --bg-rgb: 7, 9, 10;
-            --ink-rgb: 255, 255, 255;
-            --green-rgb: 29, 221, 101;
-            --white-rgb: 232, 237, 234;
-            --green-fill: #1ddd65;
-            --red: #ff9a9a;
-            --cert-head: #262b28;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-            --font-body: 'DM Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-weight: 300;
-            overflow-x: hidden;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(var(--green-rgb), 0.09) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .grain {
-            position: fixed;
-            inset: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='1'/></svg>");
-            opacity: 0.032;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .error-wrap {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 2rem 5rem;
-        }
-
-        .error-logo {
-            width: 56px;
-            height: 56px;
-            object-fit: contain;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .error-eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .error-eyebrow-line {
-            width: 36px;
-            height: 1px;
-            background: var(--green-fill);
-        }
-
-        .error-eyebrow-text {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--green);
-        }
-
-        .error-code {
-            font-family: var(--font-display);
-            font-size: clamp(6rem, 20vw, 12rem);
-            line-height: 0.85;
-            letter-spacing: 0.02em;
-            color: var(--white);
-        }
-
-        .error-code em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .error-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            letter-spacing: 0.02em;
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .error-desc {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.75;
-            max-width: 420px;
-            margin-bottom: 2.5rem;
-        }
-
-        .error-actions {
-            display: flex;
-            gap: 0.875rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--green-fill);
-            color: #030804;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 2px;
-            transition: all 0.2s;
-        }
-
-        .btn-primary:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 28px;
-            border: 1px solid rgba(var(--ink-rgb), 0.12);
-            border-radius: 2px;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .error-footer {
-            position: absolute;
-            bottom: 2rem;
-            font-family: var(--font-mono);
-            font-size: 0.58rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
-
-        .error-code {
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.15s ease;
-        }
-
-        .error-code:active {
-            transform: scale(0.96);
-        }
-
-        .error-code.fixed-pulse {
-            animation: fixed-pulse 0.6s ease;
-        }
-
-        @keyframes fixed-pulse {
-            0% { transform: scale(1); }
-            30% { transform: scale(1.12); }
-            60% { transform: scale(0.97); }
-            100% { transform: scale(1); }
-        }
-
-        .error-hint {
-            font-family: var(--font-mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.08em;
-            color: rgba(83, 96, 87, 0.5);
-            margin-top: -0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .rickroll-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            background: rgba(3, 8, 4, 0.96);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .rickroll-overlay.active {
-            display: flex;
-            animation: rickroll-fade 0.3s ease;
-        }
-
-        @keyframes rickroll-fade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .rickroll-caption {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 4vw, 2.6rem);
-            letter-spacing: 0.02em;
-            color: var(--white);
-        }
-
-        .rickroll-caption em {
-            font-style: normal;
-            color: var(--green);
-        }
-
-        .rickroll-overlay iframe {
-            width: min(90vw, 720px);
-            height: min(50.6vw, 405px);
-            border: 2px solid var(--green-border);
-            border-radius: 4px;
-        }
-
-        .rickroll-sub {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .rickroll-close {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 12px 24px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 2px;
-            background: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .rickroll-close:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .egg-toast {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%) translateY(12px);
-            z-index: 600;
-            background: rgba(var(--bg-rgb), 0.95);
-            border: 1px solid var(--green-border);
-            border-radius: 3px;
-            padding: 12px 20px;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.03em;
-            color: var(--green);
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .egg-toast.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        @media (max-width: 600px) {
-            .egg-toast {
-                white-space: normal;
-                max-width: 85vw;
-                text-align: center;
-            }
-        }
-
+        .solo { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; padding: 48px 20px 96px; }
+        .solo h1 em { font-style: normal; color: var(--green); }
+        .solo .lead { max-width: 440px; }
+        .solo .lead strong { color: var(--white); font-weight: 500; }
+        .solo-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+        .solo-foot { position: absolute; bottom: 28px; left: 20px; right: 20px; font-size: 0.85rem; color: var(--muted); cursor: pointer; user-select: none; transition: opacity 0.15s ease; }
+        .error-logo { width: 56px; height: 56px; object-fit: contain; margin-bottom: 12px; }
+        .error-code { font-family: var(--font-display); font-size: clamp(6rem, 20vw, 12rem); line-height: 0.85; letter-spacing: 0.02em; color: var(--white); cursor: pointer; user-select: none; transition: transform 0.15s ease; }
+        .error-code em { font-style: normal; color: var(--green); }
+        .error-code:active { transform: scale(0.96); }
+        .error-code.fixed-pulse { animation: fixed-pulse 0.6s ease; }
+        @keyframes fixed-pulse { 0% { transform: scale(1); } 30% { transform: scale(1.12); } 60% { transform: scale(0.97); } 100% { transform: scale(1); } }
+        .solo h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
         .error-safe {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 1.25rem;
-            min-height: 44px;
-            padding: 10px 16px;
-            background: none;
-            border: 1px dashed rgba(var(--ink-rgb), 0.14);
-            border-radius: 2px;
-            color: var(--muted);
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; min-height: 44px; padding: 10px 16px;
+            background: none; border: 1px dashed rgba(var(--ink-rgb), 0.14); border-radius: 3px; color: var(--muted);
+            font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; transition: color 0.2s, border-color 0.2s, background-color 0.2s;
         }
-
         .error-safe i { font-size: 1rem; color: var(--green); }
-
-        .error-safe:hover {
-            border-color: var(--green-border);
-            color: var(--green);
-            background: var(--green-dim);
-        }
-
-        .error-safe:focus-visible, .rickroll-close:focus-visible {
-            outline: 2px solid var(--green);
-            outline-offset: 3px;
-        }
-
-        .error-footer {
-            cursor: pointer;
-            user-select: none;
-            transition: opacity 0.15s ease;
-        }
+        .error-safe:hover { border-color: var(--green-border); color: var(--green); background: var(--green-dim); }
+        @media (prefers-reduced-motion: reduce) { .error-code.fixed-pulse { animation: none; } }
     </style>
 </head>
 <body>
@@ -399,28 +61,22 @@
 <button type="button" class="theme-toggle theme-toggle--float" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><i class="ph ph-sun" aria-hidden="true"></i></button>
 
 <main>
-<div class="error-wrap">
-    <img src="/logo.png?v=2" alt="Mario PC" class="error-logo" width="56" height="56">
-
-    <div class="error-eyebrow">
-        <div class="error-eyebrow-line"></div>
-        <span class="error-eyebrow-text">Error 404</span>
-        <div class="error-eyebrow-line"></div>
-    </div>
+<div class="solo">
+    <a href="/"><img src="/logo.png?v=2" alt="Mario PC, ir al inicio" class="error-logo" width="56" height="56"></a>
 
     <div class="error-code" id="errorCode">4<em>0</em>4</div>
-    <h1 class="error-title" id="errorTitle">Esta página no existe</h1>
-    <p class="error-desc" id="errorDesc">
+    <h1 class="display" id="errorTitle">Esta página no existe</h1>
+    <p class="lead" id="errorDesc">
         Parece que el link está roto o la página fue movida. Volvé al inicio o escribime directamente por WhatsApp si necesitás ayuda.
     </p>
 
-    <div class="error-actions">
-        <a href="/" class="btn-primary">
-            <i class="ph ph-house"></i>
+    <div class="solo-actions">
+        <a href="/" class="btn btn-primary">
+            <i class="ph ph-house" aria-hidden="true"></i>
             Volver al inicio
         </a>
-        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-            <i class="ph-fill ph-whatsapp-logo"></i>
+        <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
             Escribir por WhatsApp
         </a>
     </div>
@@ -430,7 +86,7 @@
         Llevame a un lugar seguro
     </button>
 
-    <div class="error-footer">© 2026 Mario PC — Todos los derechos reservados</div>
+    <div class="solo-foot">© 2026 Mario PC · Olivos, Buenos Aires</div>
 </div>
 </main>
 
@@ -507,15 +163,15 @@
     }
 
     (function () {
-        const footerEl = document.querySelector('.error-footer');
+        const footerEl = document.querySelector('.solo-foot');
         if (!footerEl) return;
         const original = footerEl.textContent;
         const phrases = [
             original,
-            '© 2026 Mario PC — Hecho con mucho café ☕',
-            '© 2026 Mario PC — Ni esta página se salva de un bug',
-            '© 2026 Mario PC — Si llegaste hasta acá, sos mi cliente ideal',
-            '© 2026 Mario PC — Gracias por curiosear 🕵️'
+            '© 2026 Mario PC · Hecho con mucho café ☕',
+            '© 2026 Mario PC · Ni esta página se salva de un bug',
+            '© 2026 Mario PC · Si llegaste hasta acá, sos mi cliente ideal',
+            '© 2026 Mario PC · Gracias por curiosear 🕵️'
         ];
         let idx = 0;
         footerEl.addEventListener('click', () => {
@@ -529,6 +185,6 @@
     })();
 </script>
 
-<script src="/theme.js?v=1" defer></script>
+<script src="/theme.js?v=2" defer></script>
 </body>
 </html>

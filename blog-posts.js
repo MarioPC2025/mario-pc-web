@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   blog-posts.js — Acá se cargan las notas del blog.
+   blog-posts.js: acá se cargan las notas del blog.
    Lo usan la home (últimas 3 notas) y blog.html (listado y nota completa).
    Instrucciones paso a paso: README.md → "Publicar una nota de blog".
    ═══════════════════════════════════════════════════════════════ */
@@ -33,7 +33,7 @@ const blogPosts = [
     // Podés usar **negrita** y [un link](https://www.mariopc.com.ar).`
     // },
 
-    // ─── NOTA 1 ───
+    // Nota 1
     {
         slug: "por-que-mi-compu-anda-lenta",
         title: "Mi compu anda lenta: qué le pasa (aunque antes andaba re bien)",
@@ -81,12 +81,12 @@ Un disco lleno trabaja con dificultad. Y si además escuchás clics o ruidos rar
 
 No hace falta que adivines cuál de todas es la tuya, y menos que empieces a desinstalar cosas a ciegas: a veces se empeora. Contame qué compu tenés, desde cuándo anda así y qué es lo que más notás. **Reviso tu equipo sin cargo, te digo qué le pasa y te paso el costo exacto antes de tocar nada.** Todo lo que reparo tiene 7 días de garantía.
 
-Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro.
+Estoy en Olivos y atiendo toda la zona norte, en el taller.
 
 [Escribime por WhatsApp y le damos velocidad a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20anda%20muy%20lenta%20y%20quiero%20que%20la%20revises)`
     },
 
-    // ─── NOTA 2 ───
+    // Nota 2
     {
         slug: "como-saber-si-mi-compu-necesita-mantenimiento",
         title: "¿Cómo sé si mi compu necesita mantenimiento? 7 señales que no conviene ignorar",
@@ -134,12 +134,12 @@ Según lo que necesite tu equipo, puede incluir:
 
 Es completamente normal. Escribime contándome qué compu tenés, qué síntomas notás y hace cuánto no le hacés un service. **Reviso tu equipo sin cargo, te digo qué necesita y te paso el costo exacto antes de tocar nada**, con 7 días de garantía sobre el trabajo.
 
-Estoy en Olivos y atiendo la zona norte, en el taller o coordinando el retiro. Si te sirvió esta nota, también podés leer por qué una compu [se pone lenta con los años](blog.html?nota=por-que-mi-compu-anda-lenta).
+Estoy en Olivos y atiendo la zona norte, en el taller. Si te sirvió esta nota, también podés leer por qué una compu [se pone lenta con los años](blog.html?nota=por-que-mi-compu-anda-lenta).
 
 [Escribime por WhatsApp y vemos si le toca un service](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20saber%20si%20mi%20compu%20necesita%20mantenimiento)`
     },
 
-    // ─── NOTA 3 ───
+    // Nota 3
     {
         slug: "mi-compu-se-calienta-mucho",
         title: "Mi compu se calienta mucho: por qué pasa y qué hacer antes de que se dañe",
@@ -192,12 +192,12 @@ Lo habitual es limpiar por dentro el ventilador y el disipador, renovar la pasta
 
 Escribime contándome qué compu tenés y qué notás: si quema, si el ventilador suena fuerte, si se apaga sola. **Reviso tu equipo sin cargo, te digo qué le pasa y te paso el costo exacto antes de tocar nada**, y el trabajo tiene 7 días de garantía.
 
-Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro. Si además querés saber [cómo darte cuenta de que necesita un service](blog.html?nota=como-saber-si-mi-compu-necesita-mantenimiento), tenés una lista con las señales.
+Estoy en Olivos y atiendo toda la zona norte, en el taller. Si además querés saber [cómo darte cuenta de que necesita un service](blog.html?nota=como-saber-si-mi-compu-necesita-mantenimiento), tenés una lista con las señales.
 
 [Escribime por WhatsApp y la revisamos antes de que se dañe](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20se%20calienta%20mucho%20y%20quiero%20que%20la%20revises)`
     },
 
-    // ─── NOTA 4 ───
+    // Nota 4
     {
         slug: "windows-10-fin-de-soporte-que-hacer",
         title: "Windows 10 ya no tiene soporte: qué significa para tu compu y qué conviene hacer",
@@ -257,12 +257,12 @@ Si la compu es muy vieja, anda lenta y no es compatible con Windows 11, a veces 
 
 Si no sabés qué versión tenés, si tu compu puede pasar a Windows 11 o qué te conviene en tu caso, escribime. **Reviso tu equipo sin cargo, te digo si es compatible, qué necesitaría (por ejemplo un SSD o más RAM) y cuánto sale, antes de tocar nada.** El trabajo tiene 7 días de garantía.
 
-Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro.
+Estoy en Olivos y atiendo toda la zona norte, en el taller.
 
 [Escribime por WhatsApp y vemos qué le conviene a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20tengo%20Windows%2010%20y%20quiero%20saber%20que%20conviene%20hacer%20con%20mi%20compu)`
     },
 
-    // ─── NOTA 5 ───
+    // Nota 5
     {
         slug: "como-hacer-copia-de-seguridad-de-tus-archivos",
         title: "Cómo hacer una copia de seguridad de tus archivos (sin ser técnico) antes de que sea tarde",
@@ -335,7 +335,7 @@ Y si el disco ya hace clics o ruidos raros, o tus archivos no abren: **apagala y
 
 Contame qué compu tenés y cómo la usás (cuántas fotos y archivos aproximadamente, si ya usás alguna nube) y te armo un plan de copias simple, a tu medida. Si tu equipo ya da señales de falla, **lo reviso sin cargo y te paso el costo exacto antes de tocar nada**, con 7 días de garantía sobre el trabajo.
 
-Estoy en Olivos y atiendo toda la zona norte, en el taller o coordinando el retiro.
+Estoy en Olivos y atiendo toda la zona norte, en el taller.
 
 [Escribime por WhatsApp y armamos tu plan de copias](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20armar%20una%20copia%20de%20seguridad%20de%20mis%20archivos%20y%20no%20se%20por%20donde%20empezar)`
     },
