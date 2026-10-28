@@ -208,11 +208,11 @@
                 text-align: left; white-space: normal; pointer-events: none;
                 background: rgba(var(--bg-rgb, 7, 9, 10), 0.97);
                 box-shadow: 0 0 0 1px rgba(255, 110, 110, 0.28), 0 8px 24px rgba(0, 0, 0, 0.35);
-                font-family: var(--font-body, system-ui, sans-serif); font-size: 0.82rem; line-height: 1.4; font-weight: 300;
+                font-family: var(--font-body, system-ui, sans-serif); font-size: 0.82rem; line-height: 1.4; font-weight: 400;
                 color: var(--white, #e8edea); opacity: 0; visibility: hidden;
                 transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1), translate 200ms cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 200ms; }
             .wa-closed-note strong { display: block; margin-bottom: 2px; font-weight: 400; font-family: var(--font-mono, monospace);
-                font-size: 0.75rem; color: var(--red, #ff9a9a); }
+                font-size: 0.8125rem; color: var(--red, #ff9a9a); }
             .whatsapp-float.is-closed.wa-peek .wa-closed-note { opacity: 1; visibility: visible; translate: 0 -50%; transition-delay: 0s; }
             @media (hover: hover) and (pointer: fine) {
                 .whatsapp-float.is-closed:hover .wa-closed-note,
@@ -231,7 +231,7 @@
             .wa-sheet-moon svg, .wa-sheet-x svg, .wa-sheet-go svg { width: 100%; height: 100%; display: block; }
             .wa-sheet strong { font-family: var(--font-display, Impact, sans-serif); font-weight: 400; font-size: 1.7rem;
                 line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
-            .wa-sheet p { margin: 0; color: var(--muted, #788480); font-size: 0.95rem; line-height: 1.45; font-weight: 300; }
+            .wa-sheet p { margin: 0; color: var(--muted, #788480); font-size: 0.95rem; line-height: 1.45; font-weight: 400; }
             .wa-sheet-x { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; padding: 12px; border: 0;
                 border-radius: 3px; background: transparent; color: var(--muted, #788480); cursor: pointer; }
             .wa-sheet-go { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 4px;

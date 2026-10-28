@@ -11,8 +11,6 @@
             hamburger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
             var use = hamburger.querySelector('use');
             if (use) use.setAttribute('href', open ? '#i-x' : '#i-list');
-            var icon = hamburger.querySelector('i');
-            if (icon) icon.className = 'ph ' + (open ? 'ph-x' : 'ph-list');
         };
         hamburger.addEventListener('click', function () { setMobile(!mobileMenu.classList.contains('open')); });
         mobileMenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMobile(false); }); });

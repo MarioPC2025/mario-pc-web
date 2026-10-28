@@ -26,7 +26,7 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
-    <link rel="stylesheet" href="/site.css?v=1">
+    <link rel="stylesheet" href="/site.css?v=2">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -57,7 +57,7 @@
         .hours-badge {
             display: inline-flex; align-items: center; gap: 10px; justify-self: start;
             min-height: 34px; padding: 0 12px; border-radius: 3px;
-            font-family: var(--font-mono); font-size: 0.78rem;
+            font-family: var(--font-mono); font-size: 0.8125rem;
             font-variant-numeric: tabular-nums;
             color: var(--green); background: var(--green-dim); box-shadow: 0 0 0 1px var(--green-border);
         }
@@ -83,14 +83,14 @@
         .quick-head {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 18px; border-bottom: 1px solid var(--line);
-            font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+            font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted);
         }
         .quick-head .label { display: flex; align-items: center; gap: 8px; }
         .status-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green-fill); cursor: pointer; flex: none; }
         .status-dot::after { content: ''; position: absolute; inset: -14px; }
         .quick-body { padding: 22px 18px 20px; display: grid; gap: 18px; }
         .quick-body h2 { font-family: var(--font-display); font-size: 2rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; }
-        .quick-body > p { color: var(--muted); font-size: 0.92rem; margin-top: -8px; }
+        .quick-body > p { color: var(--muted); font-size: 1rem; margin-top: -8px; }
         .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 4px; background: var(--bg); border-radius: 4px; }
         .seg button {
             min-height: 44px; border: 0; border-radius: 3px; cursor: pointer;
@@ -122,10 +122,10 @@
         .chip[aria-pressed="true"] .tick { background: var(--green-fill); box-shadow: none; }
         .chip[aria-pressed="true"] .tick::after { content: ''; width: 7px; height: 4px; border: 2px solid var(--ink-on-green); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
         .preview {
-            font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; color: rgba(var(--white-rgb), 0.8);
+            font-family: var(--font-mono); font-size: 0.875rem; line-height: 1.5; color: rgba(var(--white-rgb), 0.8);
             background: var(--bg); border-radius: 3px; padding: 12px 14px; min-height: 64px;
         }
-        .preview small { display: block; color: var(--muted); font-size: 0.75rem; margin-bottom: 4px; }
+        .preview small { display: block; color: var(--muted); font-size: 0.8125rem; margin-bottom: 4px; }
         .quick .btn { width: 100%; }
 
         /* Cinta ondulada (texto que fluye por un path) */
@@ -150,31 +150,31 @@
         .offer.featured { box-shadow: 0 0 0 1px var(--green-border); }
         .offer > div { display: grid; gap: 8px; min-width: 0; }
         .offer h3 { font-family: var(--font-display); font-size: 2.1rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; padding-right: 108px; }
-        .offer p { color: var(--muted); font-size: 0.98rem; line-height: 1.5; max-width: 46ch; }
+        .offer p { color: var(--muted); font-size: 1rem; line-height: 1.5; max-width: 46ch; }
         .ico {
             width: 44px; height: 44px; border-radius: 3px; display: grid; place-items: center;
             color: var(--green); background: var(--green-dim); flex: none;
         }
         .ico svg { width: 22px; height: 22px; }
         .price { display: flex; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-        .price small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+        .price small { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
         .price b { font-family: var(--font-display); font-weight: 400; font-size: 2rem; line-height: 1; color: var(--green); }
         .offer .price { margin-top: 6px; }
         .offer .price b { font-size: 2.6rem; }
         .tag {
             position: absolute; top: 28px; right: 28px;
-            font-family: var(--font-mono); font-size: 0.75rem;
+            font-family: var(--font-mono); font-size: 0.8125rem;
             color: var(--ink-on-green); background: var(--green-fill); padding: 4px 8px; border-radius: 3px;
         }
         .price-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; margin-top: 28px; }
         .price-row { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
         .price-row h3 { font-size: 1.05rem; font-weight: 500; line-height: 1.3; }
-        .price-row p { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+        .price-row p { color: var(--muted); font-size: 1rem; line-height: 1.45; }
         .terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
         .term { display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px; border-radius: 6px; box-shadow: var(--ring); min-width: 0; }
         .term > svg { color: var(--green); width: 24px; height: 24px; margin-top: 2px; flex: none; }
         .term b { display: block; font-weight: 500; }
-        .term span { color: var(--muted); font-size: 0.92rem; }
+        .term span { color: var(--muted); font-size: 1rem; }
         .term img { height: 34px; width: auto; margin-top: 6px; opacity: 0.9; }
 
         /* Fila rota (easter egg: abre la pantalla azul) */
@@ -209,7 +209,7 @@
         .steps li::after { content: ''; position: absolute; top: 22px; left: 44px; right: 0; border-top: 1px dashed var(--green-border); }
         .steps li:last-child::after { display: none; }
         .steps h3 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 8px; }
-        .steps p { color: var(--muted); font-size: 0.95rem; }
+        .steps p { color: var(--muted); font-size: 1rem; }
 
         /* Carruseles */
         .rail-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
@@ -249,7 +249,7 @@
         .stars svg { width: 16px; height: 16px; }
         .stars svg.off { color: rgba(var(--ink-rgb), 0.2); }
         .review blockquote { font-size: 1rem; line-height: 1.6; font-weight: 400; }
-        .review cite { font-style: normal; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+        .review cite { font-style: normal; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
         .review-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; color: var(--muted); }
 
         /* notas */
@@ -259,9 +259,9 @@
         .note-fallback { display: grid; place-items: center; background: var(--green-dim); color: var(--green); }
         .note-fallback svg { width: 40px; height: 40px; }
         .note-body { display: grid; gap: 10px; padding: 20px 22px 22px; align-content: start; }
-        .note-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+        .note-meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
         .note h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.3; }
-        .note p { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+        .note p { color: var(--muted); font-size: 1rem; line-height: 1.5; }
 
         /* instagram */
         .ig-block { margin-top: 64px; }
@@ -285,10 +285,10 @@
         .addr { display: flex; gap: 12px; align-items: flex-start; }
         .addr > svg { color: var(--green); width: 22px; height: 22px; margin-top: 2px; flex: none; }
         .addr b { display: block; font-weight: 500; }
-        .addr span { color: var(--muted); font-size: 0.92rem; }
+        .addr span { color: var(--muted); font-size: 1rem; }
         .contact-form-wrap { display: grid; gap: 18px; padding: 28px; border-radius: 6px; background: var(--surface); box-shadow: var(--ring); }
         .contact-form-wrap h3 { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; }
-        .contact-form-wrap > p { color: var(--muted); font-size: 0.92rem; margin-top: -8px; }
+        .contact-form-wrap > p { color: var(--muted); font-size: 1rem; margin-top: -8px; }
         .contact-form { display: grid; gap: 18px; }
 
         /* mapa */
@@ -324,7 +324,7 @@
         }
         .map-card b { display: block; font-weight: 500; }
         .map-card span { color: var(--muted); font-size: 0.85rem; }
-        .map-card .btn { min-height: 44px; font-size: 0.72rem; padding: 0 16px; }
+        .map-card .btn { min-height: 44px; font-size: 0.9rem; padding: 0 16px; }
 
         /* Pantalla azul de mentira */
         .egg-bsod {
@@ -496,7 +496,7 @@
             align-items: center;
             gap: 8px;
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             letter-spacing: 0.08em;
             color: var(--muted);
             background: none;
@@ -671,6 +671,7 @@
             .marquee-ribbon svg { height: 126px; }
             .rail > * { flex-basis: 86%; }
             .rail.ig > * { flex-basis: 64%; }
+            #railReviews { align-items: flex-start; }
             .map-container { height: 380px; }
             .map-pin { top: 32%; }
         }
@@ -765,7 +766,7 @@
       }
     }
     </script>
-<script src="horario.js?v=3" defer></script>
+<script src="horario.js?v=4" defer></script>
 </head>
 <body>
 
@@ -1039,7 +1040,7 @@
             <div class="rail-head">
                 <div class="section-head">
                     <h2 class="display h2">Notas del taller</h2>
-                    <p class="lead">Lo que más me preguntan por WhatsApp, explicado sin vueltas.</p>
+                    <p class="lead">Lo que más me preguntan por WhatsApp, con lo que podés revisar vos antes de traer la compu.</p>
                 </div>
                 <div class="rail-tools">
                     <a class="btn btn-secondary" href="blog.html">Ver todas</a>
@@ -1071,7 +1072,7 @@
 <!-- CINTA: Notas → Contacto -->
 <div class="marquee-ribbon"
      data-marquee-id="3"
-     data-marquee-text="Escribime por WhatsApp · Respondo en menos de 24 h · Olivos · La Lucila · Vicente López ·"
+     data-marquee-text="Escribime por WhatsApp · Respondo en menos de 24 h · Taller en Alberdi y Maipú, Olivos ·"
      data-marquee-above="var(--bg)"
      data-marquee-below="var(--bg-alt)"></div>
 
@@ -1188,7 +1189,7 @@
 <div class="egg-toast" id="eggToast"></div>
 
 <script src="blog-posts.js"></script>
-<script src="blog-lib.js"></script>
+<script src="blog-lib.js?v=2"></script>
 <script>
     const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1402,7 +1403,7 @@
         rail.innerHTML = list.map((p, i) => {
             const when = MarioBlog.formatDate(p.date);
             const media = p.image
-                ? '<img src="' + esc(p.image) + '" alt="" width="800" height="450" decoding="async"' + (i > 2 ? ' loading="lazy"' : '') + '>'
+                ? '<img src="' + esc(p.image) + '" alt="" width="800" height="450" decoding="async" loading="lazy">'
                 : '<div class="note-fallback">' + svgIcon('notepad', '') + '</div>';
             return '<a class="note" href="' + esc(MarioBlog.url(p)) + '">' + media +
                 '<div class="note-body">' +
@@ -1436,16 +1437,16 @@
         const esc = (typeof MarioBlog !== 'undefined') ? MarioBlog.esc : (s => String(s));
         rail.innerHTML = instagramPosts.map((post, i) =>
             '<a href="' + esc(post.url) + '" target="_blank" rel="noopener noreferrer" aria-label="Ver publicación ' + (i + 1) + ' en Instagram">' +
-            '<img src="' + esc(post.image) + '" alt="" width="540" height="675" decoding="async"' + (i > 3 ? ' loading="lazy"' : '') + '></a>'
+            '<img src="' + esc(post.image) + '" alt="" width="540" height="675" decoding="async" loading="lazy"></a>'
         ).join('');
     })();
 
     // Testimonios
     // Agregá acá un objeto por cada testimonio (ver README). "stars" va de 1 a 5; si no lo ponés, muestra 5.
     const testimonials = [
-        { text: "De mucha confianza y sinceramente trabajo rapido y eficiente, super recomendable y amigable, ya voy a volver.", author: "David E. · Olivos", stars: 5 },
-        { text: "Destaco su puntualidad y compromiso con su servicio, inlcuso te da un informe respecto a la revisión de la computadora y su arreglo, eso demuestra claramente su dedicación en su labor. Muchas gracias!", author: "Belén G. · Olivos", stars: 5 },
-        { text: "10/10 Resolvió conflictos que tuve a último momento antes de entregar un trabajo, me recuperó la información, solucionó todo y pude entregar en tiempo y forma. Después se la llevé de nuevo para actualizar el software y anduvo perfectamente. Ahora charlando para hacerle un upgrade a la pc. Claro que confío plenamente porque además de buen profesional, es un tipazo!.", author: "Dani Q. · Núñez", stars: 5 },
+        { text: "De mucha confianza y sinceramente trabajo rápido y eficiente, super recomendable y amigable, ya voy a volver.", author: "David E. · Olivos", stars: 5 },
+        { text: "Destaco su puntualidad y compromiso con su servicio, incluso te da un informe respecto a la revisión de la computadora y su arreglo, eso demuestra claramente su dedicación en su labor. Muchas gracias!", author: "Belén G. · Olivos", stars: 5 },
+        { text: "10/10 Resolvió conflictos que tuve a último momento antes de entregar un trabajo, me recuperó la información, solucionó todo y pude entregar en tiempo y forma. Después se la llevé de nuevo para actualizar el software y anduvo perfectamente. Ahora charlando para hacerle un upgrade a la pc. Claro que confío plenamente porque además de buen profesional, es un tipazo!", author: "Dani Q. · Núñez", stars: 5 },
     ];
 
     (function () {
@@ -2074,7 +2075,7 @@
         }
     })();
 </script>
-<script src="/site.js?v=1"></script>
-<script src="/theme.js?v=2" defer></script>
+<script src="/site.js?v=2"></script>
+<script src="/theme.js?v=3" defer></script>
 </body>
 </html>
