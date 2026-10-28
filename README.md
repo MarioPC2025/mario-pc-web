@@ -18,7 +18,7 @@ Buscá el nombre del servicio (por ejemplo `Formateo e instalación`) y cambiá 
 
 ## Agregar una publicación de Instagram (`index.html`)
 
-1. Subí la foto a la carpeta `/instagram` del repo. Formato vertical 4:5 (como sale de Instagram, ej. 1080×1350).
+1. Subí la foto a la carpeta `/instagram` del repo. Formato vertical 4:5, de 720×900 (si sale de Instagram a 1080×1350, achicala antes: en la web se ve a unos 280 px de ancho y así pesa menos de 90 KB).
 2. Buscá `const instagramPosts = [` y agregá la publicación **arriba de todo** (la primera de la lista es la que se ve primero):
    ```js
    { image: "instagram/post1.jpg", url: "https://www.instagram.com/p/XXXXXXXXX/" },
@@ -46,7 +46,7 @@ Cuando un cliente escriba algo lindo por WhatsApp, buscá `const testimonials = 
 
 Las notas se cargan **solo** en `blog-posts.js`. De ahí salen las tarjetas de la home (todas, en un carrusel de una fila, la más nueva primero), el listado de `blog.html` y cada nota completa. No hay que tocar ningún otro archivo.
 
-1. Si la nota tiene foto de portada, subila a la carpeta `/blog` del repo (Add file → Upload files). Nombre simple y sin espacios, ej: `ssd-post.jpg`. Mejor en horizontal (16:9) y liviana (idealmente menos de 300 KB).
+1. Si la nota tiene foto de portada, subila a la carpeta `/blog` del repo (Add file → Upload files). Nombre simple y sin espacios, ej: `ssd-post.jpg`. Mejor en horizontal (16:9), de 1200×675 y liviana (idealmente menos de 80 KB).
 2. Abrí `blog-posts.js` → lápiz (Edit), buscá `const blogPosts = [` y agregá un bloque entre las llaves cuadradas, **separado del anterior por una coma**:
    ```js
    {
@@ -69,6 +69,8 @@ Las notas se cargan **solo** en `blog-posts.js`. De ahí salen las tarjetas de l
    },
    ```
 3. Commit. A los 1–2 minutos la nota aparece sola en el blog y, si es de las 3 más nuevas, en la home.
+
+Al final de cada nota se agrega solo un recuadro con el botón de WhatsApp, el diagnóstico sin cargo, el precio antes de arrancar y la garantía de 7 días (está en `blog-lib.js`). No hace falta repetirlo en el texto: cerrá la nota con lo propio del tema y, si querés, un link de WhatsApp con un mensaje armado para esa nota.
 
 **Campos**
 

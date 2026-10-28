@@ -33,8 +33,6 @@
             btn.setAttribute('aria-pressed', String(light));
             btn.setAttribute('aria-label', light ? 'Volver al modo oscuro' : 'Activar modo claro');
             btn.setAttribute('title', light ? 'Modo oscuro' : 'Modo claro');
-            var icon = btn.querySelector('i');
-            if (icon) icon.className = 'ph ' + (light ? 'ph-moon' : 'ph-sun');
             var use = btn.querySelector('use');
             if (use) use.setAttribute('href', light ? '#i-moon' : '#i-sun');
         });

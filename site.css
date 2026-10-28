@@ -41,7 +41,7 @@ body {
     background-color: var(--bg);
     color: var(--white);
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     overflow-x: clip;
     line-height: 1.6;
@@ -87,7 +87,7 @@ section { position: relative; z-index: 1; }
 .green { color: var(--green); }
 .label {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     letter-spacing: 0.06em;
     color: var(--green);
 }
@@ -118,7 +118,6 @@ section { position: relative; z-index: 1; }
 .btn-primary:hover { filter: brightness(1.08); }
 .btn-secondary { background: transparent; color: var(--white); box-shadow: var(--ring); }
 .btn-secondary:hover { box-shadow: 0 0 0 1px var(--green-border); color: var(--green); background: var(--green-dim); }
-.btn i, .btn-primary i, .btn-secondary i { font-size: 1.25em; }
 
 /* Menú */
 nav.top {
@@ -154,7 +153,6 @@ nav.top.scrolled { border-bottom-color: rgba(var(--green-rgb), 0.14); }
     background: none; border: 0; color: var(--white); cursor: pointer; border-radius: 3px;
 }
 .hamburger svg { width: 26px; height: 26px; }
-.hamburger i { font-size: 26px; }
 .mobile-menu { display: none; border-top: 1px solid var(--line); padding-block: 8px 16px; }
 .mobile-menu a {
     display: flex; align-items: center; gap: 10px; min-height: 48px; font-size: 1.05rem;
@@ -193,7 +191,6 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
 .footer-social { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 3px; color: var(--muted); text-decoration: none; transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: ease-out; }
 .footer-social:hover { color: var(--green); background: var(--green-dim); }
 .footer-social svg { width: 22px; height: 22px; }
-.footer-social i { font-size: 22px; }
 
 /* WhatsApp flotante (los avisos de "cerrado" los agrega horario.js) */
 .whatsapp-float {
@@ -210,7 +207,6 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
 }
 .whatsapp-float:active { scale: 0.96; }
 .whatsapp-float > svg { width: 30px; height: 30px; }
-.whatsapp-float > i { font-size: 30px; }
 
 /* Volver arriba */
 .back-to-top {
@@ -228,7 +224,6 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
     transition: opacity 0.25s, transform 0.25s, visibility 0.25s, background-color 0.2s;
 }
 .back-to-top svg { width: 20px; height: 20px; }
-.back-to-top i { font-size: 20px; }
 .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { background: var(--green-dim); border-color: var(--green); }
 
@@ -283,7 +278,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
     border-radius: 3px;
     padding: 12px 20px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     color: var(--green);
     white-space: nowrap;
     opacity: 0;
@@ -299,6 +294,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
 @media (max-width: 620px) {
     .band { padding-block: 72px; }
     .page-hero { padding-block: 44px 40px; }
+    /* Lugar para que el WhatsApp flotante y volver arriba no tapen el pie */
+    footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
     .back-to-top { width: 44px; height: 44px; }
     .whatsapp-float { width: 54px; height: 54px; }
     .egg-toast { white-space: normal; max-width: 85vw; text-align: center; bottom: 80px; }

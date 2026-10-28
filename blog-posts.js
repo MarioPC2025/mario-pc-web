@@ -40,8 +40,8 @@ const blogPosts = [
         date: "2026-10-05",
         image: "blog/pc-lenta.jpg",
         imageAlt: "Ilustración de una notebook con una barra de carga casi vacía y un velocímetro con la aguja en la zona baja",
-        excerpt: "Si tu compu volaba cuando la compraste y hoy se arrastra, casi nunca es “que se hizo vieja” sin más. Estas son las 6 causas más comunes y cómo reconocerlas.",
-        content: `Te pasa seguido: comprás la compu, anda de maravilla, y unos años después tarda una eternidad en prender, se cuelga al abrir el navegador y hasta el mouse parece ir con retraso. Es una de las consultas que más recibo, y la buena noticia es que **en la mayoría de los casos tiene arreglo**, sin necesidad de cambiar la compu entera.
+        excerpt: "Si tu compu volaba cuando la compraste y hoy se arrastra, casi nunca es porque se hizo vieja y listo. Estas son las 6 causas más comunes y cómo reconocerlas.",
+        content: `Te pasa seguido: comprás la compu, anda de maravilla, y unos años después tarda una eternidad en prender, se cuelga al abrir el navegador y hasta el mouse parece ir con retraso. Es una de las consultas que más recibo, y en la mayoría de los casos tiene arreglo sin cambiar la compu entera.
 
 Una compu lenta es como un auto que hace años no pasa por el mecánico: no está "rota", pero hay varias cosas que se fueron gastando o acumulando. Estas son las causas más comunes.
 
@@ -61,7 +61,7 @@ Con los años se van instalando programas que, sin que te des cuenta, se abren c
 
 ## 4. Programas basura o virus
 
-Barras raras en el navegador, publicidad que aparece sola, "optimizadores" que prometen acelerar todo... muchos de esos programas son justamente lo que la frena. Los virus también consumen recursos en silencio.
+Barras raras en el navegador, publicidad que aparece sola, "optimizadores" que prometen acelerar todo: muchos de esos programas son justamente lo que la frena. Los virus también consumen recursos en silencio.
 
 ## 5. Calor: el polvo la está frenando
 
@@ -79,9 +79,7 @@ Un disco lleno trabaja con dificultad. Y si además escuchás clics o ruidos rar
 
 ## ¿Y ahora qué?
 
-No hace falta que adivines cuál de todas es la tuya, y menos que empieces a desinstalar cosas a ciegas: a veces se empeora. Contame qué compu tenés, desde cuándo anda así y qué es lo que más notás. **Reviso tu equipo sin cargo, te digo qué le pasa y te paso el costo exacto antes de tocar nada.** Todo lo que reparo tiene 7 días de garantía.
-
-Estoy en Olivos y atiendo toda la zona norte, en el taller.
+No hace falta que adivines cuál de todas es la tuya, y menos que empieces a desinstalar cosas a ciegas: a veces se empeora. Contame qué compu tenés, desde cuándo anda así y qué es lo que más notás.
 
 [Escribime por WhatsApp y le damos velocidad a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20anda%20muy%20lenta%20y%20quiero%20que%20la%20revises)`
     },
@@ -94,9 +92,9 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller.
         image: "blog/mantenimiento-pc.jpg",
         imageAlt: "Ilustración de un ventilador de computadora con polvo, junto a una llave y un destornillador cruzados, un engranaje y una tilde verde",
         excerpt: "Tu compu avisa antes de fallar, y no hace falta ser técnico para darte cuenta. Estas son las señales de que llegó la hora de un service, y cada cuánto conviene hacerlo.",
-        content: `Tu compu casi nunca se rompe de un día para el otro. Antes de fallar, **avisa**: se vuelve más lenta, hace ruidos, se calienta... El problema es que esas señales aparecen de a poco, y uno se acostumbra sin darse cuenta.
+        content: `Tu compu casi nunca se rompe de un día para el otro. Antes de fallar, avisa: se vuelve más lenta, hace ruidos o se calienta. El problema es que esas señales aparecen de a poco, y uno se acostumbra sin darse cuenta.
 
-Esta lista te sirve para detectarlas a tiempo. Si te identificás con **dos o más**, probablemente ya sea momento de un mantenimiento.
+Esta lista te sirve para detectarlas a tiempo. Si te identificás con dos o más, probablemente ya sea momento de un mantenimiento.
 
 ## Las 7 señales
 
@@ -114,7 +112,7 @@ Si tu notebook tiene la **batería hinchada** (la base se abomba, el touchpad se
 
 ## ¿Cada cuánto hay que hacer mantenimiento?
 
-Como regla general, una limpieza interna cada **1 o 2 años**. Conviene hacerla más seguido si tenés mascotas, si hay mucho polvo en casa o si la usás muchas horas por día. Una compu que trabaja todo el día suele necesitarla antes que una que se usa de vez en cuando.
+Como regla general, una limpieza interna cada 1 o 2 años. Conviene hacerla más seguido si tenés mascotas, si hay mucho polvo en casa o si la usás muchas horas por día. Una compu que trabaja todo el día suele necesitarla antes que una que se usa de vez en cuando.
 
 ## Qué incluye un mantenimiento
 
@@ -132,9 +130,9 @@ Según lo que necesite tu equipo, puede incluir:
 
 ## ¿Y si no estás seguro?
 
-Es completamente normal. Escribime contándome qué compu tenés, qué síntomas notás y hace cuánto no le hacés un service. **Reviso tu equipo sin cargo, te digo qué necesita y te paso el costo exacto antes de tocar nada**, con 7 días de garantía sobre el trabajo.
+Escribime contándome qué compu tenés, qué síntomas notás y hace cuánto no le hacés un service.
 
-Estoy en Olivos y atiendo la zona norte, en el taller. Si te sirvió esta nota, también podés leer por qué una compu [se pone lenta con los años](blog.html?nota=por-que-mi-compu-anda-lenta).
+Si te sirvió esta nota, también podés leer por qué una compu [se pone lenta con los años](blog.html?nota=por-que-mi-compu-anda-lenta).
 
 [Escribime por WhatsApp y vemos si le toca un service](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20saber%20si%20mi%20compu%20necesita%20mantenimiento)`
     },
@@ -147,9 +145,9 @@ Estoy en Olivos y atiendo la zona norte, en el taller. Si te sirvió esta nota, 
         image: "blog/pc-caliente.jpg",
         imageAlt: "Ilustración de una notebook con ondas de calor que suben y un termómetro con la temperatura alta",
         excerpt: "Si tu notebook quema, el ventilador suena como un avión o se apaga sola, no es normal. Las causas más comunes, qué podés hacer ahora y cuándo conviene revisarla.",
-        content: `Que una compu entre en calor es normal. Que **queme**, que el ventilador suene como una turbina o que se apague sola, no. Y con el verano a la vuelta de la esquina, el problema se nota todavía más.
+        content: `Que una compu entre en calor es normal. Que queme, que el ventilador suene como una turbina o que se apague sola, no. Y con el verano a la vuelta de la esquina, el problema se nota todavía más.
 
-Lo que pasa es esto: toda compu tiene un sistema de refrigeración (un ventilador y un disipador) que saca el calor de adentro. Cuando ese sistema falla, la compu, para protegerse, **se frena sola o se apaga**. Por eso el calor y la lentitud suelen ir de la mano: si tu compu también [anda lenta](blog.html?nota=por-que-mi-compu-anda-lenta), puede ser la misma causa.
+Toda compu tiene un sistema de refrigeración (un ventilador y un disipador) que saca el calor de adentro. Cuando ese sistema falla, la compu, para protegerse, se frena sola o se apaga. Por eso el calor y la lentitud suelen ir de la mano: si tu compu también [anda lenta](blog.html?nota=por-que-mi-compu-anda-lenta), puede ser la misma causa.
 
 ## ¿Es normal o es un problema?
 
@@ -190,9 +188,9 @@ Lo habitual es limpiar por dentro el ventilador y el disipador, renovar la pasta
 
 ## ¿Querés que la revise?
 
-Escribime contándome qué compu tenés y qué notás: si quema, si el ventilador suena fuerte, si se apaga sola. **Reviso tu equipo sin cargo, te digo qué le pasa y te paso el costo exacto antes de tocar nada**, y el trabajo tiene 7 días de garantía.
+Escribime contándome qué compu tenés y qué notás: si quema, si el ventilador suena fuerte, si se apaga sola.
 
-Estoy en Olivos y atiendo toda la zona norte, en el taller. Si además querés saber [cómo darte cuenta de que necesita un service](blog.html?nota=como-saber-si-mi-compu-necesita-mantenimiento), tenés una lista con las señales.
+Si además querés saber [cómo darte cuenta de que necesita un service](blog.html?nota=como-saber-si-mi-compu-necesita-mantenimiento), tenés una lista con las señales.
 
 [Escribime por WhatsApp y la revisamos antes de que se dañe](https://wa.me/5491123999259?text=Hola%20Mario%2C%20mi%20compu%20se%20calienta%20mucho%20y%20quiero%20que%20la%20revises)`
     },
@@ -206,13 +204,13 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller. Si además querés s
         image: "blog/windows-10.jpg",
         imageAlt: "Ilustración de dos ventanas unidas por una flecha: una con el número 10 y una alerta de seguridad, y otra con el 11 y un escudo con tilde",
         excerpt: "Windows 10 ya no recibe actualizaciones gratuitas de seguridad. No se apaga solo, pero conviene decidir qué hacer. Cómo saber qué tenés y cuáles son tus opciones.",
-        content: `Si tu compu tiene Windows 10, seguramente viste avisos que dicen que llegó al final de su soporte. Y si no los viste, esta nota te interesa igual. Te cuento **qué significa en la práctica, si tenés que preocuparte y qué opciones tenés**, sin vueltas técnicas.
+        content: `Si tu compu tiene Windows 10, seguramente viste avisos que dicen que llegó al final de su soporte. Te cuento qué significa en la práctica, si tenés que preocuparte y qué opciones tenés.
 
 ## Qué pasó con Windows 10
 
-El 14 de octubre de 2025, Microsoft dejó de dar soporte a Windows 10. Eso significa que ya no manda mejoras ni **actualizaciones de seguridad gratuitas** para ese sistema.
+El 14 de octubre de 2025, Microsoft dejó de dar soporte a Windows 10. Eso significa que ya no manda mejoras ni actualizaciones de seguridad gratuitas para ese sistema.
 
-Tu compu no se apaga ni deja de funcionar de golpe: sigue andando igual que ayer. El tema es otro. Cada vez que se descubre una falla de seguridad nueva, los equipos sin actualizar quedan expuestos. Es como una casa a la que dejan de arreglarle las cerraduras mientras los ladrones aprenden trucos nuevos.
+Tu compu no se apaga ni deja de funcionar de golpe: sigue andando igual que ayer. Pero cada vez que se descubre una falla de seguridad nueva, los equipos sin actualizar quedan expuestos. Es como una casa a la que dejan de arreglarle las cerraduras mientras los ladrones aprenden trucos nuevos.
 
 ## ¿Tengo Windows 10? Cómo saberlo en 10 segundos
 
@@ -235,17 +233,17 @@ Dos cosas para tener en cuenta:
 
 ### Opción 2: seguir con Windows 10, pero protegida
 
-Microsoft ofrece un programa de **actualizaciones de seguridad extendidas** (ESU) para Windows 10. Cubre solamente actualizaciones de seguridad: no trae mejoras ni soporte técnico.
+Microsoft ofrece un programa de actualizaciones de seguridad extendidas (ESU) para Windows 10. Cubre solamente actualizaciones de seguridad: no trae mejoras ni soporte técnico.
 
 Según Microsoft, podés inscribirte hasta el **12 de octubre de 2027**, y esa es también la fecha hasta la que dura la cobertura. Hay tres formas de inscribirse: sin costo si activás la copia de seguridad de tu configuración con una cuenta Microsoft, canjeando puntos de Microsoft Rewards, o con un pago único (US$30 en Estados Unidos). Las opciones y los precios pueden variar según el país.
 
 Para inscribirte, tu compu necesita tener Windows 10 versión 22H2, estar actualizada y usar una cuenta Microsoft como administrador.
 
-Pensalo como un puente y no como un destino: te da tiempo para decidir, y anotarte no te impide pasar a Windows 11 más adelante. (Este dato está verificado a octubre de 2026; Microsoft puede cambiar estas condiciones.)
+Te da tiempo para decidir, y anotarte no te impide pasar a Windows 11 más adelante. (Este dato está verificado a octubre de 2026; Microsoft puede cambiar estas condiciones.)
 
 ### Opción 3: cambiar de equipo
 
-Si la compu es muy vieja, anda lenta y no es compatible con Windows 11, a veces lo más sensato es cambiarla. Y te lo digo con honestidad: si no vale la pena arreglarla, te lo voy a decir.
+Si la compu es muy vieja, anda lenta y no es compatible con Windows 11, a veces lo más sensato es cambiarla. Si no vale la pena arreglarla, te lo digo.
 
 ## Lo que no conviene hacer
 
@@ -255,9 +253,7 @@ Si la compu es muy vieja, anda lenta y no es compatible con Windows 11, a veces 
 
 ## ¿Y ahora qué?
 
-Si no sabés qué versión tenés, si tu compu puede pasar a Windows 11 o qué te conviene en tu caso, escribime. **Reviso tu equipo sin cargo, te digo si es compatible, qué necesitaría (por ejemplo un SSD o más RAM) y cuánto sale, antes de tocar nada.** El trabajo tiene 7 días de garantía.
-
-Estoy en Olivos y atiendo toda la zona norte, en el taller.
+Si no sabés qué versión tenés, si tu compu puede pasar a Windows 11 o qué te conviene en tu caso, escribime. Te digo si es compatible y qué necesitaría, por ejemplo un SSD o más RAM.
 
 [Escribime por WhatsApp y vemos qué le conviene a tu compu](https://wa.me/5491123999259?text=Hola%20Mario%2C%20tengo%20Windows%2010%20y%20quiero%20saber%20que%20conviene%20hacer%20con%20mi%20compu)`
     },
@@ -270,9 +266,9 @@ Estoy en Olivos y atiendo toda la zona norte, en el taller.
         image: "blog/copia-seguridad.jpg",
         imageAlt: "Ilustración de una notebook que envía sus archivos a una nube y a un disco externo, con un escudo con tilde",
         excerpt: "Fotos, documentos, chats de WhatsApp: si tu compu falla, ¿qué perdés? La regla 3-2-1 explicada en simple y cómo hacer tu primera copia hoy mismo.",
-        content: `Pensá en todo lo que tenés guardado en tu compu: fotos de la familia, documentos, trámites escaneados, archivos del trabajo o del estudio. Ahora una pregunta incómoda: **si mañana no prende, ¿tenés una copia de todo eso en otro lado?**
+        content: `Pensá en todo lo que tenés guardado en tu compu: fotos de la familia, documentos, trámites escaneados, archivos del trabajo o del estudio. Ahora una pregunta incómoda: si mañana no prende, ¿tenés una copia de todo eso en otro lado?
 
-Lo más común es acordarse de hacer la copia recién cuando ya es tarde. La buena noticia es que no hace falta ser técnico: con una tarde y un par de cosas simples, lo importante queda a salvo.
+Lo más común es acordarse de hacer la copia recién cuando ya es tarde. No hace falta ser técnico: con una tarde y un par de cosas simples, lo importante queda a salvo.
 
 ## ¿De qué te protege una copia de seguridad?
 
@@ -290,7 +286,7 @@ Es la regla que usan los técnicos, y es más fácil de lo que suena:
 - **2 lugares distintos**: por ejemplo, tu compu y un disco externo.
 - **1 copia fuera de tu casa**: en la nube, por si hay un robo o un incendio.
 
-No hace falta que sea perfecto desde el primer día: tener **dos copias ya es muchísimo mejor que tener una sola**.
+No hace falta que sea perfecto desde el primer día: tener dos copias ya es mucho mejor que tener una sola.
 
 ## Qué conviene copiar
 
@@ -321,7 +317,7 @@ Disco externo y nube a la vez: con eso ya cumplís la regla 3-2-1.
 - **Guardar la "copia" en la misma compu**, en otra carpeta o en la unidad D:. Casi siempre es el mismo disco, y si falla se pierden las dos.
 - **Dejar el disco externo siempre enchufado.** Un virus también podría afectarlo. Conectalo para copiar y desconectalo después.
 - **Hacer la copia una sola vez** y nunca más. Poné un recordatorio, por ejemplo una vez al mes.
-- **No comprobar que la copia funciona.** Una copia que nunca abriste es una copia de la que no podés estar seguro.
+- **No comprobar que la copia funciona.** Si nunca abriste la copia, no sabés si sirve.
 
 ## Cuándo hacerla ya mismo
 
@@ -333,9 +329,7 @@ Y si el disco ya hace clics o ruidos raros, o tus archivos no abren: **apagala y
 
 ## ¿Y si no sabés por dónde empezar?
 
-Contame qué compu tenés y cómo la usás (cuántas fotos y archivos aproximadamente, si ya usás alguna nube) y te armo un plan de copias simple, a tu medida. Si tu equipo ya da señales de falla, **lo reviso sin cargo y te paso el costo exacto antes de tocar nada**, con 7 días de garantía sobre el trabajo.
-
-Estoy en Olivos y atiendo toda la zona norte, en el taller.
+Contame qué compu tenés y cómo la usás (cuántas fotos y archivos aproximadamente, si ya usás alguna nube) y te armo un plan de copias simple, a tu medida. Si tu equipo ya da señales de falla, traémelo y lo revisamos.
 
 [Escribime por WhatsApp y armamos tu plan de copias](https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20armar%20una%20copia%20de%20seguridad%20de%20mis%20archivos%20y%20no%20se%20por%20donde%20empezar)`
     },

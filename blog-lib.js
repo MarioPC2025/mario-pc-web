@@ -139,7 +139,7 @@ const MarioBlog = (function () {
         const h = 'h' + (level || 3);
         const media = p.image
             ? '<img src="' + esc(p.image) + '" alt="" loading="lazy" decoding="async">'
-            : '<div class="note-card-fallback"><i class="ph-fill ph-notepad"></i></div>';
+            : '<div class="note-card-fallback"><svg class="i" aria-hidden="true"><use href="#i-notepad"/></svg></div>';
         const when = formatDate(p.date);
         return '<article class="note-card">' +
             '<a class="note-card-link" href="' + esc(url(p)) + '">' +
@@ -148,7 +148,7 @@ const MarioBlog = (function () {
             '<div class="note-card-meta">' + (when ? esc(when) + ' · ' : '') + minutes(p) + ' min de lectura</div>' +
             '<' + h + ' class="note-card-title">' + esc(p.title) + '</' + h + '>' +
             '<p class="note-card-excerpt">' + esc(excerptOf(p)) + '</p>' +
-            '<span class="note-card-more">Leer nota <i class="ph ph-arrow-right"></i></span>' +
+            '<span class="note-card-more">Leer nota <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>' +
             '</div></a></article>';
     }
 
@@ -164,7 +164,7 @@ const MarioBlog = (function () {
         const when = formatDate(p.date);
         const waText = encodeURIComponent('Hola Mario, leí tu nota "' + p.title + '" y quería hacerte una consulta');
         return '<article class="note-article">' +
-            '<a class="note-back" href="blog.html"><i class="ph ph-arrow-left"></i> Volver al blog</a>' +
+            '<a class="note-back" href="blog.html"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg> Volver al blog</a>' +
             '<header>' +
             '<div class="note-meta">' + (when ? esc(when) + ' · ' : '') + minutes(p) + ' min de lectura</div>' +
             '<h1 class="note-title">' + esc(p.title) + '</h1>' +
@@ -177,11 +177,11 @@ const MarioBlog = (function () {
             '<div class="note-body">' + renderContent(p.content) + '</div>' +
             '<aside class="note-cta">' +
             '<div class="note-cta-text"><strong>¿Te pasa algo parecido con tu equipo?</strong>' +
-            '<span>Contame qué le pasa y te respondo por WhatsApp. El diagnóstico no tiene cargo.</span></div>' +
+            '<span>Lo reviso sin cargo en el taller, en Olivos, y te paso el precio por WhatsApp antes de tocar nada. Cada trabajo tiene 7 días de garantía.</span></div>' +
             '<a class="btn-primary" href="' + WA + '?text=' + waText + '" target="_blank" rel="noopener noreferrer">' +
-            '<i class="ph-fill ph-whatsapp-logo"></i> Escribir por WhatsApp</a>' +
+            '<svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg> Escribir por WhatsApp</a>' +
             '</aside>' +
-            '<a class="note-back note-back-bottom" href="blog.html"><i class="ph ph-arrow-left"></i> Ver todas las notas</a>' +
+            '<a class="note-back note-back-bottom" href="blog.html"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg> Ver todas las notas</a>' +
             '</article>';
     }
 

@@ -26,7 +26,7 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
-    <link rel="stylesheet" href="/site.css?v=1">
+    <link rel="stylesheet" href="/site.css?v=2">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -48,8 +48,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css" integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" integrity="sha384-pPVoXE8ft+zxKtxIDDI7SfTK6y95NHm4qa+hKEg/hs8VkjW5IP+9/dGOPCbDpUPl" crossorigin="anonymous">
 
 
     <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "Retiro y borrado seguro de equipos para empresas", "provider": {"@type": "LocalBusiness", "name": "Mario PC", "telephone": "+5491123999259", "url": "https://www.mariopc.com.ar"}, "areaServed": ["Olivos", "La Lucila", "Vicente López"], "description": "Retiro de equipos informáticos en desuso para empresas de zona norte: borrado de datos según NIST 800-88, certificado por número de serie y disposición responsable. Sin costo para la empresa."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Es gratis de verdad?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. No te cobro el retiro ni el proceso. Lo que tiene valor de reventa financia el servicio, y si el volumen lo justifica, lo acuerdo por escrito antes de retirar."}}, {"@type": "Question", "name": "¿Cómo sé que los datos se borraron?", "acceptedAnswer": {"@type": "Answer", "text": "Recibís un certificado con el número de serie de cada equipo, el método aplicado y el resultado, junto con un acta de retiro firmada. Cuando la herramienta lo genera, sumo también el reporte técnico en PDF del borrado."}}, {"@type": "Question", "name": "¿Qué pasa con lo que no se puede revender?", "acceptedAnswer": {"@type": "Answer", "text": "Lo que no se puede reutilizar se deriva a reciclaje y te informo el destino en el acta."}}, {"@type": "Question", "name": "¿A qué zona llegás?", "acceptedAnswer": {"@type": "Answer", "text": "Retiro en Olivos, La Lucila, Vicente López y alrededores. Escribime y confirmamos si llego a tu oficina."}}]}]}</script>
@@ -63,12 +61,12 @@
             font-family: var(--font-body); font-size: 1.12rem; font-weight: 500; line-height: 1.35;
         }
         .acc-q:hover { color: var(--green); }
-        .acc-q i { flex: none; font-size: 1.3rem; color: var(--green); transition: transform 150ms ease-out; }
-        .acc-q[aria-expanded="true"] i { transform: rotate(45deg); }
+        .acc-q svg { flex: none; width: 1.3rem; height: 1.3rem; color: var(--green); transition: transform 150ms ease-out; }
+        .acc-q[aria-expanded="true"] svg { transform: rotate(45deg); }
         .acc-a { padding: 0 0 22px; max-width: 68ch; color: var(--muted); font-size: 1rem; line-height: 1.7; }
         .acc-a strong { color: var(--white); font-weight: 500; }
         .page-cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
-        @media (prefers-reduced-motion: reduce) { .acc-q i { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { .acc-q svg { transition: none; } }
         .steps5 { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: s; }
         .steps5 li { display: grid; gap: 8px; align-content: start; padding: 22px; border-radius: 6px; background: var(--surface); box-shadow: var(--ring); }
         .steps5 li::before { counter-increment: s; content: counter(s); font-family: var(--font-display); font-size: 2rem; line-height: 1; color: var(--green); }
@@ -80,14 +78,14 @@
         .prose a:not(.btn) { color: var(--green); text-underline-offset: 3px; }
         .cert { border: 1px solid rgba(var(--ink-rgb), 0.12); border-radius: 4px; overflow: hidden; font-size: 0.85rem; background: var(--bg); }
         .cert-title { background: var(--cert-head); text-align: center; font-family: var(--font-display); letter-spacing: 0.08em; padding: 0.9rem; font-size: 1.25rem; }
-        .cert-sec { background: rgba(var(--ink-rgb), 0.06); text-align: center; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; padding: 0.45rem; color: var(--green); }
+        .cert-sec { background: rgba(var(--ink-rgb), 0.06); text-align: center; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; padding: 0.45rem; color: var(--green); }
         .cert-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); border-top: 1px solid rgba(var(--ink-rgb), 0.07); }
         .cert-row span { padding: 0.5rem 0.8rem; color: var(--muted); }
         .cert-row b { padding: 0.5rem 0.8rem; font-weight: 500; color: var(--white); overflow-wrap: anywhere; }
-        .cert-note { padding: 0.6rem 0.8rem; border-top: 1px solid rgba(var(--ink-rgb), 0.07); font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+        .cert-note { padding: 0.6rem 0.8rem; border-top: 1px solid rgba(var(--ink-rgb), 0.07); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
         .method { width: 100%; max-width: 720px; border-collapse: collapse; margin-top: 8px; }
         .method th, .method td { text-align: left; padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-        .method th { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400; color: var(--green); }
+        .method th { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 400; color: var(--green); }
         .method td { color: var(--muted); }
         .method td:first-child { color: var(--white); font-weight: 500; white-space: nowrap; }
         .emp-form { display: grid; gap: 18px; padding: 28px; border-radius: 6px; background: var(--surface); box-shadow: var(--ring); }
@@ -96,9 +94,24 @@
         @media (max-width: 920px) { .two { grid-template-columns: 1fr; gap: 40px; } }
         @media (max-width: 620px) { .steps5 { grid-template-columns: 1fr; } .cert-row { grid-template-columns: 110px minmax(0, 1fr); } .emp-form { padding: 22px; } }
     </style>
-<script src="horario.js?v=3" defer></script>
+<script src="horario.js?v=4" defer></script>
 </head>
 <body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-arrow-up" viewBox="0 0 256 256"><path fill="currentColor" d="M205.66 117.66a8 8 0 0 1-11.32 0L136 59.31V216a8 8 0 0 1-16 0V59.31l-58.34 58.35a8 8 0 0 1-11.32-11.32l72-72a8 8 0 0 1 11.32 0l72 72a8 8 0 0 1 0 11.32"/></symbol>
+<symbol id="i-download-simple" viewBox="0 0 256 256"><path fill="currentColor" d="M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8V144a8 8 0 0 1 16 0v56H208V144a8 8 0 0 1 16 0Zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z"/></symbol>
+<symbol id="i-facebook-logo" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m8 191.63V152h24a8 8 0 0 0 0-16h-24v-24a16 16 0 0 1 16-16h16a8 8 0 0 0 0-16h-16a32 32 0 0 0-32 32v24H96a8 8 0 0 0 0 16h24v63.63a88 88 0 1 1 16 0"/></symbol>
+<symbol id="i-instagram-logo" viewBox="0 0 256 256"><path fill="currentColor" d="M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m48-136H80a56.06 56.06 0 0 0-56 56v96a56.06 56.06 0 0 0 56 56h96a56.06 56.06 0 0 0 56-56V80a56.06 56.06 0 0 0-56-56m40 152a40 40 0 0 1-40 40H80a40 40 0 0 1-40-40V80a40 40 0 0 1 40-40h96a40 40 0 0 1 40 40ZM192 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12"/></symbol>
+<symbol id="i-linkedin-logo" viewBox="0 0 256 256"><path fill="currentColor" d="M216 24H40a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V40a16 16 0 0 0-16-16m0 192H40V40h176zM96 112v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0m88 28v36a8 8 0 0 1-16 0v-36a20 20 0 0 0-40 0v36a8 8 0 0 1-16 0v-64a8 8 0 0 1 15.79-1.78A36 36 0 0 1 184 140m-84-56a12 12 0 1 1-12-12a12 12 0 0 1 12 12"/></symbol>
+<symbol id="i-list" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 256 256"><path fill="currentColor" d="M128 64a40 40 0 1 0 40 40a40 40 0 0 0-40-40m0 64a24 24 0 1 1 24-24a24 24 0 0 1-24 24m0-112a88.1 88.1 0 0 0-88 88c0 31.4 14.51 64.68 42 96.25a254.2 254.2 0 0 0 41.45 38.3a8 8 0 0 0 9.18 0a254.2 254.2 0 0 0 41.37-38.3c27.45-31.57 42-64.85 42-96.25a88.1 88.1 0 0 0-88-88m0 206c-16.53-13-72-60.75-72-118a72 72 0 0 1 144 0c0 57.23-55.47 105-72 118"/></symbol>
+<symbol id="i-moon" viewBox="0 0 256 256"><path fill="currentColor" d="M233.54 142.23a8 8 0 0 0-8-2a88.08 88.08 0 0 1-109.8-109.8a8 8 0 0 0-10-10a104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.1 103.1 0 0 0 62.52-20.88a104.84 104.84 0 0 0 37-52.91a8 8 0 0 0-1.98-7.98m-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104a106 106 0 0 0 14.92-1.06a89 89 0 0 1-26.02 31.4"/></symbol>
+<symbol id="i-plus" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H136v80a8 8 0 0 1-16 0V136H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80A8 8 0 0 1 224 128Z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 256 256"><path fill="currentColor" d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0m72 88a64 64 0 1 1-64-64a64.07 64.07 0 0 1 64 64m-16 0a48 48 0 1 0-48 48a48.05 48.05 0 0 0 48-48M58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68l-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32M192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72m5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8m80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8m112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16"/></symbol>
+<symbol id="i-whatsapp-logo-fill" viewBox="0 0 256 256"><path fill="currentColor" d="m152.58 145.23l23 11.48A24 24 0 0 1 152 176a72.08 72.08 0 0 1-72-72a24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51a56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155ZM232 128a104 104 0 0 1-152.88 91.82l-34.05 11.35a16 16 0 0 1-20.24-20.24l11.35-34.05A104 104 0 1 1 232 128m-40 24a8 8 0 0 0-4.42-7.16l-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40a88.1 88.1 0 0 0 88 88a40 40 0 0 0 40-40"/></symbol>
+<symbol id="i-x" viewBox="0 0 256 256"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></symbol>
+</svg>
 
 <div class="grain"></div>
 
@@ -121,12 +134,12 @@
             </ul>
 
             <div class="nav-actions">
-                <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><i class="ph ph-sun" aria-hidden="true"></i></button>
+                <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
                 <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
-                    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>WhatsApp
+                    <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>WhatsApp
                 </a>
                 <button type="button" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
-                    <i class="ph ph-list" aria-hidden="true"></i>
+                    <svg class="i" aria-hidden="true"><use href="#i-list"/></svg>
                 </button>
             </div>
         </div>
@@ -140,7 +153,7 @@
             <a href="./#contacto">Contacto</a>
             <a href="empresas.html" aria-current="page">Empresas</a>
             <a class="wa" href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer">
-                <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>WhatsApp
+                <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>WhatsApp
             </a>
         </div>
     </div>
@@ -152,7 +165,7 @@
     <div class="wrap">
         <h1 class="display">Equipos viejos,<br><span class="green">cero riesgo</span></h1>
         <p class="lead">Retiro los equipos que tu empresa ya no usa, borro los datos según NIST 800-88 y me ocupo del destino final. Sin costo para vos y con certificado por número de serie.</p>
-        <div><a href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20escribo%20por%20mi%20empresa.%20Tenemos%20equipos%20para%20dar%20de%20baja." target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Coordinar un retiro</a></div>
+        <div><a href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20escribo%20por%20mi%20empresa.%20Tenemos%20equipos%20para%20dar%20de%20baja." target="_blank" rel="noopener noreferrer" class="btn btn-primary"><svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>Coordinar un retiro</a></div>
     </div>
 </section>
 
@@ -175,7 +188,7 @@
             <h2 class="display h2">Constancia <span class="green">por equipo</span></h2>
             <p>Acta de retiro con el listado por número de serie y un certificado de borrado por cada equipo. Sirve como respaldo para la baja de activos y para tu área de IT o administración.</p>
             <p>Basado en el formulario del Apéndice G de <a href="https://doi.org/10.6028/NIST.SP.800-88r1" target="_blank" rel="noopener noreferrer">NIST SP 800-88 Rev. 1</a>.</p>
-            <div><a href="certificado-de-sanitizacion-en-blanco.pdf" download class="btn btn-secondary" onclick="window.gtag&&gtag('event','descarga_certificado')"><i class="ph ph-download-simple" aria-hidden="true"></i>Descargar certificado en blanco (PDF)</a></div>
+            <div><a href="certificado-de-sanitizacion-en-blanco.pdf" download class="btn btn-secondary" onclick="window.gtag&&gtag('event','descarga_certificado')"><svg class="i" aria-hidden="true"><use href="#i-download-simple"/></svg>Descargar certificado en blanco (PDF)</a></div>
         </div>
         <div class="cert" role="img" aria-label="Ejemplo de certificado de sanitización con datos ficticios"><div class="cert-title">CERTIFICADO DE SANITIZACIÓN</div><div class="cert-sec">PERSONA QUE REALIZA LA SANITIZACIÓN</div><div class="cert-row"><span>Organización</span><b>Mario PC</b></div><div class="cert-row"><span>Ubicación</span><b>Olivos, Buenos Aires</b></div><div class="cert-sec">INFORMACIÓN DEL MEDIO</div><div class="cert-row"><span>Marca / modelo</span><b>Samsung 970 EVO Plus 500 GB</b></div><div class="cert-row"><span>N.º de serie</span><b>S4EWNX0R123456A</b></div><div class="cert-row"><span>Tipo de medio</span><b>SSD NVMe</b></div><div class="cert-row"><span>Datos respaldados</span><b>No</b></div><div class="cert-sec">DETALLES DE LA SANITIZACIÓN</div><div class="cert-row"><span>Tipo de método</span><b>Purgar</b></div><div class="cert-row"><span>Método utilizado</span><b>Borrado seguro nativo del disco</b></div><div class="cert-row"><span>Herramienta</span><b>nwipe (ShredOS)</b></div><div class="cert-row"><span>Verificación</span><b>Completa</b></div><div class="cert-sec">DESTINO DEL MEDIO</div><div class="cert-row"><span>Destino</span><b>Reutilización externa</b></div><div class="cert-sec">FIRMA</div><div class="cert-row"><span>Firma / fecha</span><b>[firma] · [dd/mm/aaaa]</b></div><div class="cert-note">Ejemplo ilustrativo con datos ficticios.</div></div>
     </div>
@@ -202,19 +215,19 @@
         <div class="section-head"><h2 class="display h2">Lo que suelen <span class="green">preguntar</span></h2></div>
         <div class="acc">
             <div class="acc-item">
-                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-1">¿Es gratis de verdad?<i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-1">¿Es gratis de verdad?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h3>
                 <div class="acc-a" id="emp-1" hidden><p>Sí. No te cobro el retiro ni el proceso. Lo que tiene valor de reventa financia el servicio, y si el volumen lo justifica, lo acuerdo por escrito antes de retirar.</p></div>
             </div>
             <div class="acc-item">
-                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-2">¿Cómo sé que los datos se borraron?<i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-2">¿Cómo sé que los datos se borraron?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h3>
                 <div class="acc-a" id="emp-2" hidden><p>Recibís un certificado con el número de serie de cada equipo, el método aplicado y el resultado, junto con un acta de retiro firmada. Cuando la herramienta lo genera, sumo también el reporte técnico en PDF del borrado.</p></div>
             </div>
             <div class="acc-item">
-                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-3">¿Qué pasa con lo que no se puede revender?<i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-3">¿Qué pasa con lo que no se puede revender?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h3>
                 <div class="acc-a" id="emp-3" hidden><p>Lo que no se puede reutilizar se deriva a reciclaje y te informo el destino en el acta.</p></div>
             </div>
             <div class="acc-item">
-                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-4">¿A qué zona llegás?<i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+                <h3><button type="button" class="acc-q" aria-expanded="false" aria-controls="emp-4">¿A qué zona llegás?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h3>
                 <div class="acc-a" id="emp-4" hidden><p>Retiro en Olivos, La Lucila, Vicente López y alrededores. Escribime y confirmamos si llego a tu oficina.</p></div>
             </div>
         </div>
@@ -232,7 +245,7 @@
             <div class="form-field"><label for="e-name">Tu nombre</label><input id="e-name" autocomplete="name" required></div>
             <div class="form-field"><label for="e-qty">Cantidad estimada de equipos</label><select id="e-qty" required><option value="" disabled selected>Elegí una opción</option><option>1 a 5</option><option>6 a 20</option><option>21 a 50</option><option>Más de 50</option></select></div>
             <div class="form-field"><label for="e-msg">Detalle (opcional)</label><textarea id="e-msg" placeholder="Tipo de equipos, ubicación, plazos"></textarea></div>
-            <button type="submit" class="btn btn-primary"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>Enviar por WhatsApp</button>
+            <button type="submit" class="btn btn-primary"><svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>Enviar por WhatsApp</button>
         </form>
     </div>
 </section>
@@ -246,20 +259,20 @@
             <span class="footer-copy">© 2026 Mario PC · Olivos, Buenos Aires</span>
         </div>
         <div class="footer-socials">
-            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
-            <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><i class="ph ph-linkedin-logo" aria-hidden="true"></i></a>
-            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram-logo"/></svg></a>
+            <a href="https://www.facebook.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Facebook"><svg class="i" aria-hidden="true"><use href="#i-facebook-logo"/></svg></a>
+            <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><svg class="i" aria-hidden="true"><use href="#i-linkedin-logo"/></svg></a>
+            <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Maps"><svg class="i" aria-hidden="true"><use href="#i-map-pin"/></svg></a>
         </div>
     </div>
 </footer>
 
 <a href="https://wa.me/5491123999259?text=Hola%20Mario%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Escribir por WhatsApp">
-    <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i>
+    <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
 </a>
 
 <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
-    <i class="ph ph-arrow-up" aria-hidden="true"></i>
+    <svg class="i" aria-hidden="true"><use href="#i-arrow-up"/></svg>
 </button>
 
 <script>
@@ -280,7 +293,7 @@
 </script>
 <script>document.getElementById("empForm").addEventListener("submit",function(e){e.preventDefault();var v=function(i){return document.getElementById(i).value.trim()};var t="Hola Mario! Soy "+v("e-name")+" de "+v("e-emp")+".\nQueremos coordinar el retiro de equipos.\nCantidad estimada: "+v("e-qty")+(v("e-msg")?"\nDetalle: "+v("e-msg"):"");window.open("https://wa.me/5491123999259?text="+encodeURIComponent(t),"_blank","noopener,noreferrer");window.location.href="gracias.html";});</script>
 
-<script src="/site.js?v=1"></script>
-<script src="/theme.js?v=2" defer></script>
+<script src="/site.js?v=2"></script>
+<script src="/theme.js?v=3" defer></script>
 </body>
 </html>
