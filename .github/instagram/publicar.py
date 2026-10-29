@@ -88,11 +88,17 @@ def api(metodo, ruta, datos=None):
             return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
         detalle = e.read().decode(errors="replace")
+        codigo = None
         try:
-            detalle = json.loads(detalle).get("error", {}).get("message", detalle)
+            err = json.loads(detalle).get("error", {})
+            detalle, codigo = err.get("message", detalle), err.get("code")
         except ValueError:
             pass
-        raise ErrorPublicacion(f"Instagram respondió {e.code} en {metodo} {ruta}: {detalle}")
+        extra = ""
+        if codigo in (190, 102) or e.code == 401:
+            extra = (" · La clave venció o perdió el acceso: renovala desde el Explorador de la API Graph "
+                     "(ver .github/instagram/LEEME.md, sección 'Renovar el acceso').")
+        raise ErrorPublicacion(f"Instagram respondió {e.code} en {metodo} {ruta}: {detalle}{extra}")
     except urllib.error.URLError as e:
         raise ErrorPublicacion(f"No se pudo conectar con Instagram ({e.reason})")
 
@@ -165,6 +171,7 @@ def main():
     ig_user = str(os.environ.get("IG_USER_ID") or cola.get("ig_user_id") or "").strip()
     if ig_user and "IG_API_BASE" not in os.environ:
         API = "https://graph.facebook.com"
+    avisar_renovacion(cola)
     if cola.get("pausado"):
         log("La cola está en pausa (\"pausado\": true). No publico nada.")
         return 0
@@ -239,6 +246,21 @@ def main():
         print("\n".join(errores), file=sys.stderr)
         return 1
     return 0
+
+
+def avisar_renovacion(cola):
+    """Meta corta el acceso a los datos si pasan 90 días sin volver a autorizar la app.
+    Dos semanas antes de la fecha de cola.json, deja una marca para que el workflow abra un aviso."""
+    fecha = cola.get("renovar_acceso_antes")
+    if not fecha:
+        return
+    limite = datetime.strptime(fecha, "%Y-%m-%d").replace(tzinfo=TZ)
+    if ahora() >= limite - timedelta(days=14):
+        log(f"AVISO: el acceso de la app a Instagram vence el {fecha}. Hay que renovarlo (ver LEEME).")
+        salida = os.environ.get("GITHUB_OUTPUT")
+        if salida:
+            with open(salida, "a") as fh:
+                fh.write(f"renovar_acceso={fecha}\n")
 
 
 def guardar(cola):

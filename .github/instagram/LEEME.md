@@ -52,6 +52,20 @@ vence, pero deja de servir si cambiás la contraseña de Facebook, si se quita l
 rol en la página. En ese caso, publicar falla, llega el aviso y hay que generar una clave nueva
 (mismo procedimiento) y pegarla en `IG_TOKEN`.
 
+## Renovar el acceso (cada 3 meses, 2 minutos)
+
+La clave de la página no vence, pero Meta corta el acceso de la app a los datos si pasan 90 días
+sin que vuelvas a autorizarla. La fecha está en `cola.json` (`renovar_acceso_antes`) y dos semanas
+antes se abre un aviso solo. Para renovarlo:
+
+1. Entrá a developers.facebook.com/tools/explorer, con la app "Mario PC publicador" elegida.
+2. Tocá "Generate Access Token" y aceptá (marcando la página Mariopc.com.ar y @mariopc.com.ar).
+3. En `cola.json`, cambiá `renovar_acceso_antes` a 90 días después de hoy.
+
+La clave de `IG_TOKEN` sigue siendo la misma. Si Instagram rechaza la clave igual (llega un aviso
+de error con "renovala desde el Explorador"), hay que sacar una nueva clave de página (el mismo
+procedimiento de la primera vez) y reemplazarla en `IG_TOKEN`.
+
 ## Detalles técnicos
 
 - API de Instagram con inicio de sesión con Facebook (`graph.facebook.com`, versión en
