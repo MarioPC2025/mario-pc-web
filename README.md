@@ -18,6 +18,8 @@ Buscá el nombre del servicio (por ejemplo `Formateo e instalación`) y cambiá 
 
 ## Agregar una publicación de Instagram (`index.html`)
 
+> Desde noviembre 2026 los posts nuevos se publican solos desde la cola (`.github/instagram/cola.json`) y se suman a la home automáticamente. Ver `.github/instagram/LEEME.md`. Esto queda para sumar a mano un post que se haya subido por fuera de la cola.
+
 1. Subí la foto a la carpeta `/instagram` del repo. Formato vertical 4:5, de 720×900 (si sale de Instagram a 1080×1350, achicala antes: en la web se ve a unos 280 px de ancho y así pesa menos de 90 KB).
 2. Buscá `const instagramPosts = [` y agregá la publicación **arriba de todo** (la primera de la lista es la que se ve primero):
    ```js

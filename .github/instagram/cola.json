@@ -1,0 +1,133 @@
+{
+  "_leeme": "Cola de Instagram de Mario PC. Ver .github/instagram/LEEME.md. Fechas en hora de Buenos Aires.",
+  "pausado": false,
+  "sumar_a_la_web": true,
+  "publicaciones": [
+    {
+      "id": "post10",
+      "fecha": "2026-11-03 19:30",
+      "tipo": "carrusel",
+      "paleta": "oscuro",
+      "tema": "Enseñar",
+      "imagenes": [
+        "instagram/cola/post10-01.jpg",
+        "instagram/cola/post10-02.jpg",
+        "instagram/cola/post10-03.jpg",
+        "instagram/cola/post10-04.jpg",
+        "instagram/cola/post10-05.jpg",
+        "instagram/cola/post10-06.jpg",
+        "instagram/cola/post10-07.jpg",
+        "instagram/cola/post10-08.jpg",
+        "instagram/cola/post10-09.jpg",
+        "instagram/cola/post10-10.jpg"
+      ],
+      "epigrafe": "Tu compu casi nunca se rompe de un día para el otro. Antes de fallar, avisa.\n\nEstas son las 7 señales que te conviene mirar. ¿Te pasan dos o más? Seguro le toca un mantenimiento (como regla, una limpieza interna cada 1 o 2 años). Y ojo con una: si la batería de tu notebook está hinchada (la base se abomba o la tapa no cierra bien), dejá de usarla y de cargarla ya.\n\nLa reviso sin cargo en mi taller de Olivos y te paso el precio antes de tocar nada. Escribime por WhatsApp, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Carrusel con las 7 señales de que una compu necesita mantenimiento: un ventilador con polvo y cara de susto en la portada.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post11",
+      "fecha": "2026-11-05 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "¿Te pasa esto?",
+      "imagenes": [
+        "instagram/cola/post11.jpg"
+      ],
+      "epigrafe": "Prendés la compu, te hacés el mate y 5 minutos después sigue cargando. Tranqui: una compu lenta casi siempre tiene arreglo.\n\nLos 3 culpables más comunes son un disco que ya no da abasto, programas que se abren solos al prender y polvo que la obliga a trabajar de más. No hace falta que adivines cuál es el tuyo.\n\nTraela al taller en Olivos, la reviso sin cargo y te digo qué tiene. Escribime por WhatsApp, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Notebook bostezando con los ojos cerrados al lado de una taza que dice LUN; texto: ¿Arranca más lento que un lunes?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post12",
+      "fecha": "2026-11-10 19:30",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Oferta",
+      "imagenes": [
+        "instagram/cola/post12.jpg"
+      ],
+      "epigrafe": "Antes de que toque tu compu, ya sabés cuánto vas a pagar.\n\nAsí trabajo: me traés el equipo al taller en Olivos y lo reviso sin cargo. Después te paso por WhatsApp el precio exacto, y recién cuando me decís que sí, arranco. Sin sorpresas. Todo lo que reparo tiene 7 días de garantía y te llevás un informe de lo que hice, para que sepas exactamente qué se le hizo a tu compu. Pagás en efectivo o con Mercado Pago.\n\nEscribime por WhatsApp, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Planilla con tildes, un mensaje con tilde y un sello de diagnóstico sin cargo; texto: Sin sorpresas en el precio.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post13",
+      "fecha": "2026-11-12 19:30",
+      "tipo": "carrusel",
+      "paleta": "claro",
+      "tema": "Enseñar",
+      "imagenes": [
+        "instagram/cola/post13-01.jpg",
+        "instagram/cola/post13-02.jpg",
+        "instagram/cola/post13-03.jpg",
+        "instagram/cola/post13-04.jpg",
+        "instagram/cola/post13-05.jpg",
+        "instagram/cola/post13-06.jpg",
+        "instagram/cola/post13-07.jpg"
+      ],
+      "epigrafe": "Fotos de la familia, trámites, archivos del trabajo: si mañana tu compu no prende, ¿tenés copia en otro lado?\n\nLa regla 3-2-1 es la que usan los técnicos y es más fácil de lo que suena: 3 copias, en 2 lugares distintos, 1 fuera de tu casa. En las láminas te la explico simple. Y si el disco ya hace clics o ruidos raros, apagala y no insistas.\n\nContame qué compu tenés y armamos tu plan de copia de seguridad. Escribime por WhatsApp, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Carrusel sobre la regla 3-2-1 de las copias de seguridad: fotos protegidas por un escudo con tilde en la portada.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post14",
+      "fecha": "2026-11-17 19:30",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Juego",
+      "imagenes": [
+        "instagram/cola/post14.jpg"
+      ],
+      "epigrafe": "En mi web hay un escáner de PC. De mentirita, pero escáner al fin 😅\n\nEstá escondido en algún lugar de mariopc.com.ar. Buscalo, probalo y fijate qué le encuentra a tu compu (no te asustes con lo que diga de tu Windows: tiene 1 sola regla, no tomártelo en serio).\n\nSi después querés un diagnóstico de verdad, ese lo hago en mi taller de Olivos y es sin cargo. Link en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Notebook con un radar en la pantalla y un 99%; texto: ¿Ya escaneaste tu compu?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post15",
+      "fecha": "2026-11-19 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Prueba",
+      "imagenes": [
+        "instagram/cola/post15.jpg"
+      ],
+      "epigrafe": "\"Destaco su puntualidad y compromiso con su servicio, incluso te da un informe respecto a la revisión de la computadora y su arreglo.\" Belén G., Olivos.\n\nCada trabajo que entrego va con un informe de lo que revisé y lo que hice, y con 7 días de garantía. Así sabés qué se le hizo a tu compu, sin letra chica.\n\nGracias, Belén. Si querés que revise la tuya, escribime por WhatsApp (el link está en la bio).\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Cinco estrellas, un globo de reseña y un informe con tilde; texto: Incluso te da un informe.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post16",
+      "fecha": "2026-11-24 19:30",
+      "tipo": "carrusel",
+      "paleta": "oscuro",
+      "tema": "Enseñar",
+      "imagenes": [
+        "instagram/cola/post16-01.jpg",
+        "instagram/cola/post16-02.jpg",
+        "instagram/cola/post16-03.jpg",
+        "instagram/cola/post16-04.jpg",
+        "instagram/cola/post16-05.jpg",
+        "instagram/cola/post16-06.jpg",
+        "instagram/cola/post16-07.jpg",
+        "instagram/cola/post16-08.jpg"
+      ],
+      "epigrafe": "Que tu compu entre en calor es normal. Que queme o se apague sola, no. Y con el verano encima, se nota más.\n\nTiene arreglo. En las láminas te dejo las 4 causas que más veo y qué podés hacer hoy mismo. En el taller la limpio por dentro, le cambio la pasta térmica si está reseca y compruebo que vuelva a refrigerar bien. Una limpieza interna cada 1 o 2 años ayuda mucho, sobre todo si hay mascotas en casa, mucho polvo o la usás muchas horas por día.\n\nEscribime por WhatsApp y la reviso sin cargo en Olivos, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Carrusel sobre por qué se calienta una compu: notebook acalorada con un termómetro en la portada.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post17",
+      "fecha": "2026-11-26 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Mito o verdad",
+      "imagenes": [
+        "instagram/cola/post17.jpg"
+      ],
+      "epigrafe": "Formatear a veces alcanza. Pero si el problema es otro, tu compu lenta sigue igual (y encima perdiste tiempo).\n\nFormatear reinstala Windows y borra los programas que se fueron acumulando. No arregla un disco viejo, el polvo que la hace calentar ni la falta de memoria: con 4 GB hoy se pasa trabajo, lo cómodo son 8. Y antes de formatear, siempre una copia de tus archivos.\n\nMejor saber primero qué tiene: la reviso sin cargo en Olivos y te digo. Escribime por WhatsApp, el link está en la bio.\n\n#olivos #zonanorte #vicentelopez #reparacionpc #servicetecnico",
+      "alt": "Notebook con cara cansada y la barra de carga casi vacía; texto: ¿Formatear la arregla?",
+      "estado": "pendiente"
+    }
+  ]
+}

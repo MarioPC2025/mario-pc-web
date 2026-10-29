@@ -1,0 +1,63 @@
+# Publica en Instagram los posts aprobados de .github/instagram/cola.json cuando llega su hora.
+# Corre cada 15 minutos en los servidores de GitHub: no hace falta ninguna compu encendida.
+name: Instagram · publicar
+
+on:
+  schedule:
+    - cron: "2,17,32,47 * * * *"
+  workflow_dispatch:
+    inputs:
+      simular:
+        description: "Solo mostrar qué publicaría, sin publicar nada"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: instagram-publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Con GH_PAT, el cambio en index.html vuelve a publicar la web sola.
+          token: ${{ secrets.GH_PAT || github.token }}
+
+      - name: Publicar lo que toca
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          SIMULAR: ${{ inputs.simular && '1' || '' }}
+        run: python3 .github/instagram/publicar.py
+
+      - name: Guardar la cola y la web
+        if: always()
+        run: |
+          if ! git diff --quiet; then
+            git config user.name "Mario PC (publicador)"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .github/instagram/cola.json index.html
+            git commit -m "Instagram: actualizar la cola de publicaciones"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Avisar a Mario si algo falló
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create instagram --color 1ddd65 --description "Publicación automática de Instagram" --force >/dev/null 2>&1 || true
+          abiertos=$(gh issue list --label instagram --state open --json number --jq 'length')
+          if [ "$abiertos" = "0" ]; then
+            gh issue create --label instagram \
+              --title "Instagram: una publicación no salió" \
+              --body "La publicación automática falló. Qué pasó: $RUN_URL (abrí el paso \"Publicar lo que toca\"). Mientras tanto, el post se puede subir a mano. Cuando esté resuelto, cerrá este aviso."
+          fi
