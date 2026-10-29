@@ -14,9 +14,17 @@ Qué hace en cada vuelta:
   5. Marca la publicación como "publicado" con su link, y la suma al carrusel de Instagram de la
      home (index.html), arriba de todo.
 
+Dos formas de conexión con Instagram (la de Mario PC es la de Facebook):
+  - Inicio de sesión con Facebook: "ig_user_id" en cola.json (o IG_USER_ID) con el id de la cuenta
+    profesional de Instagram, e IG_TOKEN = clave de la página de Facebook vinculada (no vence).
+    Usa https://graph.facebook.com.
+  - Inicio de sesión con Instagram: sin "ig_user_id"; IG_TOKEN = clave de Instagram (vence a los 60
+    días). Usa https://graph.instagram.com.
+
 Variables de entorno:
-  IG_TOKEN          clave de acceso de Instagram (secret del repo). Obligatoria salvo en simulación.
-  IG_API_BASE       por defecto https://graph.instagram.com
+  IG_TOKEN          clave de acceso (secret del repo). Obligatoria salvo en simulación.
+  IG_USER_ID        id de la cuenta de Instagram (si no está, se toma "ig_user_id" de cola.json)
+  IG_API_BASE       por defecto graph.facebook.com con IG_USER_ID, o graph.instagram.com sin él
   IG_API_VERSION    por defecto v26.0
   SITE_URL          por defecto https://www.mariopc.com.ar
   SIMULAR=1         muestra lo que haría, sin llamar a Instagram ni cambiar archivos.
@@ -80,11 +88,17 @@ def api(metodo, ruta, datos=None):
             return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
         detalle = e.read().decode(errors="replace")
+        codigo = None
         try:
-            detalle = json.loads(detalle).get("error", {}).get("message", detalle)
+            err = json.loads(detalle).get("error", {})
+            detalle, codigo = err.get("message", detalle), err.get("code")
         except ValueError:
             pass
-        raise ErrorPublicacion(f"Instagram respondió {e.code} en {metodo} {ruta}: {detalle}")
+        extra = ""
+        if codigo in (190, 102) or e.code == 401:
+            extra = (" · La clave venció o perdió el acceso: renovala desde el Explorador de la API Graph "
+                     "(ver .github/instagram/LEEME.md, sección 'Renovar el acceso').")
+        raise ErrorPublicacion(f"Instagram respondió {e.code} en {metodo} {ruta}: {detalle}{extra}")
     except urllib.error.URLError as e:
         raise ErrorPublicacion(f"No se pudo conectar con Instagram ({e.reason})")
 
@@ -152,14 +166,23 @@ def sumar_a_la_web(imagen, link):
 
 
 def main():
+    global API
     cola = json.load(open(COLA, encoding="utf-8"))
+    ig_user = str(os.environ.get("IG_USER_ID") or cola.get("ig_user_id") or "").strip()
+    if ig_user and "IG_API_BASE" not in os.environ:
+        API = "https://graph.facebook.com"
+    avisar_renovacion(cola)
     if cola.get("pausado"):
         log("La cola está en pausa (\"pausado\": true). No publico nada.")
         return 0
     if SIMULAR and TOKEN:
         # Prueba de la clave sin publicar nada (para el botón "Run workflow" con la casilla marcada).
-        cuenta = api("GET", "me", {"fields": "user_id,username"})
-        log(f"Clave OK: conectada a @{cuenta.get('username')} (id {cuenta.get('user_id')}).")
+        if ig_user:
+            cuenta = api("GET", ig_user, {"fields": "username"})
+            log(f"Clave OK: conectada a @{cuenta.get('username')} (id {ig_user}).")
+        else:
+            cuenta = api("GET", "me", {"fields": "user_id,username"})
+            log(f"Clave OK: conectada a @{cuenta.get('username')} (id {cuenta.get('user_id')}).")
     t = ahora()
     pendientes = []
     errores = []
@@ -188,7 +211,7 @@ def main():
     if not SIMULAR and not TOKEN:
         raise ErrorPublicacion("Falta el secret IG_TOKEN en el repositorio.")
 
-    ig_id = None
+    ig_id = ig_user or None
     for p in pendientes:
         try:
             urls = []
@@ -223,6 +246,21 @@ def main():
         print("\n".join(errores), file=sys.stderr)
         return 1
     return 0
+
+
+def avisar_renovacion(cola):
+    """Meta corta el acceso a los datos si pasan 90 días sin volver a autorizar la app.
+    Dos semanas antes de la fecha de cola.json, deja una marca para que el workflow abra un aviso."""
+    fecha = cola.get("renovar_acceso_antes")
+    if not fecha:
+        return
+    limite = datetime.strptime(fecha, "%Y-%m-%d").replace(tzinfo=TZ)
+    if ahora() >= limite - timedelta(days=14):
+        log(f"AVISO: el acceso de la app a Instagram vence el {fecha}. Hay que renovarlo (ver LEEME).")
+        salida = os.environ.get("GITHUB_OUTPUT")
+        if salida:
+            with open(salida, "a") as fh:
+                fh.write(f"renovar_acceso={fecha}\n")
 
 
 def guardar(cola):

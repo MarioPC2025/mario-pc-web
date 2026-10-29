@@ -31,6 +31,7 @@ jobs:
           token: ${{ secrets.GH_PAT || github.token }}
 
       - name: Publicar lo que toca
+        id: publicar
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           SIMULAR: ${{ inputs.simular && '1' || '' }}
@@ -48,6 +49,20 @@ jobs:
             git push
           fi
 
+      - name: Avisar que hay que renovar el acceso
+        if: always() && steps.publicar.outputs.renovar_acceso != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FECHA: ${{ steps.publicar.outputs.renovar_acceso }}
+        run: |
+          gh label create instagram --color 1ddd65 --description "Publicación automática de Instagram" --force >/dev/null 2>&1 || true
+          abiertos=$(gh issue list --label instagram --state open --search "Renovar el acceso" --json number --jq 'length')
+          if [ "$abiertos" = "0" ]; then
+            gh issue create --label instagram \
+              --title "Instagram: renovar el acceso antes del $FECHA" \
+              --body "Meta corta el acceso de la app si pasan 90 días sin volver a autorizarla. Pasos en .github/instagram/LEEME.md, sección 'Renovar el acceso' (2 minutos). Después, cambiá 'renovar_acceso_antes' en cola.json a 90 días más y cerrá este aviso."
+          fi
+
       - name: Avisar a Mario si algo falló
         if: failure()
         env:
@@ -55,7 +70,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           gh label create instagram --color 1ddd65 --description "Publicación automática de Instagram" --force >/dev/null 2>&1 || true
-          abiertos=$(gh issue list --label instagram --state open --json number --jq 'length')
+          abiertos=$(gh issue list --label instagram --state open --search "no salió" --json number --jq 'length')
           if [ "$abiertos" = "0" ]; then
             gh issue create --label instagram \
               --title "Instagram: una publicación no salió" \
