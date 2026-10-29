@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Con GH_PAT, el cambio en index.html vuelve a publicar la web sola.
           token: ${{ secrets.GH_PAT || github.token }}
