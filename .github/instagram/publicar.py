@@ -14,9 +14,17 @@ Qué hace en cada vuelta:
   5. Marca la publicación como "publicado" con su link, y la suma al carrusel de Instagram de la
      home (index.html), arriba de todo.
 
+Dos formas de conexión con Instagram (la de Mario PC es la de Facebook):
+  - Inicio de sesión con Facebook: "ig_user_id" en cola.json (o IG_USER_ID) con el id de la cuenta
+    profesional de Instagram, e IG_TOKEN = clave de la página de Facebook vinculada (no vence).
+    Usa https://graph.facebook.com.
+  - Inicio de sesión con Instagram: sin "ig_user_id"; IG_TOKEN = clave de Instagram (vence a los 60
+    días). Usa https://graph.instagram.com.
+
 Variables de entorno:
-  IG_TOKEN          clave de acceso de Instagram (secret del repo). Obligatoria salvo en simulación.
-  IG_API_BASE       por defecto https://graph.instagram.com
+  IG_TOKEN          clave de acceso (secret del repo). Obligatoria salvo en simulación.
+  IG_USER_ID        id de la cuenta de Instagram (si no está, se toma "ig_user_id" de cola.json)
+  IG_API_BASE       por defecto graph.facebook.com con IG_USER_ID, o graph.instagram.com sin él
   IG_API_VERSION    por defecto v26.0
   SITE_URL          por defecto https://www.mariopc.com.ar
   SIMULAR=1         muestra lo que haría, sin llamar a Instagram ni cambiar archivos.
@@ -152,14 +160,22 @@ def sumar_a_la_web(imagen, link):
 
 
 def main():
+    global API
     cola = json.load(open(COLA, encoding="utf-8"))
+    ig_user = str(os.environ.get("IG_USER_ID") or cola.get("ig_user_id") or "").strip()
+    if ig_user and "IG_API_BASE" not in os.environ:
+        API = "https://graph.facebook.com"
     if cola.get("pausado"):
         log("La cola está en pausa (\"pausado\": true). No publico nada.")
         return 0
     if SIMULAR and TOKEN:
         # Prueba de la clave sin publicar nada (para el botón "Run workflow" con la casilla marcada).
-        cuenta = api("GET", "me", {"fields": "user_id,username"})
-        log(f"Clave OK: conectada a @{cuenta.get('username')} (id {cuenta.get('user_id')}).")
+        if ig_user:
+            cuenta = api("GET", ig_user, {"fields": "username"})
+            log(f"Clave OK: conectada a @{cuenta.get('username')} (id {ig_user}).")
+        else:
+            cuenta = api("GET", "me", {"fields": "user_id,username"})
+            log(f"Clave OK: conectada a @{cuenta.get('username')} (id {cuenta.get('user_id')}).")
     t = ahora()
     pendientes = []
     errores = []
@@ -188,7 +204,7 @@ def main():
     if not SIMULAR and not TOKEN:
         raise ErrorPublicacion("Falta el secret IG_TOKEN en el repositorio.")
 
-    ig_id = None
+    ig_id = ig_user or None
     for p in pendientes:
         try:
             urls = []

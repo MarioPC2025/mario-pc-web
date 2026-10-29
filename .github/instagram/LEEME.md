@@ -14,9 +14,7 @@ se publican).
 4. Cada 15 minutos, el workflow "Instagram · publicar" revisa la cola y publica lo que ya tiene
    fecha. Después marca la publicación como "publicado", guarda el link y la suma arriba de todo
    en el carrusel de Instagram de la home.
-5. Cada lunes, el workflow "Instagram · renovar clave" renueva la clave de Instagram (si no, vence
-   a los 60 días).
-6. Si algo falla, se abre un aviso (issue) con la etiqueta `instagram` y GitHub te manda un mail.
+5. Si algo falla, se abre un aviso (issue) con la etiqueta `instagram` y GitHub te manda un mail.
 
 ## Cosas que se pueden hacer a mano, desde la web de GitHub
 
@@ -45,15 +43,18 @@ se publican).
 
 | secret | qué es |
 | --- | --- |
-| `IG_TOKEN` | la clave de acceso de Instagram, generada en el panel de Meta (dura 60 días; el workflow semanal la renueva) |
-| `GH_PAT` | un token de GitHub con permiso sobre este repo para escribir secrets y contenido. Sirve para guardar la clave renovada y para que la web se actualice sola después de cada publicación |
+| `IG_TOKEN` | la clave de la página de Facebook de Mario PC (vinculada a @mariopc.com.ar), sacada del Explorador de la API Graph de Meta con la app "Mario PC publicador". No vence |
+| `GH_PAT` | opcional: un token de GitHub con permiso de escritura sobre este repo, para que la web se actualice sola después de cada publicación |
 
-Si la clave venció (pasaron 60 días sin renovarse): generá una nueva en el panel de Meta
-(Instagram → API setup with Instagram business login → Generate token) y pegala en `IG_TOKEN`.
+La conexión es por el inicio de sesión con Facebook: `ig_user_id` en `cola.json` es el id de la
+cuenta profesional de Instagram y las llamadas van a `graph.facebook.com`. La clave de la página no
+vence, pero deja de servir si cambiás la contraseña de Facebook, si se quita la app o si perdés el
+rol en la página. En ese caso, publicar falla, llega el aviso y hay que generar una clave nueva
+(mismo procedimiento) y pegarla en `IG_TOKEN`.
 
 ## Detalles técnicos
 
-- API de Instagram con inicio de sesión de Instagram (`graph.instagram.com`, versión en
+- API de Instagram con inicio de sesión con Facebook (`graph.facebook.com`, versión en
   `IG_API_VERSION`, por defecto v26.0). Solo JPG; las imágenes se bajan desde
   `https://www.mariopc.com.ar/instagram/cola/...`, así que tienen que estar publicadas en la web
   antes de la hora del post (lo están desde que se une el PR).
