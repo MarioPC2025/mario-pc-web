@@ -156,6 +156,10 @@ def main():
     if cola.get("pausado"):
         log("La cola está en pausa (\"pausado\": true). No publico nada.")
         return 0
+    if SIMULAR and TOKEN:
+        # Prueba de la clave sin publicar nada (para el botón "Run workflow" con la casilla marcada).
+        cuenta = api("GET", "me", {"fields": "user_id,username"})
+        log(f"Clave OK: conectada a @{cuenta.get('username')} (id {cuenta.get('user_id')}).")
     t = ahora()
     pendientes = []
     errores = []

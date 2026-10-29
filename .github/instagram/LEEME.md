@@ -26,8 +26,9 @@ se publican).
   Buenos Aires).
 - **Sacar un post de la cola:** cambiar su `"estado"` de `"pendiente"` a `"cancelado"`.
 - **Corregir un epígrafe:** editar su `"epigrafe"` (los saltos de línea se escriben `\n`).
-- **Probar sin publicar:** pestaña Actions → "Instagram · publicar" → Run workflow, con la casilla
-  "Solo mostrar qué publicaría" marcada.
+- **Probar sin publicar (y comprobar la clave):** pestaña Actions → "Instagram · publicar" → Run
+  workflow, con la casilla "Solo mostrar qué publicaría" marcada. Si la clave está bien, el paso
+  "Publicar lo que toca" dice "Clave OK: conectada a @mariopc.com.ar".
 - **Publicar ya lo que esté vencido:** lo mismo, con la casilla desmarcada.
 
 ## Estados de cada publicación
