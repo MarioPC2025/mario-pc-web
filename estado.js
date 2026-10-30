@@ -3,7 +3,7 @@
 (function () {
     const API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
         ? 'http://127.0.0.1:8787/v1'
-        : 'https://mariopc-estado.PENDIENTE.workers.dev/v1';
+        : 'https://estado-api.mariopc.com.ar/v1';
     const WSP = 'https://wa.me/5491123999259';
     const CODIGO = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{12}$/;
     const PASOS = ['recibido', 'en_curso', 'listo', 'entregado'];
