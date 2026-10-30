@@ -187,6 +187,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--line); padd
 .foot-text { display: grid; gap: 2px; }
 .footer-made { color: var(--white); }
 .footer-copy { cursor: pointer; user-select: none; transition: opacity 0.15s ease; }
+.footer-estado { display: inline-flex; align-items: center; min-height: 44px; justify-self: start; color: var(--green); text-underline-offset: 4px; }
 .footer-socials { display: flex; gap: 4px; }
 .footer-social { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 3px; color: var(--muted); text-decoration: none; transition-property: color, background-color; transition-duration: 150ms; transition-timing-function: ease-out; }
 .footer-social:hover { color: var(--green); background: var(--green-dim); }

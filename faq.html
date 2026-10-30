@@ -26,7 +26,7 @@
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
     <link rel="stylesheet" href="/theme.css?v=2">
-    <link rel="stylesheet" href="/site.css?v=2">
+    <link rel="stylesheet" href="/site.css?v=3">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -125,6 +125,14 @@
         "@type": "Answer",
         "text": "En Alberdi y Maipú, Olivos, partido de Vicente López. Atiendo en Olivos, La Lucila y zonas cercanas. Escribime por WhatsApp para coordinar o para saber si llego a tu zona."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo sé en qué anda mi equipo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando dejás el equipo te doy un código en el comprobante y por WhatsApp. Con ese código entrás a Estado de tu equipo en mariopc.com.ar/estado y ves si está recibido, en reparación o listo para retirar. Igual te aviso por WhatsApp cuando está listo."
+      }
     }
   ]
 }
@@ -143,6 +151,7 @@
         .acc-q[aria-expanded="true"] svg { transform: rotate(45deg); }
         .acc-a { padding: 0 0 22px; max-width: 68ch; color: var(--muted); font-size: 1rem; line-height: 1.7; }
         .acc-a strong { color: var(--white); font-weight: 500; }
+        .acc-a a { color: var(--green); text-underline-offset: 4px; }
         .page-cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
         @media (prefers-reduced-motion: reduce) { .acc-q svg { transition: none; } }
     </style>
@@ -258,6 +267,10 @@
                 <h2><button type="button" class="acc-q" aria-expanded="false" aria-controls="faq-9">¿Dónde estás?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h2>
                 <div class="acc-a" id="faq-9" hidden><p>En <strong>Alberdi y Maipú, Olivos</strong>, partido de Vicente López. Atiendo en Olivos, La Lucila y zonas cercanas. Escribime por WhatsApp para coordinar o para saber si llego a tu zona.</p></div>
             </div>
+            <div class="acc-item">
+                <h2><button type="button" class="acc-q" aria-expanded="false" aria-controls="faq-10">¿Cómo sé en qué anda mi equipo?<svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button></h2>
+                <div class="acc-a" id="faq-10" hidden><p>Cuando dejás el equipo te doy un <strong>código</strong> en el comprobante y por WhatsApp. Con ese código entrás a <a href="estado.html">Estado de tu equipo</a> y ves si está recibido, en reparación o listo para retirar. Igual te aviso por WhatsApp cuando está listo.</p></div>
+            </div>
         </div>
     </div>
 </section>
@@ -276,6 +289,7 @@
         <div class="foot-text">
             <span class="footer-made">Hecha por Mario, en Olivos.</span>
             <span class="footer-copy">© 2026 Mario PC · Olivos, Buenos Aires</span>
+            <a href="estado.html" class="footer-estado">¿Dejaste tu equipo? Mirá cómo va</a>
         </div>
         <div class="footer-socials">
             <a href="https://www.instagram.com/mariopc.com.ar/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><svg class="i" aria-hidden="true"><use href="#i-instagram-logo"/></svg></a>
