@@ -148,6 +148,17 @@ El cartel de abierto/cerrado de la home y los avisos del botón flotante de What
 
 **Cambiar los horarios de atención:** en `horario.js`, función `scheduleFor` (los horarios están en minutos: `10 * 60` = 10:00, `17 * 60` = 17:00). Además hay que actualizar a mano la tabla de horarios de la sección de contacto en `index.html`.
 
+## Estado de tu equipo (`estado.html` + `estado.js`)
+
+Página donde el cliente ve en qué anda su equipo con el código de su comprobante (`mariopc.com.ar/estado#ABCD-EFGH-JKMN`). Los datos los sube la app del taller a un Worker de Cloudflare; el código del Worker y el detalle de seguridad están en el repo `mario-pc-app` (carpeta `portal/` y su README).
+
+- El código va después del `#`, así que no llega a ningún servidor por la dirección. `estado.js` lo manda en el cuerpo de un POST.
+- La página no tiene Google Analytics, no manda referer y tiene su propia CSP: solo se conecta a este sitio y al Worker.
+- Tiene `noindex` y no está en el `sitemap.xml`. Se llega desde el QR, desde el pie de las páginas ("¿Dejaste tu equipo? Mirá cómo va") y desde la última pregunta del FAQ.
+- **Si cambia la dirección del Worker**, hay que cambiarla en dos lugares: `API` en `estado.js` y `connect-src` en la CSP de `estado.html`.
+- **Si cambiás el script chico del `<head>` de `estado.html`** (el que aplica el modo claro), hay que recalcular su hash `sha256-…` en la CSP; si no, el navegador lo bloquea.
+- Para probarla en la compu, la página usa el Worker local (`http://127.0.0.1:8787`) cuando se abre desde `localhost`.
+
 ## Modo claro (`theme.css` + `theme.js` + `flashbang.mp3`)
 
 El sitio arranca siempre en oscuro. El botón de sol/luna (en la barra de arriba, o flotando arriba a la derecha en `gracias.html` y `404.html`) cambia de tema y la elección queda guardada en el navegador del visitante.
