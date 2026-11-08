@@ -12,7 +12,7 @@
         durmiendo: '/img/pelusa-durmiendo.webp'
     };
     // Miaus reales de Pelusa. Si se ponen varios, se alternan. Si la lista queda vacía, suena un miau sintetizado.
-    const SONIDOS = ['/pelusa-miau.mp3'];
+    const SONIDOS = ['/pelusa-miau.mp3?v=2'];
     const VOLUME = 0.25;
 
     const WA = 'https://wa.me/5491123999259';
@@ -546,7 +546,6 @@
             store('localStorage', MUTE_KEY, next ? '1' : '0');
             track('pelusa_silencio', { silencio: next });
             paintMute();
-            if (!next) meow();
         });
         panel.addEventListener('keydown', trapTab);
         paintMute();
@@ -764,7 +763,6 @@
         const node = RESPUESTAS[key];
         const id = ++runId;
         busy = true;
-        meow();
         track('pelusa_pregunta', { tema: key });
         if (node.scanner) track('escaner_opcion', { opcion: key });
         me(node.label);
