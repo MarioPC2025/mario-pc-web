@@ -190,7 +190,7 @@
         // Precios
         precios: {
             label: '¿Cuánto sale?',
-            intro: 'Hablemos de plata, aunque yo cobro en atún. ¿Qué querés saber?',
+            intro: 'Hablemos de plata, aunque yo cobro en pollito. ¿Qué querés saber?',
             menu: ['lista', 'pantalla', 'pago', 'garantia']
         },
         lista: {
@@ -214,7 +214,7 @@
             label: '¿Cómo se paga?',
             say: [
                 'En efectivo o con Mercado Pago.',
-                'Le propuse a Mario aceptar atún, pero no quiso 😿'
+                'Le propuse a Mario aceptar pollito, pero no quiso 😿'
             ]
         },
         garantia: {
