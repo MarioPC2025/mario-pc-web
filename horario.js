@@ -221,7 +221,7 @@
             @media (hover: none), (pointer: coarse) { .wa-closed-note { display: none; } }
 
             .wa-sheet { position: fixed; z-index: 501; right: calc(20px + env(safe-area-inset-right, 0px));
-                bottom: calc(92px + env(safe-area-inset-bottom, 0px)); width: min(320px, calc(100vw - 40px));
+                bottom: calc(var(--wa-sheet-bottom, 92px) + env(safe-area-inset-bottom, 0px)); width: min(320px, calc(100vw - 40px));
                 display: grid; gap: 10px; padding: 20px 20px 18px; border-radius: 6px; text-align: left;
                 background: var(--bg-alt, #0c0f10); color: var(--white, #e8edea);
                 box-shadow: 0 0 0 1px rgba(255, 110, 110, 0.28), 0 20px 50px -10px rgba(0, 0, 0, 0.6);
@@ -328,6 +328,18 @@
         }
     }
 
+    // Pelusa (pelusa.js) usa el mismo estado: duerme cuando está cerrado y responde el horario
+    function scheduleSummary() {
+        const week = scheduleFor(1), fri = scheduleFor(5);
+        const h = m => (m % 60 ? fmtTime(m) : String(m / 60));
+        return `Lunes a jueves de ${h(week.open)} a ${h(week.close)} h y viernes de ${h(fri.open)} a ${h(fri.close)} h. Sábados, domingos y feriados, cerrado.`;
+    }
+    function sharePelusa(status) {
+        document.documentElement.classList.toggle('mpc-cerrado', !status.open);
+        window.mpcHorario = { status, resumen: scheduleSummary() };
+        try { window.dispatchEvent(new CustomEvent('mpc:horario', { detail: status })); } catch (e) {}
+    }
+
     function render() {
         const status = computeStatus();
         const badges = [
@@ -341,6 +353,7 @@
         });
 
         renderFloat(status);
+        sharePelusa(status);
 
         document.querySelectorAll('.hours-row').forEach(row => {
             const days = (row.dataset.days || '').split(',').map(Number);

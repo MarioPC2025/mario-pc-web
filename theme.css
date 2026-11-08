@@ -115,8 +115,7 @@ html[data-theme="light"] img[src*="mercadopago-logo"] {
     opacity: 0.85;
 }
 
-/* Ventanas que siempre van en oscuro (consola y video): recuperan la paleta oscura */
-html[data-theme="light"] .egg-term,
+/* El video siempre va en oscuro: recupera la paleta oscura */
 html[data-theme="light"] .rickroll-overlay {
     --bg: #07090a;
     --bg-alt: #0c0f10;

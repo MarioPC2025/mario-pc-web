@@ -1,0 +1,245 @@
+/* Pelusa: botón flotante (arriba del de WhatsApp), globito y ventana de chat. La lógica está en pelusa.js. */
+
+:root { --pelusa-bg: #eef1ef; } /* fondo claro detrás del dibujo, así se ven los contornos negros */
+
+.pelusa-dock {
+    position: fixed;
+    right: calc(20px + env(safe-area-inset-right, 0px));
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    z-index: 500;
+    width: 58px;
+    height: 58px;
+}
+
+.pelusa-fab {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    background: var(--pelusa-bg);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.55);
+    transition: scale 150ms ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+.pelusa-fab:active { scale: 0.96; }
+.pelusa-fab:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.pelusa-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    pointer-events: none;
+}
+.pelusa-face.is-sleep { display: none; }
+
+/* Local cerrado: Pelusa duerme con las mismas "Z" que WhatsApp (estilos .wa-zzz en horario.js) */
+html.mpc-cerrado .pelusa-face { display: none; }
+html.mpc-cerrado .pelusa-face.is-sleep { display: block; }
+.pelusa-fab .pelusa-zzz { left: 36px; top: 2px; }
+html.mpc-cerrado .pelusa-zzz { display: block; }
+
+/* Globito "¿Te ayudo?" */
+.pelusa-hola {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    translate: 8px -50%;
+    width: max-content;
+    max-width: min(220px, calc(100vw - 110px));
+    padding: 9px 14px;
+    border: 0;
+    border-radius: 14px 14px 4px 14px;
+    background: var(--surface);
+    box-shadow: 0 0 0 1px var(--green-border), 0 8px 24px rgba(0, 0, 0, 0.35);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 220ms var(--ease), translate 220ms var(--ease), visibility 0s linear 220ms;
+}
+.pelusa-dock.is-hola .pelusa-hola { opacity: 1; visibility: visible; translate: 0 -50%; transition-delay: 0s; }
+
+/* Ventana */
+.pelusa-panel {
+    position: fixed;
+    right: calc(20px + env(safe-area-inset-right, 0px));
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    z-index: 9000;
+    width: min(400px, calc(100vw - 40px));
+    height: min(640px, calc(100dvh - 40px));
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-alt);
+    border: 1px solid var(--green-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    translate: 0 12px;
+    transition: opacity 180ms var(--ease), translate 180ms var(--ease);
+}
+.pelusa-panel.is-open { opacity: 1; translate: 0 0; }
+.pelusa-panel:focus { outline: none; }
+
+/* Con el chat abierto no se muestran los flotantes de abajo */
+html.pelusa-open .pelusa-dock,
+html.pelusa-open .whatsapp-float { visibility: hidden; }
+
+.pelusa-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px 10px 14px;
+    border-bottom: 1px solid var(--green-border);
+    background: var(--surface);
+}
+.pelusa-head-face { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--green); background: var(--pelusa-bg); }
+.pelusa-head-text { display: grid; flex: 1; min-width: 0; line-height: 1.2; }
+.pelusa-head-text strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; letter-spacing: 0.03em; color: var(--white); }
+.pelusa-head-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.pelusa-icon-btn {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+.pelusa-icon-btn svg { width: 22px; height: 22px; }
+.pelusa-icon-btn:hover { color: var(--green); background: var(--green-dim); }
+.pelusa-icon-btn[aria-pressed="true"] { color: var(--red); }
+
+.pelusa-log {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.pelusa-row { display: flex; align-items: flex-end; gap: 8px; max-width: 92%; animation: pelusa-in 0.25s ease both; }
+.pelusa-row.is-me { align-self: flex-end; max-width: 85%; }
+.pelusa-row-face { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; flex: none; background: var(--pelusa-bg); }
+.pelusa-col { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+
+.pelusa-msg {
+    padding: 8px 13px;
+    border-radius: 14px 14px 14px 4px;
+    background: var(--surface);
+    box-shadow: var(--ring);
+    color: var(--white);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    animation: pelusa-in 0.25s ease both;
+}
+.pelusa-msg.is-me {
+    border-radius: 14px 14px 4px 14px;
+    background: var(--green-dim);
+    box-shadow: 0 0 0 1px var(--green-border);
+    color: var(--white);
+}
+.pelusa-msg.note { color: var(--muted); font-size: 0.85rem; }
+.pelusa-msg.cmd { font-family: var(--font-mono); font-size: 0.8rem; color: var(--green); }
+.pelusa-msg.find::before { content: '✖ '; color: var(--red); }
+.pelusa-msg.good::before { content: '✔ '; color: var(--green); }
+.pelusa-msg.find, .pelusa-msg.good { font-family: var(--font-mono); font-size: 0.8rem; }
+
+.pelusa-bar { width: 220px; max-width: 100%; height: 10px; padding: 0; overflow: hidden; border-radius: 4px; }
+.pelusa-bar span { display: block; height: 100%; width: 0; background: var(--green-fill); transition: width 0.2s linear; }
+
+.pelusa-dots { display: inline-flex; gap: 5px; padding: 12px 14px; }
+.pelusa-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: pelusa-dot 1s ease-in-out infinite; }
+.pelusa-dots span:nth-child(2) { animation-delay: 0.15s; }
+.pelusa-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes pelusa-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes pelusa-dot { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+.pelusa-opts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-content: flex-start;
+    max-height: 45%;
+    overflow-y: auto;
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--line);
+}
+.pelusa-opts:empty { display: none; }
+
+.pelusa-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 9px 15px;
+    border: 1px solid var(--green-border);
+    border-radius: 999px;
+    background: var(--green-dim);
+    color: var(--green);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.pelusa-opt:hover { background: rgba(var(--green-rgb), 0.18); border-color: var(--green); }
+.pelusa-opt:disabled { opacity: 0.35; cursor: default; }
+.pelusa-opt:disabled:hover { background: var(--green-dim); border-color: var(--green-border); }
+.pelusa-opt.is-cta { background: var(--green-fill); border-color: var(--green-fill); color: var(--ink-on-green); font-weight: 600; }
+.pelusa-opt.is-cta:hover { filter: brightness(1.08); }
+.pelusa-opt svg { width: 18px; height: 18px; flex: none; }
+.pelusa-opt:focus-visible, .pelusa-icon-btn:focus-visible, .pelusa-hola:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* Aviso de "cerrado" de WhatsApp (horario.js): va arriba de Pelusa para no taparlo */
+html.has-pelusa { --wa-sheet-bottom: 164px; }
+
+@media (max-width: 620px) {
+    .pelusa-dock { width: 54px; height: 54px; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+    .pelusa-fab { width: 54px; height: 54px; }
+    .pelusa-fab .pelusa-zzz { left: 33px; }
+    html.has-pelusa { --wa-sheet-bottom: 156px; }
+    /* Lugar en el pie para los dos flotantes */
+    html.has-pelusa footer { padding-bottom: calc(164px + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (max-width: 600px) {
+    .pelusa-panel {
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+        border-radius: 0;
+        border: 0;
+    }
+    .pelusa-head { padding-top: max(10px, env(safe-area-inset-top, 0px)); }
+    .pelusa-opts { padding-bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pelusa-row, .pelusa-msg, .pelusa-dots span { animation: none !important; }
+    .pelusa-panel, .pelusa-hola, .pelusa-bar span { transition: none; }
+    .pelusa-fab { transition-duration: 0.01ms; }
+}
