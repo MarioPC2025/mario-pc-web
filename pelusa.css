@@ -43,6 +43,28 @@ html.mpc-cerrado .pelusa-face.is-sleep { display: block; }
 .pelusa-fab .pelusa-zzz { left: 36px; top: 2px; }
 html.mpc-cerrado .pelusa-zzz { display: block; }
 
+/* Durmiendo va sin círculo ni fondo: solo Pelusa hecho un bollito sobre la página */
+html.mpc-cerrado .pelusa-fab {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+html.mpc-cerrado .pelusa-face.is-sleep {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 76px;
+    height: 76px;
+    max-width: none;
+    translate: -50% -50%;
+    border-radius: 0;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+}
+html.mpc-cerrado .pelusa-fab .pelusa-zzz { left: 40px; top: 0; }
+html.mpc-cerrado .pelusa-fab:focus-visible { outline-offset: 6px; }
+
 /* Globito "¿Te ayudo?" */
 .pelusa-hola {
     position: absolute;
