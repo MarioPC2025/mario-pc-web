@@ -265,3 +265,6 @@ html.has-pelusa { --wa-sheet-bottom: 164px; }
     .pelusa-panel, .pelusa-hola, .pelusa-bar span { transition: none; }
     .pelusa-fab { transition-duration: 0.01ms; }
 }
+
+/* Las Z van solo sobre Pelusa: en el botón de WhatsApp se ocultan para que no se encimen */
+html.has-pelusa .whatsapp-float .wa-zzz { display: none; }
