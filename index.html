@@ -25,8 +25,9 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
-    <link rel="stylesheet" href="/theme.css?v=2">
+    <link rel="stylesheet" href="/theme.css?v=3">
     <link rel="stylesheet" href="/site.css?v=3">
+    <link rel="stylesheet" href="/pelusa.css?v=2">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -437,7 +438,7 @@
         @keyframes bug-ant { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
         @keyframes bug-step { 0% { transform: translateX(-1.6px); } 50% { transform: translateX(1.6px); } }
 
-        /* Ventanas (premio del bug y escáner) */
+        /* Ventana del premio del bug */
         .egg-modal {
             position: fixed;
             inset: 0;
@@ -490,149 +491,16 @@
         .egg-card-actions .btn-primary, .egg-card-actions .btn-secondary { padding: 13px 20px; cursor: pointer; background-clip: padding-box; }
         .egg-card-actions button.btn-secondary { background: transparent; }
 
-        /* Escáner de PC */
-        .egg-scan-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-mono);
-            font-size: 0.8125rem;
-            letter-spacing: 0.08em;
-            color: var(--muted);
-            background: none;
-            border: 1px dashed rgba(var(--ink-rgb), 0.14);
-            border-radius: 2px;
-            padding: 10px 14px;
-            min-height: 44px;
-            cursor: pointer;
-            transition: color 0.2s, border-color 0.2s, background 0.2s;
-        }
-
-        .egg-scan-btn:hover { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
-        .footer-scan { flex: 0 0 100%; display: flex; justify-content: center; }
-
-        .egg-term {
-            width: min(560px, 100%);
-            height: min(640px, 100%);
-            display: flex;
-            flex-direction: column;
-            background: #050807;
-            border: 1px solid var(--green-border);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-        }
-
-        .egg-term-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 6px 8px 6px 16px;
-            background: var(--bg-alt);
-            border-bottom: 1px solid var(--green-border);
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.04em;
-            color: var(--muted);
-        }
-
-        .egg-term-bar svg { color: var(--green); width: 1.1em; height: 1.1em; vertical-align: -0.2em; }
-        .egg-term-close svg { width: 20px; height: 20px; }
-
-        .egg-term-close {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: 0;
-            border-radius: 3px;
-            color: var(--white);
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-
-        .egg-term-close:hover { background: rgba(var(--ink-rgb), 0.07); color: var(--green); }
-
-        .egg-term-log {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.55rem;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            line-height: 1.55;
-            color: var(--white);
-        }
-
-        .egg-line { max-width: 92%; animation: egg-line-in 0.25s ease both; word-break: break-word; }
-        .egg-line.cmd { color: var(--green); }
-        .egg-line.note { color: var(--muted); font-size: 0.72rem; }
-        .egg-line.good::before { content: '✔ '; color: var(--green); }
-        .egg-line.find::before { content: '✖ '; color: var(--red); }
-        .egg-line.me {
-            align-self: flex-end;
-            color: var(--green);
-            background: var(--green-dim);
-            border: 1px solid var(--green-border);
-            border-radius: 14px 14px 2px 14px;
-            padding: 6px 14px;
-        }
-
-        @keyframes egg-line-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-        .egg-bar { width: 100%; max-width: none; height: 8px; border: 1px solid var(--green-border); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
-        .egg-bar span { display: block; height: 100%; width: 0; background: var(--green-fill); }
-
-        .egg-opts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            align-content: flex-start;
-            min-height: 92px;
-            padding: 0.85rem 1rem 1rem;
-            border-top: 1px solid rgba(var(--ink-rgb), 0.06);
-        }
-
-        .egg-opt {
-            display: inline-flex;
-            align-items: center;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--green);
-            background: var(--green-dim);
-            border: 1px solid var(--green-border);
-            border-radius: 999px;
-            padding: 10px 16px;
-            min-height: 44px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s, border-color 0.2s, opacity 0.2s;
-        }
-
-        .egg-opt:hover { background: rgba(var(--green-rgb), 0.18); border-color: var(--green); }
-        .egg-opt:disabled { opacity: 0.35; cursor: default; }
-        .egg-opt:disabled:hover { background: var(--green-dim); border-color: var(--green-border); }
-        .egg-opt.is-cta { background: var(--green-fill); border-color: var(--green); color: #030804; font-weight: 700; }
-        .egg-opt.is-cta:hover { filter: brightness(1.1); }
-        .egg-term-close:focus-visible, .egg-opt:focus-visible, .egg-scan-btn:focus-visible, .egg-card-actions a:focus-visible, .egg-card-actions button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+        .egg-card-actions a:focus-visible, .egg-card-actions button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
         @media (max-width: 600px) {
-            .egg-modal.has-term { padding: 0; }
-            .egg-term { height: 100%; border-radius: 0; border-left: 0; border-right: 0; }
             .egg-card { padding: 1.75rem 1.4rem; }
             .egg-card-actions { flex-direction: column; }
             .egg-card-actions .btn-primary, .egg-card-actions .btn-secondary { justify-content: center; }
-            .egg-opts { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-                        .egg-bug *,
-            .egg-line { animation: none !important; }
+            .egg-bug * { animation: none !important; }
             .egg-bug, .egg-bug.is-caught { transition: opacity 0.2s linear !important; }
             .egg-modal, .egg-bsod { transition: none !important; }
         }
@@ -766,7 +634,7 @@
       }
     }
     </script>
-<script src="horario.js?v=4" defer></script>
+<script src="horario.js?v=5" defer></script>
 </head>
 <body>
 
@@ -780,7 +648,6 @@
 <symbol id="i-arrow-left" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8"/></symbol>
 <symbol id="i-arrow-right" viewBox="0 0 256 256"><path fill="currentColor" d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32"/></symbol>
 <symbol id="i-arrow-down" viewBox="0 0 256 256"><path fill="currentColor" d="m205.66 149.66l-72 72a8 8 0 0 1-11.32 0l-72-72a8 8 0 0 1 11.32-11.32L120 196.69V40a8 8 0 0 1 16 0v156.69l58.34-58.35a8 8 0 0 1 11.32 11.32"/></symbol>
-<symbol id="i-scan" viewBox="0 0 256 256"><path fill="currentColor" d="M224 40v40a8 8 0 0 1-16 0V48h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8M80 208H48v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16m136-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8M40 88a8 8 0 0 0 8-8V48h32a8 8 0 0 0 0-16H40a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8m40-16h96a8 8 0 0 1 8 8v96a8 8 0 0 1-8 8H80a8 8 0 0 1-8-8V80a8 8 0 0 1 8-8m8 96h80V88H88Z"/></symbol>
 <symbol id="i-bug-fill" viewBox="0 0 256 256"><path fill="currentColor" d="M168 92a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-68-12a12 12 0 1 0 12 12a12 12 0 0 0-12-12m116 64a87.8 87.8 0 0 1-3 23l22.24 9.72A8 8 0 0 1 232 192a7.9 7.9 0 0 1-3.2-.67L207.38 182a88 88 0 0 1-158.76 0l-21.42 9.33a7.9 7.9 0 0 1-3.2.67a8 8 0 0 1-3.2-15.33L43 167a87.8 87.8 0 0 1-3-23v-8H16a8 8 0 0 1 0-16h24v-8a87.8 87.8 0 0 1 3-23l-22.2-9.67a8 8 0 1 1 6.4-14.66L48.62 74a88 88 0 0 1 158.76 0l21.42-9.36a8 8 0 0 1 6.4 14.66L213 89.05a87.8 87.8 0 0 1 3 23v8h24a8 8 0 0 1 0 16h-24Zm-80 0a8 8 0 0 0-16 0v64a8 8 0 0 0 16 0Zm64-32a72 72 0 0 0-144 0v8h144Z"/></symbol>
 <symbol id="i-check-circle-fill" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m45.66 85.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32"/></symbol>
 <symbol id="i-warning-octagon" viewBox="0 0 256 256"><path fill="currentColor" d="M120 136V80a8 8 0 0 1 16 0v56a8 8 0 0 1-16 0m112-44.45v72.9a15.86 15.86 0 0 1-4.69 11.31l-51.55 51.55a15.86 15.86 0 0 1-11.31 4.69h-72.9a15.86 15.86 0 0 1-11.31-4.69l-51.55-51.55A15.86 15.86 0 0 1 24 164.45v-72.9a15.86 15.86 0 0 1 4.69-11.31l51.55-51.55A15.86 15.86 0 0 1 91.55 24h72.9a15.86 15.86 0 0 1 11.31 4.69l51.55 51.55A15.86 15.86 0 0 1 232 91.55m-16 0L164.45 40h-72.9L40 91.55v72.9L91.55 216h72.9L216 164.45ZM128 160a12 12 0 1 0 12 12a12 12 0 0 0-12-12"/></symbol>
@@ -1160,7 +1027,6 @@
             <a href="https://www.linkedin.com/company/mario-pc/" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin-logo"/></svg></a>
             <a href="https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Google Maps"><svg aria-hidden="true"><use href="#i-map-pin"/></svg></a>
         </div>
-        <button type="button" class="egg-scan-btn" id="scanOpen"><svg class="i" aria-hidden="true"><use href="#i-scan"/></svg>Escáner de PC (de mentirita)</button>
     </div>
 </footer>
 
@@ -1557,7 +1423,7 @@
             return 'BUG' + PREMIO.porcentaje + '-' + day + month + '-' + suffix;
         }
 
-        // Ventanas modales (premio del bug y escáner)
+        // Ventana modal (premio del bug)
         let activeModal = null;
 
         function trapTab(e, root) {
@@ -1714,6 +1580,7 @@
             const rick = document.getElementById('rickrollOverlay');
             const form = document.getElementById('whatsappForm');
             return !!(activeModal || bsod.active ||
+                document.documentElement.classList.contains('pelusa-open') ||
                 (menu && menu.classList.contains('open')) ||
                 (rick && rick.classList.contains('active')) ||
                 formVisible ||
@@ -1809,277 +1676,10 @@
             const shown = parseInt(state, 10) || 0;
             if (state !== 'caught' && shown < 2) scheduleBug(shown === 0 ? rand(15, 40) : rand(25, 60));
         }
-
-        // Escáner de PC (de mentirita)
-        // Remates de "Descargar más RAM gratis": uno distinto por cada vez que caen
-        // en la misma visita; del último en adelante se repite el último.
-        const RAM_KEY = 'mpc_ram';
-        const RAM_NOTE = { text: 'Si tu PC anda lenta, con el diagnóstico sin cargo te digo si le falta memoria o es otra cosa.', cls: 'note' };
-        const RAM_JOKES = [
-            {
-                file: '$ descargar ram_gratis_16GB.exe',
-                connect: 'Conectando con el servidor de RAM gratis...',
-                install: 'Instalando 16 GB de RAM...',
-                sub: () => 'La RAM no se descarga 😉',
-                after: () => [
-                    'Te la creíste 😄',
-                    'La RAM no se descarga: es una pieza que va adentro de la compu.',
-                    RAM_NOTE
-                ],
-                wa: () => 'Hola Mario! Caí con lo de la RAM gratis 😅 Mi compu anda lenta, ¿la podés revisar?'
-            },
-            {
-                file: '$ descargar ram_gratis_32GB_AHORA_SI.exe',
-                connect: 'Buscando un servidor más confiable (?)...',
-                install: 'Instalando 32 GB de RAM. Esta vez sí, posta...',
-                sub: () => '¿Otra vez? 😂',
-                after: () => [
-                    'Dos de dos 😂',
-                    'Tranqui, a todos nos pasa con las ofertas demasiado buenas.',
-                    RAM_NOTE
-                ],
-                wa: () => 'Hola Mario! Caí dos veces con lo de la RAM gratis 😂 ¿Me revisás la compu de verdad?'
-            },
-            {
-                file: '$ descargar ram_gratis_64GB_final_v3.exe',
-                connect: 'Desactivando el sentido común...',
-                install: 'Instalando 64 GB de RAM y un poquito de fe...',
-                sub: () => 'Tres de tres. Ya somos amigos 🤝',
-                after: () => [
-                    'A esta altura Rick ya te saluda por tu nombre.',
-                    'Consejo de técnico: si algo gratis en internet suena demasiado bueno, en la vida real suele ser un virus.',
-                    { text: 'Si sospechás que a tu compu se le metió algo, la reviso y te digo qué tiene.', cls: 'note' }
-                ],
-                wa: () => 'Hola Mario! Caí tres veces con lo de la RAM gratis 🙈 ¿Me revisás la compu por si tiene algún virus?'
-            },
-            {
-                file: '$ descargar ram_gratis_128GB.exe',
-                connect: 'El escáner detectó un patrón sospechoso...',
-                install: 'Igual lo voy a hacer. Me caés bien.',
-                sub: n => 'Intento número ' + n + '. Esto ya es amor 💚',
-                after: n => [
-                    n + ' veces. Sos fan de Rick y lo respeto.',
-                    'Lo que sí te puedo asegurar es que yo tampoco te voy a dejar tirado con tu compu.',
-                    RAM_NOTE
-                ],
-                wa: n => 'Hola Mario! Caí ' + n + ' veces con lo de la RAM gratis 🎵 Ya que estamos, ¿me revisás la compu?'
-            }
-        ];
-
-        const scanBtn = document.getElementById('scanOpen');
-        if (scanBtn) scanBtn.addEventListener('click', openScanner);
-
-        function openScanner() {
-            track('escaner_abierto');
-            const win = make('div', 'egg-term',
-                '<div class="egg-term-bar">' +
-                    '<span id="eggTermTitle">' + svgIcon('scan', '') + ' escaner_pc.exe (de mentirita)</span>' +
-                    '<button type="button" class="egg-term-close" aria-label="Cerrar escáner">' + svgIcon('x', '') + '</button>' +
-                '</div>' +
-                '<div class="egg-term-log" role="log" aria-live="polite"></div>' +
-                '<div class="egg-opts"></div>');
-            win.setAttribute('role', 'dialog');
-            win.setAttribute('aria-modal', 'true');
-            win.setAttribute('aria-labelledby', 'eggTermTitle');
-
-            let runId = 0;
-            const modal = openModal(win, { cls: 'has-term', onClose: () => { runId++; } });
-            const log = win.querySelector('.egg-term-log');
-            const opts = win.querySelector('.egg-opts');
-            win.querySelector('.egg-term-close').addEventListener('click', () => modal.close());
-
-            function sleep(ms) {
-                return new Promise(r => setTimeout(r, reduceMotion.matches ? Math.min(ms, 120) : ms));
-            }
-            function line(text, cls) {
-                const d = make('div', 'egg-line ' + (cls || ''));
-                d.textContent = text;
-                log.appendChild(d);
-                log.scrollTop = log.scrollHeight;
-                return d;
-            }
-            async function say(items, id, gap) {
-                for (const it of items) {
-                    if (id !== runId) return false;
-                    if (typeof it === 'string') line(it); else line(it.text, it.cls);
-                    await sleep(gap || 550);
-                }
-                return id === runId;
-            }
-
-            function setOptions(list, disabled) {
-                opts.innerHTML = '';
-                list.forEach(o => {
-                    let node;
-                    if (o.href && !disabled) {
-                        node = make('a', 'egg-opt is-cta');
-                        node.href = o.href;
-                        node.target = '_blank';
-                        node.rel = 'noopener noreferrer';
-                        node.addEventListener('click', () => track('escaner_whatsapp', { origen: o.origen }));
-                    } else {
-                        node = make('button', 'egg-opt');
-                        node.type = 'button';
-                        if (disabled) node.disabled = true;
-                        else node.addEventListener('click', o.onClick);
-                    }
-                    node.textContent = o.label;
-                    opts.appendChild(node);
-                });
-                if (!disabled) {
-                    const first = opts.querySelector('.egg-opt');
-                    if (first) { try { first.focus({ preventScroll: true }); } catch (e) {} }
-                }
-            }
-
-            const menu = [
-                { key: 'scan', label: 'Escanear mi PC', onClick: () => run('scan') },
-                { key: 'lenta', label: '¿Por qué anda lenta mi PC?', onClick: () => run('lenta') },
-                { key: 'ping', label: 'Ping a Mario', onClick: () => run('ping') },
-                { key: 'sudo', label: 'sudo reparar', onClick: () => run('sudo') },
-                { key: 'ram', label: 'Descargar más RAM gratis', onClick: () => run('ram') }
-            ];
-
-            function backOption() {
-                return { label: 'Volver al menú', onClick: () => { line('¿Qué más querés hacer?'); setOptions(menu); } };
-            }
-
-            const flows = {
-                async scan(id) {
-                    if (!await say([{ text: 'Iniciando escaneo...', cls: 'cmd' }], id, 400)) return null;
-                    const bar = make('div', 'egg-line egg-bar', '<span></span>');
-                    bar.setAttribute('aria-hidden', 'true');
-                    log.appendChild(bar);
-                    const fill = bar.firstChild;
-                    const steps = reduceMotion.matches ? [100] : [8, 19, 33, 33, 52, 68, 81, 94, 100];
-                    for (const p of steps) {
-                        if (id !== runId) return null;
-                        fill.style.width = p + '%';
-                        log.scrollTop = log.scrollHeight;
-                        await sleep(330);
-                    }
-                    const ok = await say([
-                        { text: 'Pestañas abiertas: 3.482', cls: 'find' },
-                        { text: 'Antivirus: vencido desde 2019', cls: 'find' },
-                        { text: 'Fotos duplicadas de gatos: 47', cls: 'find' },
-                        { text: 'Archivos llamados "final_v2_AHORA_SÍ": 12', cls: 'find' },
-                        { text: 'Programas que arrancan con Windows: 84 (usás 3)', cls: 'find' },
-                        { text: 'Polvo en el ventilador: nivel alfombra', cls: 'find' },
-                        { text: 'Sentido del humor: intacto', cls: 'good' },
-                        'Diagnóstico: necesitás a Mario.',
-                        { text: 'Ojo: este escáner es de mentirita. El diagnóstico de verdad lo hago en el taller y es sin cargo.', cls: 'note' }
-                    ], id, 650);
-                    if (!ok) return null;
-                    return [
-                        { label: 'Pedir diagnóstico sin cargo', origen: 'scan', href: waLink('Hola Mario! Probé el escáner de la web y dice que te necesito 😅 ¿Me hacés un diagnóstico?') },
-                        backOption()
-                    ];
-                },
-
-                async lenta(id) {
-                    const ok = await say([
-                        'Las causas más comunes de una PC lenta:',
-                        '1. Disco rígido viejo (HDD). Pasarlo a SSD suele ser el cambio que más se nota.',
-                        '2. Demasiados programas que arrancan con Windows.',
-                        '3. Poca memoria RAM para lo que usás.',
-                        '4. Polvo y pasta térmica vieja: el equipo se recalienta y se frena.',
-                        '5. Virus o malware escondidos.',
-                        { text: 'Con una revisión se sabe cuál es. El diagnóstico es sin cargo.', cls: 'note' }
-                    ], id, 700);
-                    if (!ok) return null;
-                    return [
-                        { label: 'Que Mario la revise', origen: 'lenta', href: waLink('Hola Mario! Mi PC anda lenta, ¿podés revisarla?') },
-                        backOption()
-                    ];
-                },
-
-                async ping(id) {
-                    const ok = await say([
-                        { text: '$ ping mariopc.com.ar', cls: 'cmd' },
-                        'Respuesta de Mario: tiempo=12 ms',
-                        'Respuesta de Mario: tiempo=11 ms',
-                        'Respuesta de Mario: tiempo=12 ms',
-                        'Paquetes: enviados = 3, recibidos = 3, perdidos = 0 (0% perdidos)'
-                    ], id, 520);
-                    if (!ok) return null;
-                    const badge = document.getElementById('hoursBadgeText');
-                    const txt = badge ? badge.textContent.trim() : '';
-                    const estado = txt && !/verificando/i.test(txt)
-                        ? 'Estado actual: ' + txt
-                        : 'Escribime por WhatsApp y te respondo apenas pueda.';
-                    if (!await say([{ text: estado, cls: 'note' }], id, 300)) return null;
-                    return [
-                        { label: 'Escribirle a Mario', origen: 'ping', href: waLink('Hola Mario! Hice ping desde la web y respondiste en 12 ms 😄 Quería consultarte algo.') },
-                        backOption()
-                    ];
-                },
-
-                async sudo(id) {
-                    const ok = await say([
-                        { text: '$ sudo reparar', cls: 'cmd' },
-                        'Contraseña: ********',
-                        { text: 'Error: permiso denegado.', cls: 'find' },
-                        'Tu usuario no tiene permisos para reparar esto. Mario sí 😎'
-                    ], id, 650);
-                    if (!ok) return null;
-                    return [
-                        { label: 'Escribirle a Mario', origen: 'sudo', href: waLink('Hola Mario! El escáner dice que solo vos podés repararme la PC 😅') },
-                        backOption()
-                    ];
-                },
-
-                async ram(id) {
-                    const tries = (parseInt(ssGet(RAM_KEY), 10) || 0) + 1;
-                    ssSet(RAM_KEY, tries);
-                    const v = RAM_JOKES[Math.min(tries, RAM_JOKES.length) - 1];
-
-                    if (!await say([{ text: v.file, cls: 'cmd' }, v.connect], id, 500)) return null;
-                    const bar = make('div', 'egg-line egg-bar', '<span></span>');
-                    bar.setAttribute('aria-hidden', 'true');
-                    log.appendChild(bar);
-                    const fill = bar.firstChild;
-                    const steps = reduceMotion.matches ? [100] : [14, 31, 47, 66, 82, 97, 99, 99, 100];
-                    for (const p of steps) {
-                        if (id !== runId) return null;
-                        fill.style.width = p + '%';
-                        log.scrollTop = log.scrollHeight;
-                        await sleep(260);
-                    }
-                    if (!await say([{ text: v.install, cls: 'cmd' }], id, 700)) return null;
-                    if (typeof window.openRickroll !== 'function') return null;
-                    track('rickroll_visto', { intento: tries });
-                    await new Promise(resolve => window.openRickroll({ sub: v.sub(tries), onClose: resolve }));
-                    if (id !== runId) return null;
-                    if (!await say(v.after(tries), id, 600)) return null;
-                    return [
-                        { label: 'Que Mario la revise', origen: 'ram', href: waLink(v.wa(tries)) },
-                        backOption()
-                    ];
-                }
-            };
-
-            async function run(key) {
-                const id = ++runId;
-                track('escaner_opcion', { opcion: key });
-                line(menu.find(m => m.key === key).label, 'me');
-                setOptions(menu, true);
-                const after = await flows[key](id);
-                if (after && id === runId) setOptions(after);
-            }
-
-            (async function intro() {
-                setOptions(menu, true);
-                const id = runId;
-                const ok = await say([
-                    'Hola, soy el escáner de Mario PC.',
-                    'Es de mentirita, pero divertido. ¿Qué querés hacer?'
-                ], id, 450);
-                if (ok) setOptions(menu);
-            })();
-        }
     })();
 </script>
 <script src="/site.js?v=2"></script>
 <script src="/theme.js?v=3" defer></script>
+<script src="/pelusa.js?v=2" defer></script>
 </body>
 </html>

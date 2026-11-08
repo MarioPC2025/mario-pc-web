@@ -6,7 +6,7 @@ Lo usan la web (este repo) y la app del taller (`mario-pc-app`). Este archivo de
 
 - Servicio técnico de un solo técnico, en Olivos. La web es Mario hablando con un vecino, no una empresa.
 - Directo y práctico: precio claro, WhatsApp a mano, sin vueltas.
-- Con humor: los easter eggs (tarjeta rota, rickroll, consola, bug que se asoma, escáner, flashbang del modo claro) son parte de la marca. Nunca tapan una acción real.
+- Con humor: los easter eggs (tarjeta rota, rickroll, consola, bug que se asoma, Pelusa con su escáner de mentirita, flashbang del modo claro) son parte de la marca. Nunca tapan una acción real.
 
 ## Colores
 

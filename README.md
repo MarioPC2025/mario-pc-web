@@ -169,3 +169,15 @@ El sitio arranca siempre en oscuro. El botón de sol/luna (en la barra de arriba
 - Si alguien tiene activado "reducir movimiento" en su sistema, el tema cambia sin destello ni sonido.
 - Si cambiás `theme.css` o `theme.js`, subí el `?v=1` de las páginas a `?v=2` para que los navegadores bajen la versión nueva.
 - Colores nuevos en una página: usá las variables (`var(--white)`, `var(--muted)`, `rgba(var(--ink-rgb), 0.05)`, etc.) en lugar de colores fijos, así funcionan en los dos modos.
+
+## Pelusa, el asistente (`pelusa.js` + `pelusa.css` + `img/pelusa*`)
+
+Pelusa es el gato de Mario y atiende las preguntas comunes desde el botón flotante que está arriba del de WhatsApp (en inicio, FAQ, blog y empresas). No es una IA: solo dice lo que está escrito en `pelusa.js`, con una pausa corta a propósito ("pensando…").
+
+- **Cambiar o agregar respuestas:** en `RESPUESTAS`, dentro de `pelusa.js`. Cada tema tiene `label` (lo que pregunta la persona), `say` (lo que contesta Pelusa, una línea por globito) y, si querés, `wa` (mensaje armado para WhatsApp) y `links`. Para que aparezca en un menú, sumá su nombre a la lista `menu` del menú que corresponda (`inicio`, `servicios`, `precios`, `donde`, `escaner`).
+- **Precios:** están copiados de la sección "Servicios y precios" de `index.html` (tema `lista`). Si cambiás un precio allá, cambialo también acá.
+- **Horario:** Pelusa lo toma de `horario.js`, así que no hay que tocar nada. Cuando el local está cerrado, Pelusa aparece durmiendo con las mismas "Z" que WhatsApp y saluda medio dormido.
+- **Imágenes:** `IMG` al principio de `pelusa.js` (normal, pensando y durmiendo). Están en `img/pelusa.webp`, `img/pelusa-pensando.webp` e `img/pelusa-durmiendo.webp` (cuadradas, 256 px). Para cambiarlas, reemplazá esos archivos por otros con el mismo nombre.
+- **Miau:** `SONIDOS` al principio de `pelusa.js` (hoy `['/pelusa-miau.mp3']`, el miau real de Pelusa recortado y nivelado; si ponés varios, se alternan). Si la lista queda vacía, suena un miau sintetizado. Suena al abrir a Pelusa y al elegir una pregunta. El volumen está en `VOLUME` (0.25 = 25%) y cada visitante lo puede silenciar desde la ventana (queda guardado).
+- **Escáner de mentirita:** ahora es la opción "Escaneá mi PC (de mentirita)" dentro de Pelusa. "Descargar más RAM gratis" solo aparece en el inicio, que es donde está el rickroll.
+- Si cambiás `pelusa.js` o `pelusa.css`, subí el `?v=1` de las cuatro páginas para que los navegadores bajen la versión nueva.
