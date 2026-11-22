@@ -13,7 +13,7 @@
     };
     // Miaus reales de Pelusa. Si se ponen varios, se alternan. Si la lista queda vacía, suena un miau sintetizado.
     const SONIDOS = ['/pelusa-miau.mp3?v=2'];
-    const VOLUME = 0.25;
+    const VOLUME = 0.6;
 
     const WA = 'https://wa.me/5491123999259';
     const MAPS = 'https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6';

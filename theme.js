@@ -2,8 +2,12 @@
 (function () {
     var root = document.documentElement;
     var KEY = 'mpc-theme';
-    var SOUND_URL = '/flashbang.mp3';
-    var VOLUME = 0.3;
+    // Sonidos: al pasar a claro y al volver a oscuro. Los volúmenes están nivelados para que
+    // suenen parecido entre sí y con el miau de Pelusa (ver README, "Modo claro").
+    var SOUNDS = {
+        flash: { url: '/flashbang.mp3', volume: 0.16 },
+        relief: { url: '/yoooo.mp3', volume: 0.4 }
+    };
     var COLORS = { dark: '#07090a', light: '#f4f6f5' };
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,8 +44,6 @@
 
     // Audio
     var ctx = null;
-    var soundData = null;
-    var soundBuffer = null;
 
     function audio() {
         var AC = window.AudioContext || window.webkitAudioContext;
@@ -52,70 +54,36 @@
     }
 
     function prefetch() {
-        if (soundData || reduceMotion) return soundData;
-        soundData = fetch(SOUND_URL)
-            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-            .catch(function () { soundData = null; return null; });
-        return soundData;
+        if (reduceMotion) return;
+        Object.keys(SOUNDS).forEach(function (name) {
+            var s = SOUNDS[name];
+            if (s.data) return;
+            s.data = fetch(s.url)
+                .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+                .catch(function () { s.data = null; return null; });
+        });
     }
 
-    function getBuffer(c) {
-        if (soundBuffer) return Promise.resolve(soundBuffer);
-        return (prefetch() || Promise.resolve(null)).then(function (data) {
+    function getBuffer(c, name) {
+        var s = SOUNDS[name];
+        if (s.buffer) return Promise.resolve(s.buffer);
+        prefetch();
+        return (s.data || Promise.resolve(null)).then(function (data) {
             if (!data || !c) return null;
             return new Promise(function (resolve) {
-                c.decodeAudioData(data.slice(0), function (b) { soundBuffer = b; resolve(b); }, function () { resolve(null); });
+                c.decodeAudioData(data.slice(0), function (b) { s.buffer = b; resolve(b); }, function () { resolve(null); });
             });
         });
     }
 
-    function play(c, buffer) {
+    function play(c, buffer, volume) {
         if (!c || !buffer) return;
         var src = c.createBufferSource();
         var gain = c.createGain();
-        gain.gain.value = VOLUME;
+        gain.gain.value = volume;
         src.buffer = buffer;
         src.connect(gain).connect(c.destination);
         src.start();
-    }
-
-    function relief(c) {
-        if (!c) return;
-        var t = c.currentTime;
-        var out = c.createGain();
-        out.gain.value = VOLUME;
-        out.connect(c.destination);
-
-        var len = Math.floor(c.sampleRate);
-        var buf = c.createBuffer(1, len, c.sampleRate);
-        var data = buf.getChannelData(0);
-        for (var i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
-        var noise = c.createBufferSource();
-        noise.buffer = buf;
-        var band = c.createBiquadFilter();
-        band.type = 'bandpass';
-        band.Q.value = 1.2;
-        band.frequency.setValueAtTime(1600, t);
-        band.frequency.exponentialRampToValueAtTime(250, t + 0.9);
-        var ng = c.createGain();
-        ng.gain.setValueAtTime(0, t);
-        ng.gain.linearRampToValueAtTime(0.35, t + 0.15);
-        ng.gain.exponentialRampToValueAtTime(0.001, t + 0.95);
-        noise.connect(band).connect(ng).connect(out);
-        noise.start(t);
-
-        [[523.25, 0.35], [783.99, 0.5]].forEach(function (n) {
-            var o = c.createOscillator();
-            var g = c.createGain();
-            o.type = 'sine';
-            o.frequency.value = n[0];
-            g.gain.setValueAtTime(0, t + n[1]);
-            g.gain.linearRampToValueAtTime(0.14, t + n[1] + 0.06);
-            g.gain.exponentialRampToValueAtTime(0.001, t + n[1] + 1.1);
-            o.connect(g).connect(out);
-            o.start(t + n[1]);
-            o.stop(t + n[1] + 1.2);
-        });
     }
 
     // Efectos visuales
@@ -176,18 +144,19 @@
             var go = function (buffer) {
                 if (go.done) return;
                 go.done = true;
-                play(c, buffer);
+                play(c, buffer, SOUNDS.flash.volume);
                 flash(function () { paint('light'); });
                 setTimeout(function () { toast('Ojo con el brillo'); }, 1300);
             };
-            getBuffer(c).then(go);
-            setTimeout(function () { go(soundBuffer); }, 700);
+            getBuffer(c, 'flash').then(go);
+            setTimeout(function () { go(SOUNDS.flash.buffer); }, 700);
             return;
         }
 
         if (next === 'dark' && flashed && !relieved && !reduceMotion) {
             write('sessionStorage', 'mpc-relief', '1');
-            relief(audio());
+            var rc = audio();
+            getBuffer(rc, 'relief').then(function (b) { play(rc, b, SOUNDS.relief.volume); });
             instant('dark');
             setTimeout(function () { toast('Ahh, mucho mejor.'); }, 500);
             return;

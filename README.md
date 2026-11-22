@@ -159,12 +159,12 @@ Página donde el cliente ve en qué anda su equipo con el código de su comproba
 - **Si cambiás el script chico del `<head>` de `estado.html`** (el que aplica el modo claro), hay que recalcular su hash `sha256-…` en la CSP; si no, el navegador lo bloquea.
 - Para probarla en la compu, la página usa el Worker local (`http://127.0.0.1:8787`) cuando se abre desde `localhost`.
 
-## Modo claro (`theme.css` + `theme.js` + `flashbang.mp3`)
+## Modo claro (`theme.css` + `theme.js` + `flashbang.mp3` + `yoooo.mp3`)
 
 El sitio arranca siempre en oscuro. El botón de sol/luna (en la barra de arriba, o flotando arriba a la derecha en `gracias.html` y `404.html`) cambia de tema y la elección queda guardada en el navegador del visitante.
 
 - **Colores del modo claro:** están todos juntos al principio de `theme.css`. Los del modo oscuro siguen en el `:root` de cada página.
-- **Sonido:** `flashbang.mp3` suena la primera vez que alguien pasa a claro en cada visita; el de alivio (al volver a oscuro) se genera por código. El volumen está en `VOLUME` dentro de `theme.js` (0.3 = 30%).
+- **Sonido:** `flashbang.mp3` suena la primera vez que alguien pasa a claro en cada visita, y `yoooo.mp3` la primera vez que vuelve a oscuro. Los archivos y sus volúmenes están en `SOUNDS`, al principio de `theme.js` (flashbang 0.16, yoooo 0.4). Están nivelados para que los dos suenen parecido al miau de Pelusa: el flashbang viene grabado mucho más fuerte, por eso va más bajo. Si cambiás uno, medilo y nivelalo con los otros.
 - **Avisos:** los textos "Ojo con el brillo" y "Ahh, mucho mejor." están en `theme.js`.
 - Si alguien tiene activado "reducir movimiento" en su sistema, el tema cambia sin destello ni sonido.
 - Si cambiás `theme.css` o `theme.js`, subí el `?v=1` de las páginas a `?v=2` para que los navegadores bajen la versión nueva.
@@ -178,6 +178,6 @@ Pelusa es el gato de Mario y atiende las preguntas comunes desde el botón flota
 - **Precios:** están copiados de la sección "Servicios y precios" de `index.html` (tema `lista`). Si cambiás un precio allá, cambialo también acá.
 - **Horario:** Pelusa lo toma de `horario.js`, así que no hay que tocar nada. Cuando el local está cerrado, Pelusa aparece durmiendo con las "Z" (en el botón de WhatsApp se ocultan para que no se encimen) y saluda medio dormido.
 - **Imágenes:** `IMG` al principio de `pelusa.js` (normal, pensando y durmiendo). Están en `img/pelusa.webp`, `img/pelusa-pensando.webp` e `img/pelusa-durmiendo.webp` (cuadradas, 256 px). Para cambiarlas, reemplazá esos archivos por otros con el mismo nombre.
-- **Miau:** `SONIDOS` al principio de `pelusa.js` (hoy `['/pelusa-miau.mp3?v=2']`, el miau real de Pelusa, recortado, sin el retumbe grave ni el ruido de fondo y nivelado; si ponés varios, se alternan). Si la lista queda vacía, suena un miau sintetizado. Suena solo al abrir a Pelusa. El volumen está en `VOLUME` (0.25 = 25%) y cada visitante lo puede silenciar desde la ventana (queda guardado).
+- **Miau:** `SONIDOS` al principio de `pelusa.js` (hoy `['/pelusa-miau.mp3?v=2']`, el miau real de Pelusa, recortado, sin el retumbe grave ni el ruido de fondo y nivelado; si ponés varios, se alternan). Si la lista queda vacía, suena un miau sintetizado. Suena solo al abrir a Pelusa. El volumen está en `VOLUME` (0.6 = 60%, nivelado con los sonidos del modo claro) y cada visitante lo puede silenciar desde la ventana (queda guardado).
 - **Escáner de mentirita:** ahora es la opción "Escaneá mi PC (de mentirita)" dentro de Pelusa. "Descargar más RAM gratis" solo aparece en el inicio, que es donde está el rickroll.
 - Si cambiás `pelusa.js` o `pelusa.css`, subí el `?v=1` de las cuatro páginas para que los navegadores bajen la versión nueva.
