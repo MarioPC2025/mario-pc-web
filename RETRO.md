@@ -1,10 +1,10 @@
 # Modo 2002 (`retro.css` + `retro.js` + `retro-fx.js`)
 
-Easter egg con botón visible: el monitor que está al lado del sol/luna convierte todo el sitio en una página de principios de los 2000, con la estética de Windows 98. Es aparte del modo claro/oscuro y no lo toca.
+Easter egg con botón visible: el botón que dice **2002**, al lado del sol/luna, convierte todo el sitio en una página de principios de los 2000, con la estética de Windows 98. Es aparte del modo claro/oscuro y no lo toca.
 
 ## Cómo se activa
 
-- **Botón del monitor** (`.retro-toggle`): en la barra de arriba de inicio, FAQ, blog y empresas; flotando arriba a la derecha en `gracias.html` y `404.html`; en el encabezado de `estado.html`.
+- **Botón 2002** (`.retro-toggle`): gris con bisel y letra Courier en los tres modos, a propósito distinto del sol/luna para que no se confunda con un tema. Con el modo activo dice **2026** y queda hundido. Está en la barra de arriba de inicio, FAQ, blog y empresas; flotando arriba a la derecha en `gracias.html` y `404.html`; en el encabezado de `estado.html`.
 - **Link directo:** `mariopc.com.ar/?retro=1` (sirve en cualquier página). `?retro=0` lo apaga. Sirve para mandarlo desde Instagram o WhatsApp.
 - **Para salir:** el mismo botón, "Apagar el equipo..." en el menú Inicio, o escribir `SALIR` en la página de estado. Al apagar aparece la pantalla negra de "Ya podés apagar tu equipo con seguridad" y vuelve al 2026.
 - La elección queda guardada en el navegador (`localStorage`, clave `mpc-retro`), como el modo claro.
@@ -38,7 +38,8 @@ Easter egg con botón visible: el monitor que está al lado del sol/luna convier
 - **Estela de estrellitas** detrás del mouse (solo en compu).
 - **Protector de pantalla:** después de 90 segundos sin mover el mouse ni tocar el teclado, el logo rebota por la pantalla (solo en compu). Cualquier movimiento lo saca.
 - **Música** chiptune original, sintetizada en el navegador (no hay archivo). Nunca arranca sola: solo con el parlante de la barra de tareas o desde el menú Inicio. Se corta si cambiás de pestaña.
-- **Sonido del módem** al activar el modo con el botón (tono, discado, respuesta y negociación, unos 4,5 segundos), también sintetizado, con la ventanita "Conectando a Mario PC" que va de "Marcando..." a "Conectado a 56.000 bps". Suena la primera vez por visita.
+- **Sonido del módem** (`modem.mp3`, unos 6 segundos) al activar el modo con el botón, con la ventanita "Conectando a Mario PC" que va de "Marcando..." a "Conectado a 56.000 bps" al ritmo del sonido. Suena la primera vez por visita. Se empieza a bajar apenas el mouse pasa por el botón, así no hay demora.
+- **Sonido de apagado** (`apagado.mp3`, el de Windows XP, unos 3 segundos) al apagar el modo con el botón, desde "Apagar el equipo..." o con `SALIR`. Suena cada vez, durante la pantalla de "Ya podés apagar tu equipo con seguridad".
 
 Si alguien tiene activado "reducir movimiento" en su sistema: no hay marquesina en movimiento, ni parpadeos, ni zumbido, ni estela, ni protector de pantalla, ni fotos por franjas, ni sonido del módem.
 
@@ -48,7 +49,8 @@ Todo está en `CONFIG`, al principio de `retro-fx.js`:
 
 - `reparados`: el número del contador del pie. **Es un dato real, actualizalo a mano** (con 0 se oculta).
 - `zumbidoSeg` y `protectorSeg`: cuándo aparecen el zumbido y el protector.
-- `volumenModem` y `volumenMusica`: arrancan bajitos y todavía no se midieron contra los otros sonidos. Si los cambiás, probalos al lado del flashbang y del miau de Pelusa para que suenen parecido.
+- `sonidoModem`, `sonidoApagado` y sus volúmenes. Están nivelados con el flashbang (0.16) y el yoooo (0.4) de `theme.js`, que quedan en unos -29 dB de volumen medio: `modem.mp3` viene grabado en -29 dB (por eso va a 0.85) y `apagado.mp3` en -22 dB (por eso va a 0.45). Si cambiás un archivo, medilo (por ejemplo con `ffmpeg -i archivo.mp3 -af volumedetect -f null -`) y ajustá su volumen. Si cambiás `modem.mp3`, subí también su `?v=` en `retro.js` (`MODEM`).
+- `volumenMusica`: la música chiptune, sintetizada.
 
 Textos: la marquesina de arriba y el cartel están en `setupBanners`, los del chat en `setupChat`, el menú Inicio en `setupTaskbar`, la pantalla de DOS en `setupDos`, la pantalla azul en `index.html` (`open98`) y el 404 en `404.html`. Los textos del modo 2002 no nombran el barrio a propósito, para no tener que tocarlos si cambia la zona (las marquesinas de la home sí lo dicen porque copian las cintas).
 
@@ -58,12 +60,12 @@ Textos: la marquesina de arriba y el cartel están en `setupBanners`, los del ch
 - **Secciones nuevas en la home o subpáginas:** si es `main > section.band`, se convierte sola en ventana (toma el título del primer `h1` o `h2`).
 - **Página nueva:** copiale lo mismo que tienen las demás:
   1. el script chico del `<head>` (va justo abajo del del modo claro),
-  2. `<link rel="stylesheet" href="/retro.css?v=1">` después de `site.css`/`pelusa.css`,
-  3. el botón `.retro-toggle` antes del sol/luna,
-  4. `<script src="/retro.js?v=1" defer></script>` después de `theme.js`.
+  2. `<link rel="stylesheet" href="/retro.css?v=2">` después de `site.css`/`pelusa.css`,
+  3. el botón `<button type="button" class="retro-toggle" aria-pressed="false" aria-label="Activar modo 2002" title="Modo 2002"><span class="retro-toggle-text">2002</span></button>` antes del sol/luna,
+  4. `<script src="/retro.js?v=2" defer></script>` después de `theme.js`.
 - **`estado.html` tiene CSP:** si cambiás el script chico del `<head>`, hay que recalcular su hash `sha256-…` en la CSP de esa página (igual que con el del modo claro). El hash actual del script del modo 2002 es `sha256-Vk7WY9QmH2gFazXqsUSsGHFyp9W8SVbh01Gk86bLWl8=`.
-- **Versiones:** si cambiás `retro.css` o `retro.js`, subí el `?v=1` en las 7 páginas. Si cambiás `retro-fx.js`, subí `FX_SRC` dentro de `retro.js` (y entonces también el `?v=` de `retro.js`).
-- **Nada de marcas ajenas:** el modo imita la época, no logos. No hay logos de Windows, MSN, Internet Explorer ni Fotolog; la barra de título de la pantalla azul dice "MarioPC".
+- **Versiones:** si cambiás `retro.css` o `retro.js`, subí su `?v=` en las 7 páginas (hoy van en `?v=2`). Si cambiás `retro-fx.js`, subí `FX_SRC` dentro de `retro.js` (y entonces también el `?v=` de `retro.js`).
+- **Nada de logos ajenos:** el modo imita la época, no logos. No hay logos de Windows, MSN, Internet Explorer ni Fotolog; la barra de título de la pantalla azul dice "MarioPC". Excepción elegida por Mario: el sonido de apagado es el de Windows XP (es de Microsoft).
 - **El WhatsApp nunca se esconde:** la ventanita de chat es el mismo link del botón flotante. Si se rediseña, que siga siendo fácil de ver y de tocar.
 - **Medición:** activar o desactivar manda el evento `retro_toggle` a Google Analytics (`retro: on/off`), igual que `theme_toggle`. La página de estado no tiene Analytics.
 

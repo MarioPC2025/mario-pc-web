@@ -54,4 +54,4 @@ Lo usan la web (este repo) y la app del taller (`mario-pc-app`). Este archivo de
 
 ## Modo 2002
 
-Es la única excepción a todo lo de arriba, y a propósito: con el botón del monitor el sitio pasa a estética Windows 98 (grises con bisel, azul marino, Verdana y Arial Black, cero bordes redondeados). Sus reglas propias están en `RETRO.md`. Lo que no cambia: el WhatsApp sigue a mano, los datos siguen siendo reales y la voz sigue siendo la de Mario.
+Es la única excepción a todo lo de arriba, y a propósito: con el botón 2002 el sitio pasa a estética Windows 98 (grises con bisel, azul marino, Verdana y Arial Black, cero bordes redondeados). Sus reglas propias están en `RETRO.md`. Lo que no cambia: el WhatsApp sigue a mano, los datos siguen siendo reales y la voz sigue siendo la de Mario.
