@@ -10,7 +10,7 @@ El sitio de Mario PC (mariopc.com.ar): HTML/CSS/JS estático, **sin build tools*
 
 - `README.md`: cómo está armado y cómo se hace cada cambio común (precios, notas del blog, horarios, Instagram, Pelusa, modo claro, estado).
 - `DESIGN.md`: sistema visual y voz.
-- `RETRO.md`: el **modo 2002** (botón del monitor, `?retro=1`). Cualquier cambio visual tiene que revisarse también en ese modo.
+- `RETRO.md`: el **modo 2002** (botón 2002, `?retro=1`). Cualquier cambio visual tiene que revisarse también en ese modo.
 
 ## Reglas que más se olvidan
 
@@ -26,4 +26,5 @@ El sitio de Mario PC (mariopc.com.ar): HTML/CSS/JS estático, **sin build tools*
 
 ## Historial de cambios grandes
 
-- **Noviembre 2026, modo 2002** (rama `modo-2002`): botón del monitor en las 7 páginas, `retro.css`, `retro.js`, `retro-fx.js`, 404 clásico en `404.html`, pantalla azul de Windows 98 en la tarjeta rota (`bsod.open98` en `index.html`) y hash nuevo en la CSP de `estado.html`. Pendiente: WebRing con comercios de la zona (ver "Ideas pendientes" en `RETRO.md`; consultar a Mario antes).
+- **Noviembre 2026, modo 2002** (rama `modo-2002`): botón en las 7 páginas, `retro.css`, `retro.js`, `retro-fx.js`, 404 clásico en `404.html`, pantalla azul de Windows 98 en la tarjeta rota (`bsod.open98` en `index.html`) y hash nuevo en la CSP de `estado.html`. Pendiente: WebRing con comercios de la zona (ver "Ideas pendientes" en `RETRO.md`; consultar a Mario antes).
+- **Noviembre 2026, ajustes** (rama `sonidos-y-sin-pasos`): se sacó la sección "Cómo trabajo" de la home (y su link en los menús de index, faq, empresas y blog; las bandas de la home se reacomodaron para seguir alternando fondo); el módem y el apagado pasan a ser archivos (`modem.mp3`, `apagado.mp3`); el botón del modo pasa de un monitor a un botón gris que dice "2002" para que no se confunda con el sol/luna.

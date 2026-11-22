@@ -16,8 +16,13 @@
         zumbidoSeg: 20,
         // Segundos sin mover el mouse ni tocar el teclado antes del protector de pantalla
         protectorSeg: 90,
-        // Volumen general del módem y de la música (0 a 1). Probarlos al lado del flashbang y del miau.
-        volumenModem: 0.08,
+        // Sonidos (archivos en la raíz del repo) y volúmenes de 0 a 1, nivelados con el flashbang,
+        // el yoooo y el miau de Pelusa: si cambiás un archivo, medilo y nivelalo de nuevo (ver RETRO.md)
+        sonidoModem: '/modem.mp3?v=1',
+        volumenModem: 0.85,
+        sonidoApagado: '/apagado.mp3?v=1',
+        volumenApagado: 0.45,
+        // Volumen de la música chiptune (sintetizada, sin archivo)
         volumenMusica: 0.06,
         wa: 'https://wa.me/5491123999259'
     };
@@ -605,12 +610,13 @@
         }, 3000);
     }
 
-    // ---------- Audio: música chiptune y módem, sintetizados (sin archivos) ----------
-    var audioCtx = null;
+    // ---------- Audio: módem y apagado (archivos) y música chiptune (sintetizada) ----------
+    // retro.js crea el contexto de audio en el mismo clic del botón (Safari lo exige); si no, se crea acá
+    var audioCtx = window.MPCRetroAudio || null;
     function audio() {
         var AC = window.AudioContext || window.webkitAudioContext;
         if (!AC) return null;
-        if (!audioCtx) audioCtx = new AC();
+        if (!audioCtx) audioCtx = window.MPCRetroAudio = new AC();
         if (audioCtx.state === 'suspended') audioCtx.resume();
         return audioCtx;
     }
@@ -675,68 +681,37 @@
         };
     }
 
-    // Sonido del módem: tono de discado, discado, respuesta y negociación (unos 4,5 segundos)
-    function modemSound() {
+    // Archivos de sonido: se bajan una vez y quedan decodificados
+    var sounds = {};
+    var apagadoData = null;
+    function loadSound(url, data) {
+        if (sounds[url]) return sounds[url];
         var c = audio();
-        if (!c) return;
-        var out = c.createGain();
-        out.gain.value = CONFIG.volumenModem;
-        out.connect(c.destination);
-        var t = c.currentTime + 0.05;
-        function tone(freqs, start, len, vol) {
-            freqs.forEach(function (f) {
-                var o = c.createOscillator(), g = c.createGain();
-                o.frequency.value = f;
-                g.gain.setValueAtTime(0, start);
-                g.gain.linearRampToValueAtTime(vol, start + 0.01);
-                g.gain.setValueAtTime(vol, start + len - 0.01);
-                g.gain.linearRampToValueAtTime(0, start + len);
-                o.connect(g).connect(out);
-                o.start(start);
-                o.stop(start + len + 0.02);
-            });
-        }
-        tone([350, 440], t, 0.55, 0.5);
-        t += 0.6;
-        var ROW = [697, 770, 852, 941], COL = [1209, 1336, 1477];
-        var KEYS = { '1': [0, 0], '2': [0, 1], '3': [0, 2], '4': [1, 0], '5': [1, 1], '6': [1, 2], '7': [2, 0], '8': [2, 1], '9': [2, 2], '0': [3, 1] };
-        '0610555'.split('').forEach(function (k) {
-            var rc = KEYS[k];
-            tone([ROW[rc[0]], COL[rc[1]]], t, 0.08, 0.45);
-            t += 0.13;
-        });
-        t += 0.35;
-        tone([2100], t, 0.9, 0.35);
-        t += 0.95;
-        for (var i = 0; i < 36; i++) {
-            var f = [980, 1180, 1650, 1850, 2400][Math.floor(Math.random() * 5)];
-            tone([f], t, 0.035, 0.3);
-            t += 0.035;
-        }
-        // Ruido final de la negociación
-        var len = 1.1;
-        var buf = c.createBuffer(1, Math.floor(c.sampleRate * len), c.sampleRate);
-        var data = buf.getChannelData(0);
-        for (var j = 0; j < data.length; j++) data[j] = (Math.random() * 2 - 1) * (0.6 + 0.4 * Math.sin(j / 900));
-        var src = c.createBufferSource();
-        src.buffer = buf;
-        var bp = c.createBiquadFilter();
-        bp.type = 'bandpass';
-        bp.frequency.value = 1800;
-        bp.Q.value = 0.6;
-        var ng = c.createGain();
-        ng.gain.setValueAtTime(0.5, t);
-        ng.gain.linearRampToValueAtTime(0, t + len);
-        src.connect(bp).connect(ng).connect(out);
-        src.start(t);
-        setTimeout(function () { out.disconnect(); }, (t - c.currentTime + len + 0.3) * 1000);
+        if (!c) return Promise.resolve(null);
+        sounds[url] = (data || fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }))
+            .then(function (buf) {
+                if (!buf) return null;
+                return new Promise(function (resolve) {
+                    c.decodeAudioData(buf.slice(0), resolve, function () { resolve(null); });
+                });
+            })
+            .catch(function () { return null; });
+        return sounds[url];
+    }
+    function playSound(buffer, volume) {
+        var c = audio();
+        if (!c || !buffer) return;
+        var src = c.createBufferSource(), g = c.createGain();
+        src.buffer = buffer;
+        g.gain.value = volume;
+        src.connect(g).connect(c.destination);
+        src.start();
     }
 
     // Ventanita "Conexión de acceso telefónico" que acompaña al sonido
     function connect() {
         if (!started) return;
         var withSound = !reduceMotion && ssGet('mpc-modem') !== '1';
-        if (withSound) { ssSet('mpc-modem', '1'); modemSound(); }
         var box = addNode(make('div', 'retro-dialup'));
         box.setAttribute('role', 'status');
         box.appendChild(titlebar('Conectando a Mario PC'));
@@ -749,13 +724,31 @@
         barWrap.appendChild(bar);
         box.appendChild(barWrap);
         document.body.appendChild(box);
-        var steps = withSound
-            ? [[0, 'Marcando...', 15], [1800, 'Verificando nombre de usuario y contraseña...', 55], [3600, 'Conectado a 56.000 bps', 100]]
-            : [[0, 'Conectado a 56.000 bps', 100]];
-        steps.forEach(function (s) {
-            later(function () { text.textContent = s[1]; bar.style.width = s[2] + '%'; }, s[0]);
+
+        // Los pasos de la ventanita siguen al sonido: marca, negocia y conecta cuando termina
+        function run(len) {
+            var steps = len
+                ? [[0, 'Marcando...', 15], [len * 0.35, 'Verificando nombre de usuario y contraseña...', 55], [len, 'Conectado a 56.000 bps', 100]]
+                : [[0, 'Conectado a 56.000 bps', 100]];
+            steps.forEach(function (st) {
+                later(function () { text.textContent = st[1]; bar.style.width = st[2] + '%'; }, st[0]);
+            });
+            later(function () { box.remove(); }, steps[steps.length - 1][0] + 1800);
+        }
+        if (!withSound) { run(0); return; }
+        ssSet('mpc-modem', '1');
+        text.textContent = 'Marcando...';
+        bar.style.width = '5%';
+        var done = false;
+        loadSound(CONFIG.sonidoModem, window.MPCRetroModem).then(function (buffer) {
+            if (done || !started) return;
+            done = true;
+            if (!buffer) { run(0); return; }
+            playSound(buffer, CONFIG.volumenModem);
+            run(buffer.duration * 1000);
         });
-        later(function () { box.remove(); }, steps[steps.length - 1][0] + 1800);
+        // Si el sonido tarda en bajar, conecta igual en silencio
+        later(function () { if (!done) { done = true; run(0); } }, 2500);
     }
 
     // "Ya podés apagar tu equipo con seguridad", y vuelta al 2026
@@ -764,6 +757,13 @@
         off.setAttribute('role', 'status');
         off.innerHTML = '<div>Ya podés apagar tu equipo con seguridad.<small>Volviendo al 2026...</small></div>';
         document.body.appendChild(off);
+        // El archivo del apagado se bajó cuando arrancó el modo; si no llegó, se apaga en silencio.
+        // audio() va acá, dentro del clic, para que Safari deje sonar.
+        var wait = reduceMotion ? 900 : 1700;
+        if (!reduceMotion && apagadoData && audio()) {
+            loadSound(CONFIG.sonidoApagado, Promise.resolve(apagadoData)).then(function (b) { playSound(b, CONFIG.volumenApagado); });
+            wait = 3100;
+        }
         setTimeout(function () {
             done();
             off.remove();
@@ -773,7 +773,7 @@
             document.body.appendChild(toast);
             requestAnimationFrame(function () { toast.classList.add('is-on'); });
             setTimeout(function () { toast.classList.remove('is-on'); setTimeout(function () { toast.remove(); }, 400); }, 2400);
-        }, reduceMotion ? 900 : 1700);
+        }, wait);
     }
 
     // ---------- Arranque y apagado ----------
@@ -781,6 +781,9 @@
         if (started) return;
         started = true;
         setupThemeColor();
+        // Deja listo el sonido de apagado (solo baja el archivo: no crea el audio hasta el primer clic)
+        if (!reduceMotion) fetch(CONFIG.sonidoApagado).then(function (r) { return r.ok ? r.arrayBuffer() : null; })
+            .then(function (buf) { apagadoData = buf; }).catch(function () {});
         if (document.querySelector('.estado')) { setupDos(); return; }
         setupBanners();
         setupWindows();

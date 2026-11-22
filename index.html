@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/theme.css?v=3">
     <link rel="stylesheet" href="/site.css?v=3">
     <link rel="stylesheet" href="/pelusa.css?v=4">
-    <link rel="stylesheet" href="/retro.css?v=1">
+    <link rel="stylesheet" href="/retro.css?v=2">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -200,19 +200,6 @@
         .price-row.broken.is-fixed h3 { animation: none; }
         .price-row.broken.is-fixed .broken-btn { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
 
-        /* Cómo trabajo */
-        .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); counter-reset: s; list-style: none; }
-        .steps li { position: relative; padding: 0 28px 0 0; display: grid; gap: 10px; align-content: start; }
-        .steps li::before {
-            counter-increment: s; content: counter(s);
-            width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
-            font-family: var(--font-display); font-size: 1.4rem; color: var(--green);
-            box-shadow: 0 0 0 1px var(--green-border); background: var(--bg); position: relative; z-index: 1;
-        }
-        .steps li::after { content: ''; position: absolute; top: 22px; left: 44px; right: 0; border-top: 1px dashed var(--green-border); }
-        .steps li:last-child::after { display: none; }
-        .steps h3 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em; text-transform: uppercase; margin-top: 8px; }
-        .steps p { color: var(--muted); font-size: 1rem; }
 
         /* Carruseles */
         .rail-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 32px; }
@@ -512,8 +499,6 @@
             .hero-grid, .contact { grid-template-columns: 1fr; gap: 44px; }
             .price-list { grid-template-columns: 1fr; }
             .terms { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
-            .steps li:nth-child(2)::after { display: none; }
             .rail > * { flex-basis: calc((100% - 14px) / 2); }
             .rail.ig > * { flex-basis: calc((100% - 28px) / 3); }
         }
@@ -532,11 +517,6 @@
             .fact + .fact { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--line); }
             .fact { grid-template-columns: 5.2rem 1fr; align-items: center; }
             .chips { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .steps li { grid-template-columns: 44px 1fr; column-gap: 16px; padding: 0; }
-            .steps li::before { grid-row: span 2; }
-            .steps li::after { display: none; }
-            .steps h3 { margin-top: 6px; }
             .hero-actions .btn { flex: 1 1 100%; }
             .marquee-ribbon svg { height: 126px; }
             .rail > * { flex-basis: 86%; }
@@ -694,7 +674,6 @@
 
             <ul class="nav-links">
                 <li><a href="#precios">Servicios y precios</a></li>
-                <li><a href="#proceso">Cómo trabajo</a></li>
                 <li><a href="#opiniones">Opiniones</a></li>
                 <li><a href="#notas">Notas</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -703,7 +682,7 @@
             </ul>
 
             <div class="nav-actions">
-                <button type="button" class="retro-toggle" aria-pressed="false" aria-label="Activar modo 2002" title="Modo 2002"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="13.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 7h5M6 10h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8.5 21h7M12 16.5V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+                <button type="button" class="retro-toggle" aria-pressed="false" aria-label="Activar modo 2002" title="Modo 2002"><span class="retro-toggle-text">2002</span></button>
                 <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
                 <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
                     <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>WhatsApp
@@ -716,7 +695,6 @@
 
         <div class="mobile-menu" id="mobileMenu">
             <a href="#precios">Servicios y precios</a>
-            <a href="#proceso">Cómo trabajo</a>
             <a href="#opiniones">Opiniones</a>
             <a href="#notas">Notas</a>
             <a href="faq.html">Preguntas frecuentes</a>
@@ -854,35 +832,20 @@
         <div class="terms">
             <div class="term"><svg aria-hidden="true"><use href="#i-shield-check"/></svg><div><b>Garantía de 7 días</b><span>En mano de obra y repuestos.</span></div></div>
             <div class="term"><svg aria-hidden="true"><use href="#i-wallet"/></svg><div><b>Efectivo o Mercado Pago</b><img src="mercadopago-logo.svg" alt="Mercado Pago" width="84" height="34" loading="lazy"></div></div>
-            <div class="term"><svg aria-hidden="true"><use href="#i-chat-circle-text"/></svg><div><b>Precio cerrado antes de arrancar</b><span>Si aparece algo más, te aviso y decidís vos.</span></div></div>
+            <div class="term"><svg aria-hidden="true"><use href="#i-chat-circle-text"/></svg><div><b>Precio cerrado antes de arrancar</b><span>Si no te cierra, te devuelvo la compu y no pagás nada. Si aparece algo más, te aviso y decidís vos.</span></div></div>
         </div>
     </div>
 </section>
 
-<!-- CINTA: Servicios y precios → Cómo trabajo -->
+<!-- CINTA: Servicios y precios → Opiniones -->
 <div class="marquee-ribbon"
      data-marquee-id="2"
      data-marquee-text="Precio antes de arrancar · Garantía de 7 días · Efectivo o Mercado Pago · Informe de cada trabajo ·"
      data-marquee-above="var(--bg-alt)"
      data-marquee-below="var(--bg)"></div>
 
-<!-- CÓMO TRABAJO -->
-<section class="band" id="proceso">
-    <div class="wrap">
-        <div class="section-head">
-            <h2 class="display h2">Cómo trabajo</h2>
-        </div>
-        <ol class="steps">
-            <li><h3>Me escribís</h3><p>Por WhatsApp o con el formulario. Contame qué le pasa al equipo.</p></li>
-            <li><h3>Lo reviso</h3><p>Me lo traés al taller. El diagnóstico no se cobra.</p></li>
-            <li><h3>Te paso el precio</h3><p>Por WhatsApp, antes de arreglar nada. Si no te cierra, te devuelvo la compu y no pagás nada.</p></li>
-            <li><h3>Lo retirás andando</h3><p>Con informe de lo que hice y 7 días de garantía.</p></li>
-        </ol>
-    </div>
-</section>
-
 <!-- OPINIONES -->
-<section class="band alt" id="opiniones">
+<section class="band" id="opiniones">
     <div class="wrap">
         <div class="rail-head">
             <div class="section-head">
@@ -904,7 +867,7 @@
 </section>
 
 <!-- NOTAS E INSTAGRAM -->
-<section class="band" id="notas">
+<section class="band alt" id="notas">
     <div class="wrap">
         <div id="notesBlock" hidden>
             <div class="rail-head">
@@ -943,11 +906,11 @@
 <div class="marquee-ribbon"
      data-marquee-id="3"
      data-marquee-text="Escribime por WhatsApp · Respondo en menos de 24 h · Taller en Alberdi y Maipú, Olivos ·"
-     data-marquee-above="var(--bg)"
-     data-marquee-below="var(--bg-alt)"></div>
+     data-marquee-above="var(--bg-alt)"
+     data-marquee-below="var(--bg)"></div>
 
 <!-- CONTACTO -->
-<section class="band alt" id="contacto">
+<section class="band" id="contacto">
     <div class="wrap contact">
         <div class="contact-left" id="ubicacion">
             <h2 class="display">Contame<br><span class="green">qué le pasa</span></h2>
@@ -1730,7 +1693,7 @@
 </script>
 <script src="/site.js?v=2"></script>
 <script src="/theme.js?v=4" defer></script>
-<script src="/retro.js?v=1" defer></script>
+<script src="/retro.js?v=2" defer></script>
 <script src="/pelusa.js?v=4" defer></script>
 </body>
 </html>

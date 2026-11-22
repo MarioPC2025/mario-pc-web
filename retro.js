@@ -1,12 +1,33 @@
-// Mario PC: botón del modo 2002 (el monitor, al lado del sol/luna). Va en todas las páginas.
+// Mario PC: botón del modo 2002 (el que dice "2002", al lado del sol/luna). Va en todas las páginas.
 // Acá solo está el botón y la preferencia guardada. Todo lo demás (barra de tareas, ventanas, MSN,
 // música, módem, etc.) está en retro-fx.js, que se baja recién cuando alguien activa el modo.
 // El modo se activa también con ?retro=1 en la dirección (y se apaga con ?retro=0). Ver RETRO.md.
 (function () {
     var root = document.documentElement;
     var KEY = 'mpc-retro';
-    var FX_SRC = '/retro-fx.js?v=1';
+    var FX_SRC = '/retro-fx.js?v=2';
+    var MODEM = '/modem.mp3?v=1';
     var toggles = document.querySelectorAll('.retro-toggle');
+    var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    // El audio se habilita en el mismo clic del botón (Safari no deja sonar si se crea después).
+    // El módem se empieza a bajar apenas el mouse pasa por el botón, así suena sin demora.
+    function unlockAudio() {
+        if (reduceMotion) return;
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!window.MPCRetroAudio) window.MPCRetroAudio = new AC();
+            if (window.MPCRetroAudio.state === 'suspended') window.MPCRetroAudio.resume();
+        } catch (e) {}
+    }
+    function prefetchModem() {
+        if (reduceMotion || window.MPCRetroModem) return;
+        try { if (sessionStorage.getItem('mpc-modem') === '1') return; } catch (e) {}
+        window.MPCRetroModem = fetch(MODEM)
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+            .catch(function () { return null; });
+    }
 
     function write(value) {
         try { localStorage.setItem(KEY, value); } catch (e) {}
@@ -19,6 +40,8 @@
             btn.setAttribute('aria-pressed', String(on));
             btn.setAttribute('aria-label', on ? 'Volver al 2026' : 'Activar modo 2002');
             btn.setAttribute('title', on ? 'Volver al 2026' : 'Modo 2002');
+            var label = btn.querySelector('.retro-toggle-text');
+            if (label) label.textContent = on ? '2026' : '2002';
         });
     }
 
@@ -78,7 +101,13 @@
 
     paint(isOn());
     toggles.forEach(function (btn) {
-        btn.addEventListener('click', function () { isOn() ? disable(true) : enable(true); });
+        btn.addEventListener('click', function () {
+            unlockAudio();
+            if (isOn()) disable(true);
+            else { prefetchModem(); enable(true); }
+        });
+        btn.addEventListener('pointerenter', function () { if (!isOn()) prefetchModem(); }, { once: true });
+        btn.addEventListener('focus', function () { if (!isOn()) prefetchModem(); }, { once: true });
     });
     if (isOn()) enable(false);
 })();
