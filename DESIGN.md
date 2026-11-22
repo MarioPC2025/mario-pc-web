@@ -6,7 +6,7 @@ Lo usan la web (este repo) y la app del taller (`mario-pc-app`). Este archivo de
 
 - Servicio técnico de un solo técnico, en Olivos. La web es Mario hablando con un vecino, no una empresa.
 - Directo y práctico: precio claro, WhatsApp a mano, sin vueltas.
-- Con humor: los easter eggs (tarjeta rota, rickroll, consola, bug que se asoma, Pelusa con su escáner de mentirita, flashbang del modo claro) son parte de la marca. Nunca tapan una acción real.
+- Con humor: los easter eggs (tarjeta rota, rickroll, consola, bug que se asoma, Pelusa con su escáner de mentirita, flashbang del modo claro, modo 2002) son parte de la marca. Nunca tapan una acción real.
 
 ## Colores
 
@@ -51,3 +51,7 @@ Lo usan la web (este repo) y la app del taller (`mario-pc-app`). Este archivo de
 - Las preguntas se escriben como las haría un cliente: "¿Pierdo mis archivos si cambio el disco?", y no "¿Se pierden los datos?".
 - Sin guiones largos (—). En su lugar van punto, coma, dos puntos o "·" en los títulos.
 - Solo datos reales: los precios, las reseñas y los números de la home los confirma Mario.
+
+## Modo 2002
+
+Es la única excepción a todo lo de arriba, y a propósito: con el botón del monitor el sitio pasa a estética Windows 98 (grises con bisel, azul marino, Verdana y Arial Black, cero bordes redondeados). Sus reglas propias están en `RETRO.md`. Lo que no cambia: el WhatsApp sigue a mano, los datos siguen siendo reales y la voz sigue siendo la de Mario.
