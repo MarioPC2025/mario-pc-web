@@ -25,9 +25,11 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
+    <script>try{var r=/[?&]retro=([01])/.exec(location.search);if(r)localStorage.setItem('mpc-retro',r[1]);if(r?r[1]==='1':localStorage.getItem('mpc-retro')==='1')document.documentElement.setAttribute('data-retro','')}catch(e){if(/[?&]retro=1/.test(location.search))document.documentElement.setAttribute('data-retro','')}</script>
     <link rel="stylesheet" href="/theme.css?v=3">
     <link rel="stylesheet" href="/site.css?v=3">
     <link rel="stylesheet" href="/pelusa.css?v=4">
+    <link rel="stylesheet" href="/retro.css?v=1">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -701,6 +703,7 @@
             </ul>
 
             <div class="nav-actions">
+                <button type="button" class="retro-toggle" aria-pressed="false" aria-label="Activar modo 2002" title="Modo 2002"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="13.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 7h5M6 10h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8.5 21h7M12 16.5V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
                 <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
                 <a href="https://wa.me/5491123999259" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">
                     <svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>WhatsApp
@@ -1482,6 +1485,9 @@
                 this.from = from;
                 track('bsod_click');
 
+                // Con el modo 2002 activo sale la pantalla azul de Windows 98 (estilos en retro.css)
+                if (document.documentElement.hasAttribute('data-retro')) { this.open98(); return; }
+
                 const el = make('div', 'egg-bsod',
                     '<div class="egg-bsod-body">' +
                         '<div class="egg-bsod-face" aria-hidden="true">:(</div>' +
@@ -1514,6 +1520,46 @@
                     hint.textContent = 'Tocá la pantalla o apretá Esc para volver.';
                 }, recoverAt);
                 this.later(() => this.close(), recoverAt + 1900);
+            },
+
+            open98() {
+                const el = make('div', 'egg-bsod is-98',
+                    '<div class="bsod98">' +
+                        '<p class="bsod98-head">MarioPC</p>' +
+                        '<p class="bsod98-msg">Se produjo una excepción fatal 0E en 0028:C0011E36 en VXD PRECIOS(01) + 00010E36. Se cerrará la aplicación actual.</p>' +
+                        '<ul>' +
+                            '<li>Presioná cualquier tecla para terminar la aplicación actual.</li>' +
+                            '<li>Presioná CTRL+ALT+SUPR otra vez para reiniciar tu compu. Vas a perder la información que no hayas guardado.</li>' +
+                        '</ul>' +
+                        '<p class="bsod98-go">Presioná cualquier tecla para continuar <span class="bsod98-cursor">_</span></p>' +
+                    '</div>' +
+                    '<p class="egg-bsod-hint">Tranqui, es parte de la web. Tocá la pantalla o apretá cualquier tecla para volver.</p>');
+                el.tabIndex = -1;
+                el.setAttribute('role', 'dialog');
+                el.setAttribute('aria-modal', 'true');
+                el.setAttribute('aria-label', 'Pantalla azul de mentira, estilo Windows 98. Tocá la pantalla o apretá cualquier tecla para volver.');
+                document.body.appendChild(el);
+                this.el = el;
+                try { el.focus({ preventScroll: true }); } catch (e) {}
+
+                // Primera tecla o toque: "se arregla". Segunda (o a los 2 segundos): se cierra.
+                let fixed = false;
+                const fix = () => {
+                    if (fixed) { this.close(); return; }
+                    fixed = true;
+                    el.classList.add('is-ok');
+                    el.querySelector('.bsod98').innerHTML =
+                        '<p>C:\\MARIOPC&gt; SCANDISK /REPARAR</p>' +
+                        '<p>Tranqui, era broma. Las de verdad las arreglo yo.</p>';
+                    this.later(() => this.close(), 2200);
+                };
+                el.addEventListener('click', fix);
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' || e.key === 'Tab') return;
+                    e.preventDefault();
+                    fix();
+                });
+                this.later(fix, 6000);
             },
 
             close() {
@@ -1684,6 +1730,7 @@
 </script>
 <script src="/site.js?v=2"></script>
 <script src="/theme.js?v=4" defer></script>
+<script src="/retro.js?v=1" defer></script>
 <script src="/pelusa.js?v=4" defer></script>
 </body>
 </html>

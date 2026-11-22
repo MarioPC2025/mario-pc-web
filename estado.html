@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Sin Google Analytics en esta página: el código del cliente va después del # y no tiene que salir de acá -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6P4YAfJrgROvF9O//p/aJipFrT9R9w2q5Hh3SLHzVi0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://estado-api.mariopc.com.ar http://127.0.0.1:8787; base-uri 'none'; form-action 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-6P4YAfJrgROvF9O//p/aJipFrT9R9w2q5Hh3SLHzVi0=' 'sha256-Vk7WY9QmH2gFazXqsUSsGHFyp9W8SVbh01Gk86bLWl8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://estado-api.mariopc.com.ar http://127.0.0.1:8787; base-uri 'none'; form-action 'none'">
     <meta name="referrer" content="no-referrer">
     <meta name="robots" content="noindex, nofollow">
     <title>Estado de tu equipo · Mario PC</title>
@@ -14,8 +14,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <meta name="theme-color" content="#07090a">
     <script>try{if(localStorage.getItem('mpc-theme')==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f4f6f5'}}catch(e){}</script>
+    <script>try{var r=/[?&]retro=([01])/.exec(location.search);if(r)localStorage.setItem('mpc-retro',r[1]);if(r?r[1]==='1':localStorage.getItem('mpc-retro')==='1')document.documentElement.setAttribute('data-retro','')}catch(e){if(/[?&]retro=1/.test(location.search))document.documentElement.setAttribute('data-retro','')}</script>
     <link rel="stylesheet" href="/theme.css?v=3">
     <link rel="stylesheet" href="/site.css?v=3">
+    <link rel="stylesheet" href="/retro.css?v=1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +85,10 @@
             <img src="/logo.png?v=2" alt="" width="36" height="36">
             <span class="nav-logo-text">Mario<em>PC</em></span>
         </a>
-        <button type="button" class="theme-toggle btn-secondary" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        <div class="nav-actions">
+            <button type="button" class="retro-toggle btn-secondary" aria-pressed="false" aria-label="Activar modo 2002" title="Modo 2002"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="19" height="13.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 7h5M6 10h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8.5 21h7M12 16.5V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+            <button type="button" class="theme-toggle btn-secondary" aria-pressed="false" aria-label="Activar modo claro" title="Modo claro"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        </div>
     </header>
 
     <main class="estado-main" id="contenido" aria-live="polite">
@@ -152,5 +157,6 @@
 
 <script src="/estado.js?v=1" defer></script>
 <script src="/theme.js?v=4" defer></script>
+<script src="/retro.js?v=1" defer></script>
 </body>
 </html>

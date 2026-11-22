@@ -8,6 +8,7 @@ Estas instrucciones vivían antes como comentarios dentro de los archivos HTML. 
 
 - `site.css` y `site.js`: lo que comparten todas las páginas (colores, letras, botones, menú, pie, WhatsApp flotante y volver arriba). Si cambiás el menú o el pie, cambialo en las 4 páginas que lo tienen: `index.html`, `faq.html`, `empresas.html` y `blog.html`.
 - `theme.css` y `theme.js`: el modo claro y su botón.
+- `retro.css`, `retro.js` y `retro-fx.js`: el modo 2002 (el botón del monitor). Todo está explicado en `RETRO.md`.
 - `horario.js`: el cartel de abierto/cerrado y los feriados (que se leen de `status.json`).
 - Lo propio de cada página está en su `<style>`.
 - `DESIGN.md`: el sistema visual y la voz, para que los cambios nuevos sigan el mismo estilo.
@@ -181,3 +182,11 @@ Pelusa es el gato de Mario y atiende las preguntas comunes desde el botón flota
 - **Miau:** `SONIDOS` al principio de `pelusa.js` (hoy `['/pelusa-miau.mp3?v=2']`, el miau real de Pelusa, recortado, sin el retumbe grave ni el ruido de fondo y nivelado; si ponés varios, se alternan). Si la lista queda vacía, suena un miau sintetizado. Suena solo al abrir a Pelusa. El volumen está en `VOLUME` (0.6 = 60%, nivelado con los sonidos del modo claro) y cada visitante lo puede silenciar desde la ventana (queda guardado).
 - **Escáner de mentirita:** ahora es la opción "Escaneá mi PC (de mentirita)" dentro de Pelusa. "Descargar más RAM gratis" solo aparece en el inicio, que es donde está el rickroll.
 - Si cambiás `pelusa.js` o `pelusa.css`, subí el `?v=1` de las cuatro páginas para que los navegadores bajen la versión nueva.
+
+## Modo 2002 (`retro.css` + `retro.js` + `retro-fx.js`)
+
+El botón del monitor (al lado del sol/luna) convierte el sitio en una página de principios de los 2000, con estética de Windows 98: ventanas, barra de tareas con menú Inicio, WhatsApp como ventana de chat, blog como fotolog, estado como pantalla de DOS, pantalla azul de Windows 98 en la tarjeta rota, música y sonido de módem. También se activa con `?retro=1` en la dirección.
+
+- Cómo funciona, qué se puede cambiar (como el contador de equipos reparados) y qué revisar cuando se agrega algo nuevo: `RETRO.md`.
+- Si agregás una página, copiale el script chico del `<head>`, `retro.css`, el botón y `retro.js` (los cuatro pasos están en `RETRO.md`).
+- Si cambiás `retro.css` o `retro.js`, subí el `?v=1` de las 7 páginas.
