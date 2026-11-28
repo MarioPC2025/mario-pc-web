@@ -111,6 +111,8 @@ Al final de cada nota se agrega solo un recuadro con el botón de WhatsApp, el d
 
 **Limitaciones conocidas.** Las notas se arman con JavaScript sobre `blog.html`. Google las lee, pero puede tardar más que con una página propia por nota. Además, al compartir el link de una nota por WhatsApp o Facebook, la vista previa muestra el título y la imagen genéricos del blog, porque esas apps no ejecutan JavaScript. Si el blog empieza a rendir, el siguiente paso es una página HTML por nota.
 
+**Notas programadas (se publican solas).** Una nota también se puede dejar lista para que salga sola en una fecha: va como archivo `.md` en `.github/blog/cola/` (esa carpeta no se ve en la web) y el workflow de Instagram la pasa a `blog-posts.js` y a `sitemap.xml` cuando llega su hora. Formato e instrucciones: `.github/blog/LEEME.md`.
+
 **Casos "antes y después".** La sección de la home y la carpeta `/gallery` ya no se usan (se puede borrar la carpeta). Un caso antes/después se publica como una nota más, con la foto del después como portada y las dos fotos dentro del texto.
 
 ## Cartel de horario y cierres manuales (`horario.js` + `status.json`)
@@ -142,6 +144,20 @@ El cartel de abierto/cerrado de la home y los avisos del botón flotante de What
 3. Commit. A los 1–2 minutos recargá el sitio y verificá que el cartel cambió.
 
 **Cómo reabrir antes de tiempo:** poné `"cerrado": false` y commit.
+
+**Programar un cierre con anticipación (`desde`).** Si agregás `"desde": "2026-12-19"` (o `"2026-12-18 15:00"`), el cierre recién empieza en ese momento. Sin `desde`, empieza apenas hacés el commit.
+
+**Aviso arriba de todo (`aviso`).** Para avisos largos (mudanza, vacaciones), `status.json` puede llevar un cartel que se ve arriba del menú en la home, faq, empresas y el blog, solo entre dos fechas:
+```json
+"aviso": {
+  "desde": "2026-12-18 15:00",
+  "hasta": "2027-01-01",
+  "texto": "Título corto: el resto del aviso."
+}
+```
+- Lo que va antes de los dos puntos se resalta en verde. Máximo 240 caracteres, sin HTML.
+- `hasta` funciona igual que en el cierre: por día (incluido) o por hora. Pasada esa fecha, el aviso desaparece solo.
+- Para sacarlo antes, borrá el bloque `aviso` completo (y la coma que lo separa).
 
 **Feriados:** la lista `feriados` ya cierra el local sola esos días (fechas `AAAA-MM-DD`, entre comillas y separadas por coma, sin coma después de la última). Cargarla una vez por año, en diciembre. Los feriados que caen sábado o domingo no hacen falta. Los días no laborables optativos (ej. puentes turísticos) o provinciales se agregan solo si decidís cerrar.
 

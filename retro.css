@@ -689,3 +689,7 @@ html[data-retro] .estado .privacidad { color: #808080; border-top: 1px dashed #8
     html[data-retro] .whatsapp-float.msn-buzz,
     html[data-retro] img.retro-56k { animation: none !important; }
 }
+
+/* Aviso de arriba de todo (status.json → aviso, lo dibuja horario.js) */
+html[data-retro] .mpc-aviso { background: #ffffe1; color: #000000; border-bottom: 2px solid #000000; font-family: Tahoma, Verdana, sans-serif; font-size: 0.9rem; position: relative; z-index: 1; }
+html[data-retro] .mpc-aviso b { color: #000080; font-weight: 700; }

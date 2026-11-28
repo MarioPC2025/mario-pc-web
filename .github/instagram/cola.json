@@ -154,6 +154,143 @@
       "media_id": "17972429918965747",
       "link": "https://www.instagram.com/p/DgOwGDqAPHn/",
       "publicado_el": "2026-11-27 00:49"
+    },
+    {
+      "id": "post18",
+      "fecha": "2026-12-01 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Novedad",
+      "imagenes": [
+        "instagram/cola/post18.jpg"
+      ],
+      "epigrafe": "Hay alguien nuevo atendiendo en mi web: Pelusa, mi gato 🐾\n\nSabe responder lo que más me preguntan. Si el diagnóstico se cobra (no). Cuánto tarda dejar la compu más rápida. Si hay garantía (7 días, con informe). Cómo se paga (efectivo o Mercado Pago). Y si dejaste tu equipo, cómo va.\n\nResponde al toque, salvo cuando estoy cerrado: ahí lo vas a encontrar durmiendo la siesta.\n\nEstá en mariopc.com.ar, link en la bio. Si tu pregunta es más difícil que las suyas, escribime por WhatsApp.\n\n#reparacionpc #servicetecnico #notebooks #gatos",
+      "alt": "Pelusa con auriculares en un círculo y dos globos de chat: ¿Cuánto sale el diagnóstico? ¡Sin cargo! Miau. Texto: ¿Ya conocés a Pelusa?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post19",
+      "fecha": "2026-12-03 19:30",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Enseñar (nota del blog)",
+      "imagenes": [
+        "instagram/cola/post19.jpg"
+      ],
+      "epigrafe": "Un disco de los que pongo para que la compu arranque rápido, el año pasado lo conseguía por menos de 30 mil pesos. Hoy pasa los 100 mil.\n\nNo es el dólar. Los centros de datos de inteligencia artificial se están quedando con casi todos los chips de memoria del mundo, y lo que queda para las compus de casa es poco y caro. En la nota del blog te cuento qué está pasando y qué conviene hacer con la compu que tenés (adelanto: antes de comprar otra, mejorá la tuya).\n\nLa nota completa está en la web, link en la bio.\n\n#reparacionpc #servicetecnico #notebooks #tecnologia",
+      "alt": "Un disco enojado con una etiqueta de precio que sube, y chips que vuelan hacia un servidor que dice IA. Texto: ¿De 30 mil a 100 mil?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post20",
+      "fecha": "2026-12-08 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Juego",
+      "imagenes": [
+        "instagram/cola/post20.jpg"
+      ],
+      "epigrafe": "¿Te acordás del ruidito del módem antes de entrar a internet? 📞\n\nMi web ahora tiene modo 2002: tocás el botón que dice 2002 y se viste como una compu de esa época, con ventanitas grises, módem y todo. Subile el volumen.\n\nProbalo en mariopc.com.ar (link en la bio) y contame en los comentarios qué compu tenías en 2002. Buen feriado.\n\n#reparacionpc #servicetecnico #retro #nostalgia",
+      "alt": "Monitor de los 2000 con una ventana gris que dice Conectando, un módem con lucecitas y un botón 2002. Texto: ¿Te acordás de 2002?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post21",
+      "fecha": "2026-12-10 19:30",
+      "tipo": "carrusel",
+      "paleta": "oscuro",
+      "tema": "Enseñar",
+      "imagenes": [
+        "instagram/cola/post21-01.jpg",
+        "instagram/cola/post21-02.jpg",
+        "instagram/cola/post21-03.jpg",
+        "instagram/cola/post21-04.jpg",
+        "instagram/cola/post21-05.jpg",
+        "instagram/cola/post21-06.jpg",
+        "instagram/cola/post21-07.jpg",
+        "instagram/cola/post21-08.jpg"
+      ],
+      "epigrafe": "En diciembre llegan más mensajes de \"tu paquete está retenido\" que paquetes 📦\n\nAntes de comprar esa notebook con 70% de descuento \"solo por 24 horas\", o de tocar el link que te llegó por SMS, mirá las 5 señales de las láminas. Son las que más veo en compus que llegan al taller después de una compra rara. Guardate el post, o mandáselo a quien compra todo por internet.\n\n¿Ya tocaste algo y ahora se abren ventanas solas, aparece publicidad por todos lados o anda lentísima? Traela y la reviso sin cargo. Escribime por WhatsApp, el link está en la bio.\n\n#estafas #comprasonline #ciberseguridad #servicetecnico #reparacionpc",
+      "alt": "Carrusel con 5 señales de estafa en las compras de fin de año: en la portada, un anzuelo con una etiqueta de -70%.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post22",
+      "fecha": "2026-12-15 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Novedad (cierre del taller)",
+      "imagenes": [
+        "instagram/cola/post22.jpg"
+      ],
+      "epigrafe": "93 compus y notebooks pasaron por mi taller en Olivos. Gracias a cada persona que me confió la suya 💚\n\nMe mudo a Cosquín, en el valle de Punilla (Córdoba), así que el viernes 18 de diciembre es mi último día atendiendo acá. Si tu equipo está conmigo, te lo devuelvo antes del 24. Y si tenés algo pendiente, escribime esta semana por WhatsApp.\n\nMe llevo las reseñas que me dejaron, como \"De mucha confianza y sinceramente trabajo rápido y eficiente, super recomendable y amigable\" o \"Destaco su puntualidad y compromiso con su servicio\". Cada una me confirmó que valía la pena hacerlo así.\n\nEl jueves te cuento en el blog por qué me voy. Gracias, Olivos.\n\n#olivos #zonanorte #vicentelopez #gracias #reparacionpc",
+      "alt": "Notebook sonriente con corazones en los ojos. Texto: 93 compus. Gracias, Olivos. Último día: viernes 18 de diciembre.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post23",
+      "fecha": "2026-12-17 19:30",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Personal (nota del blog)",
+      "imagenes": [
+        "instagram/cola/post23.jpg"
+      ],
+      "epigrafe": "Esta vez no traigo un consejo para tu compu: te cuento por qué me voy a las sierras.\n\nHace tiempo tenía ganas de dejar la ciudad y vivir más tranquilo. Este fin de año se dio, y desde enero Mario PC atiende en Cosquín, para todo el valle de Punilla. Pelusa viene conmigo, obvio.\n\nMañana es mi último día en el taller. La historia completa está en el blog, link en la bio.\n\n#cosquin #punilla #cordoba #mudanza #reparacionpc",
+      "alt": "Caja de mudanza de Mario PC con orejas de gato asomando, frente a las sierras de noche. Texto: Me voy a las sierras.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post24",
+      "fecha": "2026-12-22 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Oferta",
+      "imagenes": [
+        "instagram/cola/post24.jpg"
+      ],
+      "epigrafe": "¿Dejaste la compu y no sabés en qué anda? En mi web la seguís en 4 pasos: recibido, en reparación, listo y entregado. Solo necesitás el código que te paso cuando la recibo.\n\nY algo que no cambia: si cuando te paso el precio no te cierra, te devuelvo la compu y no pagás nada. La revisión es sin cargo igual, y cada arreglo tiene 7 días de garantía.\n\nEstos días estoy de mudanza. Desde enero sigo trabajando así, en Cosquín. Link en la bio.\n\n#cosquin #punilla #cordoba #reparacionpc #servicetecnico",
+      "alt": "Celular con los pasos recibido, en reparación, listo y entregado, y un cartel: si no te cierra, no pagás. Texto: ¿Y mi compu, cómo va?",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post25",
+      "fecha": "2026-12-24 21:00",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Fecha especial (Navidad)",
+      "imagenes": [
+        "instagram/cola/post25.jpg"
+      ],
+      "epigrafe": "\"¡Gloria a Dios en las alturas, y en la tierra paz entre los hombres de buena voluntad!\"\nLucas 2:14 (RVA2015)\n\nEsta noche celebramos el nacimiento de Jesús. Te deseo una muy feliz Navidad junto a los tuyos.\n\nMario y Pelusa",
+      "alt": "Pesebre ilustrado bajo la estrella de Belén, con María, José y el niño Jesús. Texto: Gloria a Dios en las alturas. ¡Feliz Navidad!",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post26",
+      "fecha": "2026-12-29 19:30",
+      "tipo": "post",
+      "paleta": "claro",
+      "tema": "Novedad (nota del blog)",
+      "imagenes": [
+        "instagram/cola/post26.jpg"
+      ],
+      "epigrafe": "Desde enero atiendo en Cosquín. Para todo el valle de Punilla: Santa María, Bialet Massé, Valle Hermoso, La Falda y alrededores.\n\n¿Qué sigue igual? Casi todo. El WhatsApp, el horario (lunes a jueves de 10 a 17, viernes de 10 a 15) y los precios. Reviso tu compu sin cargo y te paso el precio antes de tocar nada.\n\n¿Qué cambia? Atiendo desde mi casa: cuando coordinamos, te digo cómo llegar. Y el servicio para empresas ahora cubre comercios y oficinas de todo el valle.\n\nTe dejo el detalle en la nota del blog, link en la bio. Si sos de Punilla, escribime: te espero.\n\n#cosquin #punilla #cordoba #reparacionpc #servicetecnico",
+      "alt": "Las sierras de Punilla con un río, una casita con una notebook en la ventana y un pin de ubicación. Texto: Desde enero, en Cosquín.",
+      "estado": "pendiente"
+    },
+    {
+      "id": "post27",
+      "fecha": "2026-12-31 19:30",
+      "tipo": "post",
+      "paleta": "oscuro",
+      "tema": "Fecha especial (Año Nuevo)",
+      "imagenes": [
+        "instagram/cola/post27.jpg"
+      ],
+      "epigrafe": "Pelusa y yo te deseamos un muy feliz 2027 🥂\n\nFue un año enorme: 93 compus arregladas, una web llena de sorpresas y una mudanza a las sierras. Gracias por acompañar cada paso.\n\nNos vemos en enero, desde Cosquín. Brindá tranquilo, y si hay pirotecnia, que sea lejos de las mascotas.\n\n#cosquin #punilla #cordoba #felizañonuevo #reparacionpc",
+      "alt": "Foto de Mario con Pelusa en brazos dentro de un marco verde, con fuegos artificiales, confeti y dos copas brindando. Texto: ¡Feliz 2027!",
+      "estado": "pendiente"
     }
   ]
 }
