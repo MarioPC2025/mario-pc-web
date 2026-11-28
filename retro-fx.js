@@ -11,7 +11,7 @@
     // Lo que se puede cambiar sin tocar el resto
     var CONFIG = {
         // Contador del pie: equipos reparados. Es un dato real, actualizarlo a mano (0 lo oculta).
-        reparados: 70,
+        reparados: 93,
         // Segundos con la página a la vista antes del zumbido del chat (una vez por visita)
         zumbidoSeg: 20,
         // Segundos sin mover el mouse ni tocar el teclado antes del protector de pantalla

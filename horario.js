@@ -4,7 +4,7 @@
    - Todas: cuando el local está cerrado, el botón flotante de WhatsApp muestra unas "Z" (durmiendo),
      un aviso al pasar el mouse (compu) y un aviso con "Escribir igual" al tocarlo (celular).
    Horario de atención y reglas: ver scheduleFor() más abajo.
-   Cierres manuales y feriados: se leen de status.json (ver README). */
+   Cierres manuales, feriados y el aviso de arriba de todo: se leen de status.json (ver README). */
 // Horario: Lunes a jueves 10-17, Viernes 10-15, Sábado y domingo cerrado.
 // Se calcula siempre en hora de Argentina, sin importar dónde esté el visitante.
 // status.json permite cerrar manualmente (por días o por horas, siempre con vencimiento) y listar feriados.
@@ -68,6 +68,17 @@
         return { date: m[1], hasTime: true, hour, minute, end: `${m[1]}T${pad(hour)}:${pad(minute)}` };
     }
 
+    // "desde" (opcional) dice cuándo empieza un cierre o un aviso: un día ("2026-12-19": desde las 0:00)
+    // o un día con hora ("2026-12-18 15:00"). Hora de Argentina.
+    function parseDesde(s) {
+        if (typeof s !== 'string' || !s.trim()) return null;
+        const m = s.trim().match(/^(\d{4}-\d{2}-\d{2})(?:[ T](\d{1,2}):(\d{2}))?$/);
+        if (!m || !isValidDate(m[1])) return null;
+        const hour = m[2] === undefined ? 0 : parseInt(m[2], 10), minute = m[2] === undefined ? 0 : parseInt(m[3], 10);
+        if (hour > 23 || minute > 59) return null;
+        return { start: `${m[1]}T${pad(hour)}:${pad(minute)}` };
+    }
+
     function scheduleFor(day) {
         if (day >= 1 && day <= 4) return { open: 10 * 60, close: 17 * 60 };
         if (day === 5) return { open: 10 * 60, close: 15 * 60 };
@@ -123,9 +134,48 @@
 
     // El cierre manual solo vale si tiene "hasta" válido y todavía no llegó ese momento.
     // Sin "hasta", o con "hasta" vencido, se ignora: nunca puede quedar cerrado para siempre.
+    // Con "desde", recién empieza en ese momento (así se puede programar un cierre con anticipación).
     function activeOverride(nowStr) {
         if (!config || !config.cerrado || !config.hasta) return null;
+        if (config.desde && nowStr < config.desde.start) return null;
         return nowStr < config.hasta.end ? config : null;
+    }
+
+    // Aviso de arriba de todo (mudanza, vacaciones...): solo entre "desde" y "hasta", siempre con vencimiento.
+    let avisoEl = null;
+    function renderAviso(nowStr) {
+        const a = config && config.aviso;
+        const show = !!(a && a.texto && a.hasta && (!a.desde || nowStr >= a.desde.start) && nowStr < a.hasta.end);
+        if (!show) {
+            if (avisoEl) { avisoEl.remove(); avisoEl = null; }
+            return;
+        }
+        if (!avisoEl) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .mpc-aviso { background: var(--green-dim, rgba(29, 221, 101, 0.1)); border-bottom: 1px solid var(--green-border, rgba(29, 221, 101, 0.22));
+                    color: var(--white, #e8edea); font-family: var(--font-body, sans-serif); font-size: 0.95rem; line-height: 1.45;
+                    text-align: center; padding: 10px 16px; }
+                .mpc-aviso b { color: var(--green, #1ddd65); font-weight: 600; }`;
+            document.head.appendChild(style);
+            avisoEl = document.createElement('div');
+            avisoEl.className = 'mpc-aviso';
+            avisoEl.setAttribute('role', 'status');
+            const nav = document.querySelector('nav.top');
+            if (nav && nav.parentNode) nav.parentNode.insertBefore(avisoEl, nav);
+            else document.body.insertBefore(avisoEl, document.body.firstChild);
+        }
+        // El título (antes de los dos puntos) va resaltado. Se escribe como texto: nada de HTML.
+        const t = a.texto;
+        const i = t.indexOf(':');
+        avisoEl.textContent = '';
+        if (i > 0 && i < 60) {
+            const b = document.createElement('b');
+            b.textContent = t.slice(0, i + 1);
+            avisoEl.append(b, ' ' + t.slice(i + 1).trim());
+        } else {
+            avisoEl.textContent = t;
+        }
     }
 
     function computeStatus() {
@@ -342,6 +392,8 @@
 
     function render() {
         const status = computeStatus();
+        const t = getArgentinaTime();
+        renderAviso(`${t.date}T${pad(t.hour)}:${pad(t.minute)}`);
         const badges = [
             { badge: document.getElementById('hoursBadge'), text: document.getElementById('hoursBadgeText') },
             { badge: document.getElementById('hoursBadgeLocation'), text: document.getElementById('hoursBadgeLocationText') }
@@ -373,7 +425,13 @@
             const raw = await res.json();
             config = {
                 cerrado: raw.cerrado === true || String(raw.cerrado).toLowerCase() === 'true',
+                desde: parseDesde(raw.desde),
                 hasta: parseHasta(raw.hasta),
+                aviso: (raw.aviso && typeof raw.aviso === 'object' && typeof raw.aviso.texto === 'string') ? {
+                    desde: parseDesde(raw.aviso.desde),
+                    hasta: parseHasta(raw.aviso.hasta),
+                    texto: raw.aviso.texto.trim().slice(0, 240)
+                } : null,
                 mensaje: typeof raw.mensaje === 'string' ? raw.mensaje.trim().slice(0, 120) : '',
                 feriados: Array.isArray(raw.feriados) ? raw.feriados.filter(isValidDate) : []
             };

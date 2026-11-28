@@ -5,7 +5,7 @@
 (function () {
     var root = document.documentElement;
     var KEY = 'mpc-retro';
-    var FX_SRC = '/retro-fx.js?v=2';
+    var FX_SRC = '/retro-fx.js?v=3';
     var MODEM = '/modem.mp3?v=1';
     var toggles = document.querySelectorAll('.retro-toggle');
     var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);

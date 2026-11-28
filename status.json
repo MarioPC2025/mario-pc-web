@@ -1,7 +1,13 @@
 {
-  "cerrado": false,
-  "hasta": "",
-  "mensaje": "",
+  "cerrado": true,
+  "desde": "2026-12-18 15:00",
+  "hasta": "2027-01-01",
+  "mensaje": "Cerrado por mudanza · Vuelvo en enero, desde Cosquín",
+  "aviso": {
+    "desde": "2026-12-18 15:00",
+    "hasta": "2027-01-01",
+    "texto": "Mario PC se muda a Cosquín: cerré el taller de Olivos y desde enero atiendo en el valle de Punilla, Córdoba. Si tu equipo está conmigo, te lo devuelvo antes del 24/12."
+  },
   "feriados": [
     "2026-10-09",
     "2026-10-12",

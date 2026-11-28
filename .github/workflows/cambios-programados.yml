@@ -1,0 +1,52 @@
+# Une solo, en su fecha, un Pull Request que Mario ya aprobó.
+# Sirve para cambios de la web que tienen que salir un día puntual (ej.: la mudanza a Cosquín el 2/1).
+#
+# Cómo se usa:
+#   1. El PR lleva la etiqueta "programado" y, en la descripción, una línea así:
+#        Se publica solo el: 2027-01-02
+#   2. Mario lo revisa y, si está de acuerdo, le pone la etiqueta "aprobado" (no lo une a mano).
+#   3. Ese día, a partir de las 00:05 (hora de Buenos Aires), este workflow lo une y la web se actualiza.
+# Si el PR no tiene "aprobado", no se une. Si no se puede unir (conflicto), abre un aviso.
+name: Cambios programados
+
+on:
+  schedule:
+    - cron: "5 3 * * *"
+    - cron: "5 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  pages: write
+
+jobs:
+  unir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unir los PR aprobados que ya tienen fecha
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          hoy=$(TZ=America/Argentina/Buenos_Aires date +%F)
+          echo "Hoy (Buenos Aires): $hoy"
+          gh pr list -R "$REPO" --state open --label programado --json number,title,body,labels \
+            --jq '.[] | [.number, ([.labels[].name] | index("aprobado") != null), (((.body // "") | [capture("Se publica solo el: *(?<f>[0-9]{4}-[0-9]{2}-[0-9]{2})")] | .[0].f) // "")] | @tsv' |
+          while IFS=$'\t' read -r num aprobado fecha; do
+            if [ -z "$fecha" ]; then echo "#$num: sin línea 'Se publica solo el:'. No hago nada."; continue; fi
+            if [ "$aprobado" != "true" ]; then echo "#$num: sale el $fecha pero no tiene la etiqueta 'aprobado'."; continue; fi
+            if [[ "$hoy" < "$fecha" ]]; then echo "#$num: aprobado, sale el $fecha."; continue; fi
+            echo "#$num: aprobado y ya es $fecha o después. Lo uno."
+            gh pr ready "$num" -R "$REPO" >/dev/null 2>&1 || true
+            if gh pr merge "$num" -R "$REPO" --merge; then
+              gh api -X POST "repos/$REPO/pages/builds" >/dev/null 2>&1 || true
+              gh pr comment "$num" -R "$REPO" --body "Unido solo el $hoy (workflow Cambios programados)."
+            else
+              gh label create programado --color 1ddd65 --force >/dev/null 2>&1 || true
+              gh issue create -R "$REPO" --label programado \
+                --title "Cambio programado: no se pudo unir el PR #$num" \
+                --body "Era para el $fecha. Probablemente tiene un conflicto con otro cambio. Abrí el PR #$num, resolvelo (o pedíselo a Claude) y unilo a mano."
+            fi
+          done
