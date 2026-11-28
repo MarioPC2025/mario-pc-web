@@ -8,7 +8,7 @@
 // Si el archivo no existe, se muestra un círculo con la inicial.
 const AUTHOR = {
     name: "Mario",
-    role: "Técnico · Mario PC, Olivos",
+    role: "Técnico · Mario PC, Cosquín",
     photo: "blog/mario.jpg"
 };
 

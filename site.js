@@ -35,10 +35,10 @@
     if (footerEl) {
         var phrases = [
             footerEl.textContent,
-            '© 2026 Mario PC · Hecho con mucho café ☕',
-            '© 2026 Mario PC · 100% libre de virus (el sitio, no siempre tu PC)',
-            '© 2026 Mario PC · Si llegaste hasta acá, sos mi cliente ideal',
-            '© 2026 Mario PC · Gracias por curiosear 🕵️'
+            '© 2027 Mario PC · Hecho con mucho café ☕',
+            '© 2027 Mario PC · 100% libre de virus (el sitio, no siempre tu PC)',
+            '© 2027 Mario PC · Si llegaste hasta acá, sos mi cliente ideal',
+            '© 2027 Mario PC · Gracias por curiosear 🕵️'
         ];
         var idx = 0;
         footerEl.addEventListener('click', function () {
