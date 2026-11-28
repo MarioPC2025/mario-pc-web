@@ -177,7 +177,7 @@ const MarioBlog = (function () {
             '<div class="note-body">' + renderContent(p.content) + '</div>' +
             '<aside class="note-cta">' +
             '<div class="note-cta-text"><strong>¿Te pasa algo parecido con tu equipo?</strong>' +
-            '<span>Lo reviso sin cargo en el taller, en Olivos, y te paso el precio por WhatsApp antes de tocar nada. Cada trabajo tiene 7 días de garantía.</span></div>' +
+            '<span>Lo reviso sin cargo en el taller, en Cosquín, y te paso el precio por WhatsApp antes de tocar nada. Cada trabajo tiene 7 días de garantía.</span></div>' +
             '<a class="btn-primary" href="' + WA + '?text=' + waText + '" target="_blank" rel="noopener noreferrer">' +
             '<svg class="i" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg> Escribir por WhatsApp</a>' +
             '</aside>' +

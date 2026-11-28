@@ -16,7 +16,6 @@
     const VOLUME = 0.6;
 
     const WA = 'https://wa.me/5491123999259';
-    const MAPS = 'https://maps.app.goo.gl/NZ7zbYxNTpa6Mxpr6';
     const MUTE_KEY = 'mpc-pelusa-mute';
     const HOLA_KEY = 'mpc-pelusa-hola';
     const RAM_KEY = 'mpc_ram';
@@ -234,10 +233,9 @@
         ubicacion: {
             label: '¿Dónde está el taller?',
             say: [
-                'En Alberdi y Maipú, Olivos, partido de Vicente López. Ahí vivo yo también.',
-                'Mario atiende a gente de Olivos, La Lucila y zonas cercanas. Si no sabés si llega a tu zona, preguntale por WhatsApp.'
+                'En Cosquín, en el valle de Punilla, Córdoba. Ahí vivo yo también.',
+                'Mario atiende en su casa: cuando coordinás con él por WhatsApp, te pasa cómo llegar. Atiende a gente de todo el valle de Punilla.'
             ],
-            links: [{ label: 'Abrir en Google Maps', href: MAPS, ext: true }],
             wa: 'Hola Mario! Quería coordinar para llevarte un equipo.'
         },
         horario: {
@@ -283,7 +281,7 @@
                 'Mario retira los equipos que tu empresa ya no usa, borra los datos según NIST 800-88 y se ocupa del destino final.',
                 'No te cobra el retiro ni el proceso: lo que tiene valor de reventa financia el servicio.',
                 'Recibís un certificado por número de serie de cada equipo y un acta de retiro firmada. Lo que no se puede reutilizar va a reciclaje.',
-                'Retira en Olivos, La Lucila, Vicente López y alrededores.'
+                'Retira en todo el valle de Punilla, de Villa Carlos Paz a Capilla del Monte.'
             ],
             links: enEmpresas ? [] : [{ label: 'Ver el servicio para empresas', href: '/empresas.html' }],
             wa: 'Hola Mario! Te escribo por el servicio de retiro de equipos para empresas.'
